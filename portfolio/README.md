@@ -21,6 +21,14 @@ npm run dev
 
 Buka `http://localhost:3000` untuk halaman utama, dan `http://localhost:3000/admin` untuk panel admin.
 
+Kalau port `3000` sedang dipakai (misalnya oleh project lain), jalankan:
+
+```bash
+npm run dev:alt
+```
+
+Lalu buka `http://localhost:3001` dan `http://localhost:3001/admin`. Tersedia juga `npm run dev:admin` untuk menjalankan aplikasi di port `3002`.
+
 Password admin default (jika `.env.local` belum diisi): `jayszrs123` — **segera ganti** lewat `.env.local`.
 
 ## Struktur Konten

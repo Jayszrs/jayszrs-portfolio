@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   LogOut, Plus, Trash2, Save, Loader2, ImagePlus, Lock,
+  ExternalLink, LayoutDashboard, CheckCircle2,
 } from "lucide-react";
 
 const TABS = ["Profil", "Tentang", "Pengalaman", "Galeri", "Pencapaian", "Sertifikat", "Kontak"];
@@ -38,9 +40,9 @@ function ImageField({ label, value, onChange }) {
   };
 
   return (
-    <div>
+    <div className="min-w-0">
       <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         {value ? (
           <img src={value} alt="" className="h-14 w-14 rounded-lg object-cover" />
         ) : (
@@ -53,9 +55,9 @@ function ImageField({ label, value, onChange }) {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="URL gambar (https://...)"
-          className="flex-1 rounded-lg border border-line bg-white px-3 py-2 text-sm"
+          className="field min-w-0 flex-1"
         />
-        <label className="cursor-pointer rounded-lg border border-line bg-white px-3 py-2 text-xs font-semibold text-ink hover:bg-emerald-soft">
+        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:bg-emerald-soft">
           {busy ? <Loader2 size={14} className="animate-spin" /> : "Upload"}
           <input type="file" accept="image/*" className="hidden" onChange={handleFile} />
         </label>
@@ -73,14 +75,14 @@ function TextField({ label, value, onChange, textarea, mono }) {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           rows={3}
-          className={`w-full rounded-lg border border-line bg-white px-3 py-2 text-sm ${mono ? "font-mono" : ""}`}
+          className={`field resize-y ${mono ? "font-mono" : ""}`}
         />
       ) : (
         <input
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className={`w-full rounded-lg border border-line bg-white px-3 py-2 text-sm ${mono ? "font-mono" : ""}`}
+          className={`field ${mono ? "font-mono" : ""}`}
         />
       )}
     </div>
@@ -97,6 +99,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState(TABS[0]);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState(null);
+  const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
     fetch("/api/auth/session")
@@ -134,6 +137,7 @@ export default function AdminPage() {
 
   const handleSave = async () => {
     setSaving(true);
+    setSaveError("");
     try {
       const res = await fetch("/api/content", {
         method: "POST",
@@ -143,7 +147,7 @@ export default function AdminPage() {
       if (!res.ok) throw new Error("Gagal menyimpan");
       setSavedAt(new Date());
     } catch (err) {
-      alert(err.message);
+      setSaveError(err.message);
     } finally {
       setSaving(false);
     }
@@ -159,30 +163,36 @@ export default function AdminPage() {
 
   if (!authed) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-paper px-4">
-        <form onSubmit={handleLogin} className="glass-strong w-full max-w-sm rounded-2xl p-8">
+      <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-paper px-4">
+        <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-emerald/15 blur-[100px]" />
+        <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-gold/10 blur-[90px]" />
+        <form onSubmit={handleLogin} className="glass-strong relative w-full max-w-md rounded-[2rem] p-7 sm:p-10">
           <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-soft">
             <Lock size={18} className="text-emerald-deep" />
           </div>
-          <h1 className="font-display text-xl font-semibold text-ink">Admin jayszrs.</h1>
-          <p className="mt-1 text-sm text-muted">Masuk untuk mengelola konten portofolio.</p>
+          <p className="eyebrow mb-2">Content studio</p>
+          <h1 className="font-display text-2xl font-semibold text-ink">Selamat datang kembali.</h1>
+          <p className="mt-2 text-sm leading-relaxed text-muted">Masuk untuk memperbarui profil, proyek, dan pencapaian portofolio kamu.</p>
 
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password admin"
-            className="mt-6 w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm"
+            className="field mt-7"
             autoFocus
           />
           {loginError && <p className="mt-2 text-xs text-red-500">{loginError}</p>}
 
           <button
             type="submit"
-            className="mt-5 w-full rounded-lg bg-emerald py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-deep"
+            className="mt-5 w-full rounded-xl bg-ink py-3 text-sm font-semibold text-white transition hover:bg-emerald"
           >
             Masuk
           </button>
+          <Link href="/" className="mt-5 block text-center text-xs font-medium text-muted transition hover:text-emerald">
+            ← Kembali ke portofolio
+          </Link>
         </form>
       </div>
     );
@@ -198,37 +208,73 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-paper pb-24">
-      <header className="glass sticky top-0 z-40 flex items-center justify-between px-6 py-4">
-        <div>
-          <p className="font-display text-lg font-semibold text-ink">Admin Panel</p>
-          <p className="text-xs text-muted">Kelola konten portofolio jayszrs.</p>
-        </div>
-        <div className="flex items-center gap-3">
-          {savedAt && <span className="text-xs text-emerald-deep">Tersimpan {savedAt.toLocaleTimeString()}</span>}
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="flex items-center gap-2 rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-deep disabled:opacity-60"
-          >
-            {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
-            Simpan
-          </button>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:bg-white"
-          >
-            <LogOut size={14} /> Keluar
-          </button>
+      <header className="glass sticky top-0 z-40 px-4 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="hidden h-10 w-10 items-center justify-center rounded-xl bg-ink text-white sm:flex">
+              <LayoutDashboard size={18} />
+            </div>
+            <div className="min-w-0">
+              <p className="truncate font-display text-base font-semibold text-ink sm:text-lg">Content Studio</p>
+              <p className="hidden text-xs text-muted sm:block">Kelola portofolio jayszrs.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/"
+              target="_blank"
+              className="flex h-10 items-center gap-2 rounded-xl border border-line bg-white/70 px-3 text-sm font-semibold text-ink transition hover:border-emerald/30"
+            >
+              <ExternalLink size={14} /> <span className="hidden sm:inline">Preview</span>
+            </Link>
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="flex h-10 items-center gap-2 rounded-xl bg-emerald px-3.5 text-sm font-semibold text-white transition hover:bg-emerald-deep disabled:opacity-60 sm:px-4"
+            >
+              {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
+              Simpan
+            </button>
+            <button
+              onClick={handleLogout}
+              title="Keluar"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-line text-ink transition hover:bg-white"
+            >
+              <LogOut size={15} />
+            </button>
+          </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-5xl px-6 py-8">
-        <div className="mb-8 flex flex-wrap gap-2">
+      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+        {(savedAt || saveError) && (
+          <div className={`mb-5 flex items-center gap-2 rounded-xl border px-4 py-3 text-sm ${
+            saveError ? "border-red-200 bg-red-50 text-red-700" : "border-emerald/20 bg-emerald-soft text-emerald-deep"
+          }`}>
+            {!saveError && <CheckCircle2 size={16} />}
+            {saveError || `Perubahan tersimpan pukul ${savedAt.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}.`}
+          </div>
+        )}
+
+        <div className="mb-7 grid grid-cols-3 gap-3">
+          {[
+            ["Proyek", content.gallery.length],
+            ["Pengalaman", content.experience.length],
+            ["Pencapaian", content.achievements.length + content.certificates.length],
+          ].map(([label, value]) => (
+            <div key={label} className="glass rounded-2xl p-4">
+              <p className="font-display text-2xl font-semibold text-ink">{value}</p>
+              <p className="mt-1 truncate text-xs text-muted">{label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-8 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {TABS.map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+              className={`shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
                 tab === t ? "bg-ink text-white" : "glass-pill text-ink/70"
               }`}
             >
@@ -288,7 +334,7 @@ export default function AdminPage() {
                 type="text"
                 value={content.about.skills.join(", ")}
                 onChange={(e) => setContent({ ...content, about: { ...content.about, skills: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) } })}
-                className="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm"
+                className="field"
               />
             </div>
           </div>

@@ -1,0 +1,46 @@
+
+> jayszrs-portfolio@1.0.0 dev:alt
+> next dev --port 3001
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+
+ ✓ Starting...
+ ✓ Ready in 2.2s
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 32s (1336 modules)
+ GET /admin 200 in 32645ms
+ GET / 200 in 33273ms
+ GET / 200 in 24114ms
+ GET / 200 in 11287ms
+ GET /proyek 200 in 34421ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 922ms (1325 modules)
+ GET /proyek 404 in 1109ms
+ GET /admin 404 in 860ms
+ GET /proyek 200 in 252ms
+ GET /admin 200 in 62ms
+ ✓ Compiled /api/auth/session in 462ms (708 modules)
+ GET /admin 404 in 117ms
+ GET / 200 in 53ms
+ ○ Compiling /tentang ...
+ ✓ Compiled /tentang in 646ms (1364 modules)
+ GET /tentang 200 in 884ms
+ ○ Compiling /pengalaman ...
+ ✓ Compiled /pengalaman in 835ms (1368 modules)
+ GET /pengalaman 200 in 948ms
+ GET /proyek 200 in 58ms
+ ○ Compiling /pencapaian ...
+ ✓ Compiled /pencapaian in 869ms (1372 modules)
+ GET /pencapaian 200 in 1042ms
+ ○ Compiling /kontak ...
+ ✓ Compiled /kontak in 585ms (1376 modules)
+ GET /kontak 200 in 726ms
+ GET /admin 200 in 55ms
+ GET /api/auth/session 200 in 38ms
+ GET /admin 200 in 81ms
+ GET /api/auth/session 200 in 27ms
+ GET /api/auth/session 200 in 12ms
+ GET /admin 200 in 90ms
+ GET /api/auth/session 200 in 21ms
+ GET /api/auth/session 200 in 13ms
