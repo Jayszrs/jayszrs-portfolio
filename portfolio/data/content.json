@@ -1,0 +1,99 @@
+{
+  "profile": {
+    "brandName": "jayszrs.",
+    "greeting": "HALO, SAYA",
+    "fullName": "Jaelani Surya Saputra",
+    "roleLabel": "Seorang",
+    "role": "Informatics Engineer & Web Developer",
+    "tagline": "Saya membantu bisnis dan individu mengubah ide menjadi solusi digital yang aman dan berfungsi baik.",
+    "location": "Bekasi, Indonesia",
+    "status": "Online",
+    "handle": "@jayszrs",
+    "heroImage": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1200&auto=format&fit=crop",
+    "cvUrl": "",
+    "socials": {
+      "github": "https://github.com/Jayszrs",
+      "linkedin": "https://linkedin.com/in/jayszrs",
+      "instagram": "https://instagram.com/jayszrs"
+    }
+  },
+  "about": {
+    "heading": "Tentang Saya",
+    "paragraphs": [
+      "Saya adalah mahasiswa Teknik Informatika di Universitas Bani Saleh, Bekasi, dengan fokus riset pada forensik jaringan — melacak jejak kejahatan siber yang disembunyikan lewat VPN.",
+      "Di luar riset, saya membangun produk web dan antarmuka digital: dari company profile, sistem informasi kampus, hingga dashboard IoT."
+    ],
+    "skills": [
+      "Network Forensics",
+      "Next.js / React",
+      "UI/UX Design",
+      "Node.js",
+      "IoT (ESP32 / MQTT)",
+      "Tailwind CSS"
+    ]
+  },
+  "experience": [
+    {
+      "id": "exp-1",
+      "type": "Organisasi",
+      "title": "Anggota Aktif",
+      "org": "HMTI — Himpunan Mahasiswa Teknik Informatika",
+      "period": "2023 — Sekarang",
+      "description": "Terlibat dalam kegiatan organisasi mahasiswa, mendukung acara dan program kerja jurusan Teknik Informatika."
+    },
+    {
+      "id": "exp-2",
+      "type": "Volunteer",
+      "title": "Volunteer Desain & Branding",
+      "org": "LKSA Maslahatul Ummah",
+      "period": "2024",
+      "description": "Membantu proses branding dan desain logo untuk organisasi sosial di Probolinggo, mulai dari eksplorasi konsep hingga aset akhir."
+    }
+  ],
+  "gallery": [
+    {
+      "id": "proj-1",
+      "title": "Fazma Stone",
+      "description": "Company profile untuk supplier batu alam, dibangun dengan React, TypeScript, Tailwind, dan Supabase.",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+      "link": ""
+    },
+    {
+      "id": "proj-2",
+      "title": "JusPOS",
+      "description": "Sistem Point of Sale berbasis web lengkap dengan flowmap dan dokumentasi kebutuhan sistem.",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
+      "link": ""
+    },
+    {
+      "id": "proj-3",
+      "title": "IoT Lab Control",
+      "description": "Sistem kontrol laboratorium berbasis ESP32 dan Adafruit IO MQTT.",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+      "link": ""
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach-1",
+      "title": "Kontributor Aktif HMTI",
+      "issuer": "Universitas Bani Saleh",
+      "year": "2024",
+      "image": ""
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert-1",
+      "title": "Sertifikat Contoh",
+      "issuer": "Nama Penerbit",
+      "year": "2024",
+      "image": ""
+    }
+  ],
+  "contact": {
+    "heading": "Mari Terhubung",
+    "subheading": "Terbuka untuk kolaborasi, riset, maupun proyek freelance.",
+    "email": "hello@jayszrs.dev"
+  }
+}
