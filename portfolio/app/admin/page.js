@@ -46,7 +46,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
       <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
       <div className="flex flex-col gap-2 sm:flex-row">
         <input className="field min-w-0 flex-1" value={value || ""} onChange={(event) => onChange(event.target.value)} placeholder="URL file atau upload" />
-        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-xs font-semibold text-ink transition hover:bg-emerald-soft">
+        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:bg-emerald-soft">
           {busy ? <Loader2 size={14} className="animate-spin" /> : buttonLabel}
           <input type="file" accept={accept} className="hidden" onChange={handleFile} />
         </label>
@@ -91,7 +91,7 @@ function ImageField({ label, value, onChange }) {
           placeholder="URL gambar (https://...)"
           className="field min-w-0 flex-1"
         />
-        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:bg-emerald-soft">
+        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:bg-emerald-soft">
           {busy ? <Loader2 size={14} className="animate-spin" /> : "Upload"}
           <input type="file" accept="image/*" className="hidden" onChange={handleFile} />
         </label>
@@ -296,7 +296,7 @@ export default function AdminPage() {
 
           <button
             type="submit"
-            className="mt-5 w-full rounded-xl bg-ink py-3 text-sm font-semibold text-white transition hover:bg-emerald"
+            className="mt-5 w-full rounded-xl bg-ink py-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white"
           >
             Masuk
           </button>
@@ -315,7 +315,7 @@ export default function AdminPage() {
           <div className="glass-strong w-full max-w-md rounded-2xl p-7 text-center">
             <p className="font-display text-xl font-semibold text-ink">Admin gagal dimuat</p>
             <p className="mt-2 text-sm text-muted">{contentError}</p>
-            <button type="button" onClick={() => window.location.reload()} className="mt-5 rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-white">
+            <button type="button" onClick={() => window.location.reload()} className="mt-5 rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
               Muat ulang
             </button>
           </div>
@@ -334,7 +334,7 @@ export default function AdminPage() {
       <header className="glass sticky top-0 z-40 px-4 py-3 sm:px-6">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="hidden h-10 w-10 items-center justify-center rounded-xl bg-ink text-white sm:flex">
+            <div className="hidden h-10 w-10 items-center justify-center rounded-xl bg-ink text-paper sm:flex">
               <LayoutDashboard size={18} />
             </div>
             <div className="min-w-0">
@@ -346,7 +346,7 @@ export default function AdminPage() {
             <Link
               href="/"
               target="_blank"
-              className="flex h-10 items-center gap-2 rounded-xl border border-line bg-white/70 px-3 text-sm font-semibold text-ink transition hover:border-emerald/30"
+              className="flex h-10 items-center gap-2 rounded-xl border border-line bg-surface/70 px-3 text-sm font-semibold text-ink transition hover:border-emerald/30"
             >
               <ExternalLink size={14} /> <span className="hidden sm:inline">Preview</span>
             </Link>
@@ -361,7 +361,7 @@ export default function AdminPage() {
             <button
               onClick={handleLogout}
               title="Keluar"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-line text-ink transition hover:bg-white"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-line text-ink transition hover:bg-surface"
             >
               <LogOut size={15} />
             </button>
@@ -398,7 +398,7 @@ export default function AdminPage() {
               key={t}
               onClick={() => setTab(t)}
               className={`shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
-                tab === t ? "bg-ink text-white" : "glass-pill text-ink/70"
+                tab === t ? "bg-ink text-paper" : "glass-pill text-ink/70"
               }`}
             >
               {t}
@@ -489,9 +489,10 @@ export default function AdminPage() {
               { key: "description", label: "Ringkasan pendidikan", kind: "textarea", wide: true },
               { key: "focus", label: "Fokus pembelajaran", kind: "textarea", wide: true },
               { key: "activities", label: "Aktivitas & pencapaian", kind: "textarea", wide: true },
+              { key: "logo", label: "Logo sekolah / kampus", kind: "image", wide: true },
               { key: "link", label: "Link institusi (opsional)", wide: true },
             ]}
-            createItem={() => ({ id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "", link: "" })}
+            createItem={() => ({ id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "", logo: "", link: "" })}
             addLabel="Tambah pendidikan"
           />
         )}
@@ -707,7 +708,10 @@ export default function AdminPage() {
                       const next = [...list]; next[i] = { ...item, description: v }; setContent({ ...content, [key]: next });
                     }} />
                   )}
-                  <ImageField label="Gambar (opsional)" value={item.image} onChange={(v) => {
+                  <ImageField label="Logo penerbit / organisasi" value={item.logo} onChange={(v) => {
+                    const next = [...list]; next[i] = { ...item, logo: v }; setContent({ ...content, [key]: next });
+                  }} />
+                  <ImageField label="Gambar badge / bukti (opsional)" value={item.image} onChange={(v) => {
                     const next = [...list]; next[i] = { ...item, image: v }; setContent({ ...content, [key]: next });
                   }} />
                 </div>
@@ -716,8 +720,8 @@ export default function AdminPage() {
                 onClick={() => setContent({
                   ...content,
                   [key]: [...list, key === "certificates"
-                    ? { id: uid(key), title: "", issuer: "", year: "", image: "", credentialId: "", issuedAt: "", expiresAt: "", credentialUrl: "", pdfUrl: "", description: "" }
-                    : { id: uid(key), title: "", issuer: "", year: "", image: "", description: "" }],
+                    ? { id: uid(key), title: "", issuer: "", year: "", logo: "", image: "", credentialId: "", issuedAt: "", expiresAt: "", credentialUrl: "", pdfUrl: "", description: "" }
+                    : { id: uid(key), title: "", issuer: "", year: "", logo: "", image: "", description: "" }],
                 })}
                 className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"
               ><Plus size={14} /> Tambah {tab.toLowerCase()}</button>

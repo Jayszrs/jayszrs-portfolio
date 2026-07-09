@@ -1,6 +1,7 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import IntroLoader from "@/frontend/components/IntroLoader";
 import MouseSpotlight from "@/frontend/components/MouseSpotlight";
+import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -21,11 +22,27 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const themeScript = `
+    (() => {
+      try {
+        const preference = localStorage.getItem("portfolio-theme") || "system";
+        const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
+        const resolved = preference === "system" ? (systemDark ? "dark" : "light") : preference;
+        document.documentElement.dataset.theme = resolved;
+        document.documentElement.dataset.themePreference = preference;
+      } catch (_) {}
+    })();
+  `;
+
   return (
-    <html lang="id" className={jakarta.variable}>
+    <html lang="id" className={jakarta.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="bg-paper text-ink font-body antialiased">
         <IntroLoader />
         <MouseSpotlight />
+        <ThemeSwitcher />
         {children}
       </body>
     </html>

@@ -52,7 +52,7 @@ export default function About({ about }) {
               {about.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full border border-line bg-white/70 px-3 py-1.5 text-xs font-medium text-ink/80"
+                  className="rounded-full border border-line bg-surface/70 px-3 py-1.5 text-xs font-medium text-ink/80"
                 >
                   {skill}
                 </span>

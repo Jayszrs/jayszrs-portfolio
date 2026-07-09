@@ -103,21 +103,21 @@ export default function Gallery({ items }) {
             )}
             <div className="grid gap-3 sm:grid-cols-3">
               {selected.role && (
-                <div className="rounded-2xl border border-line bg-white p-4">
+                <div className="rounded-2xl border border-line bg-surface p-4">
                   <UserRound size={18} className="text-emerald" />
                   <p className="mt-3 text-xs text-muted">Peran</p>
                   <p className="mt-1 text-sm font-semibold text-ink">{selected.role}</p>
                 </div>
               )}
               {selected.period && (
-                <div className="rounded-2xl border border-line bg-white p-4">
+                <div className="rounded-2xl border border-line bg-surface p-4">
                   <CalendarDays size={18} className="text-emerald" />
                   <p className="mt-3 text-xs text-muted">Periode</p>
                   <p className="mt-1 text-sm font-semibold text-ink">{selected.period}</p>
                 </div>
               )}
               {selected.techStack && (
-                <div className="rounded-2xl border border-line bg-white p-4">
+                <div className="rounded-2xl border border-line bg-surface p-4">
                   <Code2 size={18} className="text-emerald" />
                   <p className="mt-3 text-xs text-muted">Stack utama</p>
                   <p className="mt-1 text-sm font-semibold text-ink">{selected.techStack}</p>
@@ -137,7 +137,7 @@ export default function Gallery({ items }) {
               </section>
             )}
             {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white">
+              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Buka proyek <ArrowUpRight size={15} />
               </a>
             )}

@@ -27,6 +27,11 @@ const ICONS = {
   Windows: "logos:microsoft-windows-icon",
 };
 
+const DARK_INVERT = new Set([
+  "Canva", "CapCut", "KineMaster", "Alight Motion", "DaVinci Resolve",
+  "VN Video Editor", "Next.js", "Kali Linux",
+]);
+
 function initials(name) {
   return name
     .split(/[\s.]+/)
@@ -42,13 +47,13 @@ export default function BrandIcon({ name, size = "large", className = "" }) {
   const dimensions = size === "small" ? "h-9 w-9" : size === "modal" ? "h-16 w-16" : "h-14 w-14";
 
   return (
-    <span className={`${dimensions} flex shrink-0 items-center justify-center rounded-2xl border border-line/80 bg-white p-2.5 shadow-sm ${className}`}>
+    <span className={`${dimensions} flex shrink-0 items-center justify-center rounded-2xl border border-line/80 bg-surface p-2.5 shadow-sm ${className}`}>
       {icon ? (
         <img
           src={`https://api.iconify.design/${icon}.svg`}
           alt=""
           aria-hidden="true"
-          className="h-full w-full object-contain"
+          className={`h-full w-full object-contain ${DARK_INVERT.has(name) ? "theme-invert-dark" : ""}`}
         />
       ) : (
         <span className="font-display text-sm font-bold text-emerald">{initials(name)}</span>

@@ -43,7 +43,7 @@ Semua teks dan gambar diambil dari `backend/data/content.json`. Panel admin memb
 
 ## Struktur Folder
 
-```
+```text
 app/
   layout.js, page.js, globals.css  # routing/layout frontend
   admin/page.js                    # halaman admin

@@ -39,7 +39,7 @@ export default function Experience({ items = [] }) {
                 type="button"
                 onClick={() => setActive(type)}
                 className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition ${
-                  active === type ? "bg-ink text-white" : "border border-line bg-white/70 text-muted hover:text-ink"
+                  active === type ? "bg-ink text-paper" : "border border-line bg-surface/70 text-muted hover:text-ink"
                 }`}
               >
                 {type}
@@ -90,7 +90,7 @@ export default function Experience({ items = [] }) {
       >
         {selected && (
           <div className="space-y-7">
-            <div className="grid gap-5 rounded-2xl border border-line bg-white p-5 sm:grid-cols-[88px_1fr] sm:p-6">
+            <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[88px_1fr] sm:p-6">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
                 {selected.image ? (
                   <img src={selected.image} alt="" className="h-full w-full object-cover" />
@@ -146,14 +146,14 @@ export default function Experience({ items = [] }) {
                 </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {selected.tools.split(",").map((tool) => tool.trim()).filter(Boolean).map((tool) => (
-                    <span key={tool} className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-ink/75">{tool}</span>
+                    <span key={tool} className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-ink/75">{tool}</span>
                   ))}
                 </div>
               </section>
             )}
 
             {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white">
+              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Buka dokumentasi <ArrowUpRight size={15} />
               </a>
             )}

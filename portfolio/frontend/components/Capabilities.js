@@ -42,7 +42,7 @@ export default function Capabilities({ capabilities }) {
   return (
     <section id="keahlian" className="section-pad scroll-mt-24 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="overflow-hidden rounded-[2rem] border border-white/80 bg-white/45 shadow-glass backdrop-blur-xl">
+        <div className="overflow-hidden rounded-[2rem] border border-surface/80 bg-surface/45 shadow-glass backdrop-blur-xl">
           <div className="border-b border-line/80 p-5 sm:p-7">
             <p className="eyebrow">Toolbox & workflow</p>
             <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -52,7 +52,7 @@ export default function Capabilities({ capabilities }) {
                   Bukan sekadar daftar nama—setiap item bisa dibuka untuk melihat sejak kapan dan bagaimana saya menggunakannya.
                 </p>
               </div>
-              <div className="flex max-w-full gap-2 overflow-x-auto rounded-2xl bg-white/70 p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex max-w-full gap-2 overflow-x-auto rounded-2xl bg-surface/70 p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {GROUPS.map((group) => {
                   const Icon = group.icon;
                   const active = activeKey === group.key;
@@ -62,7 +62,7 @@ export default function Capabilities({ capabilities }) {
                       type="button"
                       onClick={() => setActiveKey(group.key)}
                       className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition ${
-                        active ? "bg-ink text-white shadow-sm" : "text-muted hover:bg-emerald-soft hover:text-ink"
+                        active ? "bg-ink text-paper shadow-sm" : "text-muted hover:bg-emerald-soft hover:text-ink"
                       }`}
                     >
                       <Icon size={16} /> {group.shortTitle}
@@ -91,7 +91,7 @@ export default function Capabilities({ capabilities }) {
                   key={item.id}
                   type="button"
                   onClick={() => setSelected({ ...item, group: activeGroup.title })}
-                  className="group flex min-h-48 flex-col items-start rounded-[1.5rem] border border-line bg-white p-6 text-left shadow-[0_8px_30px_rgba(20,22,26,.05)] transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg"
+                  className="group flex min-h-48 flex-col items-start rounded-[1.5rem] border border-line bg-surface p-6 text-left shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg"
                 >
                   <BrandIcon name={item.name} />
                   <span className="mt-5 font-display text-lg font-semibold text-ink">{item.name}</span>
@@ -109,7 +109,7 @@ export default function Capabilities({ capabilities }) {
       <DetailModal open={Boolean(selected)} onClose={() => setSelected(null)} eyebrow={selected?.group} title={selected?.name}>
         {selected && (
           <>
-            <div className="flex items-center gap-4 rounded-2xl bg-white p-4">
+            <div className="flex items-center gap-4 rounded-2xl bg-surface p-4">
               <BrandIcon name={selected.name} size="modal" />
               <div>
                 <p className="text-xs font-medium text-muted">Tingkat penguasaan</p>

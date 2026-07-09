@@ -11,8 +11,12 @@ function Card({ item, icon: Icon, onClick }) {
         <div className="h-40 w-full overflow-hidden">
           <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
         </div>
+      ) : item.logo ? (
+        <div className="flex h-40 w-full items-center justify-center bg-surface p-7">
+          <img src={item.logo} alt={`Logo ${item.issuer}`} className="h-full w-full object-contain" />
+        </div>
       ) : (
-        <div className="flex h-40 w-full items-center justify-center bg-gradient-to-br from-emerald-soft to-white">
+        <div className="flex h-40 w-full items-center justify-center bg-gradient-to-br from-emerald-soft to-surface">
           <Icon size={34} className="text-emerald-deep" />
         </div>
       )}
@@ -63,10 +67,10 @@ export default function Achievements({ achievements = [], certificates = [] }) {
       <DetailModal open={Boolean(selected)} onClose={() => setSelected(null)} eyebrow={selected?.kind} title={selected?.title} size="wide">
         {selected && (
           <>
-            <div className="grid gap-5 rounded-2xl border border-line bg-white p-5 sm:grid-cols-[88px_1fr] sm:p-6">
+            <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[88px_1fr] sm:p-6">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
-                {selected.image ? (
-                  <img src={selected.image} alt="" className="h-full w-full object-cover" />
+                {selected.logo || selected.image ? (
+                  <img src={selected.logo || selected.image} alt={`Logo ${selected.issuer}`} className="h-full w-full object-contain p-2" />
                 ) : (
                   <FileBadge size={32} className="text-emerald-deep" />
                 )}
@@ -108,7 +112,7 @@ export default function Achievements({ achievements = [], certificates = [] }) {
                 </a>
               )}
               {selected.pdfUrl && (
-                <a href={selected.pdfUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-ink">
+                <a href={selected.pdfUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink">
                   Dokumentasi PDF <FileText size={14} />
                 </a>
               )}

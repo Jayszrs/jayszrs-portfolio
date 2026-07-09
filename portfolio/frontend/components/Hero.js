@@ -110,7 +110,7 @@ export default function Hero({ profile }) {
               </div>
               <Link
                 href="/kontak"
-                className="rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white transition hover:bg-emerald"
+                className="rounded-full bg-ink px-4 py-2 text-xs font-semibold text-paper transition hover:bg-emerald hover:text-white"
               >
                 Contact Me
               </Link>

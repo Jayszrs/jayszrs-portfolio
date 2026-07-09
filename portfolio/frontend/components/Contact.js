@@ -28,7 +28,7 @@ export default function Contact({ contact, profile }) {
                 <Mail size={16} /> Kirim email
               </a>
               {whatsappNumber && (
-                <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald">
+                <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white">
                   <MessageCircle size={16} /> WhatsApp
                 </a>
               )}
@@ -47,13 +47,13 @@ export default function Contact({ contact, profile }) {
             </div>
           </div>
 
-          <div className="bg-ink p-8 text-white sm:p-10">
+          <div className="bg-ink p-8 text-paper sm:p-10">
             <p className="font-display text-lg font-semibold">Detail kontak</p>
             <div className="mt-7 space-y-5">
               <a href={`mailto:${contact.email}`} className="flex items-start gap-3">
                 <Mail size={18} className="mt-0.5 text-emerald" />
                 <div>
-                  <p className="text-xs text-white/45">Email</p>
+                  <p className="text-xs text-paper/55">Email</p>
                   <p className="mt-1 break-all text-sm font-medium">{contact.email}</p>
                 </div>
               </a>
@@ -61,7 +61,7 @@ export default function Contact({ contact, profile }) {
                 <a href={`tel:${contact.phone}`} className="flex items-start gap-3">
                   <Phone size={18} className="mt-0.5 text-emerald" />
                   <div>
-                    <p className="text-xs text-white/45">Nomor telepon</p>
+                    <p className="text-xs text-paper/55">Nomor telepon</p>
                     <p className="mt-1 text-sm font-medium">{contact.phone}</p>
                   </div>
                 </a>
@@ -70,7 +70,7 @@ export default function Contact({ contact, profile }) {
                 <div className="flex items-start gap-3">
                   <MapPin size={18} className="mt-0.5 text-emerald" />
                   <div>
-                    <p className="text-xs text-white/45">Lokasi</p>
+                    <p className="text-xs text-paper/55">Lokasi</p>
                     <p className="mt-1 text-sm font-medium">{contact.address || profile.location}</p>
                   </div>
                 </div>

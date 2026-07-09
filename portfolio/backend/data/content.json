@@ -1,7 +1,7 @@
 {
   "profile": {
     "brandName": "jayszrs.",
-    "greeting": "Hai gw Jay Szrs Welcome To My Portofolio",
+    "greeting": "Assalammualaikum Temen - Temen",
     "fullName": "Jaelani Surya Saputra",
     "roleLabel": "Anonim",
     "role": " Web Developer - IT Infrastructure - Ai Engineer - Software Engineer - Video Editor",
@@ -12,9 +12,9 @@
       "Software Engineer",
       "Video Editor"
     ],
-    "tagline": "Saya membantu bisnis dan individu mengubah ide menjadi solusi digital yang aman dan berfungsi baik.",
+    "tagline": "Fortune Favors The Bold",
     "location": "Bekasi, Indonesia",
-    "status": "Online",
+    "status": "Offline",
     "handle": "@jayszrs",
     "heroImage": "/uploads/1783593456724-uf7hnw.jpg",
     "cvUrl": "",
@@ -27,7 +27,7 @@
   "about": {
     "heading": "Tentang Saya",
     "paragraphs": [
-      "Saya adalah mahasiswa Teknik Informatika di Universitas Bani Saleh, Bekasi, dengan fokus riset pada forensik jaringan — melacak jejak kejahatan siber yang disembunyikan lewat VPN.",
+      "A highly motivated and dedicated Computer Science student with a strong commitment to excellence in both academic and professional pursuits. Possesses a solid foundation in programming, computer networking, and cybersecurity, complemented by expertise in graphic design and video editing. Adept at problem-solving, effective communication, teamwork, and time management, ensuring the ability to work efficiently in dynamic environments.\n\nDemonstrates a keen interest in continuous learning and professional development, actively seeking opportunities to enhance technical proficiency and expand knowledge in IT-related fields. Passionate about contributing to organizational activities, fostering collaboration, and gaining valuable experience in both academic and social settings. Eager to apply acquired skills in real-world scenarios, drive innovation, and make meaningful contributions to the field of technology.",
       "Di luar riset, saya membangun produk web dan antarmuka digital: dari company profile, sistem informasi kampus, hingga dashboard IoT."
     ],
     "skills": [
@@ -257,10 +257,15 @@
     {
       "id": "exp-1",
       "type": "Organisasi",
-      "title": "Anggota Aktif",
+      "title": "KOORDINATOR ",
       "org": "HMTI — Himpunan Mahasiswa Teknik Informatika",
       "period": "2023 — Sekarang",
-      "description": "Terlibat dalam kegiatan organisasi mahasiswa, mendukung acara dan program kerja jurusan Teknik Informatika."
+      "description": "Terlibat dalam kegiatan organisasi mahasiswa, mendukung acara dan program kerja jurusan Teknik Informatika.",
+      "startDate": "Februari 2024",
+      "location": "Kota Bekasi Jawa Barat Indonesia",
+      "workingUnit": "Publikasi Dekorasi & Dokumentasi",
+      "image": "/uploads/1783594721152-hzuwdt.jpg",
+      "tools": "Canva, Capcut, Aligt Motion, Davinci"
     },
     {
       "id": "exp-2",
@@ -281,6 +286,23 @@
       "description": "Terlibat sebagai pemeran sekaligus videografer dan editor dalam produksi video drama sekolah.",
       "link": "",
       "image": ""
+    },
+    {
+      "id": "exp-1783594781114-2p0e",
+      "type": "Organisasi",
+      "title": "Social Media Specialist & Web Developer",
+      "org": "IPNU IPPNU Kota Bekasi",
+      "period": "2025 - 2029",
+      "startDate": "Januari 2025",
+      "endDate": "",
+      "location": "Kota Bekas, Jawa Barat Indonesia",
+      "workingUnit": " Lembaga Pers dan Penerbitan",
+      "description": "",
+      "companyBackground": "",
+      "responsibilities": "",
+      "tools": "Next Js, Html, CSS, React, Node Js",
+      "link": "",
+      "image": "/uploads/1783594925053-br3yqr.png"
     }
   ],
   "gallery": [

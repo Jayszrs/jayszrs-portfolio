@@ -32,12 +32,12 @@ export default function SelectedDesigns({ items = [] }) {
                 {item.image ? (
                   <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                 ) : (
-                  <div className="flex h-full flex-col items-center justify-center gap-3 text-white/60">
+                  <div className="flex h-full flex-col items-center justify-center gap-3 text-paper/60">
                     <ImageIcon size={32} />
                     <span className="text-xs">Upload preview dari admin</span>
                   </div>
                 )}
-                <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-ink opacity-0 shadow-sm transition group-hover:opacity-100">
+                <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-surface/90 text-ink opacity-0 shadow-sm transition group-hover:opacity-100">
                   <Maximize2 size={16} />
                 </span>
               </div>
@@ -63,12 +63,12 @@ export default function SelectedDesigns({ items = [] }) {
               {selected.image ? (
                 <img src={selected.image} alt={selected.title} className="max-h-[55vh] w-full object-contain" />
               ) : (
-                <div className="flex h-64 items-center justify-center text-sm text-white/50">Preview belum diunggah.</div>
+                <div className="flex h-64 items-center justify-center text-sm text-paper/50">Preview belum diunggah.</div>
               )}
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted">{selected.description}</p>
             {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white">
+              <a href={selected.link} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Buka karya <ArrowUpRight size={15} />
               </a>
             )}

@@ -32,11 +32,18 @@ export default function Education({ items = [] }) {
               transition={{ delay: index * 0.08 }}
               className="glass group grid gap-6 rounded-[1.75rem] p-6 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:p-8"
             >
-              <div>
-                <span className="rounded-full bg-emerald-soft px-3 py-1 font-mono text-xs text-emerald-deep">{item.period}</span>
-                <h3 className="mt-4 font-display text-2xl font-semibold text-ink">{item.degree}</h3>
-                <p className="mt-1 text-base font-semibold text-emerald-deep">{item.institution}</p>
-                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{item.description}</p>
+              <div className="flex items-start gap-4">
+                {item.logo && (
+                  <span className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-line bg-surface p-2 sm:flex">
+                    <img src={item.logo} alt={`Logo ${item.institution}`} className="h-full w-full object-contain" />
+                  </span>
+                )}
+                <div>
+                  <span className="rounded-full bg-emerald-soft px-3 py-1 font-mono text-xs text-emerald-deep">{item.period}</span>
+                  <h3 className="mt-4 font-display text-2xl font-semibold text-ink">{item.degree}</h3>
+                  <p className="mt-1 text-base font-semibold text-emerald-deep">{item.institution}</p>
+                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{item.description}</p>
+                </div>
               </div>
               <div className="flex flex-col items-start justify-between gap-4 sm:items-end">
                 {item.location && (
@@ -56,9 +63,13 @@ export default function Education({ items = [] }) {
       <DetailModal open={Boolean(selected)} onClose={() => setSelected(null)} eyebrow="Riwayat pendidikan" title={selected?.institution} size="wide">
         {selected && (
           <div className="space-y-7">
-            <div className="grid gap-5 rounded-2xl border border-line bg-white p-5 sm:grid-cols-[80px_1fr] sm:p-6">
-              <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-soft">
-                <GraduationCap size={34} className="text-emerald-deep" />
+            <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[80px_1fr] sm:p-6">
+              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
+                {selected.logo ? (
+                  <img src={selected.logo} alt={`Logo ${selected.institution}`} className="h-full w-full object-contain p-2" />
+                ) : (
+                  <GraduationCap size={34} className="text-emerald-deep" />
+                )}
               </div>
               <div>
                 <p className="font-display text-xl font-semibold text-ink">{selected.degree}</p>
@@ -87,7 +98,7 @@ export default function Education({ items = [] }) {
               </section>
             )}
             {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white">
+              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Kunjungi institusi <ArrowUpRight size={15} />
               </a>
             )}

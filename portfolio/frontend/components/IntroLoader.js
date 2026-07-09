@@ -13,7 +13,7 @@ export default function IntroLoader() {
   if (!visible) return null;
 
   return (
-    <div className="pixel-loader fixed inset-0 z-[200] flex items-center justify-center bg-white" aria-label="Memuat portfolio">
+    <div className="pixel-loader fixed inset-0 z-[200] flex items-center justify-center bg-paper" aria-label="Memuat portfolio">
       <div className="text-center">
         <div className="mx-auto grid w-fit grid-cols-5 gap-1">
           {Array.from({ length: 20 }).map((_, index) => (

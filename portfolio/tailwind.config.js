@@ -7,16 +7,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        paper: "#F7F9F8",
-        ink: "#0D1915",
-        muted: "#66736D",
-        line: "#DDE6E1",
+        paper: "rgb(var(--color-paper) / <alpha-value>)",
+        surface: "rgb(var(--color-surface) / <alpha-value>)",
+        ink: "rgb(var(--color-ink) / <alpha-value>)",
+        muted: "rgb(var(--color-muted) / <alpha-value>)",
+        line: "rgb(var(--color-line) / <alpha-value>)",
         emerald: {
-          DEFAULT: "#0BAA72",
-          soft: "#E7F7F0",
-          deep: "#087A54",
+          DEFAULT: "rgb(var(--color-emerald) / <alpha-value>)",
+          soft: "rgb(var(--color-emerald-soft) / <alpha-value>)",
+          deep: "rgb(var(--color-emerald-deep) / <alpha-value>)",
         },
-        gold: "#C9A227",
+        gold: "rgb(var(--color-gold) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-jakarta)", "sans-serif"],
@@ -24,8 +25,8 @@ module.exports = {
         mono: ["var(--font-jakarta)", "sans-serif"],
       },
       boxShadow: {
-        glass: "0 12px 40px rgba(13, 25, 21, 0.07)",
-        "glass-lg": "0 28px 80px rgba(13, 25, 21, 0.12)",
+        glass: "var(--shadow-glass)",
+        "glass-lg": "var(--shadow-glass-lg)",
       },
       backdropBlur: {
         xs: "2px",
