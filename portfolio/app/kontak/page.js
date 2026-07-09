@@ -1,11 +1,11 @@
-import { readContent } from "@/lib/content";
-import PublicPage from "@/components/PublicPage";
-import Contact from "@/components/Contact";
+import { readContent } from "@/backend/lib/content";
+import PublicPage from "@/frontend/components/PublicPage";
+import Contact from "@/frontend/components/Contact";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Kontak — Jaelani Surya Saputra",
+  title: "Kontak",
   description: "Hubungi Jaelani Surya Saputra untuk kolaborasi dan proyek.",
 };
 

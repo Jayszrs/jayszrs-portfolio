@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { readContent, writeContent } from "@/lib/content";
+import { readContent, writeContent } from "@/backend/lib/content";
 
 export async function GET() {
   const data = await readContent();

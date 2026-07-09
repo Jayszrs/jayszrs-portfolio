@@ -1,11 +1,11 @@
-import { readContent } from "@/lib/content";
-import PublicPage from "@/components/PublicPage";
-import Achievements from "@/components/Achievements";
+import { readContent } from "@/backend/lib/content";
+import PublicPage from "@/frontend/components/PublicPage";
+import Achievements from "@/frontend/components/Achievements";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Pencapaian — Jaelani Surya Saputra",
+  title: "Pencapaian",
   description: "Pencapaian dan sertifikat Jaelani Surya Saputra.",
 };
 

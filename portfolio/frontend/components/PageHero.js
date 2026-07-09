@@ -10,7 +10,7 @@ const accents = {
 export default function PageHero({ eyebrow, title, description, accent = "emerald", count }) {
   return (
     <section className="section-pad pt-32">
-      <div className={`relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-white/80 bg-gradient-to-br ${accents[accent]} px-7 py-12 shadow-glass sm:px-12 sm:py-16`}>
+      <div className={`relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-white/80 bg-gradient-to-br ${accents[accent]} px-7 py-12 shadow-glass sm:px-12 sm:py-16`}>
         <div className="absolute -right-16 -top-20 h-64 w-64 rounded-full border border-white/70 bg-white/30" />
         <div className="relative max-w-3xl">
           <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-ink/60 transition hover:text-emerald">

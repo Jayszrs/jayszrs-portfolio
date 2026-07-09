@@ -15,9 +15,23 @@ export async function POST(request) {
     return NextResponse.json({ error: "Tidak ada file" }, { status: 400 });
   }
 
+  const allowedTypes = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+    "image/gif": "gif",
+    "application/pdf": "pdf",
+  };
+  const ext = allowedTypes[file.type];
+  if (!ext) {
+    return NextResponse.json({ error: "Format file tidak didukung" }, { status: 400 });
+  }
+  if (file.size > 10 * 1024 * 1024) {
+    return NextResponse.json({ error: "Ukuran file maksimal 10 MB" }, { status: 400 });
+  }
+
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const ext = file.name.split(".").pop();
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
   const uploadDir = path.join(process.cwd(), "public", "uploads");
 

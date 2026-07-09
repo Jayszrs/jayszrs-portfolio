@@ -7,7 +7,10 @@ import {
   ExternalLink, LayoutDashboard, CheckCircle2,
 } from "lucide-react";
 
-const TABS = ["Profil", "Tentang", "Pengalaman", "Galeri", "Pencapaian", "Sertifikat", "Kontak"];
+const TABS = [
+  "Profil", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
+  "Pengalaman", "Galeri", "Selected Design", "Pencapaian", "Sertifikat", "Kontak",
+];
 
 function uid(prefix) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
@@ -20,6 +23,37 @@ async function uploadFile(file) {
   if (!res.ok) throw new Error("Upload gagal");
   const data = await res.json();
   return data.url;
+}
+
+function FileField({ label, value, onChange, accept = "application/pdf", buttonLabel = "Upload file" }) {
+  const [busy, setBusy] = useState(false);
+
+  const handleFile = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setBusy(true);
+    try {
+      onChange(await uploadFile(file));
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div>
+      <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
+      <div className="flex flex-col gap-2 sm:flex-row">
+        <input className="field min-w-0 flex-1" value={value || ""} onChange={(event) => onChange(event.target.value)} placeholder="URL file atau upload" />
+        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-xs font-semibold text-ink transition hover:bg-emerald-soft">
+          {busy ? <Loader2 size={14} className="animate-spin" /> : buttonLabel}
+          <input type="file" accept={accept} className="hidden" onChange={handleFile} />
+        </label>
+      </div>
+      {value && <a href={value} target="_blank" rel="noreferrer" className="mt-2 inline-block text-xs font-semibold text-emerald-deep">Buka file saat ini →</a>}
+    </div>
+  );
 }
 
 function ImageField({ label, value, onChange }) {
@@ -66,7 +100,7 @@ function ImageField({ label, value, onChange }) {
   );
 }
 
-function TextField({ label, value, onChange, textarea, mono }) {
+function TextField({ label, value = "", onChange, textarea, mono, type = "text", placeholder = "" }) {
   return (
     <div>
       <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
@@ -76,42 +110,126 @@ function TextField({ label, value, onChange, textarea, mono }) {
           onChange={(e) => onChange(e.target.value)}
           rows={3}
           className={`field resize-y ${mono ? "font-mono" : ""}`}
+          placeholder={placeholder}
         />
       ) : (
         <input
           type="text"
+          inputMode={type === "tel" ? "tel" : undefined}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className={`field ${mono ? "font-mono" : ""}`}
+          placeholder={placeholder}
         />
       )}
     </div>
   );
 }
 
+function SelectField({ label, value, onChange, options }) {
+  return (
+    <div>
+      <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
+      <select value={value || ""} onChange={(event) => onChange(event.target.value)} className="field">
+        {options.map((option) => <option key={option} value={option}>{option}</option>)}
+      </select>
+    </div>
+  );
+}
+
+function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }) {
+  const updateItem = (index, key, value) => {
+    const next = [...items];
+    next[index] = { ...next[index], [key]: value };
+    onChange(next);
+  };
+
+  return (
+    <div className="space-y-4">
+      {items.map((item, index) => (
+        <div key={item.id} className="glass space-y-4 rounded-2xl p-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="font-mono text-xs text-muted">#{index + 1}</span>
+              <p className="mt-1 font-display text-sm font-semibold text-ink">{item.name || item.title || "Item baru"}</p>
+            </div>
+            <button type="button" aria-label="Hapus item" className="rounded-lg p-2 text-red-400 transition hover:bg-red-50 hover:text-red-600" onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}>
+              <Trash2 size={16} />
+            </button>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {fields.map((field) => {
+              const fieldValue = item[field.key] || "";
+              const content = field.kind === "select" ? (
+                <SelectField label={field.label} value={fieldValue} options={field.options} onChange={(value) => updateItem(index, field.key, value)} />
+              ) : field.kind === "image" ? (
+                <ImageField label={field.label} value={fieldValue} onChange={(value) => updateItem(index, field.key, value)} />
+              ) : field.kind === "file" ? (
+                <FileField label={field.label} value={fieldValue} onChange={(value) => updateItem(index, field.key, value)} accept={field.accept} buttonLabel={field.buttonLabel} />
+              ) : (
+                <TextField label={field.label} value={fieldValue} textarea={field.kind === "textarea"} mono={field.mono} placeholder={field.placeholder} onChange={(value) => updateItem(index, field.key, value)} />
+              );
+              return <div key={field.key} className={field.wide ? "sm:col-span-2" : ""}>{content}</div>;
+            })}
+          </div>
+        </div>
+      ))}
+      <button type="button" onClick={() => onChange([...items, createItem()])} className="inline-flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 py-2.5 text-sm font-semibold text-emerald-deep transition hover:border-emerald/40">
+        <Plus size={15} /> {addLabel}
+      </button>
+    </div>
+  );
+}
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
-  const [checking, setChecking] = useState(true);
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
   const [content, setContent] = useState(null);
+  const [contentError, setContentError] = useState("");
   const [tab, setTab] = useState(TABS[0]);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState(null);
   const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
-    fetch("/api/auth/session")
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 8000);
+
+    fetch("/api/auth/session", { signal: controller.signal })
       .then((r) => r.json())
       .then((d) => setAuthed(d.authenticated))
-      .finally(() => setChecking(false));
+      .catch(() => setAuthed(false))
+      .finally(() => window.clearTimeout(timer));
+
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {
     if (authed) {
-      fetch("/api/content").then((r) => r.json()).then(setContent);
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), 10000);
+      setContentError("");
+
+      fetch("/api/content", { signal: controller.signal })
+        .then((r) => {
+          if (!r.ok) throw new Error("Konten tidak dapat dimuat");
+          return r.json();
+        })
+        .then(setContent)
+        .catch(() => setContentError("Konten admin gagal dimuat. Coba muat ulang halaman."))
+        .finally(() => window.clearTimeout(timer));
+
+      return () => {
+        window.clearTimeout(timer);
+        controller.abort();
+      };
     }
+    return undefined;
   }, [authed]);
 
   const handleLogin = async (e) => {
@@ -153,14 +271,6 @@ export default function AdminPage() {
     }
   };
 
-  if (checking) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-paper">
-        <Loader2 className="animate-spin text-emerald" />
-      </div>
-    );
-  }
-
   if (!authed) {
     return (
       <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-paper px-4">
@@ -199,6 +309,19 @@ export default function AdminPage() {
   }
 
   if (!content) {
+    if (contentError) {
+      return (
+        <div className="flex min-h-screen items-center justify-center bg-paper px-4">
+          <div className="glass-strong w-full max-w-md rounded-2xl p-7 text-center">
+            <p className="font-display text-xl font-semibold text-ink">Admin gagal dimuat</p>
+            <p className="mt-2 text-sm text-muted">{contentError}</p>
+            <button type="button" onClick={() => window.location.reload()} className="mt-5 rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-white">
+              Muat ulang
+            </button>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="flex min-h-screen items-center justify-center bg-paper">
         <Loader2 className="animate-spin text-emerald" />
@@ -290,6 +413,20 @@ export default function AdminPage() {
             <TextField label="Label sapaan" value={content.profile.greeting} onChange={(v) => setContent({ ...content, profile: { ...content.profile, greeting: v } })} />
             <TextField label="Role label ('Seorang')" value={content.profile.roleLabel} onChange={(v) => setContent({ ...content, profile: { ...content.profile, roleLabel: v } })} />
             <TextField label="Role / Jabatan" value={content.profile.role} onChange={(v) => setContent({ ...content, profile: { ...content.profile, role: v } })} />
+            <div className="sm:col-span-2">
+              <TextField
+                label="Teks intro bergantian (pisahkan dengan koma)"
+                value={(content.profile.roles || []).join(", ")}
+                placeholder="Web Developer, AI Engineer, Video Editor"
+                onChange={(v) => setContent({
+                  ...content,
+                  profile: {
+                    ...content.profile,
+                    roles: v.split(",").map((role) => role.trim()).filter(Boolean),
+                  },
+                })}
+              />
+            </div>
             <TextField label="Handle (mis. @jayszrs)" value={content.profile.handle} onChange={(v) => setContent({ ...content, profile: { ...content.profile, handle: v } })} />
             <TextField label="Status" value={content.profile.status} onChange={(v) => setContent({ ...content, profile: { ...content.profile, status: v } })} />
             <TextField label="Lokasi" value={content.profile.location} onChange={(v) => setContent({ ...content, profile: { ...content.profile, location: v } })} />
@@ -340,6 +477,48 @@ export default function AdminPage() {
           </div>
         )}
 
+        {tab === "Pendidikan" && (
+          <CollectionEditor
+            items={content.education || []}
+            onChange={(items) => setContent({ ...content, education: items })}
+            fields={[
+              { key: "institution", label: "Nama sekolah / kampus" },
+              { key: "degree", label: "Jurusan / gelar" },
+              { key: "period", label: "Periode pendidikan" },
+              { key: "location", label: "Lokasi" },
+              { key: "description", label: "Ringkasan pendidikan", kind: "textarea", wide: true },
+              { key: "focus", label: "Fokus pembelajaran", kind: "textarea", wide: true },
+              { key: "activities", label: "Aktivitas & pencapaian", kind: "textarea", wide: true },
+              { key: "link", label: "Link institusi (opsional)", wide: true },
+            ]}
+            createItem={() => ({ id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "", link: "" })}
+            addLabel="Tambah pendidikan"
+          />
+        )}
+
+        {[
+          ["Software", "editingSoftware", "software"],
+          ["Programming", "programming", "skill"],
+          ["Sistem Operasi", "operatingSystems", "os"],
+        ].map(([tabName, key, prefix]) => tab === tabName && (
+          <CollectionEditor
+            key={key}
+            items={content.capabilities?.[key] || []}
+            onChange={(items) => setContent({
+              ...content,
+              capabilities: { ...(content.capabilities || {}), [key]: items },
+            })}
+            fields={[
+              { key: "name", label: "Nama" },
+              { key: "since", label: "Mulai digunakan sejak" },
+              { key: "level", label: "Level", kind: "select", options: ["Dasar", "Menengah", "Mahir"] },
+              { key: "usage", label: "Dipakai untuk apa", kind: "textarea", wide: true },
+            ]}
+            createItem={() => ({ id: uid(prefix), name: "", since: "", level: "Menengah", usage: "" })}
+            addLabel={`Tambah ${tabName.toLowerCase()}`}
+          />
+        ))}
+
         {tab === "Pengalaman" && (
           <div className="space-y-4">
             {content.experience.map((item, i) => (
@@ -351,11 +530,17 @@ export default function AdminPage() {
                   }}><Trash2 size={16} /></button>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <TextField label="Tipe (Organisasi/Volunteer/Kerja)" value={item.type} onChange={(v) => {
+                  <SelectField label="Kategori" value={item.type} options={["Proyek", "Magang", "Kerja", "Volunteer", "Organisasi"]} onChange={(v) => {
                     const next = [...content.experience]; next[i] = { ...item, type: v }; setContent({ ...content, experience: next });
                   }} />
                   <TextField label="Periode" value={item.period} onChange={(v) => {
                     const next = [...content.experience]; next[i] = { ...item, period: v }; setContent({ ...content, experience: next });
+                  }} />
+                  <TextField label="Mulai" value={item.startDate} placeholder="Contoh: Januari 2024" onChange={(v) => {
+                    const next = [...content.experience]; next[i] = { ...item, startDate: v }; setContent({ ...content, experience: next });
+                  }} />
+                  <TextField label="Selesai" value={item.endDate} placeholder="Kosongkan jika masih berjalan" onChange={(v) => {
+                    const next = [...content.experience]; next[i] = { ...item, endDate: v }; setContent({ ...content, experience: next });
                   }} />
                   <TextField label="Judul / Posisi" value={item.title} onChange={(v) => {
                     const next = [...content.experience]; next[i] = { ...item, title: v }; setContent({ ...content, experience: next });
@@ -363,14 +548,39 @@ export default function AdminPage() {
                   <TextField label="Organisasi" value={item.org} onChange={(v) => {
                     const next = [...content.experience]; next[i] = { ...item, org: v }; setContent({ ...content, experience: next });
                   }} />
+                  <TextField label="Lokasi" value={item.location} placeholder="Bekasi, Indonesia" onChange={(v) => {
+                    const next = [...content.experience]; next[i] = { ...item, location: v }; setContent({ ...content, experience: next });
+                  }} />
+                  <TextField label="Unit kerja / divisi" value={item.workingUnit} onChange={(v) => {
+                    const next = [...content.experience]; next[i] = { ...item, workingUnit: v }; setContent({ ...content, experience: next });
+                  }} />
                 </div>
-                <TextField label="Deskripsi" value={item.description} textarea onChange={(v) => {
+                <TextField label="Ringkasan singkat (tampil di kartu)" value={item.description} textarea onChange={(v) => {
                   const next = [...content.experience]; next[i] = { ...item, description: v }; setContent({ ...content, experience: next });
+                }} />
+                <TextField label="Latar belakang organisasi / proyek" value={item.companyBackground} textarea onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, companyBackground: v }; setContent({ ...content, experience: next });
+                }} />
+                <TextField label="Peran & kontribusi lengkap" value={item.responsibilities} textarea onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, responsibilities: v }; setContent({ ...content, experience: next });
+                }} />
+                <TextField label="Tools & skills (pisahkan dengan koma)" value={item.tools} placeholder="Next.js, Figma, Cisco" onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, tools: v }; setContent({ ...content, experience: next });
+                }} />
+                <TextField label="Link dokumentasi / proyek" value={item.link} onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, link: v }; setContent({ ...content, experience: next });
+                }} />
+                <ImageField label="Gambar pengalaman (opsional)" value={item.image} onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, image: v }; setContent({ ...content, experience: next });
                 }} />
               </div>
             ))}
             <button
-              onClick={() => setContent({ ...content, experience: [...content.experience, { id: uid("exp"), type: "Organisasi", title: "", org: "", period: "", description: "" }] })}
+              onClick={() => setContent({ ...content, experience: [...content.experience, {
+                id: uid("exp"), type: "Proyek", title: "", org: "", period: "", startDate: "", endDate: "",
+                location: "", workingUnit: "", description: "", companyBackground: "", responsibilities: "",
+                tools: "", link: "", image: "",
+              }] })}
               className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"
             ><Plus size={14} /> Tambah pengalaman</button>
           </div>
@@ -392,6 +602,23 @@ export default function AdminPage() {
                 <TextField label="Deskripsi" value={item.description} textarea onChange={(v) => {
                   const next = [...content.gallery]; next[i] = { ...item, description: v }; setContent({ ...content, gallery: next });
                 }} />
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  <TextField label="Peran kamu" value={item.role} onChange={(v) => {
+                    const next = [...content.gallery]; next[i] = { ...item, role: v }; setContent({ ...content, gallery: next });
+                  }} />
+                  <TextField label="Periode" value={item.period} onChange={(v) => {
+                    const next = [...content.gallery]; next[i] = { ...item, period: v }; setContent({ ...content, gallery: next });
+                  }} />
+                  <TextField label="Tech stack" value={item.techStack} onChange={(v) => {
+                    const next = [...content.gallery]; next[i] = { ...item, techStack: v }; setContent({ ...content, gallery: next });
+                  }} />
+                </div>
+                <TextField label="Latar belakang proyek" value={item.background} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, background: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Kontribusi kamu" value={item.contribution} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, contribution: v }; setContent({ ...content, gallery: next });
+                }} />
                 <TextField label="Link proyek (opsional)" value={item.link} onChange={(v) => {
                   const next = [...content.gallery]; next[i] = { ...item, link: v }; setContent({ ...content, gallery: next });
                 }} />
@@ -401,10 +628,30 @@ export default function AdminPage() {
               </div>
             ))}
             <button
-              onClick={() => setContent({ ...content, gallery: [...content.gallery, { id: uid("proj"), title: "", description: "", image: "", link: "" }] })}
+              onClick={() => setContent({ ...content, gallery: [...content.gallery, {
+                id: uid("proj"), title: "", description: "", role: "", period: "", techStack: "",
+                background: "", contribution: "", image: "", link: "",
+              }] })}
               className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"
             ><Plus size={14} /> Tambah proyek</button>
           </div>
+        )}
+
+        {tab === "Selected Design" && (
+          <CollectionEditor
+            items={content.selectedDesigns || []}
+            onChange={(items) => setContent({ ...content, selectedDesigns: items })}
+            fields={[
+              { key: "title", label: "Judul desain" },
+              { key: "category", label: "Kategori" },
+              { key: "year", label: "Tahun" },
+              { key: "link", label: "Link karya (opsional)" },
+              { key: "description", label: "Deskripsi", kind: "textarea", wide: true },
+              { key: "image", label: "Gambar preview", kind: "image", wide: true },
+            ]}
+            createItem={() => ({ id: uid("design"), title: "", category: "", year: "", description: "", image: "", link: "" })}
+            addLabel="Tambah selected design"
+          />
         )}
 
         {(tab === "Pencapaian" || tab === "Sertifikat") && (() => {
@@ -431,13 +678,47 @@ export default function AdminPage() {
                       const next = [...list]; next[i] = { ...item, year: v }; setContent({ ...content, [key]: next });
                     }} />
                   </div>
+                  {key === "certificates" && (
+                    <>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <TextField label="Tanggal diterbitkan" value={item.issuedAt} placeholder="Contoh: 12 Januari 2025" onChange={(v) => {
+                          const next = [...list]; next[i] = { ...item, issuedAt: v }; setContent({ ...content, [key]: next });
+                        }} />
+                        <TextField label="Tanggal kedaluwarsa" value={item.expiresAt} placeholder="Kosongkan jika tidak expired" onChange={(v) => {
+                          const next = [...list]; next[i] = { ...item, expiresAt: v }; setContent({ ...content, [key]: next });
+                        }} />
+                        <TextField label="Credential ID" value={item.credentialId} mono onChange={(v) => {
+                          const next = [...list]; next[i] = { ...item, credentialId: v }; setContent({ ...content, [key]: next });
+                        }} />
+                        <TextField label="Link Credly / credential" value={item.credentialUrl} onChange={(v) => {
+                          const next = [...list]; next[i] = { ...item, credentialUrl: v }; setContent({ ...content, [key]: next });
+                        }} />
+                      </div>
+                      <TextField label="Deskripsi sertifikat" value={item.description} textarea onChange={(v) => {
+                        const next = [...list]; next[i] = { ...item, description: v }; setContent({ ...content, [key]: next });
+                      }} />
+                      <FileField label="Dokumentasi PDF" value={item.pdfUrl} accept="application/pdf" buttonLabel="Upload PDF" onChange={(v) => {
+                        const next = [...list]; next[i] = { ...item, pdfUrl: v }; setContent({ ...content, [key]: next });
+                      }} />
+                    </>
+                  )}
+                  {key === "achievements" && (
+                    <TextField label="Deskripsi pencapaian" value={item.description} textarea onChange={(v) => {
+                      const next = [...list]; next[i] = { ...item, description: v }; setContent({ ...content, [key]: next });
+                    }} />
+                  )}
                   <ImageField label="Gambar (opsional)" value={item.image} onChange={(v) => {
                     const next = [...list]; next[i] = { ...item, image: v }; setContent({ ...content, [key]: next });
                   }} />
                 </div>
               ))}
               <button
-                onClick={() => setContent({ ...content, [key]: [...list, { id: uid(key), title: "", issuer: "", year: "", image: "" }] })}
+                onClick={() => setContent({
+                  ...content,
+                  [key]: [...list, key === "certificates"
+                    ? { id: uid(key), title: "", issuer: "", year: "", image: "", credentialId: "", issuedAt: "", expiresAt: "", credentialUrl: "", pdfUrl: "", description: "" }
+                    : { id: uid(key), title: "", issuer: "", year: "", image: "", description: "" }],
+                })}
                 className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"
               ><Plus size={14} /> Tambah {tab.toLowerCase()}</button>
             </div>
@@ -445,10 +726,34 @@ export default function AdminPage() {
         })()}
 
         {tab === "Kontak" && (
-          <div className="glass space-y-4 rounded-2xl p-6">
-            <TextField label="Judul" value={content.contact.heading} onChange={(v) => setContent({ ...content, contact: { ...content.contact, heading: v } })} />
+          <div className="glass space-y-5 rounded-2xl p-6">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <TextField label="Judul" value={content.contact.heading} onChange={(v) => setContent({ ...content, contact: { ...content.contact, heading: v } })} />
+              <TextField label="Email" value={content.contact.email} onChange={(v) => setContent({ ...content, contact: { ...content.contact, email: v } })} />
+              <TextField label="Nomor telepon" value={content.contact.phone} type="tel" placeholder="+62..." onChange={(v) => setContent({ ...content, contact: { ...content.contact, phone: v } })} />
+              <TextField label="Nomor WhatsApp" value={content.contact.whatsapp} type="tel" placeholder="628..." onChange={(v) => setContent({ ...content, contact: { ...content.contact, whatsapp: v } })} />
+              <TextField label="Lokasi / alamat" value={content.contact.address} onChange={(v) => setContent({ ...content, contact: { ...content.contact, address: v } })} />
+            </div>
             <TextField label="Subjudul" value={content.contact.subheading} textarea onChange={(v) => setContent({ ...content, contact: { ...content.contact, subheading: v } })} />
-            <TextField label="Email" value={content.contact.email} onChange={(v) => setContent({ ...content, contact: { ...content.contact, email: v } })} />
+            <div className="border-t border-line pt-5">
+              <p className="mb-4 text-sm font-semibold text-ink">Sosial media</p>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {["github", "linkedin", "instagram", "tiktok", "youtube"].map((social) => (
+                  <TextField
+                    key={social}
+                    label={`${social[0].toUpperCase()}${social.slice(1)} URL`}
+                    value={content.contact.socials?.[social]}
+                    onChange={(v) => setContent({
+                      ...content,
+                      contact: {
+                        ...content.contact,
+                        socials: { ...(content.contact.socials || {}), [social]: v },
+                      },
+                    })}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -1,0 +1,348 @@
+{
+  "profile": {
+    "brandName": "jayszrs.",
+    "greeting": "Hai gw Jay Szrs Welcome To My Portofolio",
+    "fullName": "Jaelani Surya Saputra",
+    "roleLabel": "Anonim",
+    "role": " Web Developer - IT Infrastructure - Ai Engineer - Software Engineer - Video Editor",
+    "roles": [
+      "Web Developer",
+      "IT Infrastructure",
+      "AI Engineer",
+      "Software Engineer",
+      "Video Editor"
+    ],
+    "tagline": "Saya membantu bisnis dan individu mengubah ide menjadi solusi digital yang aman dan berfungsi baik.",
+    "location": "Bekasi, Indonesia",
+    "status": "Online",
+    "handle": "@jayszrs",
+    "heroImage": "/uploads/1783593456724-uf7hnw.jpg",
+    "cvUrl": "",
+    "socials": {
+      "github": "https://github.com/Jayszrs",
+      "linkedin": "https://linkedin.com/in/jayszrs",
+      "instagram": "https://instagram.com/jayszrs"
+    }
+  },
+  "about": {
+    "heading": "Tentang Saya",
+    "paragraphs": [
+      "Saya adalah mahasiswa Teknik Informatika di Universitas Bani Saleh, Bekasi, dengan fokus riset pada forensik jaringan — melacak jejak kejahatan siber yang disembunyikan lewat VPN.",
+      "Di luar riset, saya membangun produk web dan antarmuka digital: dari company profile, sistem informasi kampus, hingga dashboard IoT."
+    ],
+    "skills": [
+      "Network Forensics",
+      "Next.js / React",
+      "UI/UX Design",
+      "Node.js",
+      "IoT (ESP32 / MQTT)",
+      "Tailwind CSS"
+    ]
+  },
+  "capabilities": {
+    "editingSoftware": [
+      {
+        "id": "software-canva",
+        "name": "Canva",
+        "since": "2021",
+        "level": "Mahir",
+        "usage": "Desain konten sosial media, presentasi, poster, dan kebutuhan branding."
+      },
+      {
+        "id": "software-capcut",
+        "name": "CapCut",
+        "since": "2021",
+        "level": "Mahir",
+        "usage": "Editing video pendek, motion sederhana, subtitle, dan konten vertikal."
+      },
+      {
+        "id": "software-kinemaster",
+        "name": "KineMaster",
+        "since": "2020",
+        "level": "Menengah",
+        "usage": "Editing video mobile dan produksi konten organisasi."
+      },
+      {
+        "id": "software-alight",
+        "name": "Alight Motion",
+        "since": "2021",
+        "level": "Menengah",
+        "usage": "Motion graphic, animasi teks, dan efek transisi."
+      },
+      {
+        "id": "software-figma",
+        "name": "Figma",
+        "since": "2022",
+        "level": "Mahir",
+        "usage": "Wireframe, UI design, prototype, dan design system."
+      },
+      {
+        "id": "software-davinci",
+        "name": "DaVinci Resolve",
+        "since": "2023",
+        "level": "Menengah",
+        "usage": "Editing video desktop, color correction, dan audio dasar."
+      },
+      {
+        "id": "software-vn",
+        "name": "VN Video Editor",
+        "since": "2022",
+        "level": "Menengah",
+        "usage": "Editing cepat untuk dokumentasi dan konten sosial media."
+      },
+      {
+        "id": "software-premiere",
+        "name": "Adobe Premiere Pro",
+        "since": "2023",
+        "level": "Menengah",
+        "usage": "Editing video berdurasi panjang dan workflow produksi terstruktur."
+      }
+    ],
+    "programming": [
+      {
+        "id": "skill-react",
+        "name": "React",
+        "since": "2023",
+        "level": "Mahir",
+        "usage": "Membangun antarmuka web berbasis komponen."
+      },
+      {
+        "id": "skill-javascript",
+        "name": "JavaScript",
+        "since": "2022",
+        "level": "Mahir",
+        "usage": "Pengembangan web interaktif dan integrasi API."
+      },
+      {
+        "id": "skill-css",
+        "name": "CSS",
+        "since": "2022",
+        "level": "Mahir",
+        "usage": "Responsive layout, animasi, dan design system."
+      },
+      {
+        "id": "skill-html",
+        "name": "HTML",
+        "since": "2021",
+        "level": "Mahir",
+        "usage": "Markup semantik dan aksesibel."
+      },
+      {
+        "id": "skill-php",
+        "name": "PHP",
+        "since": "2023",
+        "level": "Menengah",
+        "usage": "Backend web dan sistem informasi."
+      },
+      {
+        "id": "skill-node",
+        "name": "Node.js",
+        "since": "2023",
+        "level": "Menengah",
+        "usage": "API, tooling, dan aplikasi server-side."
+      },
+      {
+        "id": "skill-next",
+        "name": "Next.js",
+        "since": "2023",
+        "level": "Mahir",
+        "usage": "Aplikasi React full-stack dan website production."
+      },
+      {
+        "id": "skill-c",
+        "name": "C",
+        "since": "2022",
+        "level": "Menengah",
+        "usage": "Dasar algoritma, struktur data, dan pemrograman sistem."
+      },
+      {
+        "id": "skill-csharp",
+        "name": "C#",
+        "since": "2023",
+        "level": "Dasar",
+        "usage": "Pemrograman berorientasi objek dan aplikasi desktop."
+      },
+      {
+        "id": "skill-cpp",
+        "name": "C++",
+        "since": "2022",
+        "level": "Menengah",
+        "usage": "Algoritma dan pemrograman berorientasi objek."
+      },
+      {
+        "id": "skill-java",
+        "name": "Java",
+        "since": "2022",
+        "level": "Menengah",
+        "usage": "Aplikasi berorientasi objek dan tugas akademik."
+      },
+      {
+        "id": "skill-python",
+        "name": "Python",
+        "since": "2022",
+        "level": "Menengah",
+        "usage": "Otomasi, analisis data, dan eksperimen keamanan."
+      },
+      {
+        "id": "skill-flutter",
+        "name": "Flutter",
+        "since": "2024",
+        "level": "Dasar",
+        "usage": "Eksperimen aplikasi mobile lintas platform."
+      }
+    ],
+    "operatingSystems": [
+      {
+        "id": "os-kali",
+        "name": "Kali Linux",
+        "since": "2023",
+        "level": "Mahir",
+        "usage": "Network forensics, security lab, dan penetration testing legal."
+      },
+      {
+        "id": "os-arch",
+        "name": "Arch Linux",
+        "since": "2024",
+        "level": "Menengah",
+        "usage": "Lingkungan pengembangan dan eksplorasi sistem Linux."
+      },
+      {
+        "id": "os-linux",
+        "name": "Linux",
+        "since": "2022",
+        "level": "Mahir",
+        "usage": "Server, command line, deployment, dan administrasi sistem."
+      },
+      {
+        "id": "os-windows",
+        "name": "Windows",
+        "since": "2014",
+        "level": "Mahir",
+        "usage": "Daily driver, development, desain, dan troubleshooting."
+      }
+    ]
+  },
+  "selectedDesigns": [
+    {
+      "id": "design-1",
+      "title": "Poster Teknologi",
+      "category": "Social Media",
+      "year": "2024",
+      "description": "Poster edukasi bertema teknologi untuk konten organisasi.",
+      "image": "",
+      "link": ""
+    },
+    {
+      "id": "design-2",
+      "title": "Materi Event Kampus",
+      "category": "Event Design",
+      "year": "2024",
+      "description": "Materi promosi dan publikasi digital untuk kegiatan kampus.",
+      "image": "",
+      "link": ""
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-1",
+      "institution": "Universitas Bani Saleh",
+      "degree": "S1 Teknik Informatika",
+      "period": "Sedang ditempuh",
+      "location": "Bekasi, Indonesia",
+      "description": "Mendalami pengembangan perangkat lunak, jaringan komputer, keamanan siber, dan forensik jaringan.",
+      "link": ""
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "type": "Organisasi",
+      "title": "Anggota Aktif",
+      "org": "HMTI — Himpunan Mahasiswa Teknik Informatika",
+      "period": "2023 — Sekarang",
+      "description": "Terlibat dalam kegiatan organisasi mahasiswa, mendukung acara dan program kerja jurusan Teknik Informatika."
+    },
+    {
+      "id": "exp-2",
+      "type": "Volunteer",
+      "title": "Volunteer Desain & Branding",
+      "org": "LKSA Maslahatul Ummah",
+      "period": "2024",
+      "description": "Membantu proses branding dan desain logo untuk organisasi sosial di Probolinggo, mulai dari eksplorasi konsep hingga aset akhir."
+    },
+    {
+      "id": "exp-3",
+      "type": "Proyek",
+      "title": "Video Drama Sekolah",
+      "org": "Proyek Pertama",
+      "period": "2022",
+      "startDate": "2022",
+      "endDate": "2022",
+      "description": "Terlibat sebagai pemeran sekaligus videografer dan editor dalam produksi video drama sekolah.",
+      "link": "",
+      "image": ""
+    }
+  ],
+  "gallery": [
+    {
+      "id": "proj-1",
+      "title": "Fazma Stone",
+      "description": "Company profile untuk supplier batu alam, dibangun dengan React, TypeScript, Tailwind, dan Supabase.",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+      "link": ""
+    },
+    {
+      "id": "proj-2",
+      "title": "JusPOS",
+      "description": "Sistem Point of Sale berbasis web lengkap dengan flowmap dan dokumentasi kebutuhan sistem.",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
+      "link": ""
+    },
+    {
+      "id": "proj-3",
+      "title": "IoT Lab Control",
+      "description": "Sistem kontrol laboratorium berbasis ESP32 dan Adafruit IO MQTT.",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+      "link": ""
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach-1",
+      "title": "Kontributor Aktif HMTI",
+      "issuer": "Universitas Bani Saleh",
+      "year": "2024",
+      "image": ""
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert-1",
+      "title": "Sertifikat Contoh",
+      "issuer": "Nama Penerbit",
+      "year": "2024",
+      "image": "",
+      "credentialId": "",
+      "issuedAt": "2024",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "description": "Sertifikat kompetensi dan pembelajaran."
+    }
+  ],
+  "contact": {
+    "heading": "Mari Terhubung",
+    "subheading": "Terbuka untuk kolaborasi, riset, maupun proyek freelance.",
+    "email": "hello@jayszrs.dev",
+    "phone": "",
+    "whatsapp": "",
+    "address": "Bekasi, Indonesia",
+    "socials": {
+      "github": "https://github.com/Jayszrs",
+      "linkedin": "https://linkedin.com/in/jayszrs",
+      "instagram": "https://instagram.com/jayszrs",
+      "tiktok": "",
+      "youtube": ""
+    }
+  }
+}

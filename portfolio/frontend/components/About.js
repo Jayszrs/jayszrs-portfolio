@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export default function About({ about }) {
   return (
-    <section id="tentang" className="section-pad py-24">
-      <div className="mx-auto max-w-5xl">
+    <section id="tentang" className="section-pad py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ export default function About({ about }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ delay: 0.05 }}
-          className="mt-2 font-display text-3xl font-semibold text-ink sm:text-4xl"
+          className="mt-2 font-display text-4xl font-semibold text-ink sm:text-5xl"
         >
           {about.heading}
         </motion.h2>

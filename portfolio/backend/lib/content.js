@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 
-const filePath = path.join(process.cwd(), "data", "content.json");
+const filePath = path.join(process.cwd(), "backend", "data", "content.json");
 
 export async function readContent() {
   const raw = await fs.readFile(filePath, "utf-8");

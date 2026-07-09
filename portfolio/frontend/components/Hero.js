@@ -3,32 +3,40 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import TypewriterText from "@/frontend/components/TypewriterText";
 
 export default function Hero({ profile }) {
   const { socials } = profile;
 
   return (
-    <section id="beranda" className="section-pad relative flex min-h-screen items-center pt-32 pb-20">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+    <section id="beranda" className="section-pad relative flex min-h-[760px] items-center pb-14 pt-28 sm:pb-16">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
         {/* Left: text */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <p className="eyebrow mb-4">{profile.greeting}</p>
-          <h1 className="font-display text-4xl font-semibold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-px w-10 bg-emerald" />
+            <p className="eyebrow">{profile.greeting}</p>
+          </div>
+          <h1 className="max-w-3xl font-display text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-ink sm:text-6xl lg:text-7xl">
             {profile.fullName}
           </h1>
 
-          <div className="mt-5">
-            <p className="text-lg text-muted">{profile.roleLabel}</p>
-            <p className="inline-block border-b-2 border-emerald pb-1 font-display text-xl font-semibold text-ink sm:text-2xl">
-              {profile.role}
+          <div className="mt-7">
+            <p className="mb-1 text-sm font-medium uppercase tracking-[0.16em] text-muted">Saat ini berfokus sebagai</p>
+            <p className="font-display text-2xl font-semibold text-emerald-deep sm:text-3xl">
+              <TypewriterText words={profile.roles} fallback={profile.role} />
             </p>
           </div>
 
-          <div className="mt-6 flex items-center gap-4">
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+            {profile.tagline}
+          </p>
+
+          <div className="mt-7 flex items-center gap-3">
             {socials.github && (
               <a href={socials.github} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald">
                 <Github size={18} />
@@ -46,11 +54,7 @@ export default function Hero({ profile }) {
             )}
           </div>
 
-          <p className="mt-7 max-w-md text-base leading-relaxed text-muted">
-            {profile.tagline}
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/proyek"
               className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3 text-sm font-semibold text-white shadow-glass transition hover:bg-emerald-deep"
@@ -71,10 +75,13 @@ export default function Hero({ profile }) {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-          className="relative mx-auto w-full max-w-sm"
+          className="relative mx-auto w-full max-w-md"
         >
+          <div className="absolute -left-8 top-14 hidden -rotate-90 font-mono text-[10px] uppercase tracking-[0.32em] text-muted/60 xl:block">
+            Bekasi · Indonesia · 2026
+          </div>
           <div className="glass-strong relative overflow-hidden rounded-[2rem] p-3">
-            <div className="relative h-[420px] w-full overflow-hidden rounded-[1.5rem]">
+            <div className="relative h-[460px] w-full overflow-hidden rounded-[1.5rem] sm:h-[520px]">
               <img
                 src={profile.heroImage}
                 alt={profile.fullName}
@@ -84,7 +91,7 @@ export default function Hero({ profile }) {
               <div className="absolute left-5 top-5 text-white">
                 <p className="font-display text-2xl font-semibold drop-shadow">{profile.fullName}</p>
                 <p className="glass-pill mt-1 inline-block rounded-full px-3 py-1 text-xs text-white/90">
-                  {profile.role}
+                  {profile.roles?.[0] || profile.role}
                 </p>
               </div>
             </div>

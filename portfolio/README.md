@@ -1,4 +1,4 @@
-# Portofolio — Jaelani Surya Saputra (jayszrs)
+# Portfolio — Jay Szrs
 
 Website portofolio dibangun dengan **Next.js 14 (App Router)**, **Tailwind CSS**, dan **Framer Motion**.
 Tema: latar putih, gaya *liquid glass*, dengan animasi parallax saat scroll.
@@ -33,7 +33,7 @@ Password admin default (jika `.env.local` belum diisi): `jayszrs123` — **seger
 
 ## Struktur Konten
 
-Semua teks dan gambar diambil dari `data/content.json`. Panel admin membaca dan menulis file ini lewat API route (`/api/content`), jadi perubahan dari `/admin` langsung tersimpan di file tersebut.
+Semua teks dan gambar diambil dari `backend/data/content.json`. Panel admin membaca dan menulis file ini lewat API route (`/api/content`), jadi perubahan dari `/admin` langsung tersimpan di file tersebut.
 
 ## Catatan Penting soal Deploy
 
@@ -45,16 +45,20 @@ Semua teks dan gambar diambil dari `data/content.json`. Panel admin membaca dan 
 
 ```
 app/
-  layout.js, page.js, globals.css
-  admin/page.js         # panel admin
-  api/content/route.js  # baca/tulis data/content.json
-  api/upload/route.js   # upload gambar
-  api/auth/*            # login/logout admin sederhana
-components/              # semua section (Hero, About, Gallery, dll)
-data/content.json        # sumber semua konten
-public/uploads/           # hasil upload gambar dari admin
+  layout.js, page.js, globals.css  # routing/layout frontend
+  admin/page.js                    # halaman admin
+  api/                             # endpoint backend Next.js
+frontend/
+  components/                      # seluruh UI dan interaksi
+backend/
+  lib/content.js                   # logic baca/tulis konten
+  data/content.json                # sumber data portfolio
+public/
+  uploads/                         # file hasil upload admin
 ```
+
+`app/api/` tetap berada di dalam `app/` karena Route Handler adalah konvensi wajib Next.js App Router. Implementasi dan data server dipisahkan ke folder `backend/`.
 
 ## Kustomisasi Warna & Font
 
-Warna dan font diatur di `tailwind.config.js` (token `emerald`, `gold`, `paper`, `ink`) dan `app/layout.js` (font Space Grotesk, Inter, JetBrains Mono).
+Warna dan font diatur di `tailwind.config.js` dan `app/layout.js` (Plus Jakarta Sans).

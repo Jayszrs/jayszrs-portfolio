@@ -2,30 +2,30 @@
 module.exports = {
   content: [
     "./app/**/*.{js,jsx}",
-    "./components/**/*.{js,jsx}",
+    "./frontend/components/**/*.{js,jsx}",
   ],
   theme: {
     extend: {
       colors: {
-        paper: "#FAFAF8",
-        ink: "#14161A",
-        muted: "#6B7280",
-        line: "#E7E5E1",
+        paper: "#F7F9F8",
+        ink: "#0D1915",
+        muted: "#66736D",
+        line: "#DDE6E1",
         emerald: {
-          DEFAULT: "#0F9B6E",
-          soft: "#E3F3EC",
-          deep: "#0B6E4F",
+          DEFAULT: "#0BAA72",
+          soft: "#E7F7F0",
+          deep: "#087A54",
         },
         gold: "#C9A227",
       },
       fontFamily: {
-        display: ["var(--font-display)"],
-        body: ["var(--font-body)"],
-        mono: ["var(--font-mono)"],
+        display: ["var(--font-jakarta)", "sans-serif"],
+        body: ["var(--font-jakarta)", "sans-serif"],
+        mono: ["var(--font-jakarta)", "sans-serif"],
       },
       boxShadow: {
-        glass: "0 8px 32px rgba(20, 22, 26, 0.08)",
-        "glass-lg": "0 20px 60px rgba(20, 22, 26, 0.12)",
+        glass: "0 12px 40px rgba(13, 25, 21, 0.07)",
+        "glass-lg": "0 28px 80px rgba(13, 25, 21, 0.12)",
       },
       backdropBlur: {
         xs: "2px",

@@ -1,34 +1,33 @@
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import IntroLoader from "@/frontend/components/IntroLoader";
+import MouseSpotlight from "@/frontend/components/MouseSpotlight";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
-});
-
-const body = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
 });
 
 export const metadata = {
-  title: "Jaelani Surya Saputra — Portfolio",
+  title: {
+    default: "Jay Szrs | Portfolio",
+    template: "%s | Jay Szrs",
+  },
   description:
     "Portofolio Jaelani Surya Saputra (jayszrs) — Informatics Engineer, Network Forensics Researcher, dan Web Developer.",
+  applicationName: "Jay Szrs Portfolio",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className={`${display.variable} ${body.variable} ${mono.variable}`}>
-      <body className="bg-paper text-ink font-body antialiased">{children}</body>
+    <html lang="id" className={jakarta.variable}>
+      <body className="bg-paper text-ink font-body antialiased">
+        <IntroLoader />
+        <MouseSpotlight />
+        {children}
+      </body>
     </html>
   );
 }

@@ -8,20 +8,29 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 const LINKS = [
   { href: "/", label: "Beranda" },
   { href: "/tentang", label: "Tentang" },
+  { href: "/tentang#pendidikan", label: "Pendidikan" },
   { href: "/pengalaman", label: "Pengalaman" },
   { href: "/proyek", label: "Proyek" },
   { href: "/pencapaian", label: "Pencapaian" },
 ];
 
-export default function Navbar({ brandName }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
-      <nav className="glass flex w-full max-w-5xl items-center justify-between rounded-full px-4 py-2.5 md:px-5">
-        <Link href="/" className="font-display text-lg font-semibold text-ink">
-          {brandName}
+      <nav className="glass flex w-full max-w-6xl items-center justify-between rounded-full px-3 py-2 md:px-4">
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm">
+            <img
+              src="https://api.iconify.design/simple-icons:kalilinux.svg?color=%23ffffff"
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full"
+            />
+          </span>
+          <span className="hidden font-display text-sm font-semibold text-[#ef3340] sm:block">Jay Szrs</span>
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

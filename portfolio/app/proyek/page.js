@@ -1,11 +1,12 @@
-import { readContent } from "@/lib/content";
-import PublicPage from "@/components/PublicPage";
-import Gallery from "@/components/Gallery";
+import { readContent } from "@/backend/lib/content";
+import PublicPage from "@/frontend/components/PublicPage";
+import Gallery from "@/frontend/components/Gallery";
+import SelectedDesigns from "@/frontend/components/SelectedDesigns";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Proyek — Jaelani Surya Saputra",
+  title: "Proyek",
   description: "Kumpulan proyek web, IoT, dan desain Jaelani Surya Saputra.",
 };
 
@@ -24,6 +25,7 @@ export default async function ProyekPage() {
       }}
     >
       <Gallery items={content.gallery} />
+      <SelectedDesigns items={content.selectedDesigns} />
     </PublicPage>
   );
 }

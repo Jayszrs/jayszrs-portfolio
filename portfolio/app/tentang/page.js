@@ -1,11 +1,13 @@
-import { readContent } from "@/lib/content";
-import PublicPage from "@/components/PublicPage";
-import About from "@/components/About";
+import { readContent } from "@/backend/lib/content";
+import PublicPage from "@/frontend/components/PublicPage";
+import About from "@/frontend/components/About";
+import Capabilities from "@/frontend/components/Capabilities";
+import Education from "@/frontend/components/Education";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Tentang — Jaelani Surya Saputra",
+  title: "Tentang",
   description: "Profil, fokus, dan keahlian Jaelani Surya Saputra.",
 };
 
@@ -23,6 +25,8 @@ export default async function TentangPage() {
       }}
     >
       <About about={content.about} />
+      <Education items={content.education} />
+      <Capabilities capabilities={content.capabilities} />
     </PublicPage>
   );
 }
