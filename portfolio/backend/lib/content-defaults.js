@@ -16,6 +16,7 @@ export const DEFAULT_CONTENT = {
       github: "",
       linkedin: "",
       instagram: "",
+      tiktok: "",
     },
   },
   about: {
@@ -77,6 +78,11 @@ export const DEFAULT_CONTENT = {
       title: "Selected Design",
       description: "Pilihan karya visual. Klik kartu untuk membuka preview dan detail desain.",
     },
+    ratings: {
+      eyebrow: "Rating pengunjung",
+      title: "Bukti pengalaman orang yang pernah mampir.",
+      description: "Kumpulan rating, cerita singkat, dan dokumentasi dari orang yang pernah melihat karya saya.",
+    },
     achievements: {
       eyebrow: "Pengakuan",
       title: "Pencapaian & Sertifikat",
@@ -88,7 +94,7 @@ export const DEFAULT_CONTENT = {
       detailsTitle: "Detail kontak",
       emailButton: "Kirim email",
       whatsappButton: "WhatsApp",
-      footerSuffix: "Dibuat dengan Next.js.",
+      footerSuffix: "",
     },
   },
   pageHeroes: {
@@ -137,6 +143,7 @@ export const DEFAULT_CONTENT = {
   experience: [],
   gallery: [],
   selectedDesigns: [],
+  ratings: [],
   achievements: [],
   certificates: [],
   contact: {
@@ -173,6 +180,8 @@ function arrayOrDefault(value, fallback) {
 }
 
 export function mergeContent(data = {}) {
+  const sections = mergeNested(DEFAULT_CONTENT.sections, data.sections);
+
   return {
     profile: {
       ...mergeObject(DEFAULT_CONTENT.profile, data.profile),
@@ -184,7 +193,13 @@ export function mergeContent(data = {}) {
       paragraphs: arrayOrDefault(data.about?.paragraphs, DEFAULT_CONTENT.about.paragraphs),
       skills: arrayOrDefault(data.about?.skills, DEFAULT_CONTENT.about.skills),
     },
-    sections: mergeNested(DEFAULT_CONTENT.sections, data.sections),
+    sections: {
+      ...sections,
+      contact: {
+        ...sections.contact,
+        footerSuffix: "",
+      },
+    },
     pageHeroes: mergeNested(DEFAULT_CONTENT.pageHeroes, data.pageHeroes),
     education: arrayOrDefault(data.education, DEFAULT_CONTENT.education),
     capabilities: {
@@ -196,6 +211,7 @@ export function mergeContent(data = {}) {
     experience: arrayOrDefault(data.experience, DEFAULT_CONTENT.experience),
     gallery: arrayOrDefault(data.gallery, DEFAULT_CONTENT.gallery),
     selectedDesigns: arrayOrDefault(data.selectedDesigns, DEFAULT_CONTENT.selectedDesigns),
+    ratings: arrayOrDefault(data.ratings, DEFAULT_CONTENT.ratings),
     achievements: arrayOrDefault(data.achievements, DEFAULT_CONTENT.achievements),
     certificates: arrayOrDefault(data.certificates, DEFAULT_CONTENT.certificates),
     contact: {

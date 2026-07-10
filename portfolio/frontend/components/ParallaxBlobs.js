@@ -1,16 +1,27 @@
 "use client";
 
 import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ParallaxBlobs() {
   const ref = useRef(null);
+  const [enabled, setEnabled] = useState(false);
   const { scrollYProgress } = useScroll();
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -260]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 320]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -160]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 40]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 768px) and (prefers-reduced-motion: no-preference)");
+    const update = () => setEnabled(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  if (!enabled) return null;
 
   return (
     <div ref={ref} className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">

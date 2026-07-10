@@ -10,7 +10,7 @@ import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
-  "Pengalaman", "Galeri", "Selected Design", "Pencapaian", "Sertifikat", "Kontak",
+  "Pengalaman", "Galeri", "Selected Design", "Rating", "Pencapaian", "Sertifikat", "Kontak",
 ];
 
 function uid(prefix) {
@@ -238,6 +238,9 @@ function SectionTextsEditor({ content, setContent }) {
         { label: "Eyebrow Selected Design", value: sections.selectedDesigns?.eyebrow, path: ["sections", "selectedDesigns", "eyebrow"] },
         { label: "Judul Selected Design", value: sections.selectedDesigns?.title, path: ["sections", "selectedDesigns", "title"] },
         { label: "Deskripsi Selected Design", value: sections.selectedDesigns?.description, path: ["sections", "selectedDesigns", "description"], textarea: true, wide: true },
+        { label: "Eyebrow Rating", value: sections.ratings?.eyebrow, path: ["sections", "ratings", "eyebrow"] },
+        { label: "Judul Rating", value: sections.ratings?.title, path: ["sections", "ratings", "title"] },
+        { label: "Deskripsi Rating", value: sections.ratings?.description, path: ["sections", "ratings", "description"], textarea: true, wide: true },
       ])}
 
       {renderFields("Pendidikan & Keahlian", [
@@ -267,7 +270,6 @@ function SectionTextsEditor({ content, setContent }) {
         { label: "Judul detail kontak", value: sections.contact?.detailsTitle, path: ["sections", "contact", "detailsTitle"] },
         { label: "Teks tombol email", value: sections.contact?.emailButton, path: ["sections", "contact", "emailButton"] },
         { label: "Teks tombol WhatsApp", value: sections.contact?.whatsappButton, path: ["sections", "contact", "whatsappButton"] },
-        { label: "Teks footer", value: sections.contact?.footerSuffix, path: ["sections", "contact", "footerSuffix"] },
       ])}
 
       {Object.entries(pageHeroes).map(([key, hero]) => renderFields(`Hero halaman ${key}`, [
@@ -536,9 +538,13 @@ export default function AdminPageClient() {
             <div className="sm:col-span-2">
               <ImageField label="Foto Hero" value={content.profile?.heroImage} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage: v } })} />
             </div>
+            <div className="sm:col-span-2">
+              <FileField label="Resume / CV PDF" value={content.profile?.cvUrl} accept="application/pdf" buttonLabel="Upload resume" onChange={(v) => setContent({ ...content, profile: { ...content.profile, cvUrl: v } })} />
+            </div>
             <TextField label="GitHub URL" value={content.profile?.socials?.github} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, github: v } } })} />
             <TextField label="LinkedIn URL" value={content.profile?.socials?.linkedin} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, linkedin: v } } })} />
             <TextField label="Instagram URL" value={content.profile?.socials?.instagram} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, instagram: v } } })} />
+            <TextField label="TikTok URL" value={content.profile?.socials?.tiktok} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...(content.profile.socials || {}), tiktok: v } } })} />
           </div>
         )}
 
@@ -726,11 +732,38 @@ export default function AdminPageClient() {
                 <TextField label="Kontribusi kamu" value={item.contribution} textarea onChange={(v) => {
                   const next = [...content.gallery]; next[i] = { ...item, contribution: v }; setContent({ ...content, gallery: next });
                 }} />
+                <TextField label="Problem / masalah yang diselesaikan" value={item.problem} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, problem: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Apa yang dibuat" value={item.whatBuilt} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, whatBuilt: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Goals / tujuan proyek" value={item.goals} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, goals: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Roles and responsibilities" value={item.responsibilities} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, responsibilities: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Process and execution" value={item.process} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, process: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Results / hasil" value={item.results} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, results: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Impact / dampak" value={item.impact} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, impact: v }; setContent({ ...content, gallery: next });
+                }} />
+                <TextField label="Catatan bukti dokumentasi" value={item.documentation} textarea onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, documentation: v }; setContent({ ...content, gallery: next });
+                }} />
                 <TextField label="Link proyek (opsional)" value={item.link} onChange={(v) => {
                   const next = [...content.gallery]; next[i] = { ...item, link: v }; setContent({ ...content, gallery: next });
                 }} />
                 <ImageField label="Gambar" value={item.image} onChange={(v) => {
                   const next = [...content.gallery]; next[i] = { ...item, image: v }; setContent({ ...content, gallery: next });
+                }} />
+                <ImageField label="Gambar dokumentasi / bukti" value={item.documentationImage} onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = { ...item, documentationImage: v }; setContent({ ...content, gallery: next });
                 }} />
               </div>
             ))}
@@ -738,7 +771,8 @@ export default function AdminPageClient() {
               onClick={() => setContent({
                 ...content, gallery: [...(content.gallery || []), {
                   id: uid("proj"), title: "", description: "", role: "", period: "", techStack: "",
-                  background: "", contribution: "", image: "", link: "",
+                  background: "", contribution: "", problem: "", whatBuilt: "", goals: "", responsibilities: "",
+                  process: "", results: "", impact: "", documentation: "", image: "", documentationImage: "", link: "",
                 }]
               })}
               className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"
@@ -760,6 +794,26 @@ export default function AdminPageClient() {
             ]}
             createItem={() => ({ id: uid("design"), title: "", category: "", year: "", description: "", image: "", link: "" })}
             addLabel="Tambah selected design"
+          />
+        )}
+
+        {tab === "Rating" && (
+          <CollectionEditor
+            items={content.ratings || []}
+            onChange={(items) => setContent({ ...content, ratings: items })}
+            fields={[
+              { key: "name", label: "Nama pemberi rating" },
+              { key: "role", label: "Role / asal" },
+              { key: "stars", label: "Jumlah bintang", kind: "select", options: ["5", "4", "3", "2", "1"] },
+              { key: "approved", label: "Tampilkan di homepage", kind: "select", options: ["true", "false"] },
+              { key: "date", label: "Tanggal" },
+              { key: "comment", label: "Deskripsi rating", kind: "textarea", wide: true },
+              { key: "proofText", label: "Catatan bukti dokumentasi", kind: "textarea", wide: true },
+              { key: "image", label: "Foto / dokumentasi rating", kind: "image", wide: true },
+              { key: "proofUrl", label: "Link bukti dokumentasi", wide: true },
+            ]}
+            createItem={() => ({ id: uid("rating"), name: "", role: "", stars: "5", approved: "true", date: "", comment: "", proofText: "", image: "", proofUrl: "" })}
+            addLabel="Tambah rating"
           />
         )}
 

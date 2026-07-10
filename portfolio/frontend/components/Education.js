@@ -10,12 +10,12 @@ export default function Education({ items = [], section = {} }) {
   if (!items.length) return null;
 
   return (
-    <section id="pendidikan" className="section-pad py-16 sm:py-20">
+    <section id="pendidikan" className="section-pad py-14 sm:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="eyebrow">{section.eyebrow || "Academic journey"}</p>
-            <h2 className="mt-2 font-display text-4xl font-semibold text-ink sm:text-5xl">{section.title || "Pendidikan"}</h2>
+            <h2 className="mt-2 font-display text-3xl font-semibold text-ink sm:text-5xl">{section.title || "Pendidikan"}</h2>
           </div>
           <GraduationCap className="hidden text-emerald/25 sm:block" size={64} />
         </div>
@@ -30,7 +30,7 @@ export default function Education({ items = [], section = {} }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: index * 0.08 }}
-              className="glass group grid gap-6 rounded-[1.75rem] p-6 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:p-8"
+              className="glass group grid gap-5 rounded-[1.5rem] p-5 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:rounded-[1.75rem] sm:p-8"
             >
               <div className="flex items-start gap-4">
                 {item.logo && (
@@ -40,7 +40,7 @@ export default function Education({ items = [], section = {} }) {
                 )}
                 <div>
                   <span className="rounded-full bg-emerald-soft px-3 py-1 font-mono text-xs text-emerald-deep">{item.period}</span>
-                  <h3 className="mt-4 font-display text-2xl font-semibold text-ink">{item.degree}</h3>
+                  <h3 className="mt-4 font-display text-xl font-semibold text-ink sm:text-2xl">{item.degree}</h3>
                   <p className="mt-1 text-base font-semibold text-emerald-deep">{item.institution}</p>
                   <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{item.description}</p>
                 </div>

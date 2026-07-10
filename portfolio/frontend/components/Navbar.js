@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Download, Menu, X } from "lucide-react";
 
 const LINKS = [
   { href: "/", label: "Beranda" },
@@ -14,15 +14,15 @@ const LINKS = [
   { href: "/pencapaian", label: "Pencapaian" },
 ];
 
-export default function Navbar({ brandName = "Jay Szrs" }) {
+export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+    <header className="fixed left-0 right-0 top-3 z-50 flex justify-center px-5 sm:top-4 sm:px-4">
       <nav className="glass flex w-full max-w-6xl items-center justify-between rounded-full px-3 py-2 md:px-4">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm sm:h-9 sm:w-9">
             <img
               src="https://api.iconify.design/simple-icons:kalilinux.svg?color=%23ffffff"
               alt=""
@@ -50,16 +50,28 @@ export default function Navbar({ brandName = "Jay Szrs" }) {
           ))}
         </ul>
 
-        <Link
-          href="/kontak"
-          className="hidden items-center gap-1.5 rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep md:inline-flex"
-        >
-          Hubungi <ArrowUpRight size={14} />
-        </Link>
+        <div className="hidden items-center gap-2 md:flex">
+          {cvUrl && (
+            <a
+              href={cvUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-4 py-2 text-sm font-semibold text-ink transition hover:border-emerald/30 hover:text-emerald-deep"
+            >
+              Resume <Download size={14} />
+            </a>
+          )}
+          <Link
+            href="/kontak"
+            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep"
+          >
+            Hubungi <ArrowUpRight size={14} />
+          </Link>
+        </div>
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-8 w-8 items-center justify-center rounded-full text-ink md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-ink md:hidden"
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
         >
@@ -68,7 +80,7 @@ export default function Navbar({ brandName = "Jay Szrs" }) {
       </nav>
 
       {open && (
-        <div className="glass-strong absolute top-16 w-[calc(100%-2rem)] max-w-sm rounded-2xl p-3 md:hidden">
+        <div className="glass-strong absolute top-16 w-[calc(100%-2.5rem)] max-w-sm rounded-2xl p-3 md:hidden">
           <ul className="flex flex-col gap-1">
             {LINKS.map((link) => (
               <li key={link.href}>
@@ -84,6 +96,17 @@ export default function Navbar({ brandName = "Jay Szrs" }) {
               </li>
             ))}
             <li>
+              {cvUrl && (
+                <a
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="mt-1 flex items-center gap-2 rounded-xl border border-line bg-surface px-4 py-3 text-sm font-semibold text-ink"
+                >
+                  Download Resume <Download size={15} />
+                </a>
+              )}
               <Link
                 href="/kontak"
                 onClick={() => setOpen(false)}

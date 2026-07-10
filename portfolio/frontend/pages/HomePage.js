@@ -11,6 +11,7 @@ import Capabilities from "@/frontend/components/Capabilities";
 import SelectedDesigns from "@/frontend/components/SelectedDesigns";
 import Education from "@/frontend/components/Education";
 import SignalStrip from "@/frontend/components/SignalStrip";
+import Ratings from "@/frontend/components/Ratings";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +21,7 @@ export default async function Home() {
   return (
     <main className="relative">
       <ParallaxBlobs />
-      <Navbar brandName={content.profile.brandName} fullName={content.profile.fullName} />
+      <Navbar brandName={content.profile.brandName} fullName={content.profile.fullName} cvUrl={content.profile.cvUrl} />
       <Hero profile={content.profile} />
       <SignalStrip roles={content.profile.roles} section={content.sections.signalStrip} />
       <About about={content.about} section={content.sections.about} />
@@ -29,6 +30,7 @@ export default async function Home() {
       <Experience items={content.experience} section={content.sections.experience} />
       <Gallery items={content.gallery} section={content.sections.gallery} />
       <SelectedDesigns items={content.selectedDesigns} section={content.sections.selectedDesigns} />
+      <Ratings items={content.ratings} section={content.sections.ratings} />
       <Achievements achievements={content.achievements} certificates={content.certificates} section={content.sections.achievements} />
       <Contact contact={content.contact} profile={content.profile} section={content.sections.contact} />
     </main>

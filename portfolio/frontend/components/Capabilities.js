@@ -44,14 +44,14 @@ export default function Capabilities({ capabilities, section = {} }) {
   const ActiveIcon = activeGroup.icon;
 
   return (
-    <section id="keahlian" className="section-pad scroll-mt-24 py-16 sm:py-20">
+    <section id="keahlian" className="section-pad scroll-mt-24 py-14 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="overflow-hidden rounded-[2rem] border border-surface/80 bg-surface/45 shadow-glass backdrop-blur-xl">
+        <div className="overflow-hidden rounded-[1.5rem] border border-surface/80 bg-surface/45 shadow-glass backdrop-blur-xl sm:rounded-[2rem]">
           <div className="border-b border-line/80 p-5 sm:p-7">
             <p className="eyebrow">{section.eyebrow || "Toolbox & workflow"}</p>
             <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <h2 className="font-display text-4xl font-semibold text-ink sm:text-5xl">{section.title || "Keahlian yang saya pakai."}</h2>
+                <h2 className="font-display text-3xl font-semibold text-ink sm:text-5xl">{section.title || "Keahlian yang saya pakai."}</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
                   {section.description || "Bukan sekadar daftar nama - setiap item bisa dibuka untuk melihat sejak kapan dan bagaimana saya menggunakannya."}
                 </p>
@@ -65,7 +65,7 @@ export default function Capabilities({ capabilities, section = {} }) {
                       key={group.key}
                       type="button"
                       onClick={() => setActiveKey(group.key)}
-                      className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                      className={`flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition sm:px-4 sm:py-3 ${
                         active ? "bg-ink text-paper shadow-sm" : "text-muted hover:bg-emerald-soft hover:text-ink"
                       }`}
                     >
@@ -84,7 +84,7 @@ export default function Capabilities({ capabilities, section = {} }) {
                   <ActiveIcon size={16} />
                   <p className="eyebrow">{activeGroup.eyebrow}</p>
                 </div>
-                <h3 className="font-display text-3xl font-semibold text-ink">{activeGroup.title}</h3>
+                <h3 className="font-display text-2xl font-semibold text-ink sm:text-3xl">{activeGroup.title}</h3>
               </div>
               <p className="max-w-md text-sm text-muted">{activeGroup.description}</p>
             </div>
@@ -95,7 +95,7 @@ export default function Capabilities({ capabilities, section = {} }) {
                   key={item.id}
                   type="button"
                   onClick={() => setSelected({ ...item, group: activeGroup.title })}
-                  className="group flex min-h-48 flex-col items-start rounded-[1.5rem] border border-line bg-surface p-6 text-left shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg"
+                  className="group flex min-h-44 flex-col items-start rounded-[1.25rem] border border-line bg-surface p-5 text-left shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg sm:min-h-48 sm:rounded-[1.5rem] sm:p-6"
                 >
                   <BrandIcon name={item.name} />
                   <span className="mt-5 font-display text-lg font-semibold text-ink">{item.name}</span>

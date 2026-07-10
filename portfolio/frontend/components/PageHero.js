@@ -9,11 +9,11 @@ const accents = {
 
 export default function PageHero({ eyebrow, title, description, accent = "emerald", count }) {
   return (
-    <section className="section-pad pt-32">
-      <div className={`relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-surface/80 bg-gradient-to-br ${accents[accent]} px-7 py-12 shadow-glass sm:px-12 sm:py-16`}>
+    <section className="section-pad pt-28 sm:pt-32">
+      <div className={`relative mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-surface/80 bg-gradient-to-br ${accents[accent]} px-5 py-10 shadow-glass sm:rounded-[2rem] sm:px-12 sm:py-16`}>
         <div className="absolute -right-16 -top-20 h-64 w-64 rounded-full border border-surface/70 bg-surface/30" />
         <div className="relative max-w-3xl">
-          <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-ink/60 transition hover:text-emerald">
+          <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-ink/60 transition hover:text-emerald sm:mb-10">
             <ArrowLeft size={15} /> Kembali ke beranda
           </Link>
           <div className="flex items-center gap-3">
@@ -22,10 +22,10 @@ export default function PageHero({ eyebrow, title, description, accent = "emeral
               <span className="rounded-full bg-surface/70 px-2.5 py-1 font-mono text-[10px] text-ink/55">{count} item</span>
             )}
           </div>
-          <h1 className="mt-3 max-w-2xl font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl lg:text-6xl">
+          <h1 className="mt-3 max-w-2xl font-display text-[2.35rem] font-semibold leading-tight text-ink sm:text-5xl lg:text-6xl">
             {title}
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{description}</p>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-relaxed">{description}</p>
         </div>
         <ArrowDownRight className="absolute bottom-8 right-8 hidden text-ink/20 sm:block" size={42} />
       </div>

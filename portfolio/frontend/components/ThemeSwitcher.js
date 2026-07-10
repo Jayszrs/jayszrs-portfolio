@@ -45,7 +45,7 @@ export default function ThemeSwitcher() {
   const CurrentIcon = OPTIONS.find((option) => option.value === preference)?.icon || Monitor;
 
   return (
-    <div className="fixed bottom-4 right-4 z-[90] sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-5 z-[90] sm:bottom-6 sm:right-6">
       <div className="hidden items-center gap-1 rounded-2xl border border-line bg-surface/90 p-1.5 shadow-glass-lg backdrop-blur-xl sm:flex">
         {OPTIONS.map((option) => {
           const Icon = option.icon;
@@ -94,7 +94,7 @@ export default function ThemeSwitcher() {
           onClick={() => setMenuOpen((value) => !value)}
           aria-label="Pilih tema tampilan"
           aria-expanded={menuOpen}
-          className="flex h-11 w-11 items-center justify-center rounded-2xl border border-line bg-surface/95 text-ink shadow-glass-lg backdrop-blur-xl"
+          className="flex h-10 w-10 items-center justify-center rounded-2xl border border-line bg-surface/95 text-ink shadow-glass-lg backdrop-blur-xl"
         >
           <CurrentIcon size={17} />
         </button>

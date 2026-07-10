@@ -32,7 +32,7 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
         aria-modal="true"
         aria-labelledby="detail-modal-title"
         className={`max-h-[90vh] w-full overflow-y-auto rounded-[1.75rem] border border-surface/70 bg-paper p-6 shadow-2xl sm:p-8 ${
-          size === "wide" ? "max-w-4xl" : "max-w-xl"
+          size === "wide" ? "max-w-6xl" : "max-w-xl"
         }`}
       >
         <div className="flex items-start justify-between gap-6">

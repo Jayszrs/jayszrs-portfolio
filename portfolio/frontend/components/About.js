@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function About({ about, section = {} }) {
   return (
-    <section id="tentang" className="section-pad py-16 sm:py-20">
+    <section id="tentang" className="section-pad py-14 sm:py-20">
       <div className="mx-auto max-w-6xl">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -19,12 +19,12 @@ export default function About({ about, section = {} }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ delay: 0.05 }}
-          className="mt-2 font-display text-4xl font-semibold text-ink sm:text-5xl"
+          className="mt-2 font-display text-3xl font-semibold text-ink sm:text-5xl"
         >
           {about.heading}
         </motion.h2>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:mt-10 sm:gap-10 lg:grid-cols-5">
           <div className="lg:col-span-3 space-y-4">
             {about.paragraphs.map((p, i) => (
               <motion.p
@@ -45,7 +45,7 @@ export default function About({ about, section = {} }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: 0.15 }}
-            className="glass rounded-2xl p-6 lg:col-span-2"
+            className="glass rounded-2xl p-5 sm:p-6 lg:col-span-2"
           >
             <p className="eyebrow mb-4">{section.skillsEyebrow || "Fokus & Keahlian"}</p>
             <div className="flex flex-wrap gap-2">

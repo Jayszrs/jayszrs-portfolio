@@ -1,8 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Layers3, UserRound } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Image as ImageIcon, ListChecks, UserRound } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
+
+function CaseStudySection({ title, children }) {
+  if (!children) return null;
+
+  return (
+    <section className="scroll-mt-24">
+      <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">{title}</h3>
+      <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{children}</p>
+    </section>
+  );
+}
 
 export default function Gallery({ items = [], section = {} }) {
   const trackRef = useRef(null);
@@ -11,6 +22,7 @@ export default function Gallery({ items = [], section = {} }) {
 
   useEffect(() => {
     if (paused) return;
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches) return;
     const el = trackRef.current;
     if (!el) return;
 
@@ -38,7 +50,7 @@ export default function Gallery({ items = [], section = {} }) {
   };
 
   return (
-    <section id="proyek" className="section-pad py-16 sm:py-20">
+    <section id="proyek" className="section-pad py-14 sm:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="flex items-end justify-between">
           <div>
@@ -69,17 +81,17 @@ export default function Gallery({ items = [], section = {} }) {
           ref={trackRef}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
-          className="mt-10 flex gap-6 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-8 flex gap-4 overflow-x-auto scroll-smooth pb-4 sm:mt-10 sm:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item) => (
             <button
               key={item.id}
               type="button"
               onClick={() => setSelected(item)}
-              className="glass group w-[300px] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition hover:-translate-y-1 hover:shadow-glass-lg sm:w-[340px]"
+              className="glass group w-[82vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition hover:-translate-y-1 hover:shadow-glass-lg sm:w-[340px] sm:max-w-none"
             >
               <div className="h-44 w-full overflow-hidden">
-                <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                <img src={item.image} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-lg font-semibold text-ink">{item.title}</h3>
@@ -98,7 +110,7 @@ export default function Gallery({ items = [], section = {} }) {
           <div className="space-y-7">
             {selected.image && (
               <div className="h-64 overflow-hidden rounded-2xl bg-ink sm:h-80">
-                <img src={selected.image} alt={selected.title} className="h-full w-full object-cover" />
+                <img src={selected.image} alt={selected.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
               </div>
             )}
             <div className="grid gap-3 sm:grid-cols-3">
@@ -124,16 +136,33 @@ export default function Gallery({ items = [], section = {} }) {
                 </div>
               )}
             </div>
-            <section>
-              <h3 className="flex items-center gap-2 border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">
-                <Layers3 size={19} className="text-emerald" /> Tentang Proyek
+            <div className="rounded-2xl border border-line bg-surface p-5">
+              <h3 className="flex items-center gap-2 font-display text-xl font-semibold text-ink">
+                <ListChecks size={19} className="text-emerald" /> Ringkasan Case Study
               </h3>
-              <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{selected.background || selected.description}</p>
-            </section>
-            {selected.contribution && (
+              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-muted">{selected.description || selected.background}</p>
+            </div>
+            <CaseStudySection title="Background">{selected.background}</CaseStudySection>
+            <CaseStudySection title="Problem Identification">{selected.problem}</CaseStudySection>
+            <CaseStudySection title="Apa yang Dibuat">{selected.whatBuilt}</CaseStudySection>
+            <CaseStudySection title="Goals and Objectives">{selected.goals}</CaseStudySection>
+            <CaseStudySection title="Roles and Responsibilities">{selected.responsibilities || selected.contribution}</CaseStudySection>
+            <CaseStudySection title="Process and Execution">{selected.process}</CaseStudySection>
+            <CaseStudySection title="Results">{selected.results}</CaseStudySection>
+            <CaseStudySection title="Impact">{selected.impact}</CaseStudySection>
+            {(selected.documentation || selected.documentationImage) && (
               <section>
-                <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">Kontribusi Saya</h3>
-                <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{selected.contribution}</p>
+                <h3 className="flex items-center gap-2 border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">
+                  <ImageIcon size={19} className="text-emerald" /> Bukti Dokumentasi
+                </h3>
+                {selected.documentation && (
+                  <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{selected.documentation}</p>
+                )}
+                {selected.documentationImage && (
+                  <div className="mt-4 overflow-hidden rounded-2xl border border-line bg-surface">
+                    <img src={selected.documentationImage} alt={`Dokumentasi ${selected.title}`} loading="lazy" decoding="async" className="max-h-[520px] w-full object-cover" />
+                  </div>
+                )}
               </section>
             )}
             {selected.link && (
