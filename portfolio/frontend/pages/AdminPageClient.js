@@ -442,9 +442,12 @@ export default function AdminPageClient() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(content),
       });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
         throw new Error(data.error || "Gagal menyimpan");
+      }
+      if (data.content) {
+        setContent(mergeContent(data.content));
       }
       setSavedAt(new Date());
     } catch (err) {

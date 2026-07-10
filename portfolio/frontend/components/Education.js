@@ -11,7 +11,7 @@ export default function Education({ items = [], section = {} }) {
   if (!items.length) return null;
 
   return (
-    <section id="pendidikan" className="section-pad py-14 sm:py-20">
+    <section id="pendidikan" className="section-pad scroll-mt-28 py-14 sm:scroll-mt-32 sm:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between gap-6">
           <div>

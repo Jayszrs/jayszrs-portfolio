@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Download, Eye, Menu, X } from "lucide-react";
@@ -16,7 +16,41 @@ const LINKS = [
 
 export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   const [open, setOpen] = useState(false);
+  const [hash, setHash] = useState("");
   const pathname = usePathname();
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash || "");
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
+
+  const handleNavClick = (event, href) => {
+    setOpen(false);
+    if (!href.includes("#")) {
+      setHash("");
+      return;
+    }
+
+    const [targetPath, targetHash] = href.split("#");
+    if (pathname !== targetPath) return;
+
+    event.preventDefault();
+    const nextHash = `#${targetHash}`;
+    setHash(nextHash);
+    window.history.pushState(null, "", href);
+    document.getElementById(targetHash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const isActive = (href) => {
+    if (href.includes("#")) {
+      const [targetPath, targetHash] = href.split("#");
+      return pathname === targetPath && hash === `#${targetHash}`;
+    }
+    if (href === "/tentang" && hash === "#pendidikan") return false;
+    return pathname === href;
+  };
 
   return (
     <header className="fixed left-0 right-0 top-3 z-50 flex justify-center px-5 sm:top-4 sm:px-4">
@@ -38,8 +72,9 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
             <li key={link.href}>
               <Link
                 href={link.href}
+                onClick={(event) => handleNavClick(event, link.href)}
                 className={`block rounded-full px-3.5 py-2 text-sm font-medium transition ${
-                  pathname === link.href
+                  isActive(link.href)
                     ? "bg-ink text-paper"
                     : "text-ink/65 hover:bg-surface/70 hover:text-ink"
                 }`}
@@ -95,9 +130,9 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(event) => handleNavClick(event, link.href)}
                   className={`block rounded-xl px-4 py-3 text-sm font-medium ${
-                    pathname === link.href ? "bg-ink text-paper" : "text-ink/80"
+                    isActive(link.href) ? "bg-ink text-paper" : "text-ink/80"
                   }`}
                 >
                   {link.label}

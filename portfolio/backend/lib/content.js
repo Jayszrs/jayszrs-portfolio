@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { unstable_noStore as noStore } from "next/cache";
 import { createClient } from "@supabase/supabase-js";
 import { mergeContent } from "@/backend/lib/content-defaults";
 
@@ -19,7 +20,11 @@ function getSupabase() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  supabaseClient = url && key ? createClient(url, key) : null;
+  supabaseClient = url && key ? createClient(url, key, {
+    global: {
+      fetch: (input, init = {}) => fetch(input, { ...init, cache: "no-store" }),
+    },
+  }) : null;
   return supabaseClient;
 }
 
@@ -34,7 +39,11 @@ function getSupabaseWriter() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  supabaseWriteClient = url && key ? createClient(url, key) : null;
+  supabaseWriteClient = url && key ? createClient(url, key, {
+    global: {
+      fetch: (input, init = {}) => fetch(input, { ...init, cache: "no-store" }),
+    },
+  }) : null;
   return supabaseWriteClient;
 }
 
@@ -76,6 +85,7 @@ function withLocalFallback(localData, remoteData) {
 }
 
 export async function readContent() {
+  noStore();
   const localContent = await readLocalContent();
   const supabase = getSupabase();
 
