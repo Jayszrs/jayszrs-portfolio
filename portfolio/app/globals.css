@@ -297,6 +297,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   html,
   body {
     overscroll-behavior-y: none;
+    overflow-x: hidden;
   }
 
   body {
@@ -319,6 +320,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .glass-pill {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
+    transition: none;
   }
 
   .glass {
@@ -337,6 +339,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .backdrop-blur-2xl {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
+  }
+
+  header.fixed,
+  header.fixed nav,
+  button,
+  a {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .animate-ping-slow,
+  .animate-pulse,
+  .animate-marquee {
+    animation-play-state: paused;
   }
 }
 

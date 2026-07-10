@@ -592,11 +592,11 @@ export default function LanguageSwitcher() {
     <div
       ref={switcherRef}
       data-no-translate
-      className="fixed bottom-[calc(max(1rem,env(safe-area-inset-bottom))+3.75rem)] right-5 z-[91] sm:bottom-[5.75rem] sm:right-6"
+      className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[4.25rem] z-[91] sm:bottom-[5.75rem] sm:right-6"
     >
       <div className="relative">
         {menuOpen && (
-          <div className="absolute bottom-full right-0 mb-2 w-44 overflow-hidden rounded-2xl border border-line bg-surface/95 p-1.5 shadow-glass-lg backdrop-blur-xl">
+          <div className="absolute bottom-full right-0 mb-2 w-40 overflow-hidden rounded-2xl border border-line bg-surface/95 p-1.5 shadow-glass-lg backdrop-blur-xl sm:w-44">
             {LANGUAGES.map((language) => {
               const selected = active === language.code;
               return (
@@ -630,13 +630,13 @@ export default function LanguageSwitcher() {
           onClick={() => setMenuOpen((value) => !value)}
           aria-label="Pilih bahasa"
           aria-expanded={menuOpen}
-          className="flex h-11 items-center gap-2 rounded-2xl border border-line bg-surface/95 px-3 text-ink shadow-glass-lg backdrop-blur-xl transition hover:border-emerald/30 hover:bg-paper"
+          className="flex h-10 items-center gap-1.5 rounded-2xl border border-line bg-surface/95 px-2.5 text-ink shadow-glass-lg backdrop-blur-xl transition hover:border-emerald/30 hover:bg-paper sm:h-11 sm:gap-2 sm:px-3"
         >
           <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-paper">
             <Languages size={15} />
           </span>
           <span className="min-w-6 text-xs font-extrabold">{activeLanguage.label}</span>
-          <ChevronUp size={14} className={`text-muted transition ${menuOpen ? "rotate-180" : ""}`} />
+          <ChevronUp size={14} className={`hidden text-muted transition sm:block ${menuOpen ? "rotate-180" : ""}`} />
         </button>
       </div>
     </div>

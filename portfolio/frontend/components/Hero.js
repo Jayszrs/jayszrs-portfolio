@@ -77,7 +77,10 @@ export default function Hero({ profile }) {
           <div className="mt-6 sm:mt-7">
             <p className="mb-1 text-xs font-medium uppercase tracking-[0.16em] text-muted sm:text-sm">Saat ini berfokus sebagai</p>
             <p className="max-w-[22rem] break-words font-display text-2xl font-semibold leading-snug text-emerald-deep sm:max-w-none sm:text-3xl sm:leading-tight">
-              <TypewriterText words={profile.roles} fallback={profile.role} />
+              <span className="sm:hidden">{profile.roles?.[0] || profile.role}</span>
+              <span className="hidden sm:inline">
+                <TypewriterText words={profile.roles} fallback={profile.role} />
+              </span>
             </p>
           </div>
 
@@ -195,7 +198,7 @@ export default function Hero({ profile }) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/10" />
               <div className="absolute left-4 top-4 text-white sm:left-5 sm:top-5">
                 <p className="font-display text-xl font-semibold leading-tight drop-shadow sm:text-2xl">{profile.fullName}</p>
-                <p className="glass-pill mt-1 inline-block rounded-full px-3 py-1 text-xs text-white/90">
+                <p className="mt-1 inline-block max-w-[15rem] rounded-full border border-white/20 bg-black/45 px-3 py-1 text-xs font-semibold text-white shadow-sm sm:max-w-[18rem]">
                   {profile.roles?.[0] || profile.role}
                 </p>
               </div>
