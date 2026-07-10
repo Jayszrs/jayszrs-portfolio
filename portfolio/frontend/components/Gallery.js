@@ -123,7 +123,16 @@ export default function Gallery({ items = [], section = {} }) {
             {selected.image && (
               <button
                 type="button"
-                onClick={() => setPreview({ src: selected.image, title: selected.title })}
+                onClick={() => {
+                  const mediaItems = [
+                    selected.image,
+                    ...documentationImages(selected),
+                  ].filter(Boolean).map((image, index) => ({
+                    src: image,
+                    title: index === 0 ? selected.title : `Dokumentasi ${selected.title} ${index}`,
+                  }));
+                  setPreview({ items: mediaItems, initialIndex: 0, title: selected.title });
+                }}
                 className="h-64 w-full overflow-hidden rounded-2xl bg-ink text-left sm:h-80"
               >
                 <SafeImage
@@ -188,7 +197,20 @@ export default function Gallery({ items = [], section = {} }) {
                       <button
                         key={`${src}-${index}`}
                         type="button"
-                        onClick={() => setPreview({ src, title: `Dokumentasi ${selected.title} ${index + 1}` })}
+                        onClick={() => {
+                          const mediaItems = [
+                            selected.image,
+                            ...documentationImages(selected),
+                          ].filter(Boolean).map((image, itemIndex) => ({
+                            src: image,
+                            title: itemIndex === 0 ? selected.title : `Dokumentasi ${selected.title} ${itemIndex}`,
+                          }));
+                          setPreview({
+                            items: mediaItems,
+                            initialIndex: selected.image ? index + 1 : index,
+                            title: `Dokumentasi ${selected.title} ${index + 1}`,
+                          });
+                        }}
                         className="group overflow-hidden rounded-2xl border border-line bg-surface text-left"
                       >
                         <SafeImage
@@ -214,7 +236,13 @@ export default function Gallery({ items = [], section = {} }) {
           </div>
         )}
       </DetailModal>
-      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
+      <MediaPreview
+        src={preview?.src}
+        items={preview?.items}
+        initialIndex={preview?.initialIndex || 0}
+        title={preview?.title}
+        onClose={() => setPreview(null)}
+      />
     </section>
   );
 }

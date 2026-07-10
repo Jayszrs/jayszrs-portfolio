@@ -156,7 +156,14 @@ export default function Education({ items = [], section = {} }) {
                       <button
                         key={src}
                         type="button"
-                        onClick={() => setPreview({ src, title: `Dokumentasi pendidikan ${index + 1}` })}
+                        onClick={() => setPreview({
+                          items: documentationImages(selected).map((image, itemIndex) => ({
+                            src: image,
+                            title: `Dokumentasi pendidikan ${itemIndex + 1}`,
+                          })),
+                          initialIndex: index,
+                          title: `Dokumentasi pendidikan ${index + 1}`,
+                        })}
                         className="group overflow-hidden rounded-2xl border border-line bg-surface text-left"
                       >
                         <SafeImage
@@ -191,7 +198,13 @@ export default function Education({ items = [], section = {} }) {
           </div>
         )}
       </DetailModal>
-      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
+      <MediaPreview
+        src={preview?.src}
+        items={preview?.items}
+        initialIndex={preview?.initialIndex || 0}
+        title={preview?.title}
+        onClose={() => setPreview(null)}
+      />
     </section>
   );
 }

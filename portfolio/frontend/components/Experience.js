@@ -204,7 +204,20 @@ export default function Experience({ items = [], section = {} }) {
                       <button
                         key={`${src}-${index}`}
                         type="button"
-                        onClick={() => setPreview({ src, title: `Dokumentasi pengalaman ${index + 1}` })}
+                        onClick={() => {
+                          const mediaItems = [
+                            ...documentationImages(selected),
+                            ...(looksLikeImage(documentationFileOf(selected)) ? [documentationFileOf(selected)] : []),
+                          ].map((image, itemIndex) => ({
+                            src: image,
+                            title: `Dokumentasi pengalaman ${itemIndex + 1}`,
+                          }));
+                          setPreview({
+                            items: mediaItems,
+                            initialIndex: index,
+                            title: `Dokumentasi pengalaman ${index + 1}`,
+                          });
+                        }}
                         className="group overflow-hidden rounded-2xl border border-line bg-surface text-left"
                       >
                         <SafeImage
@@ -234,7 +247,13 @@ export default function Experience({ items = [], section = {} }) {
           </div>
         )}
       </DetailModal>
-      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
+      <MediaPreview
+        src={preview?.src}
+        items={preview?.items}
+        initialIndex={preview?.initialIndex || 0}
+        title={preview?.title}
+        onClose={() => setPreview(null)}
+      />
     </section>
   );
 }

@@ -49,6 +49,18 @@ function Card({ item, icon: Icon, onClick }) {
 export default function Achievements({ achievements = [], certificates = [], section = {} }) {
   const [selected, setSelected] = useState(null);
   const [preview, setPreview] = useState(null);
+  const openGroupPreview = (src, fallbackTitle) => {
+    if (!src || !selected) return;
+    const group = selected.kind === "Sertifikat" ? certificates : achievements;
+    const mediaItems = group.flatMap((item) => {
+      const assets = [];
+      if (item.logo || item.image) assets.push({ src: item.logo || item.image, title: item.title });
+      if (item.pdfUrl) assets.push({ src: item.pdfUrl, title: `Sertifikat ${item.title}` });
+      return assets;
+    });
+    const initialIndex = Math.max(0, mediaItems.findIndex((item) => item.src === src));
+    setPreview({ src, items: mediaItems, initialIndex, title: fallbackTitle });
+  };
 
   return (
     <section id="pencapaian" className="section-pad py-16 sm:py-20">
@@ -87,7 +99,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
                 type="button"
                 onClick={() => {
                   const src = selected.logo || selected.image;
-                  if (src) setPreview({ src, title: selected.title });
+                  openGroupPreview(src, selected.title);
                 }}
                 className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft"
               >
@@ -144,7 +156,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
               {selected.pdfUrl && (
                 <button
                   type="button"
-                  onClick={() => setPreview({ src: selected.pdfUrl, title: `Sertifikat ${selected.title}` })}
+                  onClick={() => openGroupPreview(selected.pdfUrl, `Sertifikat ${selected.title}`)}
                   className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink"
                 >
                   Dokumentasi PDF <FileText size={14} />
@@ -154,7 +166,13 @@ export default function Achievements({ achievements = [], certificates = [], sec
           </>
         )}
       </DetailModal>
-      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
+      <MediaPreview
+        src={preview?.src}
+        items={preview?.items}
+        initialIndex={preview?.initialIndex || 0}
+        title={preview?.title}
+        onClose={() => setPreview(null)}
+      />
     </section>
   );
 }
