@@ -28,6 +28,7 @@ const DICTIONARY = {
     "Lihat Proyek": "View Projects",
     "Preview Resume": "Preview Resume",
     "Download Resume": "Download Resume",
+    "Unduh": "Download",
     "Upload resume dari admin dulu": "Upload a resume from admin first",
     "Upload foto hero di admin": "Upload hero photo in admin",
     "Tampilkan foto hero": "Show hero photo",
@@ -114,6 +115,7 @@ const DICTIONARY = {
     "Lihat Proyek": "プロジェクトを見る",
     "Preview Resume": "履歴書プレビュー",
     "Download Resume": "履歴書をダウンロード",
+    "Unduh": "ダウンロード",
     "Upload resume dari admin dulu": "先に管理画面から履歴書をアップロードしてください",
     "Upload foto hero di admin": "管理画面でヒーロー写真をアップロード",
     "Tampilkan foto hero": "ヒーロー写真を表示",
@@ -199,6 +201,7 @@ const DICTIONARY = {
     "Lihat Proyek": "Voir les projets",
     "Preview Resume": "Voir le CV",
     "Download Resume": "Telecharger le CV",
+    "Unduh": "Telecharger",
     "Upload resume dari admin dulu": "Ajoutez d'abord le CV depuis l'admin",
     "Upload foto hero di admin": "Ajoutez la photo hero depuis l'admin",
     "Tampilkan foto hero": "Afficher la photo hero",
@@ -459,6 +462,14 @@ function translateTree(root, language, originals, cache) {
   translateAttributes(root, language, cache);
 }
 
+function priorityTranslationRoots() {
+  const roots = new Set();
+  ["header", "#beranda"].forEach((selector) => {
+    document.querySelectorAll(selector).forEach((node) => roots.add(node));
+  });
+  return [...roots];
+}
+
 export default function LanguageSwitcher() {
   const [active, setActive] = useState("id");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -468,6 +479,7 @@ export default function LanguageSwitcher() {
   const activeRef = useRef("id");
   const switcherRef = useRef(null);
   const frameRef = useRef(null);
+  const idleRef = useRef(null);
 
   useEffect(() => {
     removeGoogleArtifacts();
@@ -521,6 +533,7 @@ export default function LanguageSwitcher() {
     return () => {
       observer.disconnect();
       if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
+      if (idleRef.current && "cancelIdleCallback" in window) window.cancelIdleCallback(idleRef.current);
     };
   }, []);
 
@@ -541,6 +554,11 @@ export default function LanguageSwitcher() {
   }, []);
 
   const chooseLanguage = (code) => {
+    if (idleRef.current && "cancelIdleCallback" in window) {
+      window.cancelIdleCallback(idleRef.current);
+      idleRef.current = null;
+    }
+
     window.localStorage.setItem("portfolio-language", code);
     setActive(code);
     setMenuOpen(false);
@@ -548,7 +566,24 @@ export default function LanguageSwitcher() {
     document.documentElement.lang = code;
     document.documentElement.dataset.language = code;
     removeGoogleArtifacts();
-    translateTree(document.body, code, originals.current, translationCache.current);
+
+    applying.current = true;
+    const roots = code === "id" ? [document.body] : priorityTranslationRoots();
+    roots.forEach((root) => translateTree(root, code, originals.current, translationCache.current));
+    applying.current = false;
+
+    const translateRest = () => {
+      applying.current = true;
+      translateTree(document.body, code, originals.current, translationCache.current);
+      applying.current = false;
+    };
+
+    if (code === "id") return;
+    if ("requestIdleCallback" in window) {
+      idleRef.current = window.requestIdleCallback(translateRest, { timeout: 350 });
+    } else {
+      window.setTimeout(translateRest, 32);
+    }
   };
 
   const activeLanguage = LANGUAGES.find((language) => language.code === active) || LANGUAGES[0];

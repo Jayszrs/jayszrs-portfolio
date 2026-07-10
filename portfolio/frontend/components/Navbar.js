@@ -53,7 +53,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
     return pathname === href;
   };
 
-  const renderResumeControls = () => (
+  const renderResumeControls = (compact = false) => (
     hasResume ? (
       <>
         <a
@@ -63,7 +63,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           onClick={() => setOpen(false)}
           className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-semibold text-ink transition hover:bg-emerald-soft hover:text-emerald-deep md:h-8"
         >
-          Preview <Eye size={14} />
+          {compact ? "CV" : "Preview"} <Eye size={14} />
         </a>
         <a
           href={cvUrl}
@@ -71,7 +71,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           onClick={() => setOpen(false)}
           className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-ink px-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white md:h-8"
         >
-          Download <Download size={14} />
+          {compact ? "Unduh" : "Download"} <Download size={14} />
         </a>
       </>
     ) : (
@@ -82,7 +82,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           title="Upload resume dari admin dulu"
           className="inline-flex h-9 cursor-not-allowed items-center justify-center gap-1.5 rounded-full px-3 text-sm font-semibold text-muted opacity-70 md:h-8"
         >
-          Preview <Eye size={14} />
+          {compact ? "CV" : "Preview"} <Eye size={14} />
         </button>
         <button
           type="button"
@@ -90,7 +90,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           title="Upload resume dari admin dulu"
           className="inline-flex h-9 cursor-not-allowed items-center justify-center gap-1.5 rounded-full bg-ink/70 px-3 text-sm font-semibold text-paper/80 opacity-70 md:h-8"
         >
-          Download <Download size={14} />
+          {compact ? "Unduh" : "Download"} <Download size={14} />
         </button>
       </>
     )
@@ -108,7 +108,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
               className="h-full w-full"
             />
           </span>
-          <span className="hidden truncate font-display text-sm font-semibold text-[#ef3340] sm:block">{brandName}</span>
+          <span className="block max-w-[8rem] truncate font-display text-sm font-semibold text-[#ef3340] sm:max-w-[10rem]">{brandName}</span>
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
@@ -131,13 +131,13 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
 
         <div className="hidden items-center gap-2 md:flex">
           <div className="flex items-center gap-1 rounded-full border border-line bg-surface p-1">
-            {renderResumeControls()}
+            {renderResumeControls(true)}
           </div>
           <Link
             href="/kontak"
-            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep"
+            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep"
           >
-            Hubungi <ArrowUpRight size={14} />
+            Kontak <ArrowUpRight size={14} />
           </Link>
         </div>
 

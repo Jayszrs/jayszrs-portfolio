@@ -80,16 +80,16 @@ export default function Hero({ profile }) {
             )}
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-3 min-[430px]:grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
+          <div className="mt-8 flex max-w-xl flex-wrap items-center gap-2.5 sm:gap-3">
             <Link
               href="/proyek"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald px-4 py-3 text-sm font-semibold text-white shadow-glass transition hover:bg-emerald-deep sm:px-6"
+              className="inline-flex h-11 flex-[1_1_11rem] items-center justify-center gap-2 rounded-full bg-emerald px-5 text-sm font-semibold text-white shadow-glass transition hover:bg-emerald-deep sm:h-12 sm:flex-none sm:px-6"
             >
               Lihat Proyek <ArrowUpRight size={16} />
             </Link>
             <Link
               href="/kontak"
-              className="glass-pill inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink transition hover:border-emerald/40 sm:px-6"
+              className="glass-pill inline-flex h-11 flex-[1_1_8rem] items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold text-ink transition hover:border-emerald/40 sm:h-12 sm:flex-none sm:px-6"
             >
               Kontak Saya
             </Link>
@@ -99,16 +99,18 @@ export default function Hero({ profile }) {
                   href={profile.cvUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="glass-pill inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:px-6"
+                  className="glass-pill inline-flex h-11 w-11 items-center justify-center gap-2 rounded-full text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:h-12 sm:w-auto sm:px-5"
+                  aria-label="Preview Resume"
                 >
-                  Preview Resume <Eye size={16} />
+                  <span className="hidden sm:inline">Preview Resume</span> <Eye size={16} />
                 </a>
                 <a
                   href={profile.cvUrl}
                   download
-                  className="glass-pill inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:px-6"
+                  className="glass-pill inline-flex h-11 w-11 items-center justify-center gap-2 rounded-full text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:h-12 sm:w-auto sm:px-5"
+                  aria-label="Download Resume"
                 >
-                  Download Resume <Download size={16} />
+                  <span className="hidden sm:inline">Download Resume</span> <Download size={16} />
                 </a>
               </>
             ) : (
@@ -117,17 +119,19 @@ export default function Hero({ profile }) {
                   type="button"
                   disabled
                   title="Upload resume dari admin dulu"
-                  className="glass-pill inline-flex min-h-12 cursor-not-allowed items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-muted opacity-70 sm:px-6"
+                  className="glass-pill inline-flex h-11 w-11 cursor-not-allowed items-center justify-center gap-2 rounded-full text-sm font-semibold text-muted opacity-70 sm:h-12 sm:w-auto sm:px-5"
+                  aria-label="Preview Resume"
                 >
-                  Preview Resume <Eye size={16} />
+                  <span className="hidden sm:inline">Preview Resume</span> <Eye size={16} />
                 </button>
                 <button
                   type="button"
                   disabled
                   title="Upload resume dari admin dulu"
-                  className="glass-pill inline-flex min-h-12 cursor-not-allowed items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-muted opacity-70 sm:px-6"
+                  className="glass-pill inline-flex h-11 w-11 cursor-not-allowed items-center justify-center gap-2 rounded-full text-sm font-semibold text-muted opacity-70 sm:h-12 sm:w-auto sm:px-5"
+                  aria-label="Download Resume"
                 >
-                  Download Resume <Download size={16} />
+                  <span className="hidden sm:inline">Download Resume</span> <Download size={16} />
                 </button>
               </>
             )}
