@@ -1057,7 +1057,7 @@ export default function AdminPageClient() {
               { key: "name", label: "Nama pemberi rating" },
               { key: "role", label: "Role / asal" },
               { key: "stars", label: "Jumlah bintang", kind: "select", options: ["5", "4", "3", "2", "1"] },
-              { key: "approved", label: "Tampilkan di homepage", kind: "select", options: ["true", "false"] },
+              { key: "approved", label: "Tampilkan di homepage?", kind: "select", options: ["true", "false"] },
               { key: "date", label: "Tanggal" },
               { key: "comment", label: "Deskripsi rating", kind: "textarea", wide: true },
               { key: "proofText", label: "Catatan bukti dokumentasi", kind: "textarea", wide: true },

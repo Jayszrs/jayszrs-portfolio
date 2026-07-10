@@ -46,7 +46,7 @@ export default function Ratings({ items = [], section = {} }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Rating gagal dikirim.");
       setForm({ name: "", role: "", stars: "5", comment: "", proofText: "", proofUrl: "" });
-      setStatus("Rating terkirim. Nanti tampil setelah dicek admin.");
+      setStatus("Rating terkirim. Refresh halaman jika belum langsung terlihat.");
     } catch (error) {
       setStatus(error.message);
     } finally {
@@ -133,7 +133,7 @@ export default function Ratings({ items = [], section = {} }) {
           <form onSubmit={submitRating} className="glass h-fit space-y-4 rounded-2xl p-5">
             <div>
               <h3 className="font-display text-xl font-semibold text-ink">Kasih rating</h3>
-              <p className="mt-1 text-xs leading-5 text-muted">Rating masuk sebagai pending dulu sebelum tampil.</p>
+              <p className="mt-1 text-xs leading-5 text-muted">Rating yang dikirim dari sini langsung ditampilkan.</p>
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-semibold text-ink/70">Bintang</label>

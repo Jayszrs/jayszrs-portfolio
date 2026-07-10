@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { readContent, writeContent } from "@/backend/lib/content";
 
 function cleanText(value, maxLength) {
@@ -46,15 +47,16 @@ export async function POST(request) {
       proofText,
       proofUrl,
       image: "",
-      approved: "false",
+      approved: "true",
     };
 
     await writeContent({
       ...content,
       ratings: [rating, ...(content.ratings || [])],
     });
+    revalidatePath("/");
 
-    return NextResponse.json({ ok: true, pending: true });
+    return NextResponse.json({ ok: true, approved: true });
   } catch (error) {
     return NextResponse.json({ error: error.message || "Rating gagal dikirim." }, { status: 500 });
   }
