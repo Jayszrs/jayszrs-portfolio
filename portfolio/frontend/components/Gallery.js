@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Image as ImageIcon, ListChecks, UserRound } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
+import { documentationImages } from "@/frontend/lib/documentation";
 
 function CaseStudySection({ title, children }) {
   if (!children) return null;
@@ -150,7 +151,7 @@ export default function Gallery({ items = [], section = {} }) {
             <CaseStudySection title="Process and Execution">{selected.process}</CaseStudySection>
             <CaseStudySection title="Results">{selected.results}</CaseStudySection>
             <CaseStudySection title="Impact">{selected.impact}</CaseStudySection>
-            {(selected.documentation || selected.documentationImage) && (
+            {(selected.documentation || documentationImages(selected).length > 0) && (
               <section>
                 <h3 className="flex items-center gap-2 border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">
                   <ImageIcon size={19} className="text-emerald" /> Bukti Dokumentasi
@@ -158,9 +159,13 @@ export default function Gallery({ items = [], section = {} }) {
                 {selected.documentation && (
                   <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{selected.documentation}</p>
                 )}
-                {selected.documentationImage && (
-                  <div className="mt-4 overflow-hidden rounded-2xl border border-line bg-surface">
-                    <img src={selected.documentationImage} alt={`Dokumentasi ${selected.title}`} loading="lazy" decoding="async" className="max-h-[520px] w-full object-cover" />
+                {documentationImages(selected).length > 0 && (
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {documentationImages(selected).map((src, index) => (
+                      <a key={`${src}-${index}`} href={src} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-2xl border border-line bg-surface">
+                        <img src={src} alt={`Dokumentasi ${selected.title} ${index + 1}`} loading="lazy" decoding="async" className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
+                      </a>
+                    ))}
                   </div>
                 )}
               </section>

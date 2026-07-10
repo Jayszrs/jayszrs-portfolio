@@ -5,11 +5,7 @@ import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, MapPin } from "luc
 import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
-
-function documentationImages(item = {}) {
-  return [item.documentationImage, item.documentationImage2, item.documentationImage3]
-    .filter((src) => String(src || "").trim());
-}
+import { documentationImages } from "@/frontend/lib/documentation";
 
 function educationLogoSource(item = {}) {
   return String(item.logo || item.institutionLogo || item.schoolLogo || item.campusLogo || "").trim();

@@ -7,6 +7,7 @@ import {
   ExternalLink, LayoutDashboard, CheckCircle2, AlertCircle, UploadCloud, XCircle, Download,
 } from "lucide-react";
 import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
+import { documentationImages, withDocumentationImages } from "@/frontend/lib/documentation";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
@@ -182,6 +183,60 @@ function ImageField({ label, value, onChange }) {
   );
 }
 
+function MultiImageField({ label, values = [], onChange, addLabel = "Tambah gambar dokumentasi" }) {
+  const [rows, setRows] = useState(() => documentationImages({ documentationImages: values }));
+
+  useEffect(() => {
+    setRows(documentationImages({ documentationImages: values }));
+  }, [values]);
+
+  const updateImage = (index, value) => {
+    const next = [...rows];
+    next[index] = value;
+    setRows(next);
+    onChange(next);
+  };
+
+  const removeImage = (index) => {
+    const next = rows.filter((_, imageIndex) => imageIndex !== index);
+    setRows(next);
+    onChange(next);
+  };
+
+  return (
+    <div className="space-y-3 rounded-xl border border-line bg-paper/45 p-3">
+      <div className="flex items-center justify-between gap-3">
+        <label className="block text-xs font-semibold text-ink/70">{label}</label>
+        <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{documentationImages({ documentationImages: rows }).length} gambar</span>
+      </div>
+      <div className="space-y-3">
+        {rows.map((src, imageIndex) => (
+          <div key={`${src}-${imageIndex}`} className="rounded-xl border border-line bg-surface/70 p-3">
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <p className="text-xs font-semibold text-ink/70">Dokumentasi {imageIndex + 1}</p>
+              <button
+                type="button"
+                onClick={() => removeImage(imageIndex)}
+                className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+              >
+                <XCircle size={13} /> Hapus
+              </button>
+            </div>
+            <ImageField label="" value={src} onChange={(value) => updateImage(imageIndex, value)} />
+          </div>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={() => setRows([...rows, ""])}
+        className="inline-flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 py-2.5 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
+      >
+        <Plus size={14} /> {addLabel}
+      </button>
+    </div>
+  );
+}
+
 function TextField({ label, value = "", onChange, textarea, mono, type = "text", placeholder = "", rows = 3 }) {
   return (
     <div>
@@ -226,6 +281,12 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }
     onChange(next);
   };
 
+  const updateDocumentationImages = (index, value) => {
+    const next = [...items];
+    next[index] = withDocumentationImages(next[index], value);
+    onChange(next);
+  };
+
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
@@ -241,11 +302,13 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {fields.map((field) => {
-              const fieldValue = item[field.key] || "";
+              const fieldValue = field.kind === "images" ? documentationImages(item) : item[field.key] || "";
               const content = field.kind === "select" ? (
                 <SelectField label={field.label} value={fieldValue} options={field.options} onChange={(value) => updateItem(index, field.key, value)} />
               ) : field.kind === "image" ? (
                 <ImageField label={field.label} value={fieldValue} onChange={(value) => updateItem(index, field.key, value)} />
+              ) : field.kind === "images" ? (
+                <MultiImageField label={field.label} values={fieldValue} onChange={(value) => updateDocumentationImages(index, value)} addLabel={field.addLabel} />
               ) : field.kind === "file" ? (
                 <FileField label={field.label} value={fieldValue} onChange={(value) => updateItem(index, field.key, value)} accept={field.accept} buttonLabel={field.buttonLabel} />
               ) : (
@@ -736,15 +799,13 @@ export default function AdminPageClient() {
               { key: "focus", label: "Fokus pembelajaran", kind: "textarea", wide: true },
               { key: "activities", label: "Aktivitas & pencapaian", kind: "textarea", wide: true },
               { key: "logo", label: "Logo sekolah / kampus", kind: "image", wide: true },
-              { key: "documentationImage", label: "Gambar dokumentasi pendidikan 1", kind: "image", wide: true },
-              { key: "documentationImage2", label: "Gambar dokumentasi pendidikan 2", kind: "image", wide: true },
-              { key: "documentationImage3", label: "Gambar dokumentasi pendidikan 3", kind: "image", wide: true },
+              { key: "documentationImages", label: "Gambar dokumentasi pendidikan", kind: "images", addLabel: "Tambah dokumentasi pendidikan", wide: true },
               { key: "documentationFile", label: "File dokumentasi pendidikan", kind: "file", accept: "image/*,application/pdf", buttonLabel: "Upload dokumen", wide: true },
               { key: "link", label: "Link institusi (opsional)", wide: true },
             ]}
             createItem={() => ({
               id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "",
-              logo: "", documentationImage: "", documentationImage2: "", documentationImage3: "", documentationFile: "", link: "",
+              logo: "", documentationImages: [], documentationImage: "", documentationImage2: "", documentationImage3: "", documentationFile: "", link: "",
             })}
             addLabel="Tambah pendidikan"
           />
@@ -840,11 +901,8 @@ export default function AdminPageClient() {
                 <FileField label="Upload dokumentasi pengalaman" value={item.documentationFile || item.link} accept="image/*,application/pdf" buttonLabel="Upload dokumen" onChange={(v) => {
                   const next = [...content.experience]; next[i] = { ...item, documentationFile: v, link: "" }; setContent({ ...content, experience: next });
                 }} />
-                <ImageField label="Gambar dokumentasi pengalaman 1" value={item.documentationImage} onChange={(v) => {
-                  const next = [...content.experience]; next[i] = { ...item, documentationImage: v }; setContent({ ...content, experience: next });
-                }} />
-                <ImageField label="Gambar dokumentasi pengalaman 2" value={item.documentationImage2} onChange={(v) => {
-                  const next = [...content.experience]; next[i] = { ...item, documentationImage2: v }; setContent({ ...content, experience: next });
+                <MultiImageField label="Gambar dokumentasi pengalaman" values={documentationImages(item)} addLabel="Tambah dokumentasi pengalaman" onChange={(v) => {
+                  const next = [...content.experience]; next[i] = withDocumentationImages(item, v); setContent({ ...content, experience: next });
                 }} />
               </div>
             ))}
@@ -853,7 +911,7 @@ export default function AdminPageClient() {
                 ...content, experience: [...(content.experience || []), {
                   id: uid("exp"), type: "Proyek", title: "", org: "", period: "", startDate: "", endDate: "",
                   location: "", workingUnit: "", description: "", companyBackground: "", responsibilities: "",
-                  tools: "", link: "", image: "", documentationFile: "", documentationImage: "", documentationImage2: "",
+                  tools: "", link: "", image: "", documentationFile: "", documentationImages: [], documentationImage: "", documentationImage2: "", documentationImage3: "",
                 }]
               })}
               className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"
@@ -924,8 +982,8 @@ export default function AdminPageClient() {
                 <ImageField label="Gambar" value={item.image} onChange={(v) => {
                   const next = [...content.gallery]; next[i] = { ...item, image: v }; setContent({ ...content, gallery: next });
                 }} />
-                <ImageField label="Gambar dokumentasi / bukti" value={item.documentationImage} onChange={(v) => {
-                  const next = [...content.gallery]; next[i] = { ...item, documentationImage: v }; setContent({ ...content, gallery: next });
+                <MultiImageField label="Gambar dokumentasi / bukti" values={documentationImages(item)} addLabel="Tambah bukti dokumentasi" onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = withDocumentationImages(item, v); setContent({ ...content, gallery: next });
                 }} />
               </div>
             ))}
@@ -934,7 +992,7 @@ export default function AdminPageClient() {
                 ...content, gallery: [...(content.gallery || []), {
                   id: uid("proj"), title: "", description: "", role: "", period: "", techStack: "",
                   background: "", contribution: "", problem: "", whatBuilt: "", goals: "", responsibilities: "",
-                  process: "", results: "", impact: "", documentation: "", image: "", documentationImage: "", link: "",
+                  process: "", results: "", impact: "", documentation: "", image: "", documentationImages: [], documentationImage: "", documentationImage2: "", documentationImage3: "", link: "",
                 }]
               })}
               className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"

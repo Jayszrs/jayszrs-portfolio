@@ -8,16 +8,12 @@ import {
 import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
+import { documentationImages } from "@/frontend/lib/documentation";
 
 const ORDER = ["Semua", "Proyek", "Magang", "Kerja", "Volunteer", "Organisasi"];
 
 function periodOf(item) {
   return item.period || [item.startDate, item.endDate || "Sekarang"].filter(Boolean).join(" — ");
-}
-
-function documentationImages(item = {}) {
-  return [item.documentationImage, item.documentationImage2]
-    .filter((src) => String(src || "").trim());
 }
 
 function documentationFileOf(item = {}) {
@@ -95,7 +91,7 @@ export default function Experience({ items = [], section = {} }) {
                   <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">{item.description}</p>
                   {documentationImages(item).length > 0 && (
                     <div className="mt-4 flex gap-2">
-                      {documentationImages(item).slice(0, 2).map((src, imageIndex) => (
+                      {documentationImages(item).slice(0, 3).map((src, imageIndex) => (
                         <span key={`${src}-${imageIndex}`} className="h-12 w-16 overflow-hidden rounded-xl border border-line bg-surface">
                           <img src={src} alt="" className="h-full w-full object-cover" />
                         </span>
