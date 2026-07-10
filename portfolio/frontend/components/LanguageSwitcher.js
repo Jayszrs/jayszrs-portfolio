@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Languages } from "lucide-react";
+import { Check, ChevronUp, Languages } from "lucide-react";
 
 const LANGUAGES = [
   { code: "id", label: "ID", name: "Indonesia" },
@@ -432,9 +432,11 @@ function translateTree(root, language, originals) {
 
 export default function LanguageSwitcher() {
   const [active, setActive] = useState("id");
+  const [menuOpen, setMenuOpen] = useState(false);
   const originals = useRef(new WeakMap());
   const applying = useRef(false);
   const activeRef = useRef("id");
+  const switcherRef = useRef(null);
 
   useEffect(() => {
     removeGoogleArtifacts();
@@ -470,9 +472,26 @@ export default function LanguageSwitcher() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const closeMenu = (event) => {
+      if (!switcherRef.current?.contains(event.target)) setMenuOpen(false);
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.addEventListener("pointerdown", closeMenu);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeMenu);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
   const chooseLanguage = (code) => {
     window.localStorage.setItem("portfolio-language", code);
     setActive(code);
+    setMenuOpen(false);
     activeRef.current = code;
     document.documentElement.lang = code;
     document.documentElement.dataset.language = code;
@@ -480,25 +499,58 @@ export default function LanguageSwitcher() {
     translateTree(document.body, code, originals.current);
   };
 
+  const activeLanguage = LANGUAGES.find((language) => language.code === active) || LANGUAGES[0];
+
   return (
-    <div data-no-translate className="fixed bottom-[calc(max(1rem,env(safe-area-inset-bottom))+4rem)] right-5 z-[90] sm:right-6">
-      <div className="flex items-center gap-1 rounded-2xl border border-line bg-surface/95 p-1.5 shadow-glass-lg backdrop-blur-xl">
-        <div className="hidden h-9 w-9 items-center justify-center rounded-xl bg-paper text-ink sm:flex">
-          <Languages size={16} />
-        </div>
-        {LANGUAGES.map((language) => (
-          <button
-            key={language.code}
-            type="button"
-            onClick={() => chooseLanguage(language.code)}
-            aria-label={`Switch language to ${language.name}`}
-            className={`h-9 min-w-9 rounded-xl px-2 text-xs font-bold transition ${
-              active === language.code ? "bg-ink text-paper" : "text-muted hover:bg-paper hover:text-ink"
-            }`}
-          >
-            {language.label}
-          </button>
-        ))}
+    <div
+      ref={switcherRef}
+      data-no-translate
+      className="fixed bottom-[calc(max(1rem,env(safe-area-inset-bottom))+3.75rem)] right-5 z-[91] sm:bottom-[5.75rem] sm:right-6"
+    >
+      <div className="relative">
+        {menuOpen && (
+          <div className="absolute bottom-full right-0 mb-2 w-44 overflow-hidden rounded-2xl border border-line bg-surface/95 p-1.5 shadow-glass-lg backdrop-blur-xl">
+            {LANGUAGES.map((language) => {
+              const selected = active === language.code;
+              return (
+                <button
+                  key={language.code}
+                  type="button"
+                  onClick={() => chooseLanguage(language.code)}
+                  aria-label={`Switch language to ${language.name}`}
+                  aria-pressed={selected}
+                  className={`flex h-11 w-full items-center justify-between gap-3 rounded-xl px-3 text-left text-sm font-semibold transition ${
+                    selected ? "bg-ink text-paper" : "text-ink hover:bg-paper"
+                  }`}
+                >
+                  <span className="flex min-w-0 items-center gap-2">
+                    <span className={`flex h-7 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${
+                      selected ? "bg-paper/15 text-paper" : "bg-paper text-muted"
+                    }`}>
+                      {language.label}
+                    </span>
+                    <span className="truncate">{language.name}</span>
+                  </span>
+                  {selected && <Check size={15} />}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((value) => !value)}
+          aria-label="Pilih bahasa"
+          aria-expanded={menuOpen}
+          className="flex h-11 items-center gap-2 rounded-2xl border border-line bg-surface/95 px-3 text-ink shadow-glass-lg backdrop-blur-xl transition hover:border-emerald/30 hover:bg-paper"
+        >
+          <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-paper">
+            <Languages size={15} />
+          </span>
+          <span className="min-w-6 text-xs font-extrabold">{activeLanguage.label}</span>
+          <ChevronUp size={14} className={`text-muted transition ${menuOpen ? "rotate-180" : ""}`} />
+        </button>
       </div>
     </div>
   );
