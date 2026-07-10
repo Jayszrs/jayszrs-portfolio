@@ -2,6 +2,7 @@
 
 import { Github, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Youtube } from "lucide-react";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
+import { externalUrl } from "@/frontend/lib/urls";
 
 const SOCIAL_ICONS = {
   github: Github,
@@ -40,14 +41,14 @@ export default function Contact({ contact, profile, section = {} }) {
                 if (!url) return null;
                 if (name === "tiktok") {
                   return (
-                    <a key={name} href={url} target="_blank" rel="noreferrer" aria-label="TikTok" className="glass-pill flex h-11 w-11 items-center justify-center rounded-full text-ink/70 transition hover:-translate-y-0.5 hover:text-emerald">
+                    <a key={name} href={externalUrl(url)} target="_blank" rel="noreferrer" aria-label="TikTok" className="glass-pill flex h-11 w-11 items-center justify-center rounded-full text-ink/70 transition hover:-translate-y-0.5 hover:text-emerald">
                       <TikTokIcon size={18} />
                     </a>
                   );
                 }
                 if (!Icon) return null;
                 return (
-                  <a key={name} href={url} target="_blank" rel="noreferrer" aria-label={name} className="glass-pill flex h-11 w-11 items-center justify-center rounded-full text-ink/70 transition hover:-translate-y-0.5 hover:text-emerald">
+                  <a key={name} href={externalUrl(url)} target="_blank" rel="noreferrer" aria-label={name} className="glass-pill flex h-11 w-11 items-center justify-center rounded-full text-ink/70 transition hover:-translate-y-0.5 hover:text-emerald">
                     <Icon size={18} />
                   </a>
                 );

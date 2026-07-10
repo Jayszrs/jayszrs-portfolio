@@ -7,6 +7,7 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
+import { externalUrl } from "@/frontend/lib/urls";
 
 function educationLogoSource(item = {}) {
   return String(item.logo || item.institutionLogo || item.schoolLogo || item.campusLogo || "").trim();
@@ -191,7 +192,7 @@ export default function Education({ items = [], section = {} }) {
               </section>
             )}
             {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
+              <a href={externalUrl(selected.link)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Kunjungi institusi <ArrowUpRight size={15} />
               </a>
             )}

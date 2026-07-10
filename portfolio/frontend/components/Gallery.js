@@ -6,6 +6,7 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
+import { externalUrl } from "@/frontend/lib/urls";
 
 function CaseStudySection({ title, children }) {
   if (!children) return null;
@@ -229,7 +230,7 @@ export default function Gallery({ items = [], section = {} }) {
               </section>
             )}
             {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
+              <a href={externalUrl(selected.link)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Buka proyek <ArrowUpRight size={15} />
               </a>
             )}

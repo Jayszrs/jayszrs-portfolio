@@ -8,6 +8,7 @@ import MediaPreview from "@/frontend/components/MediaPreview";
 import TypewriterText from "@/frontend/components/TypewriterText";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
 import { profileHeroImages } from "@/frontend/lib/profileImages";
+import { externalUrl } from "@/frontend/lib/urls";
 
 export default function Hero({ profile }) {
   const { socials } = profile;
@@ -90,22 +91,22 @@ export default function Hero({ profile }) {
 
           <div className="mt-7 flex items-center gap-3">
             {socials.github && (
-              <a href={socials.github} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald">
+              <a href={externalUrl(socials.github)} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald">
                 <Github size={18} />
               </a>
             )}
             {socials.linkedin && (
-              <a href={socials.linkedin} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald">
+              <a href={externalUrl(socials.linkedin)} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald">
                 <Linkedin size={18} />
               </a>
             )}
             {socials.instagram && (
-              <a href={socials.instagram} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald">
+              <a href={externalUrl(socials.instagram)} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald">
                 <Instagram size={18} />
               </a>
             )}
             {socials.tiktok && (
-              <a href={socials.tiktok} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald" aria-label="TikTok">
+              <a href={externalUrl(socials.tiktok)} target="_blank" rel="noreferrer" className="glass-pill flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:text-emerald" aria-label="TikTok">
                 <TikTokIcon size={17} />
               </a>
             )}

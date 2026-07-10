@@ -5,6 +5,7 @@ import { Award, CalendarDays, ExternalLink, FileBadge, FileText, Fingerprint } f
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
+import { externalUrl } from "@/frontend/lib/urls";
 
 function Card({ item, icon: Icon, onClick }) {
   return (
@@ -149,7 +150,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
             )}
             <div className="mt-5 flex flex-wrap gap-3">
               {selected.credentialUrl && (
-                <a href={selected.credentialUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-emerald px-5 py-2.5 text-sm font-semibold text-white">
+                <a href={externalUrl(selected.credentialUrl)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-emerald px-5 py-2.5 text-sm font-semibold text-white">
                   Lihat credential <ExternalLink size={14} />
                 </a>
               )}

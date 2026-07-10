@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowUpRight, Image as ImageIcon, Maximize2 } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 import SafeImage from "@/frontend/components/SafeImage";
+import { externalUrl } from "@/frontend/lib/urls";
 
 export default function SelectedDesigns({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
@@ -85,7 +86,7 @@ export default function SelectedDesigns({ items = [], section = {} }) {
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted">{selected.description}</p>
             {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
+              <a href={externalUrl(selected.link)} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Buka karya <ArrowUpRight size={15} />
               </a>
             )}
