@@ -30,6 +30,8 @@ async function uploadFile(file) {
 function FileField({ label, value, onChange, accept = "application/pdf", buttonLabel = "Upload file" }) {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
+  const acceptsImages = accept.includes("image");
+  const acceptsPdf = accept.includes("pdf");
 
   const handleFile = async (event) => {
     const file = event.target.files?.[0];
@@ -92,7 +94,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
           </>
         )}
         <p className={`text-xs ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
-          {status || "Upload PDF maksimal 10 MB, lalu klik Simpan."}
+          {status || `Upload ${acceptsImages && acceptsPdf ? "gambar/PDF" : acceptsImages ? "gambar" : "PDF"} maksimal 10 MB, lalu klik Simpan.`}
         </p>
       </div>
     </div>
@@ -180,15 +182,15 @@ function ImageField({ label, value, onChange }) {
   );
 }
 
-function TextField({ label, value = "", onChange, textarea, mono, type = "text", placeholder = "" }) {
+function TextField({ label, value = "", onChange, textarea, mono, type = "text", placeholder = "", rows = 3 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
+      {label && <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>}
       {textarea ? (
         <textarea
           value={value || ""}
           onChange={(e) => onChange(e.target.value)}
-          rows={3}
+          rows={rows}
           className={`field resize-y ${mono ? "font-mono" : ""}`}
           placeholder={placeholder}
         />
@@ -661,29 +663,46 @@ export default function AdminPageClient() {
         )}
 
         {tab === "Tentang" && (
-          <div className="glass space-y-5 rounded-2xl p-6">
-            <TextField label="Judul" value={content.about?.heading} onChange={(v) => setContent({ ...content, about: { ...content.about, heading: v } })} />
-            {(content.about?.paragraphs || []).map((p, i) => (
-              <div key={i} className="flex items-start gap-2">
-                <div className="flex-1">
-                  <TextField label={`Paragraf ${i + 1}`} value={p} textarea onChange={(v) => {
-                    const next = [...content.about.paragraphs];
-                    next[i] = v;
-                    setContent({ ...content, about: { ...content.about, paragraphs: next } });
-                  }} />
-                </div>
-                <button className="mt-6 text-red-400 hover:text-red-600" onClick={() => {
-                  const next = content.about.paragraphs.filter((_, idx) => idx !== i);
-                  setContent({ ...content, about: { ...content.about, paragraphs: next } });
-                }}><Trash2 size={16} /></button>
-              </div>
-            ))}
-            <button
-              onClick={() => setContent({ ...content, about: { ...content.about, paragraphs: [...(content.about?.paragraphs || []), ""] } })}
-              className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"
-            ><Plus size={14} /> Tambah paragraf</button>
+          <div className="space-y-5">
+            <div className="rounded-2xl border border-line bg-surface/85 p-5 shadow-glass">
+              <TextField label="Judul section Tentang" value={content.about?.heading} onChange={(v) => setContent({ ...content, about: { ...content.about, heading: v } })} />
+            </div>
 
-            <div>
+            <div className="rounded-2xl border border-line bg-surface/85 p-5 shadow-glass">
+              <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="font-display text-lg font-semibold text-ink">Paragraf Tentang</p>
+                  <p className="text-sm text-muted">Tulis narasi panjang di area yang lebar, tidak kepotong kecil lagi.</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setContent({ ...content, about: { ...content.about, paragraphs: [...(content.about?.paragraphs || []), ""] } })}
+                  className="inline-flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 py-2 text-sm font-semibold text-emerald-deep transition hover:border-emerald/40"
+                >
+                  <Plus size={14} /> Tambah paragraf
+                </button>
+              </div>
+              <div className="space-y-4">
+                {(content.about?.paragraphs || []).map((p, i) => (
+                  <div key={i} className="rounded-xl border border-line bg-paper/45 p-3">
+                    <div className="mb-2 flex items-center justify-between gap-3">
+                      <p className="text-xs font-semibold text-ink/70">Paragraf {i + 1}</p>
+                      <button type="button" className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50" onClick={() => {
+                        const next = content.about.paragraphs.filter((_, idx) => idx !== i);
+                        setContent({ ...content, about: { ...content.about, paragraphs: next } });
+                      }}><Trash2 size={13} /> Hapus</button>
+                    </div>
+                    <TextField label="" value={p} textarea rows={8} onChange={(v) => {
+                      const next = [...content.about.paragraphs];
+                      next[i] = v;
+                      setContent({ ...content, about: { ...content.about, paragraphs: next } });
+                    }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-line bg-surface/85 p-5 shadow-glass">
               <label className="mb-1.5 block text-xs font-semibold text-ink/70">Skill (pisahkan dengan koma)</label>
               <input
                 type="text"
@@ -708,9 +727,16 @@ export default function AdminPageClient() {
               { key: "focus", label: "Fokus pembelajaran", kind: "textarea", wide: true },
               { key: "activities", label: "Aktivitas & pencapaian", kind: "textarea", wide: true },
               { key: "logo", label: "Logo sekolah / kampus", kind: "image", wide: true },
+              { key: "documentationImage", label: "Gambar dokumentasi pendidikan 1", kind: "image", wide: true },
+              { key: "documentationImage2", label: "Gambar dokumentasi pendidikan 2", kind: "image", wide: true },
+              { key: "documentationImage3", label: "Gambar dokumentasi pendidikan 3", kind: "image", wide: true },
+              { key: "documentationFile", label: "File dokumentasi pendidikan", kind: "file", accept: "image/*,application/pdf", buttonLabel: "Upload dokumen", wide: true },
               { key: "link", label: "Link institusi (opsional)", wide: true },
             ]}
-            createItem={() => ({ id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "", logo: "", link: "" })}
+            createItem={() => ({
+              id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "",
+              logo: "", documentationImage: "", documentationImage2: "", documentationImage3: "", documentationFile: "", link: "",
+            })}
             addLabel="Tambah pendidikan"
           />
         )}
@@ -799,11 +825,17 @@ export default function AdminPageClient() {
                 <TextField label="Tools & skills (pisahkan dengan koma)" value={item.tools} placeholder="Next.js, Figma, Cisco" onChange={(v) => {
                   const next = [...content.experience]; next[i] = { ...item, tools: v }; setContent({ ...content, experience: next });
                 }} />
-                <TextField label="Link dokumentasi / proyek" value={item.link} onChange={(v) => {
-                  const next = [...content.experience]; next[i] = { ...item, link: v }; setContent({ ...content, experience: next });
-                }} />
                 <ImageField label="Logo organisasi / gambar pengalaman" value={item.image} onChange={(v) => {
                   const next = [...content.experience]; next[i] = { ...item, image: v }; setContent({ ...content, experience: next });
+                }} />
+                <FileField label="Upload dokumentasi pengalaman" value={item.documentationFile || item.link} accept="image/*,application/pdf" buttonLabel="Upload dokumen" onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, documentationFile: v, link: "" }; setContent({ ...content, experience: next });
+                }} />
+                <ImageField label="Gambar dokumentasi pengalaman 1" value={item.documentationImage} onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, documentationImage: v }; setContent({ ...content, experience: next });
+                }} />
+                <ImageField label="Gambar dokumentasi pengalaman 2" value={item.documentationImage2} onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...item, documentationImage2: v }; setContent({ ...content, experience: next });
                 }} />
               </div>
             ))}
@@ -812,7 +844,7 @@ export default function AdminPageClient() {
                 ...content, experience: [...(content.experience || []), {
                   id: uid("exp"), type: "Proyek", title: "", org: "", period: "", startDate: "", endDate: "",
                   location: "", workingUnit: "", description: "", companyBackground: "", responsibilities: "",
-                  tools: "", link: "", image: "",
+                  tools: "", link: "", image: "", documentationFile: "", documentationImage: "", documentationImage2: "",
                 }]
               })}
               className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"

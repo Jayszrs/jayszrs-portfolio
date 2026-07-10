@@ -15,6 +15,19 @@ function periodOf(item) {
   return item.period || [item.startDate, item.endDate || "Sekarang"].filter(Boolean).join(" — ");
 }
 
+function documentationImages(item = {}) {
+  return [item.documentationImage, item.documentationImage2]
+    .filter((src) => String(src || "").trim());
+}
+
+function documentationFileOf(item = {}) {
+  return item.documentationFile || item.link || "";
+}
+
+function looksLikeImage(src = "") {
+  return /\.(png|jpe?g|webp|gif|avif)(\?.*)?$/i.test(src);
+}
+
 export default function Experience({ items = [], section = {} }) {
   const available = useMemo(
     () => ORDER.filter((type) => type === "Semua" || items.some((item) => item.type === type)),
@@ -80,6 +93,15 @@ export default function Experience({ items = [], section = {} }) {
                   <h3 className="mt-4 font-display text-xl font-semibold text-ink">{item.title}</h3>
                   <p className="mt-1 text-sm font-medium text-emerald-deep">{item.org}</p>
                   <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">{item.description}</p>
+                  {documentationImages(item).length > 0 && (
+                    <div className="mt-4 flex gap-2">
+                      {documentationImages(item).slice(0, 2).map((src, imageIndex) => (
+                        <span key={`${src}-${imageIndex}`} className="h-12 w-16 overflow-hidden rounded-xl border border-line bg-surface">
+                          <img src={src} alt="" className="h-full w-full object-cover" />
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition group-hover:text-emerald">
                     Buka detail <ArrowUpRight size={14} />
                   </span>
@@ -165,10 +187,26 @@ export default function Experience({ items = [], section = {} }) {
               </section>
             )}
 
-            {selected.link && (
-              <a href={selected.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
-                Buka dokumentasi <ArrowUpRight size={15} />
-              </a>
+            {(documentationImages(selected).length > 0 || documentationFileOf(selected)) && (
+              <section>
+                <h3 className="flex items-center gap-2 border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">
+                  <ArrowUpRight size={19} className="text-emerald" /> Dokumentasi
+                </h3>
+                {(documentationImages(selected).length > 0 || looksLikeImage(documentationFileOf(selected))) && (
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {[...documentationImages(selected), ...(looksLikeImage(documentationFileOf(selected)) ? [documentationFileOf(selected)] : [])].map((src, index) => (
+                      <a key={`${src}-${index}`} href={src} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-2xl border border-line bg-surface">
+                        <img src={src} alt={`Dokumentasi pengalaman ${index + 1}`} className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
+                      </a>
+                    ))}
+                  </div>
+                )}
+                {documentationFileOf(selected) && (
+                  <a href={documentationFileOf(selected)} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
+                    Buka file dokumentasi <ArrowUpRight size={15} />
+                  </a>
+                )}
+              </section>
             )}
           </div>
         )}

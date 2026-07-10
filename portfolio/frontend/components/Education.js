@@ -6,6 +6,11 @@ import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 
+function documentationImages(item = {}) {
+  return [item.documentationImage, item.documentationImage2, item.documentationImage3]
+    .filter((src) => String(src || "").trim());
+}
+
 export default function Education({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
   if (!items.length) return null;
@@ -52,6 +57,15 @@ export default function Education({ items = [], section = {} }) {
                   <h3 className="mt-4 font-display text-xl font-semibold text-ink sm:text-2xl">{item.degree}</h3>
                   <p className="mt-1 text-base font-semibold text-emerald-deep">{item.institution}</p>
                   <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{item.description}</p>
+                  {documentationImages(item).length > 0 && (
+                    <div className="mt-4 flex gap-2">
+                      {documentationImages(item).slice(0, 3).map((src, imageIndex) => (
+                        <span key={`${src}-${imageIndex}`} className="h-14 w-20 overflow-hidden rounded-xl border border-line bg-surface">
+                          <img src={src} alt="" className="h-full w-full object-cover" />
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col items-start justify-between gap-4 sm:items-end">
@@ -112,6 +126,25 @@ export default function Education({ items = [], section = {} }) {
               <section>
                 <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">Aktivitas & Pencapaian</h3>
                 <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{selected.activities}</p>
+              </section>
+            )}
+            {(documentationImages(selected).length > 0 || selected.documentationFile) && (
+              <section>
+                <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">Dokumentasi Pendidikan</h3>
+                {documentationImages(selected).length > 0 && (
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {documentationImages(selected).map((src, index) => (
+                      <a key={src} href={src} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-2xl border border-line bg-surface">
+                        <img src={src} alt={`Dokumentasi pendidikan ${index + 1}`} className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
+                      </a>
+                    ))}
+                  </div>
+                )}
+                {selected.documentationFile && (
+                  <a href={selected.documentationFile} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
+                    Buka file dokumentasi <ArrowUpRight size={15} />
+                  </a>
+                )}
               </section>
             )}
             {selected.link && (
