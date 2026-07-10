@@ -13,13 +13,6 @@ function withPdfOptions(src = "") {
   return `${src}#toolbar=1&navpanes=0&view=FitH`;
 }
 
-function absoluteUrl(src = "") {
-  if (!src) return "";
-  if (/^https?:\/\//i.test(src)) return src;
-  if (typeof window === "undefined") return src;
-  return new URL(src, window.location.origin).toString();
-}
-
 function normalizeItem(item, fallbackTitle) {
   if (!item) return null;
   if (typeof item === "string") return { src: item, title: fallbackTitle };
@@ -36,7 +29,6 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   const galleryKey = galleryItems.map((item) => `${item.src}|${item.title}`).join("::");
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
   const current = galleryItems[activeIndex] || galleryItems[0];
   const hasMultiple = galleryItems.length > 1;
 
@@ -44,14 +36,6 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
     if (!galleryItems.length) return undefined;
     setActiveIndex(Math.min(Math.max(Number(initialIndex) || 0, 0), galleryItems.length - 1));
   }, [galleryItems.length, galleryKey, initialIndex]);
-
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 640px), (pointer: coarse)");
-    const sync = () => setIsMobile(media.matches);
-    sync();
-    media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
-  }, []);
 
   useEffect(() => {
     if (!current?.src) return undefined;
@@ -92,9 +76,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   if (!current?.src) return null;
 
   const pdf = isPdf(current.src);
-  const pdfViewerSrc = isMobile
-    ? `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(absoluteUrl(current.src))}`
-    : withPdfOptions(current.src);
+  const pdfViewerSrc = withPdfOptions(current.src);
 
   return (
     <div
@@ -120,7 +102,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Buka PDF penuh"
-                className="hidden h-10 items-center gap-2 rounded-full border border-line bg-surface px-3 text-xs font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald sm:inline-flex"
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-surface px-3 text-xs font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald"
               >
                 PDF <ExternalLink size={14} />
               </a>
