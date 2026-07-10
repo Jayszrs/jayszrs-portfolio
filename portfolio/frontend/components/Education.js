@@ -11,6 +11,10 @@ function documentationImages(item = {}) {
     .filter((src) => String(src || "").trim());
 }
 
+function educationLogoSource(item = {}) {
+  return String(item.logo || item.institutionLogo || item.schoolLogo || item.campusLogo || "").trim();
+}
+
 export default function Education({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
   if (!items.length) return null;
@@ -27,59 +31,63 @@ export default function Education({ items = [], section = {} }) {
         </div>
 
         <div className="mt-8 grid gap-5">
-          {items.map((item, index) => (
-            <motion.button
-              key={item.id}
-              type="button"
-              onClick={() => setSelected(item)}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: index * 0.08 }}
-              className="glass group grid gap-5 rounded-[1.5rem] p-5 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:rounded-[1.75rem] sm:p-8"
-            >
-              <div className="flex items-start gap-4">
-                {item.logo && (
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-line bg-surface p-2 sm:h-16 sm:w-16">
-                    <SafeImage
-                      src={item.logo}
-                      alt={`Logo ${item.institution}`}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full"
-                      imgClassName="h-full w-full object-contain"
-                      fallback={<LogoFallback label={item.institution} icon={GraduationCap} />}
-                    />
-                  </span>
-                )}
-                <div className="min-w-0">
-                  <span className="rounded-full bg-emerald-soft px-3 py-1 font-mono text-xs text-emerald-deep">{item.period}</span>
-                  <h3 className="mt-4 font-display text-xl font-semibold text-ink sm:text-2xl">{item.degree}</h3>
-                  <p className="mt-1 text-base font-semibold text-emerald-deep">{item.institution}</p>
-                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{item.description}</p>
-                  {documentationImages(item).length > 0 && (
-                    <div className="mt-4 flex gap-2">
-                      {documentationImages(item).slice(0, 3).map((src, imageIndex) => (
-                        <span key={`${src}-${imageIndex}`} className="h-14 w-20 overflow-hidden rounded-xl border border-line bg-surface">
-                          <img src={src} alt="" className="h-full w-full object-cover" />
-                        </span>
-                      ))}
-                    </div>
+          {items.map((item, index) => {
+            const logoSrc = educationLogoSource(item);
+
+            return (
+              <motion.button
+                key={item.id}
+                type="button"
+                onClick={() => setSelected(item)}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: index * 0.08 }}
+                className="glass group grid gap-5 rounded-[1.5rem] p-5 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:rounded-[1.75rem] sm:p-8"
+              >
+                <div className="flex items-start gap-4">
+                  {logoSrc && (
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface p-2 sm:h-16 sm:w-16">
+                      <SafeImage
+                        src={logoSrc}
+                        alt={`Logo ${item.institution}`}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full"
+                        imgClassName="h-full w-full object-contain"
+                        fallback={<LogoFallback label={item.institution} icon={GraduationCap} />}
+                      />
+                    </span>
                   )}
+                  <div className="min-w-0">
+                    <span className="rounded-full bg-emerald-soft px-3 py-1 font-mono text-xs text-emerald-deep">{item.period}</span>
+                    <h3 className="mt-4 font-display text-xl font-semibold text-ink sm:text-2xl">{item.degree}</h3>
+                    <p className="mt-1 text-base font-semibold text-emerald-deep">{item.institution}</p>
+                    <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{item.description}</p>
+                    {documentationImages(item).length > 0 && (
+                      <div className="mt-4 flex gap-2">
+                        {documentationImages(item).slice(0, 3).map((src, imageIndex) => (
+                          <span key={`${src}-${imageIndex}`} className="h-14 w-20 overflow-hidden rounded-xl border border-line bg-surface">
+                            <img src={src} alt="" className="h-full w-full object-cover" />
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col items-start justify-between gap-4 sm:items-end">
-                {item.location && (
-                  <span className="inline-flex items-center gap-1.5 text-sm text-muted">
-                    <MapPin size={15} /> {item.location}
+                <div className="flex flex-col items-start justify-between gap-4 sm:items-end">
+                  {item.location && (
+                    <span className="inline-flex items-center gap-1.5 text-sm text-muted">
+                      <MapPin size={15} /> {item.location}
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition group-hover:text-emerald">
+                    Buka detail <ArrowUpRight size={14} />
                   </span>
-                )}
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition group-hover:text-emerald">
-                  Buka detail <ArrowUpRight size={14} />
-                </span>
-              </div>
-            </motion.button>
-          ))}
+                </div>
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 
@@ -88,9 +96,9 @@ export default function Education({ items = [], section = {} }) {
           <div className="space-y-7">
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[80px_1fr] sm:p-6">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
-                {selected.logo ? (
+                {educationLogoSource(selected) ? (
                   <SafeImage
-                    src={selected.logo}
+                    src={educationLogoSource(selected)}
                     alt={`Logo ${selected.institution}`}
                     loading="lazy"
                     decoding="async"
