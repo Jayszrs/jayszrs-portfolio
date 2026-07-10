@@ -48,6 +48,19 @@ body {
   transition: background-color 240ms ease, color 240ms ease;
 }
 
+.goog-te-banner-frame,
+.goog-te-menu-frame,
+#goog-gt-tt,
+.goog-te-gadget,
+.goog-te-combo,
+.goog-te-spinner-pos {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
 body::before {
   content: "";
   position: fixed;

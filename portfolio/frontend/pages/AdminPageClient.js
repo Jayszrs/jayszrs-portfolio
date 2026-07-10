@@ -649,6 +649,15 @@ export default function AdminPageClient() {
               <ImageField label="Foto Hero" value={content.profile?.heroImage} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage: v } })} />
             </div>
             <div className="sm:col-span-2">
+              <ImageField label="Foto Hero 2 (carousel)" value={content.profile?.heroImage2} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage2: v } })} />
+            </div>
+            <div className="sm:col-span-2">
+              <ImageField label="Foto Hero 3 (carousel)" value={content.profile?.heroImage3} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage3: v } })} />
+            </div>
+            <div className="sm:col-span-2">
+              <ImageField label="Foto Hero 4 (carousel)" value={content.profile?.heroImage4} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage4: v } })} />
+            </div>
+            <div className="sm:col-span-2">
               <FileField label="Resume / CV PDF" value={content.profile?.cvUrl} accept="application/pdf" buttonLabel="Upload resume" onChange={(v) => setContent({ ...content, profile: { ...content.profile, cvUrl: v } })} />
             </div>
             <TextField label="GitHub URL" value={content.profile?.socials?.github} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, github: v } } })} />

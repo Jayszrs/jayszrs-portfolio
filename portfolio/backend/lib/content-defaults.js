@@ -11,6 +11,9 @@ export const DEFAULT_CONTENT = {
     location: "",
     tagline: "",
     heroImage: "",
+    heroImage2: "",
+    heroImage3: "",
+    heroImage4: "",
     cvUrl: "",
     socials: {
       github: "",
