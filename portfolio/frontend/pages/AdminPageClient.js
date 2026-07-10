@@ -625,7 +625,7 @@ export default function AdminPageClient() {
     Pengalaman: "Posisi, organisasi, periode, logo/dokumentasi, dan detail kontribusi.",
     Galeri: "Proyek lengkap, gambar preview, dokumentasi, proses, dan hasil.",
     "Selected Design": "Kurasi desain pilihan yang muncul sebagai highlight visual.",
-    Rating: "Testimoni, bukti dokumentasi, dan status tampil di homepage.",
+    Rating: "Nama, asal, bintang, masukan, dan status tampil di homepage.",
     Pencapaian: "Achievement non-sertifikat beserta logo atau bukti pendukung.",
     Sertifikat: "Sertifikat, penerbit, credential, PDF, logo, dan badge.",
     Kontak: "Email, WhatsApp, alamat, dan link sosial media.",
@@ -1059,12 +1059,9 @@ export default function AdminPageClient() {
               { key: "stars", label: "Jumlah bintang", kind: "select", options: ["5", "4", "3", "2", "1"] },
               { key: "approved", label: "Tampilkan di homepage?", kind: "select", options: ["true", "false"] },
               { key: "date", label: "Tanggal" },
-              { key: "comment", label: "Deskripsi rating", kind: "textarea", wide: true },
-              { key: "proofText", label: "Catatan bukti dokumentasi", kind: "textarea", wide: true },
-              { key: "image", label: "Foto / dokumentasi rating", kind: "image", wide: true },
-              { key: "proofUrl", label: "Link bukti dokumentasi", wide: true },
+              { key: "comment", label: "Masukan, kritik, dan saran", kind: "textarea", wide: true },
             ]}
-            createItem={() => ({ id: uid("rating"), name: "", role: "", stars: "5", approved: "true", date: "", comment: "", proofText: "", image: "", proofUrl: "" })}
+            createItem={() => ({ id: uid("rating"), name: "", role: "", stars: "5", approved: "true", date: "", comment: "" })}
             addLabel="Tambah rating"
           />
         )}

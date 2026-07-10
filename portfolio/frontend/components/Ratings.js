@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, Image as ImageIcon, Star } from "lucide-react";
-import MediaPreview from "@/frontend/components/MediaPreview";
-import SafeImage from "@/frontend/components/SafeImage";
+import { Star } from "lucide-react";
 
 function Stars({ value = 5 }) {
   const count = Math.max(1, Math.min(5, Number(value) || 5));
@@ -22,14 +20,13 @@ function Stars({ value = 5 }) {
 }
 
 export default function Ratings({ items = [], section = {} }) {
-  const [form, setForm] = useState({ name: "", role: "", stars: "5", comment: "", proofText: "", proofUrl: "" });
+  const [form, setForm] = useState({ name: "", role: "", stars: "5", comment: "" });
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
-  const [preview, setPreview] = useState(null);
   const visibleItems = items.filter((item) => {
     const approved = item?.approved;
     const isApproved = approved === undefined || approved === true || approved === "true";
-    return isApproved && (item?.name || item?.comment || item?.image);
+    return isApproved && (item?.name || item?.comment);
   });
 
   const submitRating = async (event) => {
@@ -45,7 +42,7 @@ export default function Ratings({ items = [], section = {} }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Rating gagal dikirim.");
-      setForm({ name: "", role: "", stars: "5", comment: "", proofText: "", proofUrl: "" });
+      setForm({ name: "", role: "", stars: "5", comment: "" });
       setStatus("Rating terkirim. Refresh halaman jika belum langsung terlihat.");
     } catch (error) {
       setStatus(error.message);
@@ -73,23 +70,6 @@ export default function Ratings({ items = [], section = {} }) {
           <div className="grid gap-5 md:grid-cols-2">
             {visibleItems.map((item) => (
               <article key={item.id || `${item.name}-${item.date}`} className="glass overflow-hidden rounded-2xl">
-                {item.image && (
-                  <button
-                    type="button"
-                    onClick={() => setPreview({ src: item.image, title: item.name || "Dokumentasi rating" })}
-                    className="h-52 w-full overflow-hidden bg-ink text-left"
-                  >
-                    <SafeImage
-                      src={item.image}
-                      alt={item.name || "Dokumentasi rating"}
-                      loading="lazy"
-                      decoding="async"
-                      sizes="(max-width: 768px) 90vw, 50vw"
-                      className="h-full w-full"
-                      imgClassName="h-full w-full object-cover"
-                    />
-                  </button>
-                )}
                 <div className="space-y-4 p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -102,24 +82,6 @@ export default function Ratings({ items = [], section = {} }) {
                   </div>
 
                   {item.comment && <p className="whitespace-pre-line text-sm leading-7 text-muted">{item.comment}</p>}
-
-                  {(item.proofText || item.proofUrl) && (
-                    <div className="rounded-xl border border-line bg-surface/70 p-3 text-xs leading-5 text-muted">
-                      <div className="mb-1 flex items-center gap-2 font-semibold text-ink">
-                        <ImageIcon size={14} className="text-emerald" /> Bukti dokumentasi
-                      </div>
-                      {item.proofText && <p className="whitespace-pre-line">{item.proofText}</p>}
-                      {item.proofUrl && (
-                        <button
-                          type="button"
-                          onClick={() => setPreview({ src: item.proofUrl, title: `Bukti dokumentasi ${item.name || "rating"}` })}
-                          className="mt-2 inline-flex items-center gap-1 font-semibold text-emerald-deep"
-                        >
-                          Lihat bukti <ArrowUpRight size={13} />
-                        </button>
-                      )}
-                    </div>
-                  )}
                 </div>
               </article>
             ))}
@@ -132,8 +94,8 @@ export default function Ratings({ items = [], section = {} }) {
 
           <form onSubmit={submitRating} className="glass h-fit space-y-4 rounded-2xl p-5">
             <div>
-              <h3 className="font-display text-xl font-semibold text-ink">Kasih rating</h3>
-              <p className="mt-1 text-xs leading-5 text-muted">Rating yang dikirim dari sini langsung ditampilkan.</p>
+              <h3 className="font-display text-xl font-semibold text-ink">Kasih masukan</h3>
+              <p className="mt-1 text-xs leading-5 text-muted">Kritik dan saran yang kamu kirim langsung ditampilkan.</p>
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-semibold text-ink/70">Bintang</label>
@@ -152,18 +114,21 @@ export default function Ratings({ items = [], section = {} }) {
               </div>
             </div>
             <input className="field" value={form.name} onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))} placeholder="Nama" required />
-            <input className="field" value={form.role} onChange={(event) => setForm((current) => ({ ...current, role: event.target.value }))} placeholder="Role / asal" />
-            <textarea className="field min-h-28 resize-y" value={form.comment} onChange={(event) => setForm((current) => ({ ...current, comment: event.target.value }))} placeholder="Deskripsi rating" required />
-            <textarea className="field min-h-20 resize-y" value={form.proofText} onChange={(event) => setForm((current) => ({ ...current, proofText: event.target.value }))} placeholder="Catatan bukti dokumentasi" />
-            <input className="field" value={form.proofUrl} onChange={(event) => setForm((current) => ({ ...current, proofUrl: event.target.value }))} placeholder="Link bukti dokumentasi" />
+            <input className="field" value={form.role} onChange={(event) => setForm((current) => ({ ...current, role: event.target.value }))} placeholder="Asal" />
+            <textarea
+              className="field min-h-32 resize-y"
+              value={form.comment}
+              onChange={(event) => setForm((current) => ({ ...current, comment: event.target.value }))}
+              placeholder="Masukan, kritik, dan saran"
+              required
+            />
             {status && <p className="text-xs leading-5 text-muted">{status}</p>}
             <button type="submit" disabled={busy} className="inline-flex w-full items-center justify-center rounded-full bg-emerald px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-deep disabled:cursor-not-allowed disabled:opacity-60">
-              {busy ? "Mengirim..." : "Kirim rating"}
+              {busy ? "Mengirim..." : "Kirim masukan"}
             </button>
           </form>
         </div>
       </div>
-      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
     </section>
   );
 }
