@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import fs from "fs/promises";
-import path from "path";
+import { put } from "@vercel/blob"; // Import fungsi put
 
 export async function POST(request) {
   const session = cookies().get("jayszrs_admin");
@@ -11,6 +10,7 @@ export async function POST(request) {
 
   const formData = await request.formData();
   const file = formData.get("file");
+
   if (!file) {
     return NextResponse.json({ error: "Tidak ada file" }, { status: 400 });
   }
@@ -22,21 +22,24 @@ export async function POST(request) {
     "image/gif": "gif",
     "application/pdf": "pdf",
   };
+
   const ext = allowedTypes[file.type];
   if (!ext) {
     return NextResponse.json({ error: "Format file tidak didukung" }, { status: 400 });
   }
+
   if (file.size > 10 * 1024 * 1024) {
     return NextResponse.json({ error: "Ukuran file maksimal 10 MB" }, { status: 400 });
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+  // Generate nama file unik
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-  const uploadDir = path.join(process.cwd(), "public", "uploads");
 
-  await fs.mkdir(uploadDir, { recursive: true });
-  await fs.writeFile(path.join(uploadDir, safeName), buffer);
+  // Upload langsung ke Vercel Blob
+  const blob = await put(safeName, file, {
+    access: 'public',
+  });
 
-  return NextResponse.json({ url: `/uploads/${safeName}` });
+  // blob.url berisi link URL permanen dari Vercel
+  return NextResponse.json({ url: blob.url });
 }
