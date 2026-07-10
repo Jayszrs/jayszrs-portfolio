@@ -344,6 +344,17 @@ const INLINE_REPLACEMENTS = {
   },
 };
 
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+const INLINE_PATTERNS = Object.fromEntries(
+  Object.entries(INLINE_REPLACEMENTS).map(([language, replacements]) => [
+    language,
+    new RegExp(Object.keys(replacements).sort((a, b) => b.length - a.length).map(escapeRegex).join("|"), "g"),
+  ]),
+);
+
 const SKIP_TAGS = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "TEXTAREA", "INPUT", "SELECT", "OPTION", "CODE", "PRE"]);
 const ATTRIBUTES = ["title", "aria-label", "placeholder"];
 
@@ -372,14 +383,24 @@ function translateText(text, language) {
   }
 
   const replacements = INLINE_REPLACEMENTS[language] || {};
-  let translated = trimmed;
-  Object.entries(replacements)
-    .sort((a, b) => b[0].length - a[0].length)
-    .forEach(([source, target]) => {
-      translated = translated.replaceAll(source, target);
-    });
+  const pattern = INLINE_PATTERNS[language];
+  if (!pattern) return text;
+
+  pattern.lastIndex = 0;
+  if (!pattern.test(trimmed)) return text;
+
+  pattern.lastIndex = 0;
+  const translated = trimmed.replace(pattern, (source) => replacements[source] || source);
 
   return translated === trimmed ? text : withOriginalSpacing(text, translated);
+}
+
+function translateTextCached(text, language, cache) {
+  const key = `${language}\u0000${text}`;
+  if (cache.has(key)) return cache.get(key);
+  const translated = translateText(text, language);
+  cache.set(key, translated);
+  return translated;
 }
 
 function shouldSkipNode(node) {
@@ -396,7 +417,7 @@ function removeGoogleArtifacts() {
   document.cookie = "googtrans=; Max-Age=0; path=/; domain=.jayszrs.vercel.app";
 }
 
-function translateAttributes(root, language) {
+function translateAttributes(root, language, cache) {
   const elements = root.nodeType === Node.ELEMENT_NODE ? [root, ...root.querySelectorAll("*")] : [];
   elements.forEach((element) => {
     if (shouldSkipNode(element)) return;
@@ -406,37 +427,47 @@ function translateAttributes(root, language) {
       if (!element.dataset[originalKey]) {
         element.dataset[originalKey] = element.getAttribute(attribute) || "";
       }
-      element.setAttribute(attribute, translateText(element.dataset[originalKey], language));
+      element.setAttribute(attribute, translateTextCached(element.dataset[originalKey], language, cache));
     });
   });
 }
 
-function translateTree(root, language, originals) {
+function translateTextNode(node, language, originals, cache) {
+  if (shouldSkipNode(node) || !normalize(node.nodeValue || "")) return;
+  if (!originals.has(node)) originals.set(node, node.nodeValue || "");
+  node.nodeValue = translateTextCached(originals.get(node), language, cache);
+}
+
+function translateTree(root, language, originals, cache) {
+  if (root.nodeType === Node.TEXT_NODE) {
+    translateTextNode(root, language, originals, cache);
+    return;
+  }
+
+  if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return;
+
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const textNodes = [];
 
   while (walker.nextNode()) {
     const node = walker.currentNode;
-    if (!shouldSkipNode(node) && normalize(node.nodeValue || "")) {
-      textNodes.push(node);
-    }
+    if (!shouldSkipNode(node) && normalize(node.nodeValue || "")) textNodes.push(node);
   }
 
-  textNodes.forEach((node) => {
-    if (!originals.has(node)) originals.set(node, node.nodeValue || "");
-    node.nodeValue = translateText(originals.get(node), language);
-  });
+  textNodes.forEach((node) => translateTextNode(node, language, originals, cache));
 
-  translateAttributes(root, language);
+  translateAttributes(root, language, cache);
 }
 
 export default function LanguageSwitcher() {
   const [active, setActive] = useState("id");
   const [menuOpen, setMenuOpen] = useState(false);
   const originals = useRef(new WeakMap());
+  const translationCache = useRef(new Map());
   const applying = useRef(false);
   const activeRef = useRef("id");
   const switcherRef = useRef(null);
+  const frameRef = useRef(null);
 
   useEffect(() => {
     removeGoogleArtifacts();
@@ -449,27 +480,48 @@ export default function LanguageSwitcher() {
 
     const applyLanguage = () => {
       applying.current = true;
-      translateTree(document.body, activeRef.current, originals.current);
+      translateTree(document.body, activeRef.current, originals.current, translationCache.current);
       applying.current = false;
     };
 
-    applyLanguage();
+    const applyNodes = (nodes) => {
+      applying.current = true;
+      nodes.forEach((node) => translateTree(node, activeRef.current, originals.current, translationCache.current));
+      applying.current = false;
+    };
+
+    const scheduleNodes = (nodes) => {
+      if (!nodes.length) return;
+      if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
+      frameRef.current = window.requestAnimationFrame(() => {
+        frameRef.current = null;
+        applyNodes(nodes);
+      });
+    };
+
+    if (saved !== "id") applyLanguage();
 
     const observer = new MutationObserver((mutations) => {
       if (applying.current) return;
-      let shouldApply = false;
+      if (activeRef.current === "id") return;
+      const nodes = [];
       mutations.forEach((mutation) => {
         if (mutation.type === "characterData") {
           originals.current.delete(mutation.target);
-          shouldApply = true;
+          nodes.push(mutation.target);
         }
-        if (mutation.type === "childList" && mutation.addedNodes.length) shouldApply = true;
+        if (mutation.type === "childList" && mutation.addedNodes.length) {
+          nodes.push(...mutation.addedNodes);
+        }
       });
-      if (shouldApply) window.requestAnimationFrame(applyLanguage);
+      scheduleNodes(nodes);
     });
 
     observer.observe(document.body, { childList: true, characterData: true, subtree: true });
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -496,7 +548,7 @@ export default function LanguageSwitcher() {
     document.documentElement.lang = code;
     document.documentElement.dataset.language = code;
     removeGoogleArtifacts();
-    translateTree(document.body, code, originals.current);
+    translateTree(document.body, code, originals.current, translationCache.current);
   };
 
   const activeLanguage = LANGUAGES.find((language) => language.code === active) || LANGUAGES[0];

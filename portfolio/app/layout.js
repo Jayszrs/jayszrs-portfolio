@@ -1,6 +1,6 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import IntroLoader from "@/frontend/components/IntroLoader";
-import LanguageSwitcher from "@/frontend/components/LanguageSwitcher";
+import DeferredLanguageSwitcher from "@/frontend/components/DeferredLanguageSwitcher";
 import MouseSpotlight from "@/frontend/components/MouseSpotlight";
 import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
 import "./globals.css";
@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
       <body className="bg-paper text-ink font-body antialiased">
         <IntroLoader />
         <MouseSpotlight />
-        <LanguageSwitcher />
+        <DeferredLanguageSwitcher />
         <ThemeSwitcher />
         {children}
       </body>
