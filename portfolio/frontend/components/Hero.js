@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, ArrowUpRight, Download } from "lucide-react";
+import { Github, Linkedin, Instagram, ArrowUpRight, Download, Eye } from "lucide-react";
 import Link from "next/link";
 import TypewriterText from "@/frontend/components/TypewriterText";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
@@ -74,14 +74,23 @@ export default function Hero({ profile }) {
               Kontak Saya
             </Link>
             {profile.cvUrl && (
-              <a
-                href={profile.cvUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="glass-pill col-span-2 inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:col-span-1 sm:px-6"
-              >
-                Download Resume <Download size={16} />
-              </a>
+              <>
+                <a
+                  href={profile.cvUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="glass-pill inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:px-6"
+                >
+                  Preview Resume <Eye size={16} />
+                </a>
+                <a
+                  href={profile.cvUrl}
+                  download
+                  className="glass-pill inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:px-6"
+                >
+                  Download Resume <Download size={16} />
+                </a>
+              </>
             )}
           </div>
         </motion.div>

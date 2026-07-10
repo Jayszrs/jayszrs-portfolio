@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Download, Menu, X } from "lucide-react";
+import { ArrowUpRight, Download, Eye, Menu, X } from "lucide-react";
 
 const LINKS = [
   { href: "/", label: "Beranda" },
@@ -52,14 +52,23 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
 
         <div className="hidden items-center gap-2 md:flex">
           {cvUrl && (
-            <a
-              href={cvUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-4 py-2 text-sm font-semibold text-ink transition hover:border-emerald/30 hover:text-emerald-deep"
-            >
-              Resume <Download size={14} />
-            </a>
+            <div className="flex items-center gap-1 rounded-full border border-line bg-surface p-1">
+              <a
+                href={cvUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-ink transition hover:bg-emerald-soft hover:text-emerald-deep"
+              >
+                Preview <Eye size={14} />
+              </a>
+              <a
+                href={cvUrl}
+                download
+                className="inline-flex h-8 items-center gap-1.5 rounded-full bg-ink px-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white"
+              >
+                Download <Download size={14} />
+              </a>
+            </div>
           )}
           <Link
             href="/kontak"
@@ -97,15 +106,25 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
             ))}
             <li>
               {cvUrl && (
-                <a
-                  href={cvUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => setOpen(false)}
-                  className="mt-1 flex items-center gap-2 rounded-xl border border-line bg-surface px-4 py-3 text-sm font-semibold text-ink"
-                >
-                  Download Resume <Download size={15} />
-                </a>
+                <div className="mt-1 grid grid-cols-2 gap-2">
+                  <a
+                    href={cvUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center justify-center gap-2 rounded-xl border border-line bg-surface px-3 py-3 text-sm font-semibold text-ink"
+                  >
+                    Preview <Eye size={15} />
+                  </a>
+                  <a
+                    href={cvUrl}
+                    download
+                    onClick={() => setOpen(false)}
+                    className="flex items-center justify-center gap-2 rounded-xl bg-ink px-3 py-3 text-sm font-semibold text-paper"
+                  >
+                    Download <Download size={15} />
+                  </a>
+                </div>
               )}
               <Link
                 href="/kontak"

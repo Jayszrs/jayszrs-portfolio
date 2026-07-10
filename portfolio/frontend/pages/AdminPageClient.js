@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   LogOut, Plus, Trash2, Save, Loader2, ImagePlus, Lock,
-  ExternalLink, LayoutDashboard, CheckCircle2,
+  ExternalLink, LayoutDashboard, CheckCircle2, AlertCircle, UploadCloud, XCircle, Download,
 } from "lucide-react";
 import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
 
@@ -21,81 +21,160 @@ async function uploadFile(file) {
   const fd = new FormData();
   fd.append("file", file);
   const res = await fetch("/api/upload", { method: "POST", body: fd });
-  if (!res.ok) throw new Error("Upload gagal");
-  const data = await res.json();
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || "Upload gagal");
+  if (!data.url) throw new Error("Upload berhasil, tapi URL file tidak diterima");
   return data.url;
 }
 
 function FileField({ label, value, onChange, accept = "application/pdf", buttonLabel = "Upload file" }) {
   const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState("");
 
   const handleFile = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
     setBusy(true);
+    setStatus("");
     try {
       onChange(await uploadFile(file));
+      setStatus("File masuk ke form. Klik Simpan supaya tampil di halaman utama.");
     } catch (error) {
-      alert(error.message);
+      setStatus(error.message);
     } finally {
       setBusy(false);
+      event.target.value = "";
     }
   };
 
   return (
-    <div>
-      <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
-      <div className="flex flex-col gap-2 sm:flex-row">
-        <input className="field min-w-0 flex-1" value={value || ""} onChange={(event) => onChange(event.target.value)} placeholder="URL file atau upload" />
-        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:bg-emerald-soft">
-          {busy ? <Loader2 size={14} className="animate-spin" /> : buttonLabel}
+    <div className="rounded-xl border border-line bg-paper/45 p-3">
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <label className="block text-xs font-semibold text-ink/70">{label}</label>
+        {value && (
+          <button
+            type="button"
+            onClick={() => {
+              onChange("");
+              setStatus("File dihapus dari form. Klik Simpan untuk menyimpan perubahan.");
+            }}
+            className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+          >
+            <XCircle size={13} /> Hapus
+          </button>
+        )}
+      </div>
+      <div className="flex flex-col gap-2 lg:flex-row">
+        <input
+          className="field min-w-0 flex-1"
+          value={value || ""}
+          onChange={(event) => {
+            onChange(event.target.value);
+            setStatus("");
+          }}
+          placeholder="URL file atau upload"
+        />
+        <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:bg-emerald-soft">
+          {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
+          {busy ? "Uploading" : buttonLabel}
           <input type="file" accept={accept} className="hidden" onChange={handleFile} />
         </label>
       </div>
-      {value && <a href={value} target="_blank" rel="noreferrer" className="mt-2 inline-block text-xs font-semibold text-emerald-deep">Buka file saat ini →</a>}
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        {value && (
+          <>
+            <a href={value} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-2 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:text-emerald-deep">
+              Preview <ExternalLink size={13} />
+            </a>
+            <a href={value} download className="inline-flex items-center gap-1.5 rounded-lg bg-ink px-3 py-2 text-xs font-semibold text-paper transition hover:bg-emerald hover:text-white">
+              Download <Download size={13} />
+            </a>
+          </>
+        )}
+        <p className={`text-xs ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
+          {status || "Upload PDF maksimal 10 MB, lalu klik Simpan."}
+        </p>
+      </div>
     </div>
   );
 }
 
 function ImageField({ label, value, onChange }) {
   const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState("");
+  const [previewBroken, setPreviewBroken] = useState(false);
+
+  useEffect(() => {
+    setPreviewBroken(false);
+  }, [value]);
 
   const handleFile = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setBusy(true);
+    setStatus("");
     try {
       const url = await uploadFile(file);
       onChange(url);
+      setStatus("Upload masuk ke form. Klik Simpan supaya tampil di halaman utama.");
     } catch (err) {
-      alert(err.message);
+      setStatus(err.message);
     } finally {
       setBusy(false);
+      e.target.value = "";
     }
   };
 
   return (
-    <div className="min-w-0">
-      <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        {value ? (
-          <img src={value} alt="" className="h-14 w-14 rounded-lg object-cover" />
-        ) : (
-          <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-emerald-soft">
-            <ImagePlus size={18} className="text-emerald-deep" />
-          </div>
+    <div className="min-w-0 rounded-xl border border-line bg-paper/45 p-3">
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <label className="block text-xs font-semibold text-ink/70">{label}</label>
+        {value && (
+          <button
+            type="button"
+            onClick={() => {
+              onChange("");
+              setStatus("Gambar dihapus dari form. Klik Simpan untuk menyimpan perubahan.");
+            }}
+            className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+          >
+            <XCircle size={13} /> Hapus
+          </button>
         )}
-        <input
-          type="text"
-          value={value || ""}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder="URL gambar (https://...)"
-          className="field min-w-0 flex-1"
-        />
-        <label className="flex cursor-pointer items-center justify-center rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:bg-emerald-soft">
-          {busy ? <Loader2 size={14} className="animate-spin" /> : "Upload"}
-          <input type="file" accept="image/*" className="hidden" onChange={handleFile} />
-        </label>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-[88px_1fr] sm:items-center">
+        <div className="flex h-[88px] min-h-[88px] w-full items-center justify-center overflow-hidden rounded-xl border border-line bg-surface sm:w-[88px]">
+          {value && !previewBroken ? (
+            <img src={value} alt="" className="h-full w-full object-contain p-2" onError={() => setPreviewBroken(true)} />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-emerald-soft">
+              <ImagePlus size={20} className="text-emerald-deep" />
+            </div>
+          )}
+        </div>
+        <div className="min-w-0 space-y-2">
+          <div className="flex flex-col gap-2 lg:flex-row">
+            <input
+              type="text"
+              value={value || ""}
+              onChange={(e) => {
+                onChange(e.target.value);
+                setStatus("");
+              }}
+              placeholder="URL gambar, atau upload dari perangkat"
+              className="field min-w-0 flex-1"
+            />
+            <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:bg-emerald-soft">
+              {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
+              {busy ? "Uploading" : "Upload"}
+              <input type="file" accept="image/*" className="hidden" onChange={handleFile} />
+            </label>
+          </div>
+          <p className={`text-xs ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
+            {status || (value ? "Preview siap. Jangan lupa klik Simpan setelah mengubah gambar." : "Format JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
+          </p>
+          {previewBroken && value && <p className="text-xs text-red-500">Preview gagal dimuat. Cek kembali URL gambarnya.</p>}
+        </div>
       </div>
     </div>
   );
@@ -377,16 +456,19 @@ export default function AdminPageClient() {
 
   if (!authed) {
     return (
-      <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-paper px-4">
-        <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-emerald/15 blur-[100px]" />
-        <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-gold/10 blur-[90px]" />
-        <form onSubmit={handleLogin} className="glass-strong relative w-full max-w-md rounded-[2rem] p-7 sm:p-10">
-          <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-soft">
-            <Lock size={18} className="text-emerald-deep" />
+      <div className="admin-login-shell relative flex min-h-screen items-center justify-center overflow-hidden bg-paper px-4 py-10">
+        <form onSubmit={handleLogin} className="admin-login-card relative w-full max-w-md rounded-2xl border border-line bg-surface p-7 shadow-glass-lg sm:p-8">
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-paper">
+              <Lock size={18} />
+            </div>
+            <Link href="/" className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-2 text-xs font-semibold text-muted transition hover:text-ink">
+              Portfolio <ExternalLink size={13} />
+            </Link>
           </div>
           <p className="eyebrow mb-2">Content studio</p>
-          <h1 className="font-display text-2xl font-semibold text-ink">Selamat datang kembali.</h1>
-          <p className="mt-2 text-sm leading-relaxed text-muted">Masuk untuk memperbarui profil, proyek, dan pencapaian portofolio kamu.</p>
+          <h1 className="font-display text-2xl font-semibold text-ink">Masuk admin.</h1>
+          <p className="mt-2 text-sm leading-relaxed text-muted">Kelola konten portfolio, upload gambar, dan update resume dari satu panel.</p>
 
           <input
             type="password"
@@ -400,13 +482,10 @@ export default function AdminPageClient() {
 
           <button
             type="submit"
-            className="mt-5 w-full rounded-xl bg-ink py-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white"
+            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white"
           >
-            Masuk
+            Masuk <ExternalLink size={14} />
           </button>
-          <Link href="/" className="mt-5 block text-center text-xs font-medium text-muted transition hover:text-emerald">
-            ← Kembali ke portofolio
-          </Link>
         </form>
       </div>
     );
@@ -433,20 +512,50 @@ export default function AdminPageClient() {
     );
   }
 
+  const stats = [
+    ["Proyek", (content.gallery || []).length],
+    ["Pengalaman", (content.experience || []).length],
+    ["Pencapaian", (content.achievements || []).length + (content.certificates || []).length],
+  ];
+  const tabDescriptions = {
+    Profil: "Identitas utama, hero, foto profil, CV, dan tautan sosial.",
+    "Teks Section": "Copywriting judul, deskripsi section, dan hero tiap halaman.",
+    Tentang: "Narasi tentang diri, paragraf profil, dan daftar skill ringkas.",
+    Pendidikan: "Riwayat pendidikan, logo kampus/sekolah, fokus, dan aktivitas.",
+    Software: "Tools editing atau software yang ditampilkan di halaman kemampuan.",
+    Programming: "Bahasa dan framework pemrograman yang ditampilkan di halaman kemampuan.",
+    "Sistem Operasi": "Daftar OS dan skill environment yang kamu kuasai.",
+    Pengalaman: "Posisi, organisasi, periode, logo/dokumentasi, dan detail kontribusi.",
+    Galeri: "Proyek lengkap, gambar preview, dokumentasi, proses, dan hasil.",
+    "Selected Design": "Kurasi desain pilihan yang muncul sebagai highlight visual.",
+    Rating: "Testimoni, bukti dokumentasi, dan status tampil di homepage.",
+    Pencapaian: "Achievement non-sertifikat beserta logo atau bukti pendukung.",
+    Sertifikat: "Sertifikat, penerbit, credential, PDF, logo, dan badge.",
+    Kontak: "Email, WhatsApp, alamat, dan link sosial media.",
+  };
+
   return (
     <div className="min-h-screen bg-paper pb-24">
-      <header className="glass sticky top-0 z-40 px-4 py-3 sm:px-6">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
+      <header className="sticky top-0 z-40 border-b border-line bg-paper/90 px-4 py-3 backdrop-blur-xl sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="hidden h-10 w-10 items-center justify-center rounded-xl bg-ink text-paper sm:flex">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink text-paper">
               <LayoutDashboard size={18} />
             </div>
             <div className="min-w-0">
               <p className="truncate font-display text-base font-semibold text-ink sm:text-lg">Content Studio</p>
-              <p className="hidden text-xs text-muted sm:block">Kelola portofolio jayszrs.</p>
+              <p className="text-xs text-muted">Kelola portofolio jayszrs.</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 lg:justify-end">
+            {(savedAt || saveError) && (
+              <div className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 text-xs font-semibold ${saveError ? "border-red-200 bg-red-50 text-red-700" : "border-emerald/20 bg-emerald-soft text-emerald-deep"}`}>
+                {saveError ? <AlertCircle size={15} /> : <CheckCircle2 size={15} />}
+                <span className="max-w-[14rem] truncate sm:max-w-none">
+                  {saveError || `Tersimpan ${savedAt.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`}
+                </span>
+              </div>
+            )}
             <Link
               href="/"
               target="_blank"
@@ -473,39 +582,35 @@ export default function AdminPageClient() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
-        {(savedAt || saveError) && (
-          <div className={`mb-5 flex items-center gap-2 rounded-xl border px-4 py-3 text-sm ${saveError ? "border-red-200 bg-red-50 text-red-700" : "border-emerald/20 bg-emerald-soft text-emerald-deep"
-            }`}>
-            {!saveError && <CheckCircle2 size={16} />}
-            {saveError || `Perubahan tersimpan pukul ${savedAt.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}.`}
-          </div>
-        )}
-
-        <div className="mb-7 grid grid-cols-3 gap-3">
-          {[
-            ["Proyek", (content.gallery || []).length],
-            ["Pengalaman", (content.experience || []).length],
-            ["Pencapaian", (content.achievements || []).length + (content.certificates || []).length],
-          ].map(([label, value]) => (
-            <div key={label} className="glass rounded-2xl p-4">
+      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+        <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {stats.map(([label, value]) => (
+            <div key={label} className="rounded-xl border border-line bg-surface/80 p-4 shadow-glass">
               <p className="font-display text-2xl font-semibold text-ink">{value}</p>
               <p className="mt-1 truncate text-xs text-muted">{label}</p>
             </div>
           ))}
         </div>
 
-        <div className="mb-8 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {TABS.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${tab === t ? "bg-ink text-paper" : "glass-pill text-ink/70"
-                }`}
-            >
-              {t}
-            </button>
-          ))}
+        <div className="mb-8 rounded-2xl border border-line bg-surface/80 p-3 shadow-glass">
+          <div className="mb-3 flex flex-col gap-1 px-1 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-display text-xl font-semibold text-ink">{tab}</p>
+              <p className="text-sm text-muted">{tabDescriptions[tab]}</p>
+            </div>
+            <p className="text-xs font-semibold text-emerald-deep">Upload gambar lalu klik Simpan.</p>
+          </div>
+          <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {TABS.map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${tab === t ? "bg-ink text-paper shadow-glass" : "bg-paper text-ink/70 hover:bg-emerald-soft hover:text-emerald-deep"}`}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
         </div>
 
         {tab === "Profil" && (
@@ -633,10 +738,23 @@ export default function AdminPageClient() {
         {tab === "Pengalaman" && (
           <div className="space-y-4">
             {(content.experience || []).map((item, i) => (
-              <div key={item.id} className="glass space-y-3 rounded-2xl p-5">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-muted">#{i + 1}</span>
-                  <button className="text-red-400 hover:text-red-600" onClick={() => {
+              <div key={item.id} className="glass space-y-4 rounded-2xl p-5">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface">
+                      {item.image ? (
+                        <img src={item.image} alt="" className="h-full w-full object-contain p-1.5" />
+                      ) : (
+                        <ImagePlus size={17} className="text-emerald-deep" />
+                      )}
+                    </div>
+                    <div className="min-w-0">
+                      <span className="font-mono text-xs text-muted">#{i + 1} {item.type || "Pengalaman"}</span>
+                      <p className="truncate font-display text-base font-semibold text-ink">{item.title || "Judul / posisi belum diisi"}</p>
+                      <p className="truncate text-sm text-muted">{item.org || "Organisasi belum diisi"}</p>
+                    </div>
+                  </div>
+                  <button type="button" className="rounded-lg p-2 text-red-400 transition hover:bg-red-50 hover:text-red-600" aria-label="Hapus pengalaman" onClick={() => {
                     setContent({ ...content, experience: content.experience.filter((_, idx) => idx !== i) });
                   }}><Trash2 size={16} /></button>
                 </div>
@@ -681,7 +799,7 @@ export default function AdminPageClient() {
                 <TextField label="Link dokumentasi / proyek" value={item.link} onChange={(v) => {
                   const next = [...content.experience]; next[i] = { ...item, link: v }; setContent({ ...content, experience: next });
                 }} />
-                <ImageField label="Gambar pengalaman (opsional)" value={item.image} onChange={(v) => {
+                <ImageField label="Logo organisasi / gambar pengalaman" value={item.image} onChange={(v) => {
                   const next = [...content.experience]; next[i] = { ...item, image: v }; setContent({ ...content, experience: next });
                 }} />
               </div>
@@ -922,7 +1040,7 @@ export default function AdminPageClient() {
             </div>
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

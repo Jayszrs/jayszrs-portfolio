@@ -4,12 +4,23 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function IntroLoader() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname?.startsWith("/admin")) {
+      setVisible(false);
+      return undefined;
+    }
+
+    if (window.sessionStorage.getItem("jayszrs-intro-seen") === "true") {
+      setVisible(false);
+      return undefined;
+    }
+
     setVisible(true);
-    const timer = window.setTimeout(() => setVisible(false), 7000);
+    window.sessionStorage.setItem("jayszrs-intro-seen", "true");
+    const timer = window.setTimeout(() => setVisible(false), 1900);
     return () => window.clearTimeout(timer);
   }, [pathname]);
 

@@ -69,7 +69,7 @@ export default function Experience({ items = [], section = {} }) {
                   loading="lazy"
                   decoding="async"
                   className="h-40 w-full sm:h-full"
-                  imgClassName="h-full w-full object-cover"
+                  imgClassName={`h-full w-full ${item.type === "Organisasi" ? "bg-surface object-contain p-5" : "object-cover"}`}
                   fallback={<LogoFallback label={item.org || item.title} icon={Building2} />}
                 />
                 <div className="p-5 sm:p-6">
@@ -107,7 +107,7 @@ export default function Experience({ items = [], section = {} }) {
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full"
-                  imgClassName="h-full w-full object-cover"
+                  imgClassName={`h-full w-full ${selected.type === "Organisasi" ? "object-contain p-2" : "object-cover"}`}
                   fallback={<LogoFallback label={selected.org || selected.title} icon={Building2} />}
                 />
               </div>

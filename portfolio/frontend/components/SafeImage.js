@@ -28,7 +28,7 @@ export function LogoFallback({ label = "", icon: Icon = ImageOff }) {
 }
 
 function unavailableSource(src) {
-  return !src || String(src).startsWith("/uploads/");
+  return !String(src || "").trim();
 }
 
 export default function SafeImage({ src, alt = "", className = "", imgClassName = "", fallback = null, ...props }) {
