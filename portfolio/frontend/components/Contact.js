@@ -10,7 +10,7 @@ const SOCIAL_ICONS = {
   tiktok: MessageCircle,
 };
 
-export default function Contact({ contact, profile }) {
+export default function Contact({ contact, profile, section = {} }) {
   const socials = { ...(profile?.socials || {}), ...(contact.socials || {}) };
   const whatsappNumber = (contact.whatsapp || contact.phone || "").replace(/\D/g, "");
 
@@ -19,17 +19,17 @@ export default function Contact({ contact, profile }) {
       <div className="glass-strong mx-auto max-w-6xl overflow-hidden rounded-[2rem]">
         <div className="grid lg:grid-cols-[1.15fr_.85fr]">
           <div className="p-8 sm:p-12">
-            <p className="eyebrow">Kontak</p>
+            <p className="eyebrow">{section.eyebrow || "Kontak"}</p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-5xl">{contact.heading}</h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-muted">{contact.subheading}</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-deep">
-                <Mail size={16} /> Kirim email
+                <Mail size={16} /> {section.emailButton || "Kirim email"}
               </a>
               {whatsappNumber && (
                 <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white">
-                  <MessageCircle size={16} /> WhatsApp
+                  <MessageCircle size={16} /> {section.whatsappButton || "WhatsApp"}
                 </a>
               )}
             </div>
@@ -48,7 +48,7 @@ export default function Contact({ contact, profile }) {
           </div>
 
           <div className="bg-ink p-8 text-paper sm:p-10">
-            <p className="font-display text-lg font-semibold">Detail kontak</p>
+            <p className="font-display text-lg font-semibold">{section.detailsTitle || "Detail kontak"}</p>
             <div className="mt-7 space-y-5">
               <a href={`mailto:${contact.email}`} className="flex items-start gap-3">
                 <Mail size={18} className="mt-0.5 text-emerald" />
@@ -81,7 +81,7 @@ export default function Contact({ contact, profile }) {
       </div>
 
       <footer className="mt-16 text-center">
-        <p className="font-mono text-xs text-muted">© {new Date().getFullYear()} {profile.fullName}. Dibuat dengan Next.js.</p>
+        <p className="font-mono text-xs text-muted">&copy; {new Date().getFullYear()} {profile.fullName}. {section.footerSuffix || "Dibuat dengan Next.js."}</p>
         <p className="mt-2 text-[10px] text-muted/60">
           Brand icons via <a href="https://iconify.design/" target="_blank" rel="noreferrer" className="underline">Iconify</a>.
         </p>

@@ -4,17 +4,17 @@ import { useState } from "react";
 import { ArrowUpRight, Image as ImageIcon, Maximize2 } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 
-export default function SelectedDesigns({ items = [] }) {
+export default function SelectedDesigns({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
 
   return (
     <section id="desain" className="section-pad scroll-mt-24 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <p className="eyebrow">Visual archive</p>
+        <p className="eyebrow">{section.eyebrow || "Visual archive"}</p>
         <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">Selected Design</h2>
+          <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">{section.title || "Selected Design"}</h2>
           <p className="max-w-md text-sm leading-relaxed text-muted">
-            Pilihan karya visual. Klik kartu untuk membuka preview dan detail desain.
+            {section.description || "Pilihan karya visual. Klik kartu untuk membuka preview dan detail desain."}
           </p>
         </div>
 

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function About({ about }) {
+export default function About({ about, section = {} }) {
   return (
     <section id="tentang" className="section-pad py-16 sm:py-20">
       <div className="mx-auto max-w-6xl">
@@ -12,7 +12,7 @@ export default function About({ about }) {
           viewport={{ once: true, margin: "-80px" }}
           className="eyebrow"
         >
-          Tentang
+          {section.eyebrow || "Tentang"}
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -47,7 +47,7 @@ export default function About({ about }) {
             transition={{ delay: 0.15 }}
             className="glass rounded-2xl p-6 lg:col-span-2"
           >
-            <p className="eyebrow mb-4">Fokus & Keahlian</p>
+            <p className="eyebrow mb-4">{section.skillsEyebrow || "Fokus & Keahlian"}</p>
             <div className="flex flex-wrap gap-2">
               {about.skills.map((skill) => (
                 <span

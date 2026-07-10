@@ -5,7 +5,7 @@ import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, MapPin } from "luc
 import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
 
-export default function Education({ items = [] }) {
+export default function Education({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
   if (!items.length) return null;
 
@@ -14,8 +14,8 @@ export default function Education({ items = [] }) {
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">Academic journey</p>
-            <h2 className="mt-2 font-display text-4xl font-semibold text-ink sm:text-5xl">Pendidikan</h2>
+            <p className="eyebrow">{section.eyebrow || "Academic journey"}</p>
+            <h2 className="mt-2 font-display text-4xl font-semibold text-ink sm:text-5xl">{section.title || "Pendidikan"}</h2>
           </div>
           <GraduationCap className="hidden text-emerald/25 sm:block" size={64} />
         </div>
@@ -60,7 +60,7 @@ export default function Education({ items = [] }) {
         </div>
       </div>
 
-      <DetailModal open={Boolean(selected)} onClose={() => setSelected(null)} eyebrow="Riwayat pendidikan" title={selected?.institution} size="wide">
+      <DetailModal open={Boolean(selected)} onClose={() => setSelected(null)} eyebrow={section.detailEyebrow || "Riwayat pendidikan"} title={selected?.institution} size="wide">
         {selected && (
           <div className="space-y-7">
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[80px_1fr] sm:p-6">

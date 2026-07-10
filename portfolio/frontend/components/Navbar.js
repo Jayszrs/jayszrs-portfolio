@@ -14,7 +14,7 @@ const LINKS = [
   { href: "/pencapaian", label: "Pencapaian" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ brandName = "Jay Szrs" }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -30,7 +30,7 @@ export default function Navbar() {
               className="h-full w-full"
             />
           </span>
-          <span className="hidden font-display text-sm font-semibold text-[#ef3340] sm:block">Jay Szrs</span>
+          <span className="hidden font-display text-sm font-semibold text-[#ef3340] sm:block">{brandName}</span>
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Layers3, UserRound } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 
-export default function Gallery({ items }) {
+export default function Gallery({ items = [], section = {} }) {
   const trackRef = useRef(null);
   const [paused, setPaused] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -42,9 +42,9 @@ export default function Gallery({ items }) {
       <div className="mx-auto max-w-7xl">
         <div className="flex items-end justify-between">
           <div>
-            <p className="eyebrow">Portofolio</p>
+            <p className="eyebrow">{section.eyebrow || "Portofolio"}</p>
             <h2 className="mt-2 font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Proyek Terpilih
+              {section.title || "Proyek Terpilih"}
             </h2>
           </div>
           <div className="hidden gap-2 sm:flex">
@@ -93,7 +93,7 @@ export default function Gallery({ items }) {
         </div>
       </div>
 
-      <DetailModal open={Boolean(selected)} onClose={() => setSelected(null)} eyebrow="Project case study" title={selected?.title} size="wide">
+      <DetailModal open={Boolean(selected)} onClose={() => setSelected(null)} eyebrow={section.detailEyebrow || "Project case study"} title={selected?.title} size="wide">
         {selected && (
           <div className="space-y-7">
             {selected.image && (

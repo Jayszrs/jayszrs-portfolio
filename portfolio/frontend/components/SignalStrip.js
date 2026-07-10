@@ -1,5 +1,5 @@
-export default function SignalStrip({ roles = [] }) {
-  const items = [...roles, "Available for collaboration", "Bekasi · Indonesia"];
+export default function SignalStrip({ roles = [], section = {} }) {
+  const items = [...roles, ...(section.extras || ["Available for collaboration", "Bekasi - Indonesia"])];
   const loop = [...items, ...items];
 
   return (

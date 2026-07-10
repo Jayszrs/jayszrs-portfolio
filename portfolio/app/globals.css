@@ -67,46 +67,45 @@ body::before {
   left: 0;
   top: 0;
   z-index: 30;
-  width: 520px;
-  height: 520px;
+  width: 260px;
+  height: 180px;
   pointer-events: none;
-  border-radius: 9999px;
   opacity: 0;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.72) 0%,
-    rgba(216, 226, 255, 0.24) 20%,
-    rgba(173, 191, 255, 0.1) 42%,
-    rgba(173, 191, 255, 0) 70%
-  );
+  background:
+    linear-gradient(90deg, transparent 8%, rgba(255, 255, 255, 0.12) 44%, rgba(255, 255, 255, 0.48) 50%, rgba(95, 255, 190, 0.14) 56%, transparent 92%) center / 100% 1px no-repeat,
+    linear-gradient(28deg, transparent 28%, rgba(98, 255, 190, 0.08) 46%, rgba(255, 255, 255, 0.28) 50%, rgba(98, 255, 190, 0.08) 54%, transparent 72%) center / 100% 100% no-repeat,
+    linear-gradient(152deg, transparent 30%, rgba(190, 210, 255, 0.07) 47%, rgba(255, 255, 255, 0.2) 50%, rgba(190, 210, 255, 0.06) 53%, transparent 70%) center / 100% 100% no-repeat;
   mix-blend-mode: screen;
-  transition: opacity 220ms ease;
+  filter: blur(0.25px);
+  transition: opacity 180ms ease;
   will-change: transform;
-  animation: cosmic-blink 2.8s ease-in-out infinite;
+  animation: ray-breathe 2.6s ease-in-out infinite;
 }
 
+.mouse-spotlight::before,
 .mouse-spotlight::after {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background: white;
-  box-shadow:
-    0 0 12px 4px rgba(255, 255, 255, 0.9),
-    38px -26px 10px rgba(255, 255, 255, 0.6),
-    -44px 34px 8px rgba(210, 223, 255, 0.7);
+  inset: 0;
+  pointer-events: none;
+}
+
+.mouse-spotlight::before {
+  background:
+    linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.08) 48%, rgba(255, 255, 255, 0.24) 50%, rgba(255, 255, 255, 0.08) 52%, transparent 76%) center / 1px 78% no-repeat;
+}
+
+.mouse-spotlight::after {
+  background:
+    linear-gradient(90deg, transparent 46%, rgba(255, 255, 255, 0.72) 49%, rgba(255, 255, 255, 0.72) 51%, transparent 54%) center / 10px 1px no-repeat,
+    linear-gradient(0deg, transparent 42%, rgba(255, 255, 255, 0.55) 49%, rgba(255, 255, 255, 0.55) 51%, transparent 58%) center / 1px 10px no-repeat;
 }
 
 :root[data-theme="light"] .mouse-spotlight {
-  background: radial-gradient(
-    circle,
-    rgba(199, 210, 255, 0.24) 0%,
-    rgba(190, 204, 255, 0.12) 35%,
-    rgba(190, 204, 255, 0) 70%
-  );
+  background:
+    linear-gradient(90deg, transparent 12%, rgba(8, 122, 84, 0.04) 44%, rgba(8, 122, 84, 0.18) 50%, rgba(8, 122, 84, 0.04) 56%, transparent 88%) center / 100% 1px no-repeat,
+    linear-gradient(28deg, transparent 30%, rgba(8, 122, 84, 0.04) 47%, rgba(8, 122, 84, 0.13) 50%, rgba(8, 122, 84, 0.04) 53%, transparent 70%) center / 100% 100% no-repeat,
+    linear-gradient(152deg, transparent 32%, rgba(38, 76, 128, 0.03) 48%, rgba(38, 76, 128, 0.1) 50%, rgba(38, 76, 128, 0.03) 52%, transparent 68%) center / 100% 100% no-repeat;
   mix-blend-mode: multiply;
 }
 
@@ -114,12 +113,12 @@ body::before {
   filter: invert(1) brightness(1.35);
 }
 
-@keyframes cosmic-blink {
+@keyframes ray-breathe {
   0%, 100% {
-    filter: blur(2px) brightness(0.9);
+    filter: blur(0.25px) brightness(0.9);
   }
   50% {
-    filter: blur(4px) brightness(1.2);
+    filter: blur(0.6px) brightness(1.18);
   }
 }
 
@@ -137,29 +136,148 @@ body::before {
   box-shadow: var(--shadow-glass-lg);
 }
 
-.pixel-loader {
-  animation: loader-exit 0.45s ease 1.1s both;
+.splash-loader {
+  animation: splash-exit 0.5s ease 4.5s both;
 }
 
-.pixel-block {
-  animation: pixel-pulse 0.7s steps(2, end) infinite alternate;
+.splash-loader::before,
+.splash-loader::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  pointer-events: none;
 }
 
-@keyframes pixel-pulse {
-  0% {
-    opacity: 0.12;
-    transform: scale(0.65);
+.splash-loader::before {
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  border: 1px solid rgb(var(--color-emerald) / 0.14);
+  border-radius: 9999px;
+  animation: splash-orbit 4.6s ease-in-out infinite;
+}
+
+.splash-loader::after {
+  width: min(82vw, 680px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(var(--color-emerald) / 0.38), transparent);
+  transform: rotate(-12deg);
+  animation: splash-sweep 2.8s ease-in-out infinite;
+}
+
+.splash-mark {
+  isolation: isolate;
+}
+
+.splash-rings {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle, rgb(var(--color-emerald) / 0.16), transparent 58%),
+    conic-gradient(from 120deg, transparent, rgb(var(--color-emerald) / 0.22), transparent 32%);
+  filter: blur(0.4px);
+  transform: translate(-50%, -50%);
+  animation: splash-ring 4.8s ease-in-out infinite;
+}
+
+.splash-word span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+  animation: splash-letter 1s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+}
+
+.splash-word {
+  position: relative;
+  letter-spacing: 0;
+}
+
+.splash-word::after {
+  content: "";
+  position: absolute;
+  inset: 0 -0.08em;
+  background: linear-gradient(110deg, transparent 22%, rgb(var(--color-emerald) / 0.36) 46%, rgba(255, 255, 255, 0.58) 50%, rgb(var(--color-emerald) / 0.2) 54%, transparent 76%);
+  mix-blend-mode: screen;
+  transform: translateX(-120%);
+  animation: splash-shine 2.8s ease 0.9s infinite;
+}
+
+.splash-line span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgb(var(--color-emerald)), transparent);
+  transform: translateX(-100%);
+  animation: splash-progress 4.2s ease-in-out 0.35s forwards;
+}
+
+@keyframes splash-letter {
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.01);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
-@keyframes loader-exit {
+@keyframes splash-shine {
+  0%, 18% {
+    transform: translateX(-120%);
+  }
+  55%, 100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes splash-progress {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes splash-ring {
+  0%, 100% {
+    opacity: 0.42;
+    transform: translate(-50%, -50%) scale(0.86) rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1) rotate(22deg);
+  }
+}
+
+@keyframes splash-orbit {
+  0%, 100% {
+    opacity: 0.34;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes splash-sweep {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-16%) rotate(-12deg);
+  }
+  45%, 60% {
+    opacity: 0.8;
+    transform: translateX(12%) rotate(-12deg);
+  }
+}
+
+@keyframes splash-exit {
   to {
     opacity: 0;
     visibility: hidden;
+    transform: scale(1.02);
   }
 }
 

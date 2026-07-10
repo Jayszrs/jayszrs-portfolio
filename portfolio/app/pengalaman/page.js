@@ -16,14 +16,11 @@ export default async function PengalamanPage() {
     <PublicPage
       content={content}
       hero={{
-        eyebrow: "Perjalanan",
-        title: "Belajar lewat kerja nyata dan kolaborasi.",
-        description: "Catatan pengalaman profesional, organisasi, dan volunteer yang membentuk cara saya bekerja hari ini.",
-        accent: "ink",
+        ...content.pageHeroes.pengalaman,
         count: content.experience.length,
       }}
     >
-      <Experience items={content.experience} />
+      <Experience items={content.experience} section={content.sections.experience} />
     </PublicPage>
   );
 }

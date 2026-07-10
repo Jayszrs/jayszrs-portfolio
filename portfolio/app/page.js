@@ -22,15 +22,15 @@ export default async function Home() {
       <ParallaxBlobs />
       <Navbar brandName={content.profile.brandName} fullName={content.profile.fullName} />
       <Hero profile={content.profile} />
-      <SignalStrip roles={content.profile.roles} />
-      <About about={content.about} />
-      <Education items={content.education} />
-      <Capabilities capabilities={content.capabilities} />
-      <Experience items={content.experience} />
-      <Gallery items={content.gallery} />
-      <SelectedDesigns items={content.selectedDesigns} />
-      <Achievements achievements={content.achievements} certificates={content.certificates} />
-      <Contact contact={content.contact} profile={content.profile} />
+      <SignalStrip roles={content.profile.roles} section={content.sections.signalStrip} />
+      <About about={content.about} section={content.sections.about} />
+      <Education items={content.education} section={content.sections.education} />
+      <Capabilities capabilities={content.capabilities} section={content.sections.capabilities} />
+      <Experience items={content.experience} section={content.sections.experience} />
+      <Gallery items={content.gallery} section={content.sections.gallery} />
+      <SelectedDesigns items={content.selectedDesigns} section={content.sections.selectedDesigns} />
+      <Achievements achievements={content.achievements} certificates={content.certificates} section={content.sections.achievements} />
+      <Contact contact={content.contact} profile={content.profile} section={content.sections.contact} />
     </main>
   );
 }

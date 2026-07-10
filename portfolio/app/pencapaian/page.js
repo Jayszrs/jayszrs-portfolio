@@ -17,14 +17,11 @@ export default async function PencapaianPage() {
     <PublicPage
       content={content}
       hero={{
-        eyebrow: "Milestone",
-        title: "Bukti kecil dari proses yang terus berjalan.",
-        description: "Kumpulan pencapaian, sertifikasi, dan pengakuan yang menjadi penanda perjalanan belajar saya.",
-        accent: "gold",
+        ...content.pageHeroes.pencapaian,
         count: total,
       }}
     >
-      <Achievements achievements={content.achievements} certificates={content.certificates} />
+      <Achievements achievements={content.achievements} certificates={content.certificates} section={content.sections.achievements} />
     </PublicPage>
   );
 }

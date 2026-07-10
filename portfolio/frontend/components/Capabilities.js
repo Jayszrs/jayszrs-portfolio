@@ -32,10 +32,14 @@ const GROUPS = [
   },
 ];
 
-export default function Capabilities({ capabilities }) {
+export default function Capabilities({ capabilities, section = {} }) {
+  const groups = GROUPS.map((group) => ({
+    ...group,
+    ...(section.groups?.[group.key] || {}),
+  }));
   const [activeKey, setActiveKey] = useState(GROUPS[0].key);
   const [selected, setSelected] = useState(null);
-  const activeGroup = GROUPS.find((group) => group.key === activeKey) || GROUPS[0];
+  const activeGroup = groups.find((group) => group.key === activeKey) || groups[0];
   const items = capabilities?.[activeGroup.key] || [];
   const ActiveIcon = activeGroup.icon;
 
@@ -44,16 +48,16 @@ export default function Capabilities({ capabilities }) {
       <div className="mx-auto max-w-7xl">
         <div className="overflow-hidden rounded-[2rem] border border-surface/80 bg-surface/45 shadow-glass backdrop-blur-xl">
           <div className="border-b border-line/80 p-5 sm:p-7">
-            <p className="eyebrow">Toolbox & workflow</p>
+            <p className="eyebrow">{section.eyebrow || "Toolbox & workflow"}</p>
             <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <h2 className="font-display text-4xl font-semibold text-ink sm:text-5xl">Keahlian yang saya pakai.</h2>
+                <h2 className="font-display text-4xl font-semibold text-ink sm:text-5xl">{section.title || "Keahlian yang saya pakai."}</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-                  Bukan sekadar daftar nama—setiap item bisa dibuka untuk melihat sejak kapan dan bagaimana saya menggunakannya.
+                  {section.description || "Bukan sekadar daftar nama - setiap item bisa dibuka untuk melihat sejak kapan dan bagaimana saya menggunakannya."}
                 </p>
               </div>
               <div className="flex max-w-full gap-2 overflow-x-auto rounded-2xl bg-surface/70 p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {GROUPS.map((group) => {
+                {groups.map((group) => {
                   const Icon = group.icon;
                   const active = activeKey === group.key;
                   return (
@@ -95,9 +99,9 @@ export default function Capabilities({ capabilities }) {
                 >
                   <BrandIcon name={item.name} />
                   <span className="mt-5 font-display text-lg font-semibold text-ink">{item.name}</span>
-                  <span className="mt-1.5 text-sm text-muted">Sejak {item.since || "—"} · {item.level || "Belajar"}</span>
+                  <span className="mt-1.5 text-sm text-muted">Sejak {item.since || "-"} - {item.level || "Belajar"}</span>
                   <span className="mt-auto pt-4 text-xs font-semibold text-emerald-deep transition sm:opacity-0 sm:group-hover:opacity-100">
-                    Lihat detail <span aria-hidden="true">→</span>
+                    Lihat detail <span aria-hidden="true">-&gt;</span>
                   </span>
                 </button>
               ))}

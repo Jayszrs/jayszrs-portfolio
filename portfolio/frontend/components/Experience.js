@@ -14,7 +14,7 @@ function periodOf(item) {
   return item.period || [item.startDate, item.endDate || "Sekarang"].filter(Boolean).join(" — ");
 }
 
-export default function Experience({ items = [] }) {
+export default function Experience({ items = [], section = {} }) {
   const available = useMemo(
     () => ORDER.filter((type) => type === "Semua" || items.some((item) => item.type === type)),
     [items]
@@ -26,11 +26,11 @@ export default function Experience({ items = [] }) {
   return (
     <section id="pengalaman" className="section-pad py-16 sm:py-20">
       <div className="mx-auto max-w-6xl">
-        <p className="eyebrow">Rekam Jejak</p>
+        <p className="eyebrow">{section.eyebrow || "Rekam Jejak"}</p>
         <div className="mt-2 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">Pengalaman</h2>
-            <p className="mt-2 text-sm text-muted">Klik pengalaman untuk membuka cerita dan kontribusi lengkap.</p>
+            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">{section.title || "Pengalaman"}</h2>
+            <p className="mt-2 text-sm text-muted">{section.description || "Klik pengalaman untuk membuka cerita dan kontribusi lengkap."}</p>
           </div>
           <div className="flex max-w-full gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {available.map((type) => (

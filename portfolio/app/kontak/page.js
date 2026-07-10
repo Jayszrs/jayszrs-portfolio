@@ -16,14 +16,9 @@ export default async function KontakPage() {
     <PublicPage
       content={content}
       hideFooter
-      hero={{
-        eyebrow: "Mari bicara",
-        title: "Punya ide menarik? Saya siap mendengarkan.",
-        description: "Ceritakan kebutuhan, tantangan, atau peluang kolaborasinya. Kita bisa mulai dari percakapan sederhana.",
-        accent: "emerald",
-      }}
+      hero={content.pageHeroes.kontak}
     >
-      <Contact contact={content.contact} profile={content.profile} />
+      <Contact contact={content.contact} profile={content.profile} section={content.sections.contact} />
     </PublicPage>
   );
 }

@@ -32,18 +32,18 @@ function Card({ item, icon: Icon, onClick }) {
   );
 }
 
-export default function Achievements({ achievements = [], certificates = [] }) {
+export default function Achievements({ achievements = [], certificates = [], section = {} }) {
   const [selected, setSelected] = useState(null);
 
   return (
     <section id="pencapaian" className="section-pad py-16 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <p className="eyebrow">Pengakuan</p>
-        <h2 className="mt-2 font-display text-3xl font-semibold text-ink sm:text-4xl">Pencapaian & Sertifikat</h2>
+        <p className="eyebrow">{section.eyebrow || "Pengakuan"}</p>
+        <h2 className="mt-2 font-display text-3xl font-semibold text-ink sm:text-4xl">{section.title || "Pencapaian & Sertifikat"}</h2>
 
         {achievements.length > 0 && (
           <div className="mt-10">
-            <p className="mb-4 text-sm font-semibold text-ink/70">Pencapaian</p>
+            <p className="mb-4 text-sm font-semibold text-ink/70">{section.achievementsLabel || "Pencapaian"}</p>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {achievements.map((item) => (
                 <Card key={item.id} item={item} icon={Award} onClick={() => setSelected({ ...item, kind: "Pencapaian" })} />
@@ -54,7 +54,7 @@ export default function Achievements({ achievements = [], certificates = [] }) {
 
         {certificates.length > 0 && (
           <div className="mt-12">
-            <p className="mb-4 text-sm font-semibold text-ink/70">Sertifikat</p>
+            <p className="mb-4 text-sm font-semibold text-ink/70">{section.certificatesLabel || "Sertifikat"}</p>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {certificates.map((item) => (
                 <Card key={item.id} item={item} icon={FileBadge} onClick={() => setSelected({ ...item, kind: "Sertifikat" })} />

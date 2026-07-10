@@ -17,16 +17,11 @@ export default async function TentangPage() {
   return (
     <PublicPage
       content={content}
-      hero={{
-        eyebrow: "Lebih dekat",
-        title: "Teknologi yang rapi, aman, dan benar-benar berguna.",
-        description: "Kenali cara saya berpikir, bidang yang saya pelajari, serta kemampuan yang saya bawa ke setiap proyek.",
-        accent: "emerald",
-      }}
+      hero={content.pageHeroes.tentang}
     >
-      <About about={content.about} />
-      <Education items={content.education} />
-      <Capabilities capabilities={content.capabilities} />
+      <About about={content.about} section={content.sections.about} />
+      <Education items={content.education} section={content.sections.education} />
+      <Capabilities capabilities={content.capabilities} section={content.sections.capabilities} />
     </PublicPage>
   );
 }

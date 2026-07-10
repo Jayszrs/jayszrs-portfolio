@@ -6,25 +6,12 @@ import {
   LogOut, Plus, Trash2, Save, Loader2, ImagePlus, Lock,
   ExternalLink, LayoutDashboard, CheckCircle2,
 } from "lucide-react";
+import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
 
 const TABS = [
-  "Profil", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
+  "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
   "Pengalaman", "Galeri", "Selected Design", "Pencapaian", "Sertifikat", "Kontak",
 ];
-
-// DATA DEFAULT: Supaya tidak ada error "undefined" kalau database masih kosong
-const DEFAULT_CONTENT = {
-  profile: { brandName: "", fullName: "", greeting: "", roleLabel: "", role: "", roles: [], handle: "", status: "", location: "", tagline: "", heroImage: "", socials: { github: "", linkedin: "", instagram: "" } },
-  about: { heading: "", paragraphs: [], skills: [] },
-  education: [],
-  capabilities: { editingSoftware: [], programming: [], operatingSystems: [] },
-  experience: [],
-  gallery: [],
-  selectedDesigns: [],
-  achievements: [],
-  certificates: [],
-  contact: { heading: "", email: "", phone: "", whatsapp: "", address: "", subheading: "", socials: {} }
-};
 
 function uid(prefix) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
@@ -195,6 +182,104 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }
   );
 }
 
+function setNestedValue(source, path, value) {
+  const [key, ...rest] = path;
+  if (!key) return value;
+
+  return {
+    ...(source || {}),
+    [key]: rest.length ? setNestedValue(source?.[key], rest, value) : value,
+  };
+}
+
+function SectionTextsEditor({ content, setContent }) {
+  const update = (path, value) => setContent(setNestedValue(content, path, value));
+  const updateList = (path, value) => update(path, value.split(",").map((item) => item.trim()).filter(Boolean));
+
+  const renderFields = (title, fields) => (
+    <div className="glass space-y-4 rounded-2xl p-5">
+      <h3 className="font-display text-lg font-semibold text-ink">{title}</h3>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {fields.map((field) => (
+          <div key={field.label} className={field.wide ? "sm:col-span-2" : ""}>
+            {field.kind === "select" ? (
+              <SelectField
+                label={field.label}
+                value={field.value}
+                options={field.options}
+                onChange={(value) => update(field.path, value)}
+              />
+            ) : (
+              <TextField
+                label={field.label}
+                value={field.value}
+                textarea={field.textarea}
+                placeholder={field.placeholder}
+                onChange={(value) => field.list ? updateList(field.path, value) : update(field.path, value)}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const sections = content.sections || DEFAULT_CONTENT.sections;
+  const pageHeroes = content.pageHeroes || DEFAULT_CONTENT.pageHeroes;
+
+  return (
+    <div className="space-y-5">
+      {renderFields("Beranda", [
+        { label: "Strip teks tambahan (pisahkan koma)", value: (sections.signalStrip?.extras || []).join(", "), path: ["sections", "signalStrip", "extras"], list: true, wide: true },
+        { label: "Eyebrow Tentang", value: sections.about?.eyebrow, path: ["sections", "about", "eyebrow"] },
+        { label: "Label kartu skill", value: sections.about?.skillsEyebrow, path: ["sections", "about", "skillsEyebrow"] },
+        { label: "Eyebrow Proyek", value: sections.gallery?.eyebrow, path: ["sections", "gallery", "eyebrow"] },
+        { label: "Judul Proyek", value: sections.gallery?.title, path: ["sections", "gallery", "title"] },
+        { label: "Eyebrow Selected Design", value: sections.selectedDesigns?.eyebrow, path: ["sections", "selectedDesigns", "eyebrow"] },
+        { label: "Judul Selected Design", value: sections.selectedDesigns?.title, path: ["sections", "selectedDesigns", "title"] },
+        { label: "Deskripsi Selected Design", value: sections.selectedDesigns?.description, path: ["sections", "selectedDesigns", "description"], textarea: true, wide: true },
+      ])}
+
+      {renderFields("Pendidikan & Keahlian", [
+        { label: "Eyebrow Pendidikan", value: sections.education?.eyebrow, path: ["sections", "education", "eyebrow"] },
+        { label: "Judul Pendidikan", value: sections.education?.title, path: ["sections", "education", "title"] },
+        { label: "Eyebrow modal pendidikan", value: sections.education?.detailEyebrow, path: ["sections", "education", "detailEyebrow"] },
+        { label: "Eyebrow Keahlian", value: sections.capabilities?.eyebrow, path: ["sections", "capabilities", "eyebrow"] },
+        { label: "Judul Keahlian", value: sections.capabilities?.title, path: ["sections", "capabilities", "title"] },
+        { label: "Deskripsi Keahlian", value: sections.capabilities?.description, path: ["sections", "capabilities", "description"], textarea: true, wide: true },
+        { label: "Judul Software", value: sections.capabilities?.groups?.editingSoftware?.title, path: ["sections", "capabilities", "groups", "editingSoftware", "title"] },
+        { label: "Deskripsi Software", value: sections.capabilities?.groups?.editingSoftware?.description, path: ["sections", "capabilities", "groups", "editingSoftware", "description"], textarea: true },
+        { label: "Judul Programming", value: sections.capabilities?.groups?.programming?.title, path: ["sections", "capabilities", "groups", "programming", "title"] },
+        { label: "Deskripsi Programming", value: sections.capabilities?.groups?.programming?.description, path: ["sections", "capabilities", "groups", "programming", "description"], textarea: true },
+        { label: "Judul OS", value: sections.capabilities?.groups?.operatingSystems?.title, path: ["sections", "capabilities", "groups", "operatingSystems", "title"] },
+        { label: "Deskripsi OS", value: sections.capabilities?.groups?.operatingSystems?.description, path: ["sections", "capabilities", "groups", "operatingSystems", "description"], textarea: true },
+      ])}
+
+      {renderFields("Pengalaman, Pencapaian, Kontak", [
+        { label: "Eyebrow Pengalaman", value: sections.experience?.eyebrow, path: ["sections", "experience", "eyebrow"] },
+        { label: "Judul Pengalaman", value: sections.experience?.title, path: ["sections", "experience", "title"] },
+        { label: "Deskripsi Pengalaman", value: sections.experience?.description, path: ["sections", "experience", "description"], textarea: true, wide: true },
+        { label: "Eyebrow Pencapaian", value: sections.achievements?.eyebrow, path: ["sections", "achievements", "eyebrow"] },
+        { label: "Judul Pencapaian", value: sections.achievements?.title, path: ["sections", "achievements", "title"] },
+        { label: "Label list pencapaian", value: sections.achievements?.achievementsLabel, path: ["sections", "achievements", "achievementsLabel"] },
+        { label: "Label list sertifikat", value: sections.achievements?.certificatesLabel, path: ["sections", "achievements", "certificatesLabel"] },
+        { label: "Eyebrow Kontak", value: sections.contact?.eyebrow, path: ["sections", "contact", "eyebrow"] },
+        { label: "Judul detail kontak", value: sections.contact?.detailsTitle, path: ["sections", "contact", "detailsTitle"] },
+        { label: "Teks tombol email", value: sections.contact?.emailButton, path: ["sections", "contact", "emailButton"] },
+        { label: "Teks tombol WhatsApp", value: sections.contact?.whatsappButton, path: ["sections", "contact", "whatsappButton"] },
+        { label: "Teks footer", value: sections.contact?.footerSuffix, path: ["sections", "contact", "footerSuffix"] },
+      ])}
+
+      {Object.entries(pageHeroes).map(([key, hero]) => renderFields(`Hero halaman ${key}`, [
+        { label: "Eyebrow", value: hero.eyebrow, path: ["pageHeroes", key, "eyebrow"] },
+        { label: "Accent", value: hero.accent, path: ["pageHeroes", key, "accent"], kind: "select", options: ["emerald", "gold", "ink"] },
+        { label: "Judul", value: hero.title, path: ["pageHeroes", key, "title"], wide: true },
+        { label: "Deskripsi", value: hero.description, path: ["pageHeroes", key, "description"], textarea: true, wide: true },
+      ]))}
+    </div>
+  );
+}
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
   const [password, setPassword] = useState("");
@@ -234,22 +319,7 @@ export default function AdminPage() {
           if (!r.ok) throw new Error("Konten tidak dapat dimuat");
           return r.json();
         })
-        .then((data) => {
-          // PENTING: Penggabungan data agar tidak ada array yang undefined (bikin crash)
-          const safeData = {
-            profile: { ...DEFAULT_CONTENT.profile, ...(data.profile || {}) },
-            about: { ...DEFAULT_CONTENT.about, ...(data.about || {}) },
-            education: data.education || [],
-            capabilities: { ...DEFAULT_CONTENT.capabilities, ...(data.capabilities || {}) },
-            experience: data.experience || [],
-            gallery: data.gallery || [],
-            selectedDesigns: data.selectedDesigns || [],
-            achievements: data.achievements || [],
-            certificates: data.certificates || [],
-            contact: { ...DEFAULT_CONTENT.contact, ...(data.contact || {}) }
-          };
-          setContent(safeData);
-        })
+        .then((data) => setContent(mergeContent(data)))
         .catch(() => setContentError("Konten admin gagal dimuat. Coba muat ulang halaman."))
         .finally(() => window.clearTimeout(timer));
 
@@ -467,6 +537,10 @@ export default function AdminPage() {
             <TextField label="LinkedIn URL" value={content.profile?.socials?.linkedin} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, linkedin: v } } })} />
             <TextField label="Instagram URL" value={content.profile?.socials?.instagram} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, instagram: v } } })} />
           </div>
+        )}
+
+        {tab === "Teks Section" && (
+          <SectionTextsEditor content={content} setContent={setContent} />
         )}
 
         {tab === "Tentang" && (

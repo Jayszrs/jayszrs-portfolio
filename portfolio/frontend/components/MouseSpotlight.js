@@ -13,7 +13,7 @@ export default function MouseSpotlight() {
     const moveGlow = (event) => {
       window.cancelAnimationFrame(frame);
       frame = window.requestAnimationFrame(() => {
-        glow.style.transform = `translate3d(${event.clientX - 260}px, ${event.clientY - 260}px, 0)`;
+        glow.style.transform = `translate3d(${event.clientX - 130}px, ${event.clientY - 90}px, 0)`;
         glow.style.opacity = "1";
       });
     };

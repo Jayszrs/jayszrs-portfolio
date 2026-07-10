@@ -17,15 +17,12 @@ export default async function ProyekPage() {
     <PublicPage
       content={content}
       hero={{
-        eyebrow: "Selected work",
-        title: "Dari ide, jadi produk yang bisa dipakai.",
-        description: "Pilihan proyek yang mencakup pengembangan web, sistem informasi, desain produk, dan eksperimen IoT.",
-        accent: "gold",
+        ...content.pageHeroes.proyek,
         count: content.gallery.length,
       }}
     >
-      <Gallery items={content.gallery} />
-      <SelectedDesigns items={content.selectedDesigns} />
+      <Gallery items={content.gallery} section={content.sections.gallery} />
+      <SelectedDesigns items={content.selectedDesigns} section={content.sections.selectedDesigns} />
     </PublicPage>
   );
 }

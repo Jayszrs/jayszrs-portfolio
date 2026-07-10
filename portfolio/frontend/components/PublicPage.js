@@ -10,7 +10,7 @@ export default function PublicPage({ content, hero, children, hideFooter = false
       <Navbar brandName={content.profile.brandName} fullName={content.profile.fullName} />
       <PageHero {...hero} />
       {children}
-      {!hideFooter && <SiteFooter profile={content.profile} />}
+      {!hideFooter && <SiteFooter profile={content.profile} section={content.sections.contact} />}
     </main>
   );
 }
