@@ -102,7 +102,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
   );
 }
 
-function ImageField({ label, value, onChange }) {
+function ImageField({ label, value, onChange, showRemove = true, compact = false }) {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
   const [previewBroken, setPreviewBroken] = useState(false);
@@ -129,29 +129,31 @@ function ImageField({ label, value, onChange }) {
   };
 
   return (
-    <div className="min-w-0 rounded-xl border border-line bg-paper/45 p-3">
-      <div className="mb-2 flex items-center justify-between gap-3">
-        <label className="block text-xs font-semibold text-ink/70">{label}</label>
-        {value && (
-          <button
-            type="button"
-            onClick={() => {
-              onChange("");
-              setStatus("Gambar dihapus dari form. Klik Simpan untuk menyimpan perubahan.");
-            }}
-            className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
-          >
-            <XCircle size={13} /> Hapus
-          </button>
-        )}
-      </div>
-      <div className="grid gap-3 sm:grid-cols-[88px_1fr] sm:items-center">
-        <div className="flex h-[88px] min-h-[88px] w-full items-center justify-center overflow-hidden rounded-xl border border-line bg-surface sm:w-[88px]">
+    <div className={`min-w-0 rounded-xl border border-line ${compact ? "bg-surface p-2" : "bg-paper/45 p-3"}`}>
+      {(label || (showRemove && value)) && (
+        <div className="mb-2 flex items-center justify-between gap-3">
+          {label && <label className="block text-xs font-semibold text-ink/70">{label}</label>}
+          {showRemove && value && (
+            <button
+              type="button"
+              onClick={() => {
+                onChange("");
+                setStatus("Gambar dihapus dari form. Klik Simpan untuk menyimpan perubahan.");
+              }}
+              className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+            >
+              <XCircle size={13} /> Hapus
+            </button>
+          )}
+        </div>
+      )}
+      <div className={`grid gap-3 ${compact ? "sm:grid-cols-[72px_1fr]" : "sm:grid-cols-[88px_1fr]"} sm:items-center`}>
+        <div className={`flex ${compact ? "h-[72px] min-h-[72px] sm:w-[72px]" : "h-[88px] min-h-[88px] sm:w-[88px]"} w-full items-center justify-center overflow-hidden rounded-xl border border-line bg-surface`}>
           {value && !previewBroken ? (
             <img src={value} alt="" className="h-full w-full object-contain p-2" onError={() => setPreviewBroken(true)} />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-emerald-soft">
-              <ImagePlus size={20} className="text-emerald-deep" />
+              <ImagePlus size={compact ? 18 : 20} className="text-emerald-deep" />
             </div>
           )}
         </div>
@@ -174,7 +176,7 @@ function ImageField({ label, value, onChange }) {
             </label>
           </div>
           <p className={`text-xs ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
-            {status || (value ? "Preview siap. Jangan lupa klik Simpan setelah mengubah gambar." : "Format JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
+            {status || (value ? "Preview siap. Klik Simpan setelah mengubah gambar." : "JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
           </p>
           {previewBroken && value && <p className="text-xs text-red-500">Preview gagal dimuat. Cek kembali URL gambarnya.</p>}
         </div>
@@ -203,29 +205,48 @@ function MultiImageField({ label, values = [], onChange, addLabel = "Tambah gamb
     onChange(next);
   };
 
+  const filledCount = documentationImages({ documentationImages: rows }).length;
+
   return (
     <div className="space-y-3 rounded-xl border border-line bg-paper/45 p-3">
-      <div className="flex items-center justify-between gap-3">
-        <label className="block text-xs font-semibold text-ink/70">{label}</label>
-        <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{documentationImages({ documentationImages: rows }).length} gambar</span>
+      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <label className="block text-xs font-semibold text-ink/70">{label}</label>
+          <p className="text-xs text-muted">Tambah gambar sebanyak yang dibutuhkan, lalu klik Simpan.</p>
+        </div>
+        <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} gambar</span>
       </div>
-      <div className="space-y-3">
-        {rows.map((src, imageIndex) => (
-          <div key={`${src}-${imageIndex}`} className="rounded-xl border border-line bg-surface/70 p-3">
-            <div className="mb-2 flex items-center justify-between gap-3">
-              <p className="text-xs font-semibold text-ink/70">Dokumentasi {imageIndex + 1}</p>
+
+      {rows.length > 0 && (
+        <div className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface">
+          {rows.map((src, imageIndex) => (
+            <div key={`${src}-${imageIndex}`} className="grid gap-3 p-3 lg:grid-cols-[112px_1fr_auto] lg:items-center">
+              <div>
+                <p className="font-mono text-xs font-semibold text-muted">#{imageIndex + 1}</p>
+                <p className="mt-1 text-xs font-semibold text-ink">Dokumentasi</p>
+              </div>
+              <ImageField
+                label=""
+                value={src}
+                onChange={(value) => updateImage(imageIndex, value)}
+                showRemove={false}
+                compact
+              />
               <button
                 type="button"
                 onClick={() => removeImage(imageIndex)}
-                className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+                className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-red-100 px-3 text-xs font-semibold text-red-500 transition hover:bg-red-50 lg:w-10 lg:px-0"
+                title={`Hapus dokumentasi ${imageIndex + 1}`}
+                aria-label={`Hapus dokumentasi ${imageIndex + 1}`}
               >
-                <XCircle size={13} /> Hapus
+                <Trash2 size={14} />
+                <span className="lg:hidden">Hapus</span>
               </button>
             </div>
-            <ImageField label="" value={src} onChange={(value) => updateImage(imageIndex, value)} />
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+
       <button
         type="button"
         onClick={() => setRows([...rows, ""])}
