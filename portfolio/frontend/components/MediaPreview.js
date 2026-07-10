@@ -8,15 +8,15 @@ function isPdf(src = "") {
   return /\.pdf(\?.*)?$/i.test(src);
 }
 
-function withPdfOptions(src = "", page) {
+function withPdfOptions(src = "") {
   if (!src) return src;
   const [base, fragment = ""] = src.split("#");
   const params = new URLSearchParams(fragment);
-  if (page) params.set("page", String(page));
   params.set("toolbar", "0");
-  if (!params.has("navpanes")) params.set("navpanes", "0");
-  if (!params.has("scrollbar")) params.set("scrollbar", "0");
-  if (!params.has("view")) params.set("view", "FitH");
+  params.set("navpanes", "0");
+  params.set("scrollbar", "1");
+  params.set("view", "Fit");
+  params.set("zoom", "page-fit");
   return `${base}#${params.toString()}`;
 }
 
@@ -24,24 +24,16 @@ function normalizeItem(item, fallbackTitle) {
   if (!item) return null;
   if (typeof item === "string") return { src: item, title: fallbackTitle };
   if (!item.src) return null;
-  return { src: item.src, title: item.title || fallbackTitle, page: item.page };
+  return { src: item.src, title: item.title || fallbackTitle };
 }
 
-export default function MediaPreview({ src = "", title = "Preview", items = [], initialIndex = 0, pdfPageCount = 0, onClose }) {
+export default function MediaPreview({ src = "", title = "Preview", items = [], initialIndex = 0, onClose }) {
   const galleryItems = useMemo(() => {
     const normalized = (items || []).map((item) => normalizeItem(item, title)).filter(Boolean);
     if (normalized.length) return normalized;
-    const pageCount = Math.max(0, Number(pdfPageCount) || 0);
-    if (src && isPdf(src) && pageCount > 1) {
-      return Array.from({ length: pageCount }, (_, index) => ({
-        src,
-        page: index + 1,
-        title: `${title} - Halaman ${index + 1}`,
-      }));
-    }
     return src ? [{ src, title }] : [];
-  }, [items, src, title, pdfPageCount]);
-  const galleryKey = galleryItems.map((item) => `${item.src}|${item.title}|${item.page || ""}`).join("::");
+  }, [items, src, title]);
+  const galleryKey = galleryItems.map((item) => `${item.src}|${item.title}`).join("::");
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState(null);
   const current = galleryItems[activeIndex] || galleryItems[0];
@@ -91,7 +83,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   if (!current?.src) return null;
 
   const pdf = isPdf(current.src);
-  const pdfViewerSrc = withPdfOptions(current.src, current.page);
+  const pdfViewerSrc = withPdfOptions(current.src);
 
   return (
     <div

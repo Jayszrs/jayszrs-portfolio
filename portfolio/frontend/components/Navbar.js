@@ -46,6 +46,15 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
     document.getElementById(targetHash)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const handleBrandClick = (event) => {
+    setOpen(false);
+    setHash("");
+    if (pathname !== "/") return;
+    event.preventDefault();
+    window.history.pushState(null, "", "/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const isActive = (href) => {
     if (href.includes("#")) {
       const [targetPath, targetHash] = href.split("#");
@@ -102,7 +111,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   return (
     <header className="fixed left-0 right-0 top-3 z-50 flex justify-center px-4 sm:top-4 sm:px-4">
       <nav className="glass flex w-full max-w-6xl items-center justify-between rounded-[1.75rem] px-3 py-2.5 md:rounded-full md:px-4 md:py-2">
-        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+        <Link href="/" onClick={handleBrandClick} className="flex min-w-0 items-center gap-2.5">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm sm:h-9 sm:w-9">
             <img
               src="https://api.iconify.design/simple-icons:kalilinux.svg?color=%23ffffff"
@@ -188,7 +197,6 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
       <MediaPreview
         src={resumePreview ? cvUrl : ""}
         title="Preview Resume"
-        pdfPageCount={4}
         onClose={() => setResumePreview(false)}
       />
     </header>

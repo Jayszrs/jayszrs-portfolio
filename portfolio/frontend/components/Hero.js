@@ -261,7 +261,6 @@ export default function Hero({ profile }) {
       <MediaPreview
         src={resumePreview ? profile.cvUrl : ""}
         title="Preview Resume"
-        pdfPageCount={4}
         onClose={() => setResumePreview(false)}
       />
     </section>
