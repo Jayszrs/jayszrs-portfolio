@@ -1,3 +1,5 @@
+"use client";
+
 const ICONS = {
   Canva: "simple-icons:canva",
   CapCut: "arcticons:capcut",
@@ -47,14 +49,21 @@ export default function BrandIcon({ name, size = "large", className = "" }) {
   const dimensions = size === "small" ? "h-9 w-9" : size === "modal" ? "h-16 w-16" : "h-14 w-14";
 
   return (
-    <span className={`${dimensions} flex shrink-0 items-center justify-center rounded-2xl border border-line/80 bg-surface p-2.5 shadow-sm ${className}`}>
+    <span className={`${dimensions} relative flex shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line/80 bg-surface p-2.5 shadow-sm ${className}`}>
       {icon ? (
-        <img
-          src={`https://api.iconify.design/${icon}.svg`}
-          alt=""
-          aria-hidden="true"
-          className={`h-full w-full object-contain ${DARK_INVERT.has(name) ? "theme-invert-dark" : ""}`}
-        />
+        <>
+          <img
+            src={`https://api.iconify.design/${icon}.svg`}
+            alt=""
+            aria-hidden="true"
+            className={`h-full w-full object-contain ${DARK_INVERT.has(name) ? "theme-invert-dark" : ""}`}
+            onError={(event) => {
+              event.currentTarget.style.display = "none";
+              event.currentTarget.nextElementSibling?.classList.remove("hidden");
+            }}
+          />
+          <span className="hidden font-display text-sm font-bold text-emerald">{initials(name)}</span>
+        </>
       ) : (
         <span className="font-display text-sm font-bold text-emerald">{initials(name)}</span>
       )}

@@ -23,6 +23,6 @@ export async function POST(request) {
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("API Route Error:", err);
-    return NextResponse.json({ error: "Terjadi kesalahan server" }, { status: 500 });
+    return NextResponse.json({ error: err.message || "Terjadi kesalahan server" }, { status: 500 });
   }
 }

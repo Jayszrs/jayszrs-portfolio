@@ -1,4 +1,20 @@
 {
+  "workbench.editor.customLabels.enabled": true,
+  "workbench.editor.customLabels.patterns": {
+    "**/portfolio/app/page.js": "HomePage.js (route)",
+    "**/portfolio/app/tentang/page.js": "TentangPage.js (route)",
+    "**/portfolio/app/pengalaman/page.js": "PengalamanPage.js (route)",
+    "**/portfolio/app/proyek/page.js": "ProyekPage.js (route)",
+    "**/portfolio/app/pencapaian/page.js": "PencapaianPage.js (route)",
+    "**/portfolio/app/kontak/page.js": "KontakPage.js (route)",
+    "**/portfolio/app/admin/page.js": "AdminPage.js (route)",
+    "**/portfolio/app/layout.js": "RootLayout.js",
+    "**/portfolio/app/api/content/route.js": "ContentApiRoute.js",
+    "**/portfolio/app/api/upload/route.js": "UploadApiRoute.js",
+    "**/portfolio/app/api/auth/login/route.js": "LoginApiRoute.js",
+    "**/portfolio/app/api/auth/logout/route.js": "LogoutApiRoute.js",
+    "**/portfolio/app/api/auth/session/route.js": "SessionApiRoute.js"
+  },
   "remote.autoForwardPorts": true,
   "remote.portsAttributes": {
     "3000": {
