@@ -37,7 +37,7 @@ export async function POST(request) {
 
   // Upload langsung ke Vercel Blob
   const blob = await put(safeName, file, {
-    access: 'public',
+    access: 'private',
   });
 
   // blob.url berisi link URL permanen dari Vercel
