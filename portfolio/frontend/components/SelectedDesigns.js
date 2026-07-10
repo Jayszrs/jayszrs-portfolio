@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRight, Image as ImageIcon, Maximize2 } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
+import SafeImage from "@/frontend/components/SafeImage";
 
 export default function SelectedDesigns({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
@@ -30,7 +31,15 @@ export default function SelectedDesigns({ items = [], section = {} }) {
             >
               <div className={`${index === 0 ? "h-72" : "h-56"} relative overflow-hidden bg-gradient-to-br from-ink to-slate-700`}>
                 {item.image ? (
-                  <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <SafeImage
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                    sizes={index === 0 ? "(max-width: 640px) 90vw, (max-width: 1024px) 66vw, 760px" : "(max-width: 640px) 90vw, 380px"}
+                    className="h-full w-full"
+                    imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
                 ) : (
                   <div className="flex h-full flex-col items-center justify-center gap-3 text-paper/60">
                     <ImageIcon size={32} />
@@ -61,7 +70,15 @@ export default function SelectedDesigns({ items = [], section = {} }) {
           <>
             <div className="overflow-hidden rounded-2xl bg-ink">
               {selected.image ? (
-                <img src={selected.image} alt={selected.title} className="max-h-[55vh] w-full object-contain" />
+                <SafeImage
+                  src={selected.image}
+                  alt={selected.title}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 640px) 90vw, 760px"
+                  className="h-[55vh] max-h-[55vh] w-full"
+                  imgClassName="h-full w-full object-contain"
+                />
               ) : (
                 <div className="flex h-64 items-center justify-center text-sm text-paper/50">Preview belum diunggah.</div>
               )}

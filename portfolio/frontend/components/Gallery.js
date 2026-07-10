@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Image as ImageIcon, ListChecks, UserRound } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
+import SafeImage from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
 
 function CaseStudySection({ title, children }) {
@@ -92,7 +93,15 @@ export default function Gallery({ items = [], section = {} }) {
               className="glass group w-[82vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition hover:-translate-y-1 hover:shadow-glass-lg sm:w-[340px] sm:max-w-none"
             >
               <div className="h-44 w-full overflow-hidden">
-                <img src={item.image} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                <SafeImage
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 640px) 82vw, 340px"
+                  className="h-full w-full"
+                  imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-lg font-semibold text-ink">{item.title}</h3>
@@ -111,7 +120,15 @@ export default function Gallery({ items = [], section = {} }) {
           <div className="space-y-7">
             {selected.image && (
               <div className="h-64 overflow-hidden rounded-2xl bg-ink sm:h-80">
-                <img src={selected.image} alt={selected.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+                <SafeImage
+                  src={selected.image}
+                  alt={selected.title}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 640px) 90vw, 800px"
+                  className="h-full w-full"
+                  imgClassName="h-full w-full object-cover"
+                />
               </div>
             )}
             <div className="grid gap-3 sm:grid-cols-3">
@@ -163,7 +180,15 @@ export default function Gallery({ items = [], section = {} }) {
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {documentationImages(selected).map((src, index) => (
                       <a key={`${src}-${index}`} href={src} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-2xl border border-line bg-surface">
-                        <img src={src} alt={`Dokumentasi ${selected.title} ${index + 1}`} loading="lazy" decoding="async" className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
+                        <SafeImage
+                          src={src}
+                          alt={`Dokumentasi ${selected.title} ${index + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 320px"
+                          className="h-48 w-full"
+                          imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
                       </a>
                     ))}
                   </div>

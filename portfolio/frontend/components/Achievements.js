@@ -24,8 +24,8 @@ function Card({ item, icon: Icon, onClick }) {
           alt={`Logo ${item.issuer}`}
           loading="lazy"
           decoding="async"
-          className="flex h-40 w-full items-center justify-center bg-surface p-7"
-          imgClassName="h-full w-full object-contain"
+          className="flex h-40 w-full items-center justify-center bg-surface"
+          imgClassName="h-full w-full object-contain p-7"
           fallback={<LogoFallback label={item.issuer || item.title} icon={Icon} />}
         />
       ) : (

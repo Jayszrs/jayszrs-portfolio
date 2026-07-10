@@ -93,7 +93,15 @@ export default function Experience({ items = [], section = {} }) {
                     <div className="mt-4 flex gap-2">
                       {documentationImages(item).slice(0, 3).map((src, imageIndex) => (
                         <span key={`${src}-${imageIndex}`} className="h-12 w-16 overflow-hidden rounded-xl border border-line bg-surface">
-                          <img src={src} alt="" className="h-full w-full object-cover" />
+                          <SafeImage
+                            src={src}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                            sizes="64px"
+                            className="h-full w-full"
+                            imgClassName="h-full w-full object-cover"
+                          />
                         </span>
                       ))}
                     </div>
@@ -192,7 +200,15 @@ export default function Experience({ items = [], section = {} }) {
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {[...documentationImages(selected), ...(looksLikeImage(documentationFileOf(selected)) ? [documentationFileOf(selected)] : [])].map((src, index) => (
                       <a key={`${src}-${index}`} href={src} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-2xl border border-line bg-surface">
-                        <img src={src} alt={`Dokumentasi pengalaman ${index + 1}`} className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
+                        <SafeImage
+                          src={src}
+                          alt={`Dokumentasi pengalaman ${index + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 320px"
+                          className="h-48 w-full"
+                          imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
                       </a>
                     ))}
                   </div>

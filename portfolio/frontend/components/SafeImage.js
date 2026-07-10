@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ImageOff } from "lucide-react";
 
 export function initialsFrom(text = "") {
@@ -31,7 +32,16 @@ function unavailableSource(src) {
   return !String(src || "").trim();
 }
 
-export default function SafeImage({ src, alt = "", className = "", imgClassName = "", fallback = null, ...props }) {
+export default function SafeImage({
+  src,
+  alt = "",
+  className = "",
+  imgClassName = "",
+  fallback = null,
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  priority = false,
+  ...props
+}) {
   const [failed, setFailed] = useState(unavailableSource(src));
 
   useEffect(() => {
@@ -43,10 +53,13 @@ export default function SafeImage({ src, alt = "", className = "", imgClassName 
   }
 
   return (
-    <div className={className}>
-      <img
+    <div className={`relative overflow-hidden ${className}`}>
+      <Image
         src={src}
         alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
         className={imgClassName}
         onError={() => setFailed(true)}
         {...props}

@@ -4,8 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram, ArrowUpRight, Download, Eye } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import TypewriterText from "@/frontend/components/TypewriterText";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
+
+const MotionImage = motion(Image);
 
 export default function Hero({ profile }) {
   const { socials } = profile;
@@ -150,13 +153,14 @@ export default function Hero({ profile }) {
           <div className="glass-strong relative overflow-hidden rounded-[1.5rem] p-2.5 sm:rounded-[2rem] sm:p-3">
             <div className="relative h-[360px] w-full overflow-hidden rounded-[1.15rem] sm:h-[520px] sm:rounded-[1.5rem]">
               {currentHeroImage ? (
-                <motion.img
+                <MotionImage
                   key={currentHeroImage}
                   src={currentHeroImage}
                   alt={profile.fullName}
-                  fetchPriority="high"
-                  decoding="async"
-                  className="h-full w-full object-cover"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 420px, 380px"
+                  className="object-cover"
                   initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.55, ease: "easeOut" }}

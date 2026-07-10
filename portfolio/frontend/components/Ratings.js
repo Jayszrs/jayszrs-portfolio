@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Image as ImageIcon, Star } from "lucide-react";
+import SafeImage from "@/frontend/components/SafeImage";
 
 function Stars({ value = 5 }) {
   const count = Math.max(1, Math.min(5, Number(value) || 5));
@@ -72,7 +73,15 @@ export default function Ratings({ items = [], section = {} }) {
               <article key={item.id || `${item.name}-${item.date}`} className="glass overflow-hidden rounded-2xl">
                 {item.image && (
                   <div className="h-52 overflow-hidden bg-ink">
-                    <img src={item.image} alt={item.name || "Dokumentasi rating"} className="h-full w-full object-cover" />
+                    <SafeImage
+                      src={item.image}
+                      alt={item.name || "Dokumentasi rating"}
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 768px) 90vw, 50vw"
+                      className="h-full w-full"
+                      imgClassName="h-full w-full object-cover"
+                    />
                   </div>
                 )}
                 <div className="space-y-4 p-5">
