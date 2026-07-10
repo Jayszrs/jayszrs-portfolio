@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Download, Eye, Menu, X } from "lucide-react";
+import MediaPreview from "@/frontend/components/MediaPreview";
 
 const LINKS = [
   { href: "/", label: "Beranda" },
@@ -17,6 +18,7 @@ const LINKS = [
 export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   const [open, setOpen] = useState(false);
   const [hash, setHash] = useState("");
+  const [resumePreview, setResumePreview] = useState(false);
   const pathname = usePathname();
   const hasResume = Boolean(cvUrl);
 
@@ -56,15 +58,16 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   const renderResumeControls = (compact = false) => (
     hasResume ? (
       <>
-        <a
-          href={cvUrl}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => setOpen(false)}
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(false);
+            setResumePreview(true);
+          }}
           className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-semibold text-ink transition hover:bg-emerald-soft hover:text-emerald-deep md:h-8"
         >
           {compact ? "CV" : "Preview"} <Eye size={14} />
-        </a>
+        </button>
         <a
           href={cvUrl}
           download
@@ -182,6 +185,11 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           </ul>
         </div>
       )}
+      <MediaPreview
+        src={resumePreview ? cvUrl : ""}
+        title="Preview Resume"
+        onClose={() => setResumePreview(false)}
+      />
     </header>
   );
 }

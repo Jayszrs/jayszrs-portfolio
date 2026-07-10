@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Image as ImageIcon, Star } from "lucide-react";
+import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage from "@/frontend/components/SafeImage";
 
 function Stars({ value = 5 }) {
@@ -24,6 +25,7 @@ export default function Ratings({ items = [], section = {} }) {
   const [form, setForm] = useState({ name: "", role: "", stars: "5", comment: "", proofText: "", proofUrl: "" });
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+  const [preview, setPreview] = useState(null);
   const visibleItems = items.filter((item) => {
     const approved = item?.approved;
     const isApproved = approved === undefined || approved === true || approved === "true";
@@ -72,7 +74,11 @@ export default function Ratings({ items = [], section = {} }) {
             {visibleItems.map((item) => (
               <article key={item.id || `${item.name}-${item.date}`} className="glass overflow-hidden rounded-2xl">
                 {item.image && (
-                  <div className="h-52 overflow-hidden bg-ink">
+                  <button
+                    type="button"
+                    onClick={() => setPreview({ src: item.image, title: item.name || "Dokumentasi rating" })}
+                    className="h-52 w-full overflow-hidden bg-ink text-left"
+                  >
                     <SafeImage
                       src={item.image}
                       alt={item.name || "Dokumentasi rating"}
@@ -82,7 +88,7 @@ export default function Ratings({ items = [], section = {} }) {
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                     />
-                  </div>
+                  </button>
                 )}
                 <div className="space-y-4 p-5">
                   <div className="flex items-start justify-between gap-4">
@@ -104,9 +110,13 @@ export default function Ratings({ items = [], section = {} }) {
                       </div>
                       {item.proofText && <p className="whitespace-pre-line">{item.proofText}</p>}
                       {item.proofUrl && (
-                        <a href={item.proofUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 font-semibold text-emerald-deep">
+                        <button
+                          type="button"
+                          onClick={() => setPreview({ src: item.proofUrl, title: `Bukti dokumentasi ${item.name || "rating"}` })}
+                          className="mt-2 inline-flex items-center gap-1 font-semibold text-emerald-deep"
+                        >
                           Lihat bukti <ArrowUpRight size={13} />
-                        </a>
+                        </button>
                       )}
                     </div>
                   )}
@@ -153,6 +163,7 @@ export default function Ratings({ items = [], section = {} }) {
           </form>
         </div>
       </div>
+      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
     </section>
   );
 }

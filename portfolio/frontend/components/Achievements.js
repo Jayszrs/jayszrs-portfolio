@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Award, CalendarDays, ExternalLink, FileBadge, FileText, Fingerprint } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
+import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 
 function Card({ item, icon: Icon, onClick }) {
@@ -47,6 +48,7 @@ function Card({ item, icon: Icon, onClick }) {
 
 export default function Achievements({ achievements = [], certificates = [], section = {} }) {
   const [selected, setSelected] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   return (
     <section id="pencapaian" className="section-pad py-16 sm:py-20">
@@ -81,7 +83,14 @@ export default function Achievements({ achievements = [], certificates = [], sec
         {selected && (
           <>
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[88px_1fr] sm:p-6">
-              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
+              <button
+                type="button"
+                onClick={() => {
+                  const src = selected.logo || selected.image;
+                  if (src) setPreview({ src, title: selected.title });
+                }}
+                className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft"
+              >
                 {selected.logo || selected.image ? (
                   <SafeImage
                     src={selected.logo || selected.image}
@@ -95,7 +104,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
                 ) : (
                   <FileBadge size={32} className="text-emerald-deep" />
                 )}
-              </div>
+              </button>
               <div>
                 <p className="text-lg font-semibold text-ink">{selected.issuer}</p>
                 {selected.description && <p className="mt-2 text-sm leading-relaxed text-muted">{selected.description}</p>}
@@ -133,14 +142,19 @@ export default function Achievements({ achievements = [], certificates = [], sec
                 </a>
               )}
               {selected.pdfUrl && (
-                <a href={selected.pdfUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink">
+                <button
+                  type="button"
+                  onClick={() => setPreview({ src: selected.pdfUrl, title: `Sertifikat ${selected.title}` })}
+                  className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink"
+                >
                   Dokumentasi PDF <FileText size={14} />
-                </a>
+                </button>
               )}
             </div>
           </>
         )}
       </DetailModal>
+      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
     </section>
   );
 }

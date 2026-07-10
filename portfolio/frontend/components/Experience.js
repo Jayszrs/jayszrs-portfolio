@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
+import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
 
@@ -31,6 +32,7 @@ export default function Experience({ items = [], section = {} }) {
   );
   const [active, setActive] = useState("Semua");
   const [selected, setSelected] = useState(null);
+  const [preview, setPreview] = useState(null);
   const filtered = active === "Semua" ? items : items.filter((item) => item.type === active);
 
   return (
@@ -199,7 +201,12 @@ export default function Experience({ items = [], section = {} }) {
                 {(documentationImages(selected).length > 0 || looksLikeImage(documentationFileOf(selected))) && (
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {[...documentationImages(selected), ...(looksLikeImage(documentationFileOf(selected)) ? [documentationFileOf(selected)] : [])].map((src, index) => (
-                      <a key={`${src}-${index}`} href={src} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-2xl border border-line bg-surface">
+                      <button
+                        key={`${src}-${index}`}
+                        type="button"
+                        onClick={() => setPreview({ src, title: `Dokumentasi pengalaman ${index + 1}` })}
+                        className="group overflow-hidden rounded-2xl border border-line bg-surface text-left"
+                      >
                         <SafeImage
                           src={src}
                           alt={`Dokumentasi pengalaman ${index + 1}`}
@@ -209,20 +216,25 @@ export default function Experience({ items = [], section = {} }) {
                           className="h-48 w-full"
                           imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                         />
-                      </a>
+                      </button>
                     ))}
                   </div>
                 )}
                 {documentationFileOf(selected) && (
-                  <a href={documentationFileOf(selected)} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
+                  <button
+                    type="button"
+                    onClick={() => setPreview({ src: documentationFileOf(selected), title: "File dokumentasi pengalaman" })}
+                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper"
+                  >
                     Buka file dokumentasi <ArrowUpRight size={15} />
-                  </a>
+                  </button>
                 )}
               </section>
             )}
           </div>
         )}
       </DetailModal>
+      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
+import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
 
@@ -13,6 +14,7 @@ function educationLogoSource(item = {}) {
 
 export default function Education({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
+  const [preview, setPreview] = useState(null);
   if (!items.length) return null;
 
   return (
@@ -125,6 +127,11 @@ export default function Education({ items = [], section = {} }) {
                       <MapPin size={15} /> {selected.location}
                     </span>
                   )}
+                  {(selected.grade || selected.gradeScale) && (
+                    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-4 py-2 text-sm text-muted">
+                      Nilai: {[selected.grade, selected.gradeScale].filter(Boolean).join(" / ")}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -146,7 +153,12 @@ export default function Education({ items = [], section = {} }) {
                 {documentationImages(selected).length > 0 && (
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {documentationImages(selected).map((src, index) => (
-                      <a key={src} href={src} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-2xl border border-line bg-surface">
+                      <button
+                        key={src}
+                        type="button"
+                        onClick={() => setPreview({ src, title: `Dokumentasi pendidikan ${index + 1}` })}
+                        className="group overflow-hidden rounded-2xl border border-line bg-surface text-left"
+                      >
                         <SafeImage
                           src={src}
                           alt={`Dokumentasi pendidikan ${index + 1}`}
@@ -156,14 +168,18 @@ export default function Education({ items = [], section = {} }) {
                           className="h-48 w-full"
                           imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                         />
-                      </a>
+                      </button>
                     ))}
                   </div>
                 )}
                 {selected.documentationFile && (
-                  <a href={selected.documentationFile} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
+                  <button
+                    type="button"
+                    onClick={() => setPreview({ src: selected.documentationFile, title: "File dokumentasi pendidikan" })}
+                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper"
+                  >
                     Buka file dokumentasi <ArrowUpRight size={15} />
-                  </a>
+                  </button>
                 )}
               </section>
             )}
@@ -175,6 +191,7 @@ export default function Education({ items = [], section = {} }) {
           </div>
         )}
       </DetailModal>
+      <MediaPreview src={preview?.src} title={preview?.title} onClose={() => setPreview(null)} />
     </section>
   );
 }

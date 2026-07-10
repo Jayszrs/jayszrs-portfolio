@@ -825,6 +825,8 @@ export default function AdminPageClient() {
               { key: "degree", label: "Jurusan / gelar" },
               { key: "period", label: "Periode pendidikan" },
               { key: "location", label: "Lokasi" },
+              { key: "grade", label: "Nilai / IPK" },
+              { key: "gradeScale", label: "Skala / keterangan nilai" },
               { key: "description", label: "Ringkasan pendidikan", kind: "textarea", wide: true },
               { key: "focus", label: "Fokus pembelajaran", kind: "textarea", wide: true },
               { key: "activities", label: "Aktivitas & pencapaian", kind: "textarea", wide: true },
@@ -835,7 +837,7 @@ export default function AdminPageClient() {
             ]}
             createItem={() => ({
               id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "",
-              logo: "", documentationImages: [], documentationImage: "", documentationImage2: "", documentationImage3: "", documentationFile: "", link: "",
+              grade: "", gradeScale: "", logo: "", documentationImages: [], documentationImage: "", documentationImage2: "", documentationImage3: "", documentationFile: "", link: "",
             })}
             addLabel="Tambah pendidikan"
           />

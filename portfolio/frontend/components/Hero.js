@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Github, Linkedin, Instagram, ArrowUpRight, Download, Eye } from "lucide-react";
+import { Github, Linkedin, Instagram, ArrowUpRight, ChevronLeft, ChevronRight, Download, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import MediaPreview from "@/frontend/components/MediaPreview";
 import TypewriterText from "@/frontend/components/TypewriterText";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
 import { profileHeroImages } from "@/frontend/lib/profileImages";
@@ -16,20 +17,50 @@ export default function Hero({ profile }) {
   );
   const heroImageKey = heroImages.join("|");
   const [activeImage, setActiveImage] = useState(0);
+  const [dragStart, setDragStart] = useState(null);
+  const [resumePreview, setResumePreview] = useState(false);
   const hasResume = Boolean(profile.cvUrl);
   const currentHeroImage = heroImages[activeImage] || heroImages[0] || "";
+  const hasMultipleHeroImages = heroImages.length > 1;
+
+  const showPreviousImage = () => {
+    if (!hasMultipleHeroImages) return;
+    setActiveImage((index) => (index - 1 + heroImages.length) % heroImages.length);
+  };
+
+  const showNextImage = () => {
+    if (!hasMultipleHeroImages) return;
+    setActiveImage((index) => (index + 1) % heroImages.length);
+  };
 
   useEffect(() => {
     setActiveImage(0);
   }, [heroImageKey]);
 
   useEffect(() => {
-    if (heroImages.length < 2) return undefined;
-    const timer = window.setInterval(() => {
-      setActiveImage((index) => (index + 1) % heroImages.length);
-    }, 5000);
+    if (!hasMultipleHeroImages) return undefined;
+    const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    if (touchDevice) return undefined;
+
+    const timer = window.setInterval(showNextImage, 5000);
     return () => window.clearInterval(timer);
-  }, [heroImages.length, heroImageKey]);
+  }, [hasMultipleHeroImages, heroImages.length, heroImageKey]);
+
+  const handleHeroPointerDown = (event) => {
+    if (!hasMultipleHeroImages) return;
+    setDragStart({ x: event.clientX, y: event.clientY });
+  };
+
+  const handleHeroPointerUp = (event) => {
+    if (!dragStart || !hasMultipleHeroImages) return;
+    const deltaX = event.clientX - dragStart.x;
+    const deltaY = event.clientY - dragStart.y;
+    setDragStart(null);
+
+    if (Math.abs(deltaX) < 42 || Math.abs(deltaY) > 70) return;
+    if (deltaX < 0) showNextImage();
+    else showPreviousImage();
+  };
 
   return (
     <section id="beranda" className="section-pad relative flex min-h-[720px] items-center pb-12 pt-28 sm:min-h-[760px] sm:pb-16">
@@ -92,15 +123,14 @@ export default function Hero({ profile }) {
             </Link>
             {hasResume ? (
               <>
-                <a
-                  href={profile.cvUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
+                  onClick={() => setResumePreview(true)}
                   className="glass-pill inline-flex h-11 w-11 items-center justify-center gap-2 rounded-full text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:h-12 sm:w-auto sm:px-5"
                   aria-label="Preview Resume"
                 >
                   <span className="hidden sm:inline">Preview Resume</span> <Eye size={16} />
-                </a>
+                </button>
                 <a
                   href={profile.cvUrl}
                   download
@@ -140,7 +170,13 @@ export default function Hero({ profile }) {
             Bekasi - Indonesia - 2026
           </div>
           <div className="glass-strong relative overflow-hidden rounded-[1.5rem] p-2.5 sm:rounded-[2rem] sm:p-3">
-            <div className="relative h-[360px] w-full overflow-hidden rounded-[1.15rem] sm:h-[520px] sm:rounded-[1.5rem]">
+            <div
+              className="relative h-[360px] w-full touch-pan-y overflow-hidden rounded-[1.15rem] sm:h-[520px] sm:rounded-[1.5rem]"
+              onPointerDown={handleHeroPointerDown}
+              onPointerUp={handleHeroPointerUp}
+              onPointerCancel={() => setDragStart(null)}
+              onPointerLeave={() => setDragStart(null)}
+            >
               {currentHeroImage ? (
                 <Image
                   key={currentHeroImage}
@@ -163,20 +199,38 @@ export default function Hero({ profile }) {
                   {profile.roles?.[0] || profile.role}
                 </p>
               </div>
-              {heroImages.length > 1 && (
-                <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full bg-black/28 px-2.5 py-2 backdrop-blur-md">
-                  {heroImages.map((image, index) => (
-                    <button
-                      key={image}
-                      type="button"
-                      onClick={() => setActiveImage(index)}
-                      className={`h-2.5 rounded-full transition ${
-                        activeImage === index ? "w-7 bg-white" : "w-2.5 bg-white/55 hover:bg-white/80"
-                      }`}
-                      aria-label={`Tampilkan foto hero ${index + 1}`}
-                    />
-                  ))}
-                </div>
+              {hasMultipleHeroImages && (
+                <>
+                  <button
+                    type="button"
+                    onClick={showPreviousImage}
+                    className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-md transition hover:bg-black/50"
+                    aria-label="Foto hero sebelumnya"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={showNextImage}
+                    className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-md transition hover:bg-black/50"
+                    aria-label="Foto hero berikutnya"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                  <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full bg-black/28 px-2.5 py-2 backdrop-blur-md">
+                    {heroImages.map((image, index) => (
+                      <button
+                        key={image}
+                        type="button"
+                        onClick={() => setActiveImage(index)}
+                        className={`h-2.5 rounded-full transition ${
+                          activeImage === index ? "w-7 bg-white" : "w-2.5 bg-white/55 hover:bg-white/80"
+                        }`}
+                        aria-label={`Tampilkan foto hero ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </>
               )}
             </div>
 
@@ -201,6 +255,11 @@ export default function Hero({ profile }) {
           </div>
         </div>
       </div>
+      <MediaPreview
+        src={resumePreview ? profile.cvUrl : ""}
+        title="Preview Resume"
+        onClose={() => setResumePreview(false)}
+      />
     </section>
   );
 }
