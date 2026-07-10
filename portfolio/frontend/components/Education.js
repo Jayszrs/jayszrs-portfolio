@@ -40,7 +40,7 @@ export default function Education({ items = [], section = {} }) {
             >
               <div className="flex items-start gap-4">
                 {item.logo && (
-                  <span className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-line bg-surface p-2 sm:flex">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-line bg-surface p-2 sm:h-16 sm:w-16">
                     <SafeImage
                       src={item.logo}
                       alt={`Logo ${item.institution}`}
@@ -52,7 +52,7 @@ export default function Education({ items = [], section = {} }) {
                     />
                   </span>
                 )}
-                <div>
+                <div className="min-w-0">
                   <span className="rounded-full bg-emerald-soft px-3 py-1 font-mono text-xs text-emerald-deep">{item.period}</span>
                   <h3 className="mt-4 font-display text-xl font-semibold text-ink sm:text-2xl">{item.degree}</h3>
                   <p className="mt-1 text-base font-semibold text-emerald-deep">{item.institution}</p>
