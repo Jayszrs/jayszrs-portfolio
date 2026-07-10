@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
+import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 
 export default function Education({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
@@ -35,7 +36,15 @@ export default function Education({ items = [], section = {} }) {
               <div className="flex items-start gap-4">
                 {item.logo && (
                   <span className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-line bg-surface p-2 sm:flex">
-                    <img src={item.logo} alt={`Logo ${item.institution}`} className="h-full w-full object-contain" />
+                    <SafeImage
+                      src={item.logo}
+                      alt={`Logo ${item.institution}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full"
+                      imgClassName="h-full w-full object-contain"
+                      fallback={<LogoFallback label={item.institution} icon={GraduationCap} />}
+                    />
                   </span>
                 )}
                 <div>
@@ -66,7 +75,15 @@ export default function Education({ items = [], section = {} }) {
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[80px_1fr] sm:p-6">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
                 {selected.logo ? (
-                  <img src={selected.logo} alt={`Logo ${selected.institution}`} className="h-full w-full object-contain p-2" />
+                  <SafeImage
+                    src={selected.logo}
+                    alt={`Logo ${selected.institution}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full"
+                    imgClassName="h-full w-full object-contain p-2"
+                    fallback={<LogoFallback label={selected.institution} icon={GraduationCap} />}
+                  />
                 ) : (
                   <GraduationCap size={34} className="text-emerald-deep" />
                 )}

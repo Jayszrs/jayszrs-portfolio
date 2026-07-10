@@ -3,18 +3,31 @@
 import { useState } from "react";
 import { Award, CalendarDays, ExternalLink, FileBadge, FileText, Fingerprint } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
+import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 
 function Card({ item, icon: Icon, onClick }) {
   return (
     <button type="button" onClick={onClick} className="glass group overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
       {item.image ? (
-        <div className="h-40 w-full overflow-hidden">
-          <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-        </div>
+        <SafeImage
+          src={item.image}
+          alt={item.title}
+          loading="lazy"
+          decoding="async"
+          className="h-40 w-full overflow-hidden"
+          imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          fallback={<LogoFallback label={item.title || item.issuer} icon={Icon} />}
+        />
       ) : item.logo ? (
-        <div className="flex h-40 w-full items-center justify-center bg-surface p-7">
-          <img src={item.logo} alt={`Logo ${item.issuer}`} className="h-full w-full object-contain" />
-        </div>
+        <SafeImage
+          src={item.logo}
+          alt={`Logo ${item.issuer}`}
+          loading="lazy"
+          decoding="async"
+          className="flex h-40 w-full items-center justify-center bg-surface p-7"
+          imgClassName="h-full w-full object-contain"
+          fallback={<LogoFallback label={item.issuer || item.title} icon={Icon} />}
+        />
       ) : (
         <div className="flex h-40 w-full items-center justify-center bg-gradient-to-br from-emerald-soft to-surface">
           <Icon size={34} className="text-emerald-deep" />
@@ -70,7 +83,15 @@ export default function Achievements({ achievements = [], certificates = [], sec
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[88px_1fr] sm:p-6">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
                 {selected.logo || selected.image ? (
-                  <img src={selected.logo || selected.image} alt={`Logo ${selected.issuer}`} className="h-full w-full object-contain p-2" />
+                  <SafeImage
+                    src={selected.logo || selected.image}
+                    alt={`Logo ${selected.issuer}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full"
+                    imgClassName="h-full w-full object-contain p-2"
+                    fallback={<LogoFallback label={selected.issuer || selected.title} icon={FileBadge} />}
+                  />
                 ) : (
                   <FileBadge size={32} className="text-emerald-deep" />
                 )}

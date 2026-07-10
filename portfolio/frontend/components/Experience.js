@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
+import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 
 const ORDER = ["Semua", "Proyek", "Magang", "Kerja", "Volunteer", "Organisasi"];
 
@@ -61,8 +62,16 @@ export default function Experience({ items = [], section = {} }) {
               className="glass group relative block w-full rounded-2xl text-left hover:-translate-y-0.5 hover:shadow-glass-lg"
             >
               <span className="absolute -left-[2.2rem] top-7 h-3 w-3 rounded-full bg-emerald ring-4 ring-emerald-soft sm:-left-[2.8rem]" />
-              <div className={`${item.image ? "grid sm:grid-cols-[220px_1fr]" : ""} overflow-hidden rounded-2xl`}>
-                {item.image && <img src={item.image} alt="" className="h-48 w-full object-cover sm:h-full" />}
+              <div className="grid overflow-hidden rounded-2xl sm:grid-cols-[220px_1fr]">
+                <SafeImage
+                  src={item.image}
+                  alt={item.org || item.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-40 w-full sm:h-full"
+                  imgClassName="h-full w-full object-cover"
+                  fallback={<LogoFallback label={item.org || item.title} icon={Building2} />}
+                />
                 <div className="p-5 sm:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="rounded-full bg-emerald-soft px-3 py-1 text-xs font-semibold text-emerald-deep">{item.type}</span>
@@ -92,11 +101,15 @@ export default function Experience({ items = [], section = {} }) {
           <div className="space-y-7">
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[88px_1fr] sm:p-6">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
-                {selected.image ? (
-                  <img src={selected.image} alt="" className="h-full w-full object-cover" />
-                ) : (
-                  <Building2 size={32} className="text-emerald-deep" />
-                )}
+                <SafeImage
+                  src={selected.image}
+                  alt={selected.org || selected.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full"
+                  imgClassName="h-full w-full object-cover"
+                  fallback={<LogoFallback label={selected.org || selected.title} icon={Building2} />}
+                />
               </div>
               <div>
                 <div className="flex items-center gap-2 text-sm font-semibold text-ink">
