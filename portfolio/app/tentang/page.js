@@ -1,1 +1,1 @@
-export { default, dynamic, metadata } from "@/frontend/pages/TentangPage";
+export { default, revalidate, metadata } from "@/frontend/pages/TentangPage";

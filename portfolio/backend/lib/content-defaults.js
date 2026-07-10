@@ -14,6 +14,7 @@ export const DEFAULT_CONTENT = {
     heroImage2: "",
     heroImage3: "",
     heroImage4: "",
+    heroImages: [],
     cvUrl: "",
     socials: {
       github: "",
@@ -190,6 +191,7 @@ export function mergeContent(data = {}) {
       ...mergeObject(DEFAULT_CONTENT.profile, data.profile),
       socials: mergeObject(DEFAULT_CONTENT.profile.socials, data.profile?.socials),
       roles: arrayOrDefault(data.profile?.roles, DEFAULT_CONTENT.profile.roles),
+      heroImages: arrayOrDefault(data.profile?.heroImages, DEFAULT_CONTENT.profile.heroImages),
     },
     about: {
       ...mergeObject(DEFAULT_CONTENT.about, data.about),

@@ -2,7 +2,7 @@ import { readContent } from "@/backend/lib/content";
 import PublicPage from "@/frontend/components/PublicPage";
 import Achievements from "@/frontend/components/Achievements";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Pencapaian",

@@ -3,7 +3,7 @@ import PublicPage from "@/frontend/components/PublicPage";
 import Gallery from "@/frontend/components/Gallery";
 import SelectedDesigns from "@/frontend/components/SelectedDesigns";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Proyek",

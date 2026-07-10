@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
 import { documentationImages, withDocumentationImages } from "@/frontend/lib/documentation";
+import { profileHeroImages, withProfileHeroImages } from "@/frontend/lib/profileImages";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
@@ -185,7 +186,14 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
   );
 }
 
-function MultiImageField({ label, values = [], onChange, addLabel = "Tambah gambar dokumentasi" }) {
+function MultiImageField({
+  label,
+  values = [],
+  onChange,
+  addLabel = "Tambah gambar",
+  description = "Tambah gambar sebanyak yang dibutuhkan, lalu klik Simpan.",
+  itemLabel = "Gambar",
+}) {
   const [rows, setRows] = useState(() => documentationImages({ documentationImages: values }));
 
   useEffect(() => {
@@ -212,7 +220,7 @@ function MultiImageField({ label, values = [], onChange, addLabel = "Tambah gamb
       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <label className="block text-xs font-semibold text-ink/70">{label}</label>
-          <p className="text-xs text-muted">Tambah gambar sebanyak yang dibutuhkan, lalu klik Simpan.</p>
+          <p className="text-xs text-muted">{description}</p>
         </div>
         <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} gambar</span>
       </div>
@@ -223,7 +231,7 @@ function MultiImageField({ label, values = [], onChange, addLabel = "Tambah gamb
             <div key={`${src}-${imageIndex}`} className="grid gap-3 p-3 lg:grid-cols-[112px_1fr_auto] lg:items-center">
               <div>
                 <p className="font-mono text-xs font-semibold text-muted">#{imageIndex + 1}</p>
-                <p className="mt-1 text-xs font-semibold text-ink">Dokumentasi</p>
+                <p className="mt-1 text-xs font-semibold text-ink">{itemLabel}</p>
               </div>
               <ImageField
                 label=""
@@ -236,8 +244,8 @@ function MultiImageField({ label, values = [], onChange, addLabel = "Tambah gamb
                 type="button"
                 onClick={() => removeImage(imageIndex)}
                 className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-red-100 px-3 text-xs font-semibold text-red-500 transition hover:bg-red-50 lg:w-10 lg:px-0"
-                title={`Hapus dokumentasi ${imageIndex + 1}`}
-                aria-label={`Hapus dokumentasi ${imageIndex + 1}`}
+                title={`Hapus ${itemLabel.toLowerCase()} ${imageIndex + 1}`}
+                aria-label={`Hapus ${itemLabel.toLowerCase()} ${imageIndex + 1}`}
               >
                 <Trash2 size={14} />
                 <span className="lg:hidden">Hapus</span>
@@ -730,16 +738,17 @@ export default function AdminPageClient() {
               <TextField label="Tagline" value={content.profile?.tagline} onChange={(v) => setContent({ ...content, profile: { ...content.profile, tagline: v } })} textarea />
             </div>
             <div className="sm:col-span-2">
-              <ImageField label="Foto Hero" value={content.profile?.heroImage} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage: v } })} />
-            </div>
-            <div className="sm:col-span-2">
-              <ImageField label="Foto Hero 2 (carousel)" value={content.profile?.heroImage2} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage2: v } })} />
-            </div>
-            <div className="sm:col-span-2">
-              <ImageField label="Foto Hero 3 (carousel)" value={content.profile?.heroImage3} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage3: v } })} />
-            </div>
-            <div className="sm:col-span-2">
-              <ImageField label="Foto Hero 4 (carousel)" value={content.profile?.heroImage4} onChange={(v) => setContent({ ...content, profile: { ...content.profile, heroImage4: v } })} />
+              <MultiImageField
+                label="Foto Hero / carousel"
+                values={profileHeroImages(content.profile)}
+                addLabel="Tambah foto hero"
+                itemLabel="Foto hero"
+                description="Foto pertama jadi cover utama. Tambah sebanyak yang kamu mau untuk carousel."
+                onChange={(v) => setContent({
+                  ...content,
+                  profile: withProfileHeroImages(content.profile, v),
+                })}
+              />
             </div>
             <div className="sm:col-span-2">
               <FileField label="Resume / CV PDF" value={content.profile?.cvUrl} accept="application/pdf" buttonLabel="Upload resume" onChange={(v) => setContent({ ...content, profile: { ...content.profile, cvUrl: v } })} />

@@ -20,11 +20,7 @@ function getSupabase() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  supabaseClient = url && key ? createClient(url, key, {
-    global: {
-      fetch: (input, init = {}) => fetch(input, { ...init, cache: "no-store" }),
-    },
-  }) : null;
+  supabaseClient = url && key ? createClient(url, key) : null;
   return supabaseClient;
 }
 
@@ -39,11 +35,7 @@ function getSupabaseWriter() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  supabaseWriteClient = url && key ? createClient(url, key, {
-    global: {
-      fetch: (input, init = {}) => fetch(input, { ...init, cache: "no-store" }),
-    },
-  }) : null;
+  supabaseWriteClient = url && key ? createClient(url, key) : null;
   return supabaseWriteClient;
 }
 
@@ -84,8 +76,8 @@ function withLocalFallback(localData, remoteData) {
   return mergeContent(pick(local, remote));
 }
 
-export async function readContent() {
-  noStore();
+export async function readContent({ fresh = false } = {}) {
+  if (fresh) noStore();
   const localContent = await readLocalContent();
   const supabase = getSupabase();
 

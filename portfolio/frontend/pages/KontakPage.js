@@ -2,7 +2,7 @@ import { readContent } from "@/backend/lib/content";
 import PublicPage from "@/frontend/components/PublicPage";
 import Contact from "@/frontend/components/Contact";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Kontak",

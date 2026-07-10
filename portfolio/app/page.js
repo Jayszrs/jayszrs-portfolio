@@ -1,1 +1,1 @@
-export { default, dynamic } from "@/frontend/pages/HomePage";
+export { default, revalidate } from "@/frontend/pages/HomePage";

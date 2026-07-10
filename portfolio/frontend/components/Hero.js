@@ -1,20 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram, ArrowUpRight, Download, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import TypewriterText from "@/frontend/components/TypewriterText";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
-
-const MotionImage = motion(Image);
+import { profileHeroImages } from "@/frontend/lib/profileImages";
 
 export default function Hero({ profile }) {
   const { socials } = profile;
   const heroImages = useMemo(
-    () => [profile.heroImage, profile.heroImage2, profile.heroImage3, profile.heroImage4].filter(Boolean),
-    [profile.heroImage, profile.heroImage2, profile.heroImage3, profile.heroImage4],
+    () => profileHeroImages(profile),
+    [profile],
   );
   const heroImageKey = heroImages.join("|");
   const [activeImage, setActiveImage] = useState(0);
@@ -36,11 +34,7 @@ export default function Hero({ profile }) {
   return (
     <section id="beranda" className="section-pad relative flex min-h-[720px] items-center pb-12 pt-28 sm:min-h-[760px] sm:pb-16">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
+        <div>
           <div className="mb-5 flex items-center gap-3">
             <span className="h-px w-9 bg-emerald sm:w-10" />
             <p className="eyebrow">{profile.greeting}</p>
@@ -139,21 +133,16 @@ export default function Hero({ profile }) {
               </>
             )}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-          className="relative mx-auto w-full max-w-[380px] sm:max-w-md"
-        >
+        <div className="relative mx-auto w-full max-w-[380px] sm:max-w-md">
           <div className="absolute -left-8 top-14 hidden -rotate-90 font-mono text-[10px] uppercase tracking-[0.32em] text-muted/60 xl:block">
             Bekasi - Indonesia - 2026
           </div>
           <div className="glass-strong relative overflow-hidden rounded-[1.5rem] p-2.5 sm:rounded-[2rem] sm:p-3">
             <div className="relative h-[360px] w-full overflow-hidden rounded-[1.15rem] sm:h-[520px] sm:rounded-[1.5rem]">
               {currentHeroImage ? (
-                <MotionImage
+                <Image
                   key={currentHeroImage}
                   src={currentHeroImage}
                   alt={profile.fullName}
@@ -161,9 +150,6 @@ export default function Hero({ profile }) {
                   priority
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 420px, 380px"
                   className="object-cover"
-                  initial={{ opacity: 0, scale: 1.03 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.55, ease: "easeOut" }}
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-emerald-soft text-sm font-semibold text-emerald-deep">
@@ -213,7 +199,7 @@ export default function Hero({ profile }) {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

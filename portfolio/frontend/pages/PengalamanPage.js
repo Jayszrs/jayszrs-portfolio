@@ -2,7 +2,7 @@ import { readContent } from "@/backend/lib/content";
 import PublicPage from "@/frontend/components/PublicPage";
 import Experience from "@/frontend/components/Experience";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Pengalaman",

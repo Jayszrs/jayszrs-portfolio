@@ -4,7 +4,7 @@ import About from "@/frontend/components/About";
 import Capabilities from "@/frontend/components/Capabilities";
 import Education from "@/frontend/components/Education";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Tentang",

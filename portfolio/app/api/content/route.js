@@ -19,7 +19,7 @@ function revalidatePublicPages() {
 
 export async function GET() {
   try {
-    return jsonNoStore(await readContent());
+    return jsonNoStore(await readContent({ fresh: true }));
   } catch (err) {
     console.error("Read Content Error:", err);
     return jsonNoStore({ error: "Konten gagal dimuat" }, { status: 500 });
