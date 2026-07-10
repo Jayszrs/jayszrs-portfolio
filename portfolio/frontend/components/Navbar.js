@@ -9,7 +9,8 @@ import MediaPreview from "@/frontend/components/MediaPreview";
 const LINKS = [
   { href: "/", label: "Beranda" },
   { href: "/tentang", label: "Tentang" },
-  { href: "/tentang#pendidikan", label: "Pendidikan" },
+  { href: "/pendidikan", label: "Pendidikan" },
+  { href: "/keahlian", label: "Keahlian" },
   { href: "/pengalaman", label: "Pengalaman" },
   { href: "/proyek", label: "Proyek" },
   { href: "/pencapaian", label: "Pencapaian" },
