@@ -188,6 +188,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
       <MediaPreview
         src={resumePreview ? cvUrl : ""}
         title="Preview Resume"
+        pdfPageCount={4}
         onClose={() => setResumePreview(false)}
       />
     </header>
