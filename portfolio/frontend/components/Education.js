@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
@@ -30,18 +29,14 @@ export default function Education({ items = [], section = {} }) {
         </div>
 
         <div className="mt-8 grid gap-5">
-          {items.map((item, index) => {
+          {items.map((item) => {
             const logoSrc = educationLogoSource(item);
 
             return (
-              <motion.button
+              <button
                 key={item.id}
                 type="button"
                 onClick={() => setSelected(item)}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ delay: index * 0.08 }}
                 className="glass group grid gap-5 rounded-[1.5rem] p-5 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:rounded-[1.75rem] sm:p-8"
               >
                 <div className="flex items-start gap-4">
@@ -92,7 +87,7 @@ export default function Education({ items = [], section = {} }) {
                     Buka detail <ArrowUpRight size={14} />
                   </span>
                 </div>
-              </motion.button>
+              </button>
             );
           })}
         </div>

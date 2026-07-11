@@ -38,15 +38,6 @@ export default function Hero({ profile }) {
     setActiveImage(0);
   }, [heroImageKey]);
 
-  useEffect(() => {
-    if (!hasMultipleHeroImages) return undefined;
-    const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-    if (touchDevice) return undefined;
-
-    const timer = window.setInterval(showNextImage, 5000);
-    return () => window.clearInterval(timer);
-  }, [hasMultipleHeroImages, heroImages.length, heroImageKey]);
-
   const handleHeroPointerDown = (event) => {
     if (!hasMultipleHeroImages) return;
     setDragStart({ x: event.clientX, y: event.clientY });
@@ -241,7 +232,6 @@ export default function Hero({ profile }) {
             <div className="glass mt-3 flex items-center justify-between rounded-2xl px-3.5 py-3 sm:px-4">
               <div className="flex items-center gap-3">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-emerald" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald" />
                 </span>
                 <div>

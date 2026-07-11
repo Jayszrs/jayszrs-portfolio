@@ -478,7 +478,6 @@ export default function LanguageSwitcher() {
   const applying = useRef(false);
   const activeRef = useRef("id");
   const switcherRef = useRef(null);
-  const frameRef = useRef(null);
   const idleRef = useRef(null);
 
   useEffect(() => {
@@ -496,43 +495,9 @@ export default function LanguageSwitcher() {
       applying.current = false;
     };
 
-    const applyNodes = (nodes) => {
-      applying.current = true;
-      nodes.forEach((node) => translateTree(node, activeRef.current, originals.current, translationCache.current));
-      applying.current = false;
-    };
-
-    const scheduleNodes = (nodes) => {
-      if (!nodes.length) return;
-      if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
-      frameRef.current = window.requestAnimationFrame(() => {
-        frameRef.current = null;
-        applyNodes(nodes);
-      });
-    };
-
     if (saved !== "id") applyLanguage();
 
-    const observer = new MutationObserver((mutations) => {
-      if (applying.current) return;
-      if (activeRef.current === "id") return;
-      const nodes = [];
-      mutations.forEach((mutation) => {
-        if (mutation.type === "characterData") {
-          originals.current.delete(mutation.target);
-          nodes.push(mutation.target);
-        }
-        if (mutation.type === "childList" && mutation.addedNodes.length) {
-          nodes.push(...mutation.addedNodes);
-        }
-      });
-      scheduleNodes(nodes);
-    });
-
-    observer.observe(document.body, { childList: true, characterData: true, subtree: true });
     return () => {
-      observer.disconnect();
-      if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
       if (idleRef.current && "cancelIdleCallback" in window) window.cancelIdleCallback(idleRef.current);
     };
   }, []);

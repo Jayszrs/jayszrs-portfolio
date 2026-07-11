@@ -5,7 +5,6 @@ import {
   ArrowUpRight, BriefcaseBusiness, Building2, CalendarDays,
   CircleCheck, MapPin, Wrench,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
@@ -61,15 +60,11 @@ export default function Experience({ items = [], section = {} }) {
         </div>
 
         <div className="relative mt-10 space-y-6 border-l border-line pl-7 sm:pl-9">
-          {filtered.map((item, index) => (
-            <motion.button
+          {filtered.map((item) => (
+            <button
               key={item.id}
               type="button"
               onClick={() => setSelected(item)}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: index * 0.06 }}
               className="glass group relative block w-full rounded-2xl text-left hover:-translate-y-0.5 hover:shadow-glass-lg"
             >
               <span className="absolute -left-[2.2rem] top-7 h-3 w-3 rounded-full bg-emerald ring-4 ring-emerald-soft sm:-left-[2.8rem]" />
@@ -113,7 +108,7 @@ export default function Experience({ items = [], section = {} }) {
                   </span>
                 </div>
               </div>
-            </motion.button>
+            </button>
           ))}
         </div>
       </div>

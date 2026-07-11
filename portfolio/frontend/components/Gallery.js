@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Image as ImageIcon, ListChecks, UserRound } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
@@ -21,31 +21,8 @@ function CaseStudySection({ title, children }) {
 
 export default function Gallery({ items = [], section = {} }) {
   const trackRef = useRef(null);
-  const [paused, setPaused] = useState(false);
   const [selected, setSelected] = useState(null);
   const [preview, setPreview] = useState(null);
-
-  useEffect(() => {
-    if (paused) return;
-    if (typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches) return;
-    const el = trackRef.current;
-    if (!el) return;
-
-    const interval = setInterval(() => {
-      if (!el) return;
-      const cardWidth = el.firstChild?.offsetWidth || 320;
-      const gap = 24;
-      const maxScroll = el.scrollWidth - el.clientWidth;
-
-      if (el.scrollLeft >= maxScroll - 10) {
-        el.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        el.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
-      }
-    }, 3200);
-
-    return () => clearInterval(interval);
-  }, [paused, items.length]);
 
   const scrollByAmount = (dir) => {
     const el = trackRef.current;
@@ -84,8 +61,6 @@ export default function Gallery({ items = [], section = {} }) {
 
         <div
           ref={trackRef}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
           className="mt-8 flex gap-4 overflow-x-auto scroll-smooth pb-4 sm:mt-10 sm:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item) => (
