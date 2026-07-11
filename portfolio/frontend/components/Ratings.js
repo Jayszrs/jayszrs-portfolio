@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 
 function Stars({ value = 5 }) {
@@ -20,10 +20,36 @@ function Stars({ value = 5 }) {
 }
 
 export default function Ratings({ items = [], section = {} }) {
+  const [ratingItems, setRatingItems] = useState(items);
   const [form, setForm] = useState({ name: "", role: "", stars: "5", comment: "" });
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
-  const visibleItems = items.filter((item) => {
+
+  useEffect(() => {
+    setRatingItems(items);
+  }, [items]);
+
+  useEffect(() => {
+    let active = true;
+
+    async function refreshRatings() {
+      try {
+        const res = await fetch("/api/content", { cache: "no-store" });
+        const data = await res.json();
+        if (!active || !res.ok || !Array.isArray(data.ratings)) return;
+        setRatingItems(data.ratings);
+      } catch {
+        // Rating tetap memakai data awal kalau refresh jaringan gagal.
+      }
+    }
+
+    refreshRatings();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const visibleItems = ratingItems.filter((item) => {
     const approved = item?.approved;
     const isApproved = approved === undefined || approved === true || approved === "true";
     return isApproved && (item?.name || item?.comment);
@@ -42,8 +68,11 @@ export default function Ratings({ items = [], section = {} }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Rating gagal dikirim.");
+      if (data.rating) {
+        setRatingItems((current) => [data.rating, ...current.filter((item) => item.id !== data.rating.id)]);
+      }
       setForm({ name: "", role: "", stars: "5", comment: "" });
-      setStatus("Rating terkirim. Refresh halaman jika belum langsung terlihat.");
+      setStatus("Rating terkirim dan sudah tampil.");
     } catch (error) {
       setStatus(error.message);
     } finally {

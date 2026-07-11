@@ -2,8 +2,16 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { readContent, writeContent } from "@/backend/lib/content";
 
+export const dynamic = "force-dynamic";
+
 function cleanText(value, maxLength) {
   return String(value || "").trim().slice(0, maxLength);
+}
+
+function jsonNoStore(body, init = {}) {
+  const response = NextResponse.json(body, init);
+  response.headers.set("Cache-Control", "no-store, max-age=0");
+  return response;
 }
 
 export async function POST(request) {
@@ -15,10 +23,10 @@ export async function POST(request) {
     const stars = Math.max(1, Math.min(5, Number(body.stars) || 5));
 
     if (!name || !comment) {
-      return NextResponse.json({ error: "Nama dan masukan wajib diisi." }, { status: 400 });
+      return jsonNoStore({ error: "Nama dan masukan wajib diisi." }, { status: 400 });
     }
 
-    const content = await readContent();
+    const content = await readContent({ fresh: true });
     const rating = {
       id: `rating-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
       name,
@@ -39,8 +47,8 @@ export async function POST(request) {
     });
     revalidatePath("/");
 
-    return NextResponse.json({ ok: true, approved: true });
+    return jsonNoStore({ ok: true, approved: true, rating });
   } catch (error) {
-    return NextResponse.json({ error: error.message || "Rating gagal dikirim." }, { status: 500 });
+    return jsonNoStore({ error: error.message || "Rating gagal dikirim." }, { status: 500 });
   }
 }
