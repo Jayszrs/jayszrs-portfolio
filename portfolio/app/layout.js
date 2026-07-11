@@ -5,6 +5,8 @@ import MouseSpotlight from "@/frontend/components/MouseSpotlight";
 import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jayszrs.vercel.app";
+
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
@@ -13,6 +15,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Jay Szrs | Portfolio",
     template: "%s | Jay Szrs",
@@ -20,6 +23,30 @@ export const metadata = {
   description:
     "Portofolio Jaelani Surya Saputra (jayszrs) — Informatics Engineer, Network Forensics Researcher, dan Web Developer.",
   applicationName: "Jay Szrs Portfolio",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Jay Szrs | Portfolio",
+    description:
+      "Portofolio Jaelani Surya Saputra (jayszrs) - Informatics Engineer, Network Forensics Researcher, dan Web Developer.",
+    siteName: "Jay Szrs Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jay Szrs | Portfolio",
+    description:
+      "Portofolio Jaelani Surya Saputra (jayszrs) - Informatics Engineer, Network Forensics Researcher, dan Web Developer.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({ children }) {
