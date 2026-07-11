@@ -16,6 +16,18 @@ const LINKS = [
   { href: "/pencapaian", label: "Pencapaian" },
 ];
 
+function scrollToTarget(targetHash, attempt = 0) {
+  const target = document.getElementById(targetHash);
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  if (attempt < 20) {
+    window.setTimeout(() => scrollToTarget(targetHash, attempt + 1), 60);
+  }
+}
+
 export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   const [open, setOpen] = useState(false);
   const [hash, setHash] = useState("");
@@ -28,6 +40,13 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
     syncHash();
     window.addEventListener("hashchange", syncHash);
     return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
+
+  useEffect(() => {
+    const currentHash = window.location.hash.replace("#", "");
+    if (pathname === "/" && currentHash) {
+      scrollToTarget(currentHash);
+    }
   }, [pathname]);
 
   const handleNavClick = (event, href) => {
@@ -44,7 +63,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
     const nextHash = `#${targetHash}`;
     setHash(nextHash);
     window.history.pushState(null, "", href);
-    document.getElementById(targetHash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToTarget(targetHash);
   };
 
   const handleBrandClick = (event) => {
