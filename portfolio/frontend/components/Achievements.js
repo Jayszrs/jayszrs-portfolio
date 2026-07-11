@@ -181,12 +181,12 @@ export default function Achievements({ achievements = [], certificates = [], sec
                       className="group overflow-hidden rounded-2xl border border-line bg-surface text-left transition hover:border-emerald/35"
                     >
                       {isPdf(asset.src) ? (
-                        <div className="h-36 w-full overflow-hidden bg-surface">
+                        <div className="relative h-44 w-full overflow-hidden bg-surface">
                           <iframe
                             src={pdfThumbnailSrc(asset.src)}
                             title={asset.title}
                             loading="lazy"
-                            className="pointer-events-none h-[220%] w-full origin-top scale-[0.46] border-0 bg-surface"
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-[32rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 scale-[0.28] border-0 bg-surface"
                           />
                         </div>
                       ) : (
