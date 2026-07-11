@@ -89,19 +89,19 @@ export default function Capabilities({ capabilities, section = {} }) {
               <p className="max-w-md text-sm text-muted">{activeGroup.description}</p>
             </div>
 
-            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+            <div className="mt-7 grid grid-cols-3 gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
               {items.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => setSelected({ ...item, group: activeGroup.title })}
-                  className="group flex min-h-0 items-center gap-4 rounded-[1.25rem] border border-line bg-surface p-4 text-left shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg sm:min-h-48 sm:flex-col sm:items-start sm:rounded-[1.5rem] sm:p-6"
+                  className="group flex min-h-[8.75rem] flex-col items-center rounded-[1.15rem] border border-line bg-surface p-2.5 text-center shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg sm:min-h-48 sm:items-start sm:rounded-[1.5rem] sm:p-6 sm:text-left"
                 >
-                  <BrandIcon name={item.name} />
-                  <span className="min-w-0 flex-1 sm:flex-none">
-                    <span className="block font-display text-base font-semibold text-ink sm:text-lg">{item.name}</span>
-                    <span className="mt-1 block text-sm text-muted">Sejak {item.since || "-"} - {item.level || "Belajar"}</span>
-                    <span className="mt-2 block text-xs font-semibold text-emerald-deep transition sm:mt-auto sm:pt-4 sm:opacity-0 sm:group-hover:opacity-100">
+                  <BrandIcon name={item.name} size="small" className="sm:h-14 sm:w-14" />
+                  <span className="mt-2 flex min-w-0 flex-1 flex-col items-center sm:mt-5 sm:block sm:flex-none sm:items-start">
+                    <span className="line-clamp-2 block font-display text-xs font-semibold leading-tight text-ink sm:text-lg">{item.name}</span>
+                    <span className="mt-1 block text-[10px] leading-tight text-muted sm:mt-1.5 sm:text-sm">Sejak {item.since || "-"} - {item.level || "Belajar"}</span>
+                    <span className="mt-auto block pt-1 text-[10px] font-semibold text-emerald-deep transition sm:pt-4 sm:text-xs sm:opacity-0 sm:group-hover:opacity-100">
                       Lihat detail <span aria-hidden="true">-&gt;</span>
                     </span>
                   </span>
