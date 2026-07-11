@@ -630,9 +630,19 @@ export default function AdminPageClient() {
     Sertifikat: "Sertifikat, penerbit, credential, PDF, logo, dan badge.",
     Kontak: "Email, WhatsApp, alamat, dan link sosial media.",
   };
+  const saveStatus = saveError
+    ? saveError
+    : savedAt
+      ? `Tersimpan ${savedAt.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`
+      : "Perubahan belum disimpan";
+  const saveStatusClass = saveError
+    ? "border-red-200 bg-red-50 text-red-700"
+    : savedAt
+      ? "border-emerald/20 bg-emerald-soft text-emerald-deep"
+      : "border-line bg-surface text-muted";
 
   return (
-    <div className="min-h-screen bg-paper pb-24">
+    <div className="min-h-screen bg-paper pb-36">
       <header className="sticky top-0 z-40 border-b border-line bg-paper/90 px-4 py-3 backdrop-blur-xl sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex min-w-0 items-center gap-3">
@@ -646,10 +656,10 @@ export default function AdminPageClient() {
           </div>
           <div className="flex flex-wrap items-center gap-2 lg:justify-end">
             {(savedAt || saveError) && (
-              <div className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 text-xs font-semibold ${saveError ? "border-red-200 bg-red-50 text-red-700" : "border-emerald/20 bg-emerald-soft text-emerald-deep"}`}>
+              <div className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 text-xs font-semibold ${saveStatusClass}`}>
                 {saveError ? <AlertCircle size={15} /> : <CheckCircle2 size={15} />}
                 <span className="max-w-[14rem] truncate sm:max-w-none">
-                  {saveError || `Tersimpan ${savedAt.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`}
+                  {saveStatus}
                 </span>
               </div>
             )}
@@ -1172,6 +1182,32 @@ export default function AdminPageClient() {
           </div>
         )}
       </main>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper/95 px-3 py-3 shadow-[0_-18px_48px_rgba(13,25,21,0.10)] sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 text-xs font-semibold ${saveStatusClass}`}>
+            {saveError ? <AlertCircle size={15} /> : savedAt ? <CheckCircle2 size={15} /> : <Save size={15} />}
+            <span className="truncate">{saveStatus}</span>
+          </div>
+          <div className="grid grid-cols-[1fr_1.4fr] gap-2 sm:flex sm:items-center sm:justify-end">
+            <Link
+              href="/"
+              target="_blank"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 text-sm font-semibold text-ink transition hover:border-emerald/30"
+            >
+              <ExternalLink size={15} /> Preview
+            </Link>
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-emerald px-5 text-sm font-semibold text-white transition hover:bg-emerald-deep disabled:opacity-60"
+            >
+              {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
+              {saving ? "Menyimpan..." : "Simpan sekarang"}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
