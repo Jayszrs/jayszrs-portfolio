@@ -8,11 +8,14 @@ import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { externalUrl } from "@/frontend/lib/urls";
 
 function mediaAssets(item = {}, kind = "") {
-  const assets = [
-    item.image && { src: item.image, title: `Dokumentasi ${item.title}` },
-    item.logo && { src: item.logo, title: `Logo ${item.issuer || item.title}` },
-    item.pdfUrl && { src: item.pdfUrl, title: `${kind === "Sertifikat" ? "Sertifikat" : "Dokumen"} ${item.title}` },
-  ].filter(Boolean);
+  const assets = kind === "Sertifikat"
+    ? [
+        item.pdfUrl && { src: item.pdfUrl, title: `Sertifikat ${item.title}` },
+      ].filter(Boolean)
+    : [
+        item.image && { src: item.image, title: `Dokumentasi ${item.title}` },
+        item.logo && { src: item.logo, title: `Logo ${item.issuer || item.title}` },
+      ].filter(Boolean);
 
   return assets.filter((asset, index, list) => list.findIndex((itemAsset) => itemAsset.src === asset.src) === index);
 }
