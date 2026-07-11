@@ -7,6 +7,16 @@ import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { externalUrl } from "@/frontend/lib/urls";
 
+function mediaAssets(item = {}, kind = "") {
+  const assets = [
+    item.image && { src: item.image, title: `Dokumentasi ${item.title}` },
+    item.logo && { src: item.logo, title: `Logo ${item.issuer || item.title}` },
+    item.pdfUrl && { src: item.pdfUrl, title: `${kind === "Sertifikat" ? "Sertifikat" : "Dokumen"} ${item.title}` },
+  ].filter(Boolean);
+
+  return assets.filter((asset, index, list) => list.findIndex((itemAsset) => itemAsset.src === asset.src) === index);
+}
+
 function Card({ item, icon: Icon, onClick }) {
   return (
     <button type="button" onClick={onClick} className="glass group overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
@@ -53,12 +63,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
   const openGroupPreview = (src, fallbackTitle) => {
     if (!src || !selected) return;
     const group = selected.kind === "Sertifikat" ? certificates : achievements;
-    const mediaItems = group.flatMap((item) => {
-      const assets = [];
-      if (item.logo || item.image) assets.push({ src: item.logo || item.image, title: item.title });
-      if (item.pdfUrl) assets.push({ src: item.pdfUrl, title: `Sertifikat ${item.title}` });
-      return assets;
-    });
+    const mediaItems = group.flatMap((item) => mediaAssets(item, selected.kind));
     const initialIndex = Math.max(0, mediaItems.findIndex((item) => item.src === src));
     setPreview({ src, items: mediaItems, initialIndex, title: fallbackTitle });
   };
@@ -99,14 +104,14 @@ export default function Achievements({ achievements = [], certificates = [], sec
               <button
                 type="button"
                 onClick={() => {
-                  const src = selected.logo || selected.image;
+                  const src = selected.image || selected.logo || selected.pdfUrl;
                   openGroupPreview(src, selected.title);
                 }}
                 className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft"
               >
-                {selected.logo || selected.image ? (
+                {selected.image || selected.logo ? (
                   <SafeImage
-                    src={selected.logo || selected.image}
+                    src={selected.image || selected.logo}
                     alt={`Logo ${selected.issuer}`}
                     loading="lazy"
                     decoding="async"
@@ -147,6 +152,42 @@ export default function Achievements({ achievements = [], certificates = [], sec
                   <p className="truncate font-mono text-sm font-medium text-ink">{selected.credentialId}</p>
                 </div>
               </div>
+            )}
+            {mediaAssets(selected, selected.kind).length > 0 && (
+              <section className="mt-5">
+                <h3 className="mb-3 font-display text-lg font-semibold text-ink">Media terkait</h3>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {mediaAssets(selected, selected.kind).map((asset, index) => (
+                    <button
+                      key={`${asset.src}-${index}`}
+                      type="button"
+                      onClick={() => openGroupPreview(asset.src, asset.title)}
+                      className="group overflow-hidden rounded-2xl border border-line bg-surface text-left transition hover:border-emerald/35"
+                    >
+                      {asset.src.toLowerCase().includes(".pdf") ? (
+                        <div className="flex h-36 items-center justify-center bg-emerald-soft text-emerald-deep">
+                          <FileText size={34} />
+                        </div>
+                      ) : (
+                        <SafeImage
+                          src={asset.src}
+                          alt={asset.title}
+                          loading="lazy"
+                          decoding="async"
+                          sizes="(max-width: 640px) 90vw, 320px"
+                          className="h-36 w-full"
+                          imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          fallback={<LogoFallback label={asset.title} icon={FileBadge} />}
+                        />
+                      )}
+                      <div className="flex items-center justify-between gap-3 p-3">
+                        <p className="truncate text-sm font-semibold text-ink">{asset.title}</p>
+                        <span className="shrink-0 text-xs font-semibold text-emerald-deep">Preview</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </section>
             )}
             <div className="mt-5 flex flex-wrap gap-3">
               {selected.credentialUrl && (
