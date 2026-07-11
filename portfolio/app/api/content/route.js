@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { del } from "@vercel/blob";
 import { readContent, writeContent } from "@/backend/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -12,8 +13,52 @@ function jsonNoStore(body, init = {}) {
 }
 
 function revalidatePublicPages() {
-  ["/", "/tentang", "/pengalaman", "/proyek", "/pencapaian", "/kontak"].forEach((path) => {
+  ["/", "/tentang", "/pendidikan", "/keahlian", "/pengalaman", "/proyek", "/pencapaian", "/kontak"].forEach((path) => {
     revalidatePath(path);
+  });
+}
+
+function isManagedBlobUrl(value = "") {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && url.hostname.endsWith(".public.blob.vercel-storage.com");
+  } catch {
+    return false;
+  }
+}
+
+function collectBlobUrls(value, urls = new Set()) {
+  if (!value) return urls;
+
+  if (typeof value === "string") {
+    if (isManagedBlobUrl(value)) urls.add(value);
+    return urls;
+  }
+
+  if (Array.isArray(value)) {
+    value.forEach((item) => collectBlobUrls(item, urls));
+    return urls;
+  }
+
+  if (typeof value === "object") {
+    Object.values(value).forEach((item) => collectBlobUrls(item, urls));
+  }
+
+  return urls;
+}
+
+async function cleanupRemovedBlobUrls(previousContent, nextContent) {
+  const previousUrls = collectBlobUrls(previousContent);
+  const nextUrls = collectBlobUrls(nextContent);
+  const removedUrls = [...previousUrls].filter((url) => !nextUrls.has(url));
+
+  if (!removedUrls.length) return;
+
+  const results = await Promise.allSettled(removedUrls.map((url) => del(url)));
+  results.forEach((result, index) => {
+    if (result.status === "rejected") {
+      console.warn("Blob cleanup skipped:", removedUrls[index], result.reason?.message || result.reason);
+    }
   });
 }
 
@@ -34,7 +79,9 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
+    const previousContent = await readContent({ fresh: true });
     const content = await writeContent(body);
+    await cleanupRemovedBlobUrls(previousContent, content);
     revalidatePublicPages();
     return jsonNoStore({ success: true, content });
   } catch (err) {
