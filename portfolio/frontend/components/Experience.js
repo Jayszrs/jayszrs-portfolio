@@ -64,35 +64,37 @@ export default function Experience({ items = [], section = {} }) {
           </div>
         </div>
 
-        <div className="relative mt-10 space-y-6 border-l border-line pl-7 sm:pl-9">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:relative sm:mt-10 sm:block sm:space-y-6 sm:border-l sm:border-line sm:pl-9">
           {filtered.map((item) => (
             <button
               key={item.id}
               type="button"
               onClick={() => setSelected(item)}
-              className="glass group relative block w-full rounded-2xl text-left hover:-translate-y-0.5 hover:shadow-glass-lg"
+              className="glass group relative block h-full w-full rounded-2xl text-left hover:-translate-y-0.5 hover:shadow-glass-lg"
             >
-              <span className="absolute -left-[2.2rem] top-7 h-3 w-3 rounded-full bg-emerald ring-4 ring-emerald-soft sm:-left-[2.8rem]" />
+              <span className="absolute -left-[2.8rem] top-7 hidden h-3 w-3 rounded-full bg-emerald ring-4 ring-emerald-soft sm:block" />
               <div className="grid overflow-hidden rounded-2xl sm:grid-cols-[220px_1fr]">
                 <SafeImage
                   src={item.image}
                   alt={item.org || item.title}
                   loading="lazy"
                   decoding="async"
-                  className="h-40 w-full sm:h-full"
-                  imgClassName="h-full w-full bg-surface object-contain p-5"
+                  sizes="(max-width: 640px) 44vw, 220px"
+                  className="h-24 w-full sm:h-full"
+                  imgClassName="h-full w-full bg-surface object-contain p-3 sm:p-5"
                   fallback={<LogoFallback label={item.org || item.title} icon={Building2} />}
                 />
-                <div className="p-5 sm:p-6">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="rounded-full bg-emerald-soft px-3 py-1 text-xs font-semibold text-emerald-deep">{item.type}</span>
-                    <span className="text-xs text-muted">{periodOf(item)}</span>
+                <div className="flex h-full flex-col p-3 sm:block sm:p-6">
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+                    <span className="rounded-full bg-emerald-soft px-2 py-0.5 text-[10px] font-semibold text-emerald-deep sm:px-3 sm:py-1 sm:text-xs">{item.type}</span>
+                    <span className="hidden text-xs text-muted sm:inline">{periodOf(item)}</span>
                   </div>
-                  <h3 className="mt-4 font-display text-xl font-semibold text-ink">{item.title}</h3>
-                  <p className="mt-1 text-sm font-medium text-emerald-deep">{item.org}</p>
-                  <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">{item.description}</p>
+                  <h3 className="mt-3 line-clamp-2 font-display text-sm font-semibold leading-tight text-ink sm:mt-4 sm:text-xl">{item.title}</h3>
+                  <p className="mt-1 line-clamp-2 text-xs font-medium text-emerald-deep sm:text-sm">{item.org}</p>
+                  <p className="mt-1 text-[10px] text-muted sm:hidden">{periodOf(item)}</p>
+                  <p className="mt-3 hidden line-clamp-2 text-sm leading-relaxed text-muted sm:block">{item.description}</p>
                   {documentationImages(item).length > 0 && (
-                    <div className="mt-4 flex gap-2">
+                    <div className="mt-4 hidden gap-2 sm:flex">
                       {documentationImages(item).slice(0, 3).map((src, imageIndex) => (
                         <span key={`${src}-${imageIndex}`} className="h-12 w-16 overflow-hidden rounded-xl border border-line bg-surface">
                           <SafeImage
@@ -108,7 +110,7 @@ export default function Experience({ items = [], section = {} }) {
                       ))}
                     </div>
                   )}
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition group-hover:text-emerald">
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-ink transition group-hover:text-emerald sm:mt-4 sm:pt-0 sm:text-sm">
                     Buka detail <ArrowUpRight size={14} />
                   </span>
                 </div>
