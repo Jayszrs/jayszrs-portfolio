@@ -5,7 +5,7 @@ import MouseSpotlight from "@/frontend/components/MouseSpotlight";
 import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jayszrs.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.jayszrs.my.id";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
