@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import SafeImage from "@/frontend/components/SafeImage";
 
 function isPdf(src = "") {
-  return /\.pdf(\?.*)?$/i.test(src);
+  return /\.pdf(\?.*)?(#.*)?$/i.test(src);
 }
 
 function withPdfOptions(src = "") {
@@ -15,8 +15,9 @@ function withPdfOptions(src = "") {
   params.set("toolbar", "0");
   params.set("navpanes", "0");
   params.set("scrollbar", "1");
-  params.set("view", "Fit");
-  params.set("zoom", "page-fit");
+  params.set("page", "1");
+  params.set("view", "FitH");
+  params.set("zoom", "page-width");
   return `${base}#${params.toString()}`;
 }
 
@@ -128,13 +129,15 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
           onPointerCancel={() => setTouchStart(null)}
         >
           {pdf ? (
-            <iframe
-              key={pdfViewerSrc}
-              src={pdfViewerSrc}
-              title={current.title || title}
-              loading="lazy"
-              className="h-full w-full bg-surface"
-            />
+            <div className="relative h-full w-full overflow-auto bg-surface">
+              <iframe
+                key={pdfViewerSrc}
+                src={pdfViewerSrc}
+                title={current.title || title}
+                loading="lazy"
+                className="absolute left-1/2 top-4 h-[46rem] w-[62rem] max-w-none -translate-x-1/2 origin-top scale-[0.38] border-0 bg-surface sm:static sm:h-full sm:w-full sm:translate-x-0 sm:scale-100"
+              />
+            </div>
           ) : (
             <SafeImage
               src={current.src}
