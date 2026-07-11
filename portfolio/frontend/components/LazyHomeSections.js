@@ -12,7 +12,7 @@ const Ratings = dynamic(() => import("@/frontend/components/Ratings"), { ssr: fa
 const Achievements = dynamic(() => import("@/frontend/components/Achievements"), { ssr: false });
 const Contact = dynamic(() => import("@/frontend/components/Contact"), { ssr: false });
 
-function SectionShell({ minHeight = 420, children }) {
+function SectionShell({ id, minHeight = 420, children }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -35,7 +35,7 @@ function SectionShell({ minHeight = 420, children }) {
   }, [visible]);
 
   return (
-    <div ref={ref} style={!visible ? { minHeight } : undefined}>
+    <div id={id} ref={ref} className={id ? "scroll-mt-28" : undefined} style={!visible ? { minHeight } : undefined}>
       {visible ? children : null}
     </div>
   );
@@ -59,7 +59,7 @@ export default function LazyHomeSections({ content }) {
       <SectionShell minHeight={480}>
         <SelectedDesigns items={content.selectedDesigns} section={content.sections.selectedDesigns} />
       </SectionShell>
-      <SectionShell minHeight={480}>
+      <SectionShell id="rating" minHeight={480}>
         <Ratings items={content.ratings} section={content.sections.ratings} />
       </SectionShell>
       <SectionShell minHeight={520}>
