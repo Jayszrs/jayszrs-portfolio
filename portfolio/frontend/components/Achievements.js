@@ -48,7 +48,42 @@ function pdfThumbnailSrc(src = "") {
   return `${base}#${params.toString()}`;
 }
 
-function Card({ item, icon: Icon, onClick }) {
+function Card({ item, icon: Icon, onClick, compact = false }) {
+  if (compact) {
+    return (
+      <button type="button" onClick={onClick} className="glass group min-h-[13rem] rounded-2xl p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
+        <div className="flex h-full flex-col">
+          <div className="flex items-start gap-4">
+            <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface p-2.5">
+              {item.image || item.logo ? (
+                <SafeImage
+                  src={item.image || item.logo}
+                  alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="64px"
+                  className="h-full w-full"
+                  imgClassName="h-full w-full object-contain"
+                  fallback={<LogoFallback label={item.title || item.issuer} icon={Icon} />}
+                />
+              ) : (
+                <Icon size={26} className="text-emerald-deep" />
+              )}
+            </span>
+            <div className="min-w-0">
+              <h4 className="font-display text-base font-semibold leading-snug text-ink">{item.title}</h4>
+              <p className="mt-1 text-sm text-muted">{item.issuer}</p>
+            </div>
+          </div>
+          <div className="mt-auto flex items-center justify-between pt-5">
+            <p className="font-mono text-xs text-emerald-deep">{item.issuedAt || item.year}</p>
+            <span className="text-xs font-semibold text-ink/50 transition group-hover:text-emerald">Detail →</span>
+          </div>
+        </div>
+      </button>
+    );
+  }
+
   return (
     <button type="button" onClick={onClick} className="glass group overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
       {item.image ? (
@@ -121,7 +156,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
             <p className="mb-4 text-sm font-semibold text-ink/70">{section.certificatesLabel || "Sertifikat"}</p>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {certificates.map((item) => (
-                <Card key={item.id} item={item} icon={FileBadge} onClick={() => setSelected({ ...item, kind: "Sertifikat" })} />
+                <Card key={item.id} item={item} icon={FileBadge} compact onClick={() => setSelected({ ...item, kind: "Sertifikat" })} />
               ))}
             </div>
           </div>
