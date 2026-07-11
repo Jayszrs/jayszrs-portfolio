@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Download, Eye, Menu, Star, X } from "lucide-react";
 import MediaPreview from "@/frontend/components/MediaPreview";
+import { scrollToTarget } from "@/frontend/lib/hashScroll";
 
 const LINKS = [
   { href: "/", label: "Beranda" },
@@ -15,18 +16,6 @@ const LINKS = [
   { href: "/proyek", label: "Proyek" },
   { href: "/pencapaian", label: "Pencapaian" },
 ];
-
-function scrollToTarget(targetHash, attempt = 0) {
-  const target = document.getElementById(targetHash);
-  if (target) {
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-    return;
-  }
-
-  if (attempt < 20) {
-    window.setTimeout(() => scrollToTarget(targetHash, attempt + 1), 60);
-  }
-}
 
 export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   const [open, setOpen] = useState(false);
@@ -43,11 +32,11 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   }, [pathname]);
 
   useEffect(() => {
-    const currentHash = window.location.hash.replace("#", "");
+    const currentHash = hash.replace("#", "") || window.location.hash.replace("#", "");
     if (pathname === "/" && currentHash) {
       scrollToTarget(currentHash);
     }
-  }, [pathname]);
+  }, [hash, pathname]);
 
   const handleNavClick = (event, href) => {
     setOpen(false);

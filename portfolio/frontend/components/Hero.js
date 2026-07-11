@@ -8,6 +8,7 @@ import MediaPreview from "@/frontend/components/MediaPreview";
 import TypewriterText from "@/frontend/components/TypewriterText";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
 import { profileHeroImages } from "@/frontend/lib/profileImages";
+import { scrollToTarget } from "@/frontend/lib/hashScroll";
 import { externalUrl } from "@/frontend/lib/urls";
 
 export default function Hero({ profile }) {
@@ -52,6 +53,12 @@ export default function Hero({ profile }) {
     if (Math.abs(deltaX) < 42 || Math.abs(deltaY) > 70) return;
     if (deltaX < 0) showNextImage();
     else showPreviousImage();
+  };
+
+  const handleRatingClick = (event) => {
+    event.preventDefault();
+    window.history.pushState(null, "", "/#rating");
+    scrollToTarget("rating");
   };
 
   return (
@@ -118,6 +125,7 @@ export default function Hero({ profile }) {
             </Link>
             <Link
               href="/#rating"
+              onClick={handleRatingClick}
               className="glass-pill inline-flex h-11 flex-[1_1_9rem] items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:h-12 sm:flex-none sm:px-6"
             >
               Rating <Star size={16} />
