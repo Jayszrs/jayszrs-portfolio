@@ -145,7 +145,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
             <p className="mb-4 text-sm font-semibold text-ink/70">{section.achievementsLabel || "Pencapaian"}</p>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {achievements.map((item) => (
-                <Card key={item.id} item={item} icon={Award} onClick={() => setSelected({ ...item, kind: "Pencapaian" })} />
+                <Card key={item.id} item={item} icon={Award} compact onClick={() => setSelected({ ...item, kind: "Pencapaian" })} />
               ))}
             </div>
           </div>

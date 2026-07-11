@@ -89,19 +89,21 @@ export default function Capabilities({ capabilities, section = {} }) {
               <p className="max-w-md text-sm text-muted">{activeGroup.description}</p>
             </div>
 
-            <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
               {items.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => setSelected({ ...item, group: activeGroup.title })}
-                  className="group flex min-h-44 flex-col items-start rounded-[1.25rem] border border-line bg-surface p-5 text-left shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg sm:min-h-48 sm:rounded-[1.5rem] sm:p-6"
+                  className="group flex min-h-0 items-center gap-4 rounded-[1.25rem] border border-line bg-surface p-4 text-left shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg sm:min-h-48 sm:flex-col sm:items-start sm:rounded-[1.5rem] sm:p-6"
                 >
                   <BrandIcon name={item.name} />
-                  <span className="mt-5 font-display text-lg font-semibold text-ink">{item.name}</span>
-                  <span className="mt-1.5 text-sm text-muted">Sejak {item.since || "-"} - {item.level || "Belajar"}</span>
-                  <span className="mt-auto pt-4 text-xs font-semibold text-emerald-deep transition sm:opacity-0 sm:group-hover:opacity-100">
-                    Lihat detail <span aria-hidden="true">-&gt;</span>
+                  <span className="min-w-0 flex-1 sm:flex-none">
+                    <span className="block font-display text-base font-semibold text-ink sm:text-lg">{item.name}</span>
+                    <span className="mt-1 block text-sm text-muted">Sejak {item.since || "-"} - {item.level || "Belajar"}</span>
+                    <span className="mt-2 block text-xs font-semibold text-emerald-deep transition sm:mt-auto sm:pt-4 sm:opacity-0 sm:group-hover:opacity-100">
+                      Lihat detail <span aria-hidden="true">-&gt;</span>
+                    </span>
                   </span>
                 </button>
               ))}
