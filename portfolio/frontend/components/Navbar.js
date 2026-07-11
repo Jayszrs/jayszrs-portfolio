@@ -82,7 +82,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
             setOpen(false);
             setResumePreview(true);
           }}
-          className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-semibold text-ink transition hover:bg-emerald-soft hover:text-emerald-deep md:h-8"
+          className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-semibold text-ink transition hover:bg-emerald-soft hover:text-emerald-deep md:h-8 lg:px-3.5"
         >
           {compact ? "CV" : "Preview"} <Eye size={14} />
         </button>
@@ -90,7 +90,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           href={cvUrl}
           download
           onClick={() => setOpen(false)}
-          className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-ink px-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white md:h-8"
+          className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-ink px-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white md:h-8 lg:px-3.5"
         >
           {compact ? "Unduh" : "Download"} <Download size={14} />
         </a>
@@ -119,8 +119,8 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
 
   return (
     <header className="fixed left-0 right-0 top-3 z-50 flex justify-center px-4 sm:top-4 sm:px-4">
-      <nav className="glass flex w-full max-w-6xl items-center justify-between rounded-[1.75rem] px-3 py-2.5 md:rounded-full md:px-4 md:py-2">
-        <Link href="/" onClick={handleBrandClick} className="flex min-w-0 items-center gap-2.5">
+      <nav className="glass flex w-full max-w-7xl items-center justify-between gap-3 rounded-[1.75rem] px-3 py-2.5 md:rounded-full md:px-4 md:py-2 lg:px-5">
+        <Link href="/" onClick={handleBrandClick} className="flex min-w-0 shrink-0 items-center gap-2.5 lg:min-w-[9.75rem]">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm sm:h-9 sm:w-9">
             <img
               src="https://api.iconify.design/simple-icons:kalilinux.svg?color=%23ffffff"
@@ -129,16 +129,16 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
               className="h-full w-full"
             />
           </span>
-          <span className="block max-w-[8rem] truncate font-display text-sm font-semibold text-[#ef3340] sm:max-w-[10rem]">{brandName}</span>
+          <span className="block max-w-[7rem] truncate font-display text-sm font-semibold text-[#ef3340] sm:max-w-[10rem] lg:max-w-[8.5rem]">{brandName}</span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden min-w-0 flex-1 items-center justify-center gap-1.5 md:flex lg:gap-2">
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 onClick={(event) => handleNavClick(event, link.href)}
-                className={`block rounded-full px-3.5 py-2 text-sm font-medium transition ${
+                className={`block rounded-full px-3 py-2 text-sm font-medium transition lg:px-3.5 ${
                   isActive(link.href)
                     ? "bg-ink text-paper"
                     : "text-ink/65 hover:bg-surface/70 hover:text-ink"
@@ -150,20 +150,20 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <div className="flex items-center gap-1 rounded-full border border-line bg-surface p-1">
+        <div className="hidden shrink-0 items-center gap-2.5 md:flex lg:gap-3">
+          <div className="flex items-center gap-1.5 rounded-full border border-line bg-surface p-1">
             {renderResumeControls(true)}
           </div>
           <Link
             href="/#rating"
             onClick={(event) => handleNavClick(event, "/#rating")}
-            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3.5 py-2 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep"
+            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-4 py-2 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep"
           >
             Rating <Star size={14} />
           </Link>
           <Link
             href="/kontak"
-            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep"
+            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep"
           >
             Kontak <ArrowUpRight size={14} />
           </Link>
