@@ -92,7 +92,7 @@ export default function Ratings({ items = [], section = {} }) {
             )}
           </div>
 
-          <form onSubmit={submitRating} className="glass h-fit space-y-4 rounded-2xl p-5">
+          <form id="rating-form" onSubmit={submitRating} className="glass h-fit scroll-mt-28 space-y-4 rounded-2xl p-5">
             <div>
               <h3 className="font-display text-xl font-semibold text-ink">Kasih masukan</h3>
               <p className="mt-1 text-xs leading-5 text-muted">Kritik dan saran yang kamu kirim langsung ditampilkan.</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Github, Linkedin, Instagram, ArrowUpRight, ChevronLeft, ChevronRight, Download, Eye } from "lucide-react";
+import { Github, Linkedin, Instagram, ArrowUpRight, ChevronLeft, ChevronRight, Download, Eye, Star } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import MediaPreview from "@/frontend/components/MediaPreview";
@@ -116,6 +116,12 @@ export default function Hero({ profile }) {
             >
               Kontak Saya
             </Link>
+            <Link
+              href="/#rating"
+              className="glass-pill inline-flex h-11 flex-[1_1_9rem] items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:h-12 sm:flex-none sm:px-6"
+            >
+              Rating <Star size={16} />
+            </Link>
             {hasResume ? (
               <>
                 <button
@@ -179,6 +185,8 @@ export default function Hero({ profile }) {
                   alt={profile.fullName}
                   fill
                   priority
+                  quality={76}
+                  fetchPriority="high"
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 420px, 380px"
                   className="object-cover"
                 />

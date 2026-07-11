@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Download, Eye, Menu, X } from "lucide-react";
+import { ArrowUpRight, Download, Eye, Menu, Star, X } from "lucide-react";
 import MediaPreview from "@/frontend/components/MediaPreview";
 
 const LINKS = [
@@ -147,6 +147,13 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
             {renderResumeControls(true)}
           </div>
           <Link
+            href="/#rating"
+            onClick={(event) => handleNavClick(event, "/#rating")}
+            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3.5 py-2 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep"
+          >
+            Rating <Star size={14} />
+          </Link>
+          <Link
             href="/kontak"
             className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep"
           >
@@ -190,6 +197,13 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
                 className="mt-2 flex items-center justify-center gap-2 rounded-2xl bg-emerald px-4 py-3.5 text-sm font-semibold text-white"
               >
                 Hubungi saya <ArrowUpRight size={15} />
+              </Link>
+              <Link
+                href="/#rating"
+                onClick={(event) => handleNavClick(event, "/#rating")}
+                className="mt-2 flex items-center justify-center gap-2 rounded-2xl border border-line bg-surface px-4 py-3.5 text-sm font-semibold text-ink"
+              >
+                Kasih rating <Star size={15} />
               </Link>
             </li>
           </ul>

@@ -40,6 +40,9 @@ export default function SafeImage({
   fallback = null,
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
   priority = false,
+  loading,
+  decoding = "async",
+  quality = 70,
   ...props
 }) {
   const [failed, setFailed] = useState(unavailableSource(src));
@@ -60,6 +63,9 @@ export default function SafeImage({
         fill
         sizes={sizes}
         priority={priority}
+        loading={priority ? undefined : loading || "lazy"}
+        decoding={decoding}
+        quality={quality}
         className={imgClassName}
         onError={() => setFailed(true)}
         {...props}
