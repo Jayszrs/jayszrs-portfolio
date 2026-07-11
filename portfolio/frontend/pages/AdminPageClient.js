@@ -29,6 +29,10 @@ async function uploadFile(file) {
   return data.url;
 }
 
+function fileRows(values = []) {
+  return Array.isArray(values) ? values.filter((value) => typeof value === "string") : [];
+}
+
 function FileField({ label, value, onChange, accept = "application/pdf", buttonLabel = "Upload file" }) {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
@@ -99,6 +103,84 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
           {status || `Upload ${acceptsImages && acceptsPdf ? "gambar/PDF" : acceptsImages ? "gambar" : "PDF"} maksimal 10 MB, lalu klik Simpan.`}
         </p>
       </div>
+    </div>
+  );
+}
+
+function MultiFileField({
+  label,
+  values = [],
+  onChange,
+  accept = "application/pdf",
+  addLabel = "Tambah file",
+  buttonLabel = "Upload file",
+  itemLabel = "File",
+  description = "Tambah file sebanyak yang dibutuhkan, lalu klik Simpan.",
+}) {
+  const [rows, setRows] = useState(() => fileRows(values));
+
+  useEffect(() => {
+    setRows(fileRows(values));
+  }, [values]);
+
+  const updateFile = (index, value) => {
+    const next = [...rows];
+    next[index] = value;
+    setRows(next);
+    onChange(next);
+  };
+
+  const removeFile = (index) => {
+    const next = rows.filter((_, fileIndex) => fileIndex !== index);
+    setRows(next);
+    onChange(next);
+  };
+
+  const filledCount = fileRows(rows).length;
+
+  return (
+    <div className="space-y-3 rounded-xl border border-line bg-paper/45 p-3">
+      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <label className="block text-xs font-semibold text-ink/70">{label}</label>
+          <p className="text-xs text-muted">{description}</p>
+        </div>
+        <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} file</span>
+      </div>
+
+      {rows.length > 0 && (
+        <div className="space-y-3">
+          {rows.map((src, fileIndex) => (
+            <div key={`${src}-${fileIndex}`} className="rounded-xl border border-line bg-surface p-3">
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <p className="font-mono text-xs font-semibold text-muted">#{fileIndex + 1} {itemLabel}</p>
+                <button
+                  type="button"
+                  onClick={() => removeFile(fileIndex)}
+                  className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+                >
+                  <Trash2 size={13} /> Hapus
+                </button>
+              </div>
+              <FileField
+                label=""
+                value={src}
+                accept={accept}
+                buttonLabel={buttonLabel}
+                onChange={(value) => updateFile(fileIndex, value)}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      <button
+        type="button"
+        onClick={() => setRows([...rows, ""])}
+        className="inline-flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 py-2.5 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
+      >
+        <Plus size={14} /> {addLabel}
+      </button>
     </div>
   );
 }
@@ -1126,6 +1208,18 @@ export default function AdminPageClient() {
                       <FileField label="Dokumentasi PDF" value={item.pdfUrl} accept="application/pdf" buttonLabel="Upload PDF" onChange={(v) => {
                         const next = [...list]; next[i] = { ...item, pdfUrl: v }; setContent({ ...content, [key]: next });
                       }} />
+                      <MultiFileField
+                        label="Dokumentasi PDF tambahan"
+                        values={item.pdfUrls || []}
+                        accept="application/pdf"
+                        addLabel="Tambah PDF sertifikat"
+                        buttonLabel="Upload PDF"
+                        itemLabel="PDF sertifikat"
+                        description="Tambahkan PDF sertifikat lain sebanyak yang dibutuhkan."
+                        onChange={(v) => {
+                          const next = [...list]; next[i] = { ...item, pdfUrls: v }; setContent({ ...content, [key]: next });
+                        }}
+                      />
                     </>
                   )}
                   {key === "achievements" && (
@@ -1145,7 +1239,7 @@ export default function AdminPageClient() {
                 onClick={() => setContent({
                   ...content,
                   [key]: [...list, key === "certificates"
-                    ? { id: uid(key), title: "", issuer: "", year: "", logo: "", image: "", credentialId: "", issuedAt: "", expiresAt: "", credentialUrl: "", pdfUrl: "", description: "" }
+                    ? { id: uid(key), title: "", issuer: "", year: "", logo: "", image: "", credentialId: "", issuedAt: "", expiresAt: "", credentialUrl: "", pdfUrl: "", pdfUrls: [], description: "" }
                     : { id: uid(key), title: "", issuer: "", year: "", logo: "", image: "", description: "" }],
                 })}
                 className="flex items-center gap-1 text-sm font-semibold text-emerald-deep"

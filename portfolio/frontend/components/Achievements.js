@@ -7,11 +7,23 @@ import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { externalUrl } from "@/frontend/lib/urls";
 
+function certificatePdfs(item = {}) {
+  const extras = [
+    ...(Array.isArray(item.pdfUrls) ? item.pdfUrls : []),
+    ...(Array.isArray(item.certificateFiles) ? item.certificateFiles : []),
+    ...(Array.isArray(item.certificatePdfs) ? item.certificatePdfs : []),
+    ...(Array.isArray(item.documents) ? item.documents : []),
+  ];
+
+  return [item.pdfUrl, ...extras].filter((src) => typeof src === "string" && src.trim());
+}
+
 function mediaAssets(item = {}, kind = "") {
   const assets = kind === "Sertifikat"
-    ? [
-        item.pdfUrl && { src: item.pdfUrl, title: `Sertifikat ${item.title}` },
-      ].filter(Boolean)
+    ? certificatePdfs(item).map((src, index) => ({
+        src,
+        title: index === 0 ? `Sertifikat ${item.title}` : `Sertifikat ${item.title} ${index + 1}`,
+      }))
     : [
         item.image && { src: item.image, title: `Dokumentasi ${item.title}` },
         item.logo && { src: item.logo, title: `Logo ${item.issuer || item.title}` },
