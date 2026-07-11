@@ -466,6 +466,7 @@ export default function AdminPageClient() {
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState(null);
   const [saveError, setSaveError] = useState("");
+  const [saveMenuOpen, setSaveMenuOpen] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -918,6 +919,9 @@ export default function AdminPageClient() {
                   <TextField label="Organisasi" value={item.org} onChange={(v) => {
                     const next = [...content.experience]; next[i] = { ...item, org: v }; setContent({ ...content, experience: next });
                   }} />
+                  <TextField label="Link instansi / organisasi" value={item.orgLink || ""} placeholder="https://nama-instansi.com" onChange={(v) => {
+                    const next = [...content.experience]; next[i] = { ...item, orgLink: v }; setContent({ ...content, experience: next });
+                  }} />
                   <TextField label="Lokasi" value={item.location} placeholder="Bekasi, Indonesia" onChange={(v) => {
                     const next = [...content.experience]; next[i] = { ...item, location: v }; setContent({ ...content, experience: next });
                   }} />
@@ -952,7 +956,7 @@ export default function AdminPageClient() {
               onClick={() => setContent({
                 ...content, experience: [...(content.experience || []), {
                   id: uid("exp"), type: "Proyek", title: "", org: "", period: "", startDate: "", endDate: "",
-                  location: "", workingUnit: "", description: "", companyBackground: "", responsibilities: "",
+                  orgLink: "", location: "", workingUnit: "", description: "", companyBackground: "", responsibilities: "",
                   tools: "", link: "", image: "", documentationFile: "", documentationImages: [], documentationImage: "", documentationImage2: "", documentationImage3: "",
                 }]
               })}
@@ -1183,30 +1187,43 @@ export default function AdminPageClient() {
         )}
       </main>
 
-      <div className="fixed inset-x-3 bottom-[max(1rem,env(safe-area-inset-bottom))] z-[160] sm:inset-x-6">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 rounded-2xl border border-line bg-paper/98 p-2.5 shadow-[0_-18px_60px_rgba(13,25,21,0.18)] sm:flex-row sm:items-center sm:justify-between sm:p-3">
-          <div className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 text-xs font-semibold ${saveStatusClass}`}>
-            {saveError ? <AlertCircle size={15} /> : savedAt ? <CheckCircle2 size={15} /> : <Save size={15} />}
-            <span className="truncate">{saveStatus}</span>
-          </div>
-          <div className="grid grid-cols-[1fr_1.4fr] gap-2 sm:flex sm:items-center sm:justify-end">
+      <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[160] sm:right-6">
+        {saveMenuOpen && (
+          <div className="mb-2 w-[min(21rem,calc(100vw-2rem))] space-y-2 rounded-2xl border border-line bg-paper/98 p-2.5 shadow-[0_-18px_60px_rgba(13,25,21,0.18)]">
+            <button
+              type="button"
+              className={`flex min-h-11 w-full items-center gap-2 rounded-xl border px-3 text-left text-xs font-semibold ${saveStatusClass}`}
+            >
+              {saveError ? <AlertCircle size={15} /> : savedAt ? <CheckCircle2 size={15} /> : <Save size={15} />}
+              <span className="truncate">{saveStatus}</span>
+            </button>
             <Link
               href="/"
               target="_blank"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 text-sm font-semibold text-ink transition hover:border-emerald/30"
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 text-sm font-semibold text-ink transition hover:border-emerald/30"
             >
               <ExternalLink size={15} /> Preview
             </Link>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-emerald px-5 text-sm font-semibold text-white transition hover:bg-emerald-deep disabled:opacity-60"
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-emerald px-5 text-sm font-semibold text-white transition hover:bg-emerald-deep disabled:opacity-60"
             >
               {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
               {saving ? "Menyimpan..." : "Simpan sekarang"}
             </button>
           </div>
-        </div>
+        )}
+        <button
+          type="button"
+          onClick={() => setSaveMenuOpen((value) => !value)}
+          aria-label={saveMenuOpen ? "Tutup menu simpan" : "Buka menu simpan"}
+          aria-expanded={saveMenuOpen}
+          className="ml-auto flex h-12 items-center justify-center gap-2 rounded-2xl bg-emerald px-4 text-sm font-semibold text-white shadow-[0_18px_48px_rgba(11,170,114,0.28)] transition hover:bg-emerald-deep"
+        >
+          {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+          Simpan
+        </button>
       </div>
     </div>
   );

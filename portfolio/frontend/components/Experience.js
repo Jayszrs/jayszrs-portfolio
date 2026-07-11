@@ -9,6 +9,7 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
+import { externalUrl } from "@/frontend/lib/urls";
 
 const ORDER = ["Semua", "Proyek", "Magang", "Kerja", "Volunteer", "Organisasi"];
 
@@ -17,7 +18,11 @@ function periodOf(item) {
 }
 
 function documentationFileOf(item = {}) {
-  return item.documentationFile || item.link || "";
+  return item.documentationFile || "";
+}
+
+function orgLinkOf(item = {}) {
+  return item.orgLink || item.organizationLink || item.companyLink || item.website || "";
 }
 
 function looksLikeImage(src = "") {
@@ -146,6 +151,16 @@ export default function Experience({ items = [], section = {} }) {
                     <span className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-4 py-2 text-sm text-muted">
                       <MapPin size={15} /> {selected.location}
                     </span>
+                  )}
+                  {orgLinkOf(selected) && (
+                    <a
+                      href={externalUrl(orgLinkOf(selected))}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white"
+                    >
+                      Link instansi <ArrowUpRight size={15} />
+                    </a>
                   )}
                 </div>
               </div>
