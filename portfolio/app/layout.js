@@ -6,6 +6,7 @@ import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.jayszrs.my.id";
+const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || "W6pK9aCg_aupJMDlP49RhpLpzgAU0oRG5PWw6V13KKE";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -45,7 +46,7 @@ export const metadata = {
     follow: true,
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
+    google: googleVerification,
   },
 };
 
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id" className={jakarta.variable} suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content={googleVerification} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="bg-paper text-ink font-body antialiased">
