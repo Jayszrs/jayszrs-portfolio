@@ -17,6 +17,22 @@ function mediaAssets(item = {}, kind = "") {
   return assets.filter((asset, index, list) => list.findIndex((itemAsset) => itemAsset.src === asset.src) === index);
 }
 
+function isPdf(src = "") {
+  return /\.pdf(\?.*)?(#.*)?$/i.test(src);
+}
+
+function pdfThumbnailSrc(src = "") {
+  if (!src) return src;
+  const [base, fragment = ""] = src.split("#");
+  const params = new URLSearchParams(fragment);
+  params.set("toolbar", "0");
+  params.set("navpanes", "0");
+  params.set("scrollbar", "0");
+  params.set("page", "1");
+  params.set("view", "FitH");
+  return `${base}#${params.toString()}`;
+}
+
 function Card({ item, icon: Icon, onClick }) {
   return (
     <button type="button" onClick={onClick} className="glass group overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
@@ -164,9 +180,14 @@ export default function Achievements({ achievements = [], certificates = [], sec
                       onClick={() => openGroupPreview(asset.src, asset.title)}
                       className="group overflow-hidden rounded-2xl border border-line bg-surface text-left transition hover:border-emerald/35"
                     >
-                      {asset.src.toLowerCase().includes(".pdf") ? (
-                        <div className="flex h-36 items-center justify-center bg-emerald-soft text-emerald-deep">
-                          <FileText size={34} />
+                      {isPdf(asset.src) ? (
+                        <div className="h-36 w-full overflow-hidden bg-surface">
+                          <iframe
+                            src={pdfThumbnailSrc(asset.src)}
+                            title={asset.title}
+                            loading="lazy"
+                            className="pointer-events-none h-[220%] w-full origin-top scale-[0.46] border-0 bg-surface"
+                          />
                         </div>
                       ) : (
                         <SafeImage
