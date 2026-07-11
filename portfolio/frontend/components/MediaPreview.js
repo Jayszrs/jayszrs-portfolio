@@ -51,11 +51,8 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
       if (event.key === "ArrowLeft" && hasMultiple) showPrevious();
       if (event.key === "ArrowRight" && hasMultiple) showNext();
     };
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKey);
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKey);
     };
   }, [current?.src, hasMultiple, onClose]);
@@ -87,7 +84,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
 
   return (
     <div
-      className="fixed inset-0 z-[130] flex items-end justify-center bg-black/70 p-3 sm:items-center sm:p-6"
+      className="fixed inset-0 z-[130] flex items-end justify-center overscroll-contain bg-black/70 p-3 sm:items-center sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -125,7 +122,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
           </div>
         </div>
         <div
-          className="relative h-[76svh] bg-ink sm:h-[76vh]"
+          className="relative h-[76svh] touch-pan-y overscroll-contain bg-ink sm:h-[76vh]"
           onPointerDown={(event) => setTouchStart({ x: event.clientX, y: event.clientY })}
           onPointerUp={handlePointerUp}
           onPointerCancel={() => setTouchStart(null)}

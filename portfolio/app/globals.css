@@ -305,7 +305,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 640px) {
   html,
   body {
-    overscroll-behavior-y: none;
     overflow-x: hidden;
   }
 

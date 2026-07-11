@@ -9,11 +9,8 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
     const handleKey = (event) => {
       if (event.key === "Escape") onClose();
     };
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKey);
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKey);
     };
   }, [open, onClose]);
@@ -22,7 +19,7 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-3 backdrop-blur-sm sm:items-center sm:p-6"
+      className="fixed inset-0 z-[100] flex items-end justify-center overscroll-contain bg-black/60 p-3 backdrop-blur-sm sm:items-center sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -31,7 +28,7 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
         role="dialog"
         aria-modal="true"
         aria-labelledby="detail-modal-title"
-        className={`max-h-[90vh] w-full overflow-y-auto rounded-[1.75rem] border border-surface/70 bg-paper p-6 shadow-2xl sm:p-8 ${
+        className={`max-h-[90svh] w-full overflow-y-auto overscroll-contain rounded-[1.75rem] border border-surface/70 bg-paper p-6 shadow-2xl [-webkit-overflow-scrolling:touch] sm:p-8 ${
           size === "wide" ? "max-w-6xl" : "max-w-xl"
         }`}
       >
