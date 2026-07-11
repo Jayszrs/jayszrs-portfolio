@@ -19,8 +19,10 @@ function applyTheme(preference) {
 export default function ThemeSwitcher() {
   const [preference, setPreference] = useState("system");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
+    setHidden(window.location.pathname.startsWith("/admin"));
     const saved = window.localStorage.getItem("portfolio-theme") || "system";
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     setPreference(saved);
@@ -43,6 +45,8 @@ export default function ThemeSwitcher() {
   };
 
   const CurrentIcon = OPTIONS.find((option) => option.value === preference)?.icon || Monitor;
+
+  if (hidden) return null;
 
   return (
     <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-5 z-[90] sm:bottom-6 sm:right-6">

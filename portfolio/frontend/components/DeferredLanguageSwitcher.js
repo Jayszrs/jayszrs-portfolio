@@ -11,6 +11,8 @@ export default function DeferredLanguageSwitcher() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    if (window.location.pathname.startsWith("/admin")) return undefined;
+
     if ("requestIdleCallback" in window) {
       const id = window.requestIdleCallback(() => setReady(true), { timeout: 1800 });
       return () => window.cancelIdleCallback(id);

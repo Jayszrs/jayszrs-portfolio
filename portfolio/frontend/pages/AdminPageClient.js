@@ -642,7 +642,7 @@ export default function AdminPageClient() {
       : "border-line bg-surface text-muted";
 
   return (
-    <div className="min-h-screen bg-paper pb-36">
+    <div className="min-h-screen bg-paper pb-44">
       <header className="sticky top-0 z-40 border-b border-line bg-paper/90 px-4 py-3 backdrop-blur-xl sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex min-w-0 items-center gap-3">
@@ -1183,8 +1183,8 @@ export default function AdminPageClient() {
         )}
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper/95 px-3 py-3 shadow-[0_-18px_48px_rgba(13,25,21,0.10)] sm:px-6">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="fixed inset-x-3 bottom-[max(1rem,env(safe-area-inset-bottom))] z-[160] sm:inset-x-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 rounded-2xl border border-line bg-paper/98 p-2.5 shadow-[0_-18px_60px_rgba(13,25,21,0.18)] sm:flex-row sm:items-center sm:justify-between sm:p-3">
           <div className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 text-xs font-semibold ${saveStatusClass}`}>
             {saveError ? <AlertCircle size={15} /> : savedAt ? <CheckCircle2 size={15} /> : <Save size={15} />}
             <span className="truncate">{saveStatus}</span>
