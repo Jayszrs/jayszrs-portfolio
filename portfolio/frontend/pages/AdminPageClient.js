@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   LogOut, Plus, Trash2, Save, Loader2, ImagePlus, Lock,
@@ -31,6 +31,18 @@ async function uploadFile(file) {
 
 function fileRows(values = []) {
   return Array.isArray(values) ? values.filter((value) => typeof value === "string") : [];
+}
+
+function imageRows(values = []) {
+  return Array.isArray(values) ? values.filter((value) => typeof value === "string") : [];
+}
+
+function listKey(values = []) {
+  return Array.isArray(values) ? values.map((value) => String(value || "")).join("\u0001") : "";
+}
+
+function rowsFromKey(key = "") {
+  return key ? key.split("\u0001") : [];
 }
 
 function FileField({ label, value, onChange, accept = "application/pdf", buttonLabel = "Upload file" }) {
@@ -120,11 +132,13 @@ function MultiFileField({
   itemLabel = "File",
   description = "Tambah file sebanyak yang dibutuhkan, lalu klik Simpan.",
 }) {
-  const [rows, setRows] = useState(() => fileRows(values));
+  const valuesKey = listKey(values);
+  const sourceRows = useMemo(() => fileRows(rowsFromKey(valuesKey)), [valuesKey]);
+  const [rows, setRows] = useState(() => sourceRows);
 
   useEffect(() => {
-    setRows(fileRows(values));
-  }, [values]);
+    setRows(sourceRows);
+  }, [sourceRows]);
 
   const updateFile = (index, value) => {
     const next = [...rows];
@@ -179,7 +193,7 @@ function MultiFileField({
 
       <button
         type="button"
-        onClick={() => setRows([...rows, ""])}
+        onClick={() => setRows((currentRows) => [...currentRows, ""])}
         className="inline-flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 py-2.5 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
       >
         <Plus size={14} /> {addLabel}
@@ -287,11 +301,13 @@ function MultiImageField({
   description = "Tambah gambar sebanyak yang dibutuhkan, lalu klik Simpan.",
   itemLabel = "Gambar",
 }) {
-  const [rows, setRows] = useState(() => documentationImages({ documentationImages: values }));
+  const valuesKey = listKey(values);
+  const sourceRows = useMemo(() => imageRows(rowsFromKey(valuesKey)), [valuesKey]);
+  const [rows, setRows] = useState(() => sourceRows);
 
   useEffect(() => {
-    setRows(documentationImages({ documentationImages: values }));
-  }, [values]);
+    setRows(sourceRows);
+  }, [sourceRows]);
 
   const updateImage = (index, value) => {
     const next = [...rows];
@@ -319,7 +335,7 @@ function MultiImageField({
           <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} gambar</span>
           <button
             type="button"
-            onClick={() => setRows([...rows, ""])}
+            onClick={() => setRows((currentRows) => [...currentRows, ""])}
             className="inline-flex h-8 items-center gap-1.5 rounded-full border border-emerald/20 bg-emerald-soft px-3 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
           >
             <Plus size={13} /> Tambah
@@ -358,6 +374,14 @@ function MultiImageField({
           ))}
         </div>
       )}
+
+      <button
+        type="button"
+        onClick={() => setRows((currentRows) => [...currentRows, ""])}
+        className="inline-flex h-9 items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-3 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
+      >
+        <Plus size={14} /> {addLabel}
+      </button>
     </div>
   );
 }
