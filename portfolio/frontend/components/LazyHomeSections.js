@@ -59,11 +59,11 @@ export default function LazyHomeSections({ content }) {
       <SectionShell minHeight={480}>
         <SelectedDesigns items={content.selectedDesigns} section={content.sections.selectedDesigns} />
       </SectionShell>
-      <SectionShell id="rating" minHeight={480}>
-        <Ratings items={content.ratings} section={content.sections.ratings} />
-      </SectionShell>
       <SectionShell minHeight={520}>
         <Achievements achievements={content.achievements} certificates={content.certificates} section={content.sections.achievements} />
+      </SectionShell>
+      <SectionShell id="rating" minHeight={480}>
+        <Ratings items={content.ratings} section={content.sections.ratings} />
       </SectionShell>
       <SectionShell minHeight={440}>
         <Contact contact={content.contact} profile={content.profile} section={content.sections.contact} />
