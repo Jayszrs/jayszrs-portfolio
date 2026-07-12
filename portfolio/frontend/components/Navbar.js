@@ -119,7 +119,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
 
   return (
     <header className="fixed left-0 right-0 top-3 z-50 flex justify-center px-4 sm:top-4 sm:px-4">
-      <nav className="glass flex w-full max-w-7xl items-center justify-between gap-3 rounded-[1.75rem] px-3 py-2.5 md:rounded-full md:px-4 md:py-2 lg:px-5">
+      <nav className="glass flex w-full max-w-7xl items-center justify-between gap-3 rounded-[1.75rem] px-3 py-2.5 lg:rounded-full lg:px-4 lg:py-2 xl:px-5">
         <Link href="/" onClick={handleBrandClick} className="flex min-w-0 shrink-0 items-center gap-2.5 lg:min-w-[9.75rem]">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm sm:h-9 sm:w-9">
             <img
@@ -132,13 +132,13 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           <span className="block max-w-[7rem] truncate font-display text-sm font-semibold text-[#ef3340] sm:max-w-[10rem] lg:max-w-[8.5rem]">{brandName}</span>
         </Link>
 
-        <ul className="hidden min-w-0 flex-1 items-center justify-center gap-1.5 md:flex lg:gap-2">
+        <ul className="hidden min-w-0 flex-1 items-center justify-center gap-1 lg:flex xl:gap-1.5">
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 onClick={(event) => handleNavClick(event, link.href)}
-                className={`block rounded-full px-3 py-2 text-sm font-medium transition lg:px-3.5 ${
+                className={`block rounded-full px-2.5 py-2 text-sm font-medium transition xl:px-3.5 ${
                   isActive(link.href)
                     ? "bg-ink text-paper"
                     : "text-ink/65 hover:bg-surface/70 hover:text-ink"
@@ -150,20 +150,20 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           ))}
         </ul>
 
-        <div className="hidden shrink-0 items-center gap-2.5 md:flex lg:gap-3">
-          <div className="flex items-center gap-1.5 rounded-full border border-line bg-surface p-1">
+        <div className="hidden shrink-0 items-center gap-1.5 lg:flex xl:gap-2.5">
+          <div className="flex items-center gap-1 rounded-full border border-line bg-surface p-1">
             {renderResumeControls(true)}
           </div>
           <Link
             href="/#rating"
             onClick={(event) => handleNavClick(event, "/#rating")}
-            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-4 py-2 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep"
+            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-2 text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep xl:px-4"
           >
             Rating <Star size={14} />
           </Link>
           <Link
             href="/kontak"
-            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep"
+            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-3 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep xl:px-4"
           >
             Kontak <ArrowUpRight size={14} />
           </Link>
@@ -171,7 +171,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center rounded-full text-ink md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full text-ink lg:hidden"
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
         >
@@ -180,7 +180,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
       </nav>
 
       {open && (
-        <div className="glass-strong absolute top-16 w-[calc(100%-2rem)] max-w-[30rem] rounded-3xl p-3 md:hidden">
+        <div className="glass-strong absolute top-16 w-[calc(100%-2rem)] max-w-[30rem] rounded-3xl p-3 lg:hidden">
           <ul className="flex flex-col gap-1">
             {LINKS.map((link) => (
               <li key={link.href}>
