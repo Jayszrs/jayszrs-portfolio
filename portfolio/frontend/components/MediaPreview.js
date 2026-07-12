@@ -21,6 +21,12 @@ function withPdfOptions(src = "") {
   return `${base}#${params.toString()}`;
 }
 
+function withEmbeddedPdfViewer(src = "") {
+  if (!src) return src;
+  const [base] = src.split("#");
+  return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(base)}`;
+}
+
 function normalizeItem(item, fallbackTitle) {
   if (!item) return null;
   if (typeof item === "string") return { src: item, title: fallbackTitle };
@@ -37,6 +43,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   const galleryKey = galleryItems.map((item) => `${item.src}|${item.title}`).join("::");
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState(null);
+  const [useMobilePdfViewer, setUseMobilePdfViewer] = useState(false);
   const current = galleryItems[activeIndex] || galleryItems[0];
   const hasMultiple = galleryItems.length > 1;
 
@@ -57,6 +64,17 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
       window.removeEventListener("keydown", handleKey);
     };
   }, [current?.src, hasMultiple, onClose]);
+
+  useEffect(() => {
+    const isAppleTouchDevice =
+      /iPad|iPhone|iPod/.test(navigator.userAgent || "") ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSmallTouchScreen =
+      window.matchMedia("(max-width: 640px)").matches &&
+      window.matchMedia("(pointer: coarse)").matches;
+
+    setUseMobilePdfViewer(isAppleTouchDevice || isSmallTouchScreen);
+  }, []);
 
   const showPrevious = () => {
     if (!hasMultiple) return;
@@ -82,6 +100,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
 
   const pdf = isPdf(current.src);
   const pdfViewerSrc = withPdfOptions(current.src);
+  const pdfFrameSrc = useMobilePdfViewer ? withEmbeddedPdfViewer(current.src) : pdfViewerSrc;
 
   return (
     <div
@@ -131,11 +150,15 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
           {pdf ? (
             <div className="relative h-full w-full overflow-auto bg-surface">
               <iframe
-                key={pdfViewerSrc}
-                src={pdfViewerSrc}
+                key={pdfFrameSrc}
+                src={pdfFrameSrc}
                 title={current.title || title}
                 loading="lazy"
-                className="absolute left-1/2 top-4 h-[46rem] w-[62rem] max-w-none -translate-x-1/2 origin-top scale-[0.38] border-0 bg-surface sm:static sm:h-full sm:w-full sm:translate-x-0 sm:scale-100"
+                className={
+                  useMobilePdfViewer
+                    ? "h-full w-full border-0 bg-surface"
+                    : "absolute left-1/2 top-4 h-[46rem] w-[62rem] max-w-none -translate-x-1/2 origin-top scale-[0.38] border-0 bg-surface sm:static sm:h-full sm:w-full sm:translate-x-0 sm:scale-100"
+                }
               />
             </div>
           ) : (
