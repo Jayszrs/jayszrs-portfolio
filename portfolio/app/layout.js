@@ -7,6 +7,10 @@ import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.jayszrs.my.id";
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || "W6pK9aCg_aupJMDlP49RhpLpzgAU0oRG5PWw6V13KKE";
+const siteName = "Jay Szrs Portfolio";
+const personName = "Jaelani Surya Saputra";
+const siteDescription =
+  "Portfolio resmi Jaelani Surya Saputra, dikenal sebagai Jay Szrs atau jayszrs, untuk IT infrastructure, web development, AI engineer, software engineering, dan dokumentasi proyek.";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -18,12 +22,27 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Jay Szrs | Portfolio",
+    default: "Jaelani Surya Saputra | Jay Szrs Portfolio",
     template: "%s | Jay Szrs",
   },
-  description:
-    "Portofolio Jaelani Surya Saputra (jayszrs) — Informatics Engineer, Network Forensics Researcher, dan Web Developer.",
-  applicationName: "Jay Szrs Portfolio",
+  description: siteDescription,
+  applicationName: siteName,
+  authors: [{ name: personName, url: siteUrl }],
+  creator: personName,
+  publisher: personName,
+  keywords: [
+    "Jaelani",
+    "Jaelani Surya Saputra",
+    "Jay",
+    "Jay Szrs",
+    "jayszrs",
+    "portfolio Jaelani",
+    "portfolio Jay Szrs",
+    "IT Infrastructure",
+    "Web Developer",
+    "AI Engineer",
+    "Software Engineer",
+  ],
   manifest: "/manifest.webmanifest",
   alternates: {
     canonical: "/",
@@ -40,16 +59,24 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    title: "Jay Szrs | Portfolio",
-    description:
-      "Portofolio Jaelani Surya Saputra (jayszrs) - Informatics Engineer, Network Forensics Researcher, dan Web Developer.",
-    siteName: "Jay Szrs Portfolio",
+    title: "Jaelani Surya Saputra | Jay Szrs Portfolio",
+    description: siteDescription,
+    siteName,
+    locale: "id_ID",
+    images: [
+      {
+        url: "/favicon-512.png",
+        width: 512,
+        height: 512,
+        alt: "Logo Jay Szrs",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jay Szrs | Portfolio",
-    description:
-      "Portofolio Jaelani Surya Saputra (jayszrs) - Informatics Engineer, Network Forensics Researcher, dan Web Developer.",
+    title: "Jaelani Surya Saputra | Jay Szrs Portfolio",
+    description: siteDescription,
+    images: ["/favicon-512.png"],
   },
   robots: {
     index: true,
