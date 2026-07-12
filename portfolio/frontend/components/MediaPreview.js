@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import SafeImage from "@/frontend/components/SafeImage";
 
@@ -37,10 +37,8 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   const galleryKey = galleryItems.map((item) => `${item.src}|${item.title}`).join("::");
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState(null);
-  const [useScaledPdf, setUseScaledPdf] = useState(false);
-  const [pdfBoxWidth, setPdfBoxWidth] = useState(0);
+  const [useMobilePdf, setUseMobilePdf] = useState(false);
   const [pdfLoaded, setPdfLoaded] = useState(false);
-  const pdfBoxRef = useRef(null);
   const current = galleryItems[activeIndex] || galleryItems[0];
   const hasMultiple = galleryItems.length > 1;
 
@@ -70,7 +68,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
       window.matchMedia("(max-width: 640px)").matches &&
       window.matchMedia("(pointer: coarse)").matches;
 
-    setUseScaledPdf(isAppleTouchDevice || isSmallTouchScreen);
+    setUseMobilePdf(isAppleTouchDevice || isSmallTouchScreen);
   }, []);
 
   useEffect(() => {
@@ -99,35 +97,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
 
   const pdf = Boolean(current?.src && isPdf(current.src));
   const pdfViewerSrc = withPdfOptions(current?.src || "");
-  const pdfFrameWidth = 1440;
-  const pdfFrameHeight = 2200;
-  const pdfScale = useScaledPdf && pdfBoxWidth ? Math.min(1, Math.max(0.18, (pdfBoxWidth - 24) / pdfFrameWidth)) : 1;
-  const scaledPdfShellStyle = useScaledPdf
-    ? {
-        width: `${pdfFrameWidth * pdfScale}px`,
-        height: `${pdfFrameHeight * pdfScale}px`,
-      }
-    : undefined;
-  const scaledPdfFrameStyle = useScaledPdf
-    ? {
-        width: `${pdfFrameWidth}px`,
-        height: `${pdfFrameHeight}px`,
-        transform: `scale(${pdfScale})`,
-        transformOrigin: "top left",
-      }
-    : undefined;
-
-  useEffect(() => {
-    const node = pdfBoxRef.current;
-    if (!node || !pdf || !useScaledPdf) return undefined;
-
-    const updateWidth = () => setPdfBoxWidth(node.clientWidth);
-    updateWidth();
-
-    const observer = new ResizeObserver(updateWidth);
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [pdf, useScaledPdf]);
+  const pdfFrameSrc = useMobilePdf ? current?.src || "" : pdfViewerSrc;
 
   if (!current?.src) return null;
 
@@ -177,18 +147,15 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
           onPointerCancel={() => setTouchStart(null)}
         >
           {pdf ? (
-            <div ref={pdfBoxRef} className="relative flex h-full w-full justify-center overflow-auto bg-surface p-3 sm:block sm:p-0">
-              <div className={useScaledPdf ? "relative overflow-hidden bg-surface" : "h-full w-full"} style={scaledPdfShellStyle}>
-                <iframe
-                  key={pdfViewerSrc}
-                  src={pdfViewerSrc}
-                  title={current.title || title}
-                  loading="lazy"
-                  onLoad={() => setPdfLoaded(true)}
-                  className={useScaledPdf ? "block max-w-none border-0 bg-surface" : "h-full w-full border-0 bg-surface"}
-                  style={scaledPdfFrameStyle}
-                />
-              </div>
+            <div className="relative h-full w-full overflow-hidden bg-surface">
+              <iframe
+                key={pdfFrameSrc}
+                src={pdfFrameSrc}
+                title={current.title || title}
+                loading="lazy"
+                onLoad={() => setPdfLoaded(true)}
+                className="h-full w-full border-0 bg-surface"
+              />
               {!pdfLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-surface text-sm font-semibold text-muted">
                   Memuat preview PDF...
