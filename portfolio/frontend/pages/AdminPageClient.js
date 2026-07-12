@@ -56,7 +56,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
   };
 
   return (
-    <div className="rounded-xl border border-line bg-paper/45 p-3">
+    <div className="rounded-2xl border border-line bg-paper/55 p-3">
       <div className="mb-2 flex items-center justify-between gap-3">
         <label className="block text-xs font-semibold text-ink/70">{label}</label>
         {value && (
@@ -66,13 +66,13 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
               onChange("");
               setStatus("File dihapus dari form. Klik Simpan untuk menyimpan perubahan.");
             }}
-            className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+            className="inline-flex h-8 items-center gap-1 rounded-full border border-red-100 bg-paper px-2.5 text-xs font-semibold text-red-500 transition hover:bg-red-50"
           >
             <XCircle size={13} /> Hapus
           </button>
         )}
       </div>
-      <div className="flex flex-col gap-2 lg:flex-row">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2">
         <input
           className="field min-w-0 flex-1"
           value={value || ""}
@@ -82,24 +82,27 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
           }}
           placeholder="URL file atau upload"
         />
-        <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:bg-emerald-soft">
+        <label
+          className="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-xl border border-line bg-surface px-3 text-xs font-semibold text-ink transition hover:bg-emerald-soft"
+          title={buttonLabel}
+        >
           {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
-          {busy ? "Uploading" : buttonLabel}
+          <span className="hidden sm:inline">{busy ? "Uploading" : buttonLabel}</span>
           <input type="file" accept={accept} className="hidden" onChange={handleFile} />
         </label>
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
         {value && (
           <>
-            <a href={value} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-2 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:text-emerald-deep">
+            <a href={value} target="_blank" rel="noreferrer" className="inline-flex h-8 items-center gap-1.5 rounded-full border border-line bg-surface px-3 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:text-emerald-deep">
               Preview <ExternalLink size={13} />
             </a>
-            <a href={value} download className="inline-flex items-center gap-1.5 rounded-lg bg-ink px-3 py-2 text-xs font-semibold text-paper transition hover:bg-emerald hover:text-white">
+            <a href={value} download className="inline-flex h-8 items-center gap-1.5 rounded-full bg-ink px-3 text-xs font-semibold text-paper transition hover:bg-emerald hover:text-white">
               Download <Download size={13} />
             </a>
           </>
         )}
-        <p className={`text-xs ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
+        <p className={`line-clamp-2 text-xs leading-5 ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
           {status || `Upload ${acceptsImages && acceptsPdf ? "gambar/PDF" : acceptsImages ? "gambar" : "PDF"} maksimal 10 MB, lalu klik Simpan.`}
         </p>
       </div>
@@ -211,8 +214,10 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
     }
   };
 
+  const previewSize = compact ? 58 : 74;
+
   return (
-    <div className={`min-w-0 rounded-xl border border-line ${compact ? "bg-surface p-2" : "bg-paper/45 p-3"}`}>
+    <div className={`min-w-0 rounded-2xl border border-line ${compact ? "bg-surface/80 p-2" : "bg-paper/55 p-3"}`}>
       {(label || (showRemove && value)) && (
         <div className="mb-2 flex items-center justify-between gap-3">
           {label && <label className="block text-xs font-semibold text-ink/70">{label}</label>}
@@ -223,25 +228,28 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
                 onChange("");
                 setStatus("Gambar dihapus dari form. Klik Simpan untuk menyimpan perubahan.");
               }}
-              className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-red-500 transition hover:bg-red-50"
+              className="inline-flex h-8 items-center gap-1 rounded-full border border-red-100 bg-paper px-2.5 text-xs font-semibold text-red-500 transition hover:bg-red-50"
             >
               <XCircle size={13} /> Hapus
             </button>
           )}
         </div>
       )}
-      <div className={`grid gap-3 ${compact ? "sm:grid-cols-[72px_1fr]" : "sm:grid-cols-[88px_1fr]"} sm:items-center`}>
-        <div className={`flex ${compact ? "h-[72px] min-h-[72px] sm:w-[72px]" : "h-[88px] min-h-[88px] sm:w-[88px]"} w-full items-center justify-center overflow-hidden rounded-xl border border-line bg-surface`}>
+      <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
+        <div
+          className="flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-paper"
+          style={{ width: previewSize, height: previewSize }}
+        >
           {value && !previewBroken ? (
-            <img src={value} alt="" className="h-full w-full object-contain p-2" onError={() => setPreviewBroken(true)} />
+            <img src={value} alt="" className="h-full w-full object-cover" onError={() => setPreviewBroken(true)} />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-emerald-soft">
               <ImagePlus size={compact ? 18 : 20} className="text-emerald-deep" />
             </div>
           )}
         </div>
-        <div className="min-w-0 space-y-2">
-          <div className="flex flex-col gap-2 lg:flex-row">
+        <div className="min-w-0 space-y-1.5">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2">
             <input
               type="text"
               value={value || ""}
@@ -250,15 +258,18 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
                 setStatus("");
               }}
               placeholder="URL gambar, atau upload dari perangkat"
-              className="field min-w-0 flex-1"
+              className="field min-w-0"
             />
-            <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 py-2.5 text-xs font-semibold text-ink transition hover:border-emerald/30 hover:bg-emerald-soft">
+            <label
+              className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border border-line bg-surface text-ink transition hover:border-emerald/30 hover:bg-emerald-soft"
+              title="Upload gambar"
+              aria-label="Upload gambar"
+            >
               {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
-              {busy ? "Uploading" : "Upload"}
               <input type="file" accept="image/*" className="hidden" onChange={handleFile} />
             </label>
           </div>
-          <p className={`text-xs ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
+          <p className={`line-clamp-2 text-xs leading-5 ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
             {status || (value ? "Preview siap. Klik Simpan setelah mengubah gambar." : "JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
           </p>
           {previewBroken && value && <p className="text-xs text-red-500">Preview gagal dimuat. Cek kembali URL gambarnya.</p>}
@@ -298,34 +309,45 @@ function MultiImageField({
   const filledCount = documentationImages({ documentationImages: rows }).length;
 
   return (
-    <div className="space-y-3 rounded-xl border border-line bg-paper/45 p-3">
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+    <div className="space-y-3 rounded-2xl border border-line bg-paper/55 p-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <label className="block text-xs font-semibold text-ink/70">{label}</label>
           <p className="text-xs text-muted">{description}</p>
         </div>
-        <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} gambar</span>
+        <div className="flex shrink-0 items-center gap-2">
+          <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} gambar</span>
+          <button
+            type="button"
+            onClick={() => setRows([...rows, ""])}
+            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-emerald/20 bg-emerald-soft px-3 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
+          >
+            <Plus size={13} /> Tambah
+          </button>
+        </div>
       </div>
 
       {rows.length > 0 && (
-        <div className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface">
+        <div className="grid gap-2">
           {rows.map((src, imageIndex) => (
-            <div key={`${src}-${imageIndex}`} className="grid gap-3 p-3 lg:grid-cols-[112px_1fr_auto] lg:items-center">
-              <div>
-                <p className="font-mono text-xs font-semibold text-muted">#{imageIndex + 1}</p>
-                <p className="mt-1 text-xs font-semibold text-ink">{itemLabel}</p>
+            <div key={`${src}-${imageIndex}`} className="grid gap-2 rounded-2xl border border-line bg-surface p-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+              <div className="min-w-0">
+                <p className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-ink/70">
+                  <span className="rounded-full bg-paper px-2 py-0.5 font-mono text-[11px] text-muted">#{imageIndex + 1}</span>
+                  {itemLabel}
+                </p>
+                <ImageField
+                  label=""
+                  value={src}
+                  onChange={(value) => updateImage(imageIndex, value)}
+                  showRemove={false}
+                  compact
+                />
               </div>
-              <ImageField
-                label=""
-                value={src}
-                onChange={(value) => updateImage(imageIndex, value)}
-                showRemove={false}
-                compact
-              />
               <button
                 type="button"
                 onClick={() => removeImage(imageIndex)}
-                className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-red-100 px-3 text-xs font-semibold text-red-500 transition hover:bg-red-50 lg:w-10 lg:px-0"
+                className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-red-100 bg-paper px-3 text-xs font-semibold text-red-500 transition hover:bg-red-50 lg:w-10 lg:px-0"
                 title={`Hapus ${itemLabel.toLowerCase()} ${imageIndex + 1}`}
                 aria-label={`Hapus ${itemLabel.toLowerCase()} ${imageIndex + 1}`}
               >
@@ -336,28 +358,20 @@ function MultiImageField({
           ))}
         </div>
       )}
-
-      <button
-        type="button"
-        onClick={() => setRows([...rows, ""])}
-        className="inline-flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 py-2.5 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
-      >
-        <Plus size={14} /> {addLabel}
-      </button>
     </div>
   );
 }
 
 function TextField({ label, value = "", onChange, textarea, mono, type = "text", placeholder = "", rows = 3 }) {
   return (
-    <div>
-      {label && <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>}
+    <div className="space-y-1.5">
+      {label && <label className="block text-xs font-semibold text-ink/70">{label}</label>}
       {textarea ? (
         <textarea
           value={value || ""}
           onChange={(e) => onChange(e.target.value)}
           rows={rows}
-          className={`field resize-y ${mono ? "font-mono" : ""}`}
+          className={`field min-h-[6.5rem] resize-y leading-relaxed ${mono ? "font-mono" : ""}`}
           placeholder={placeholder}
         />
       ) : (
@@ -376,8 +390,8 @@ function TextField({ label, value = "", onChange, textarea, mono, type = "text",
 
 function SelectField({ label, value, onChange, options }) {
   return (
-    <div>
-      <label className="mb-1.5 block text-xs font-semibold text-ink/70">{label}</label>
+    <div className="space-y-1.5">
+      <label className="block text-xs font-semibold text-ink/70">{label}</label>
       <select value={value || ""} onChange={(event) => onChange(event.target.value)} className="field">
         {options.map((option) => <option key={option} value={option}>{option}</option>)}
       </select>
@@ -401,13 +415,13 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
-        <div key={item.id} className="glass space-y-4 rounded-2xl p-5">
+        <div key={item.id} className="glass space-y-4 rounded-2xl p-4 sm:p-5">
           <div className="flex items-center justify-between">
             <div>
-              <span className="font-mono text-xs text-muted">#{index + 1}</span>
+              <span className="rounded-full bg-paper px-2 py-1 font-mono text-[11px] font-semibold text-muted">#{index + 1}</span>
               <p className="mt-1 font-display text-sm font-semibold text-ink">{item.name || item.title || "Item baru"}</p>
             </div>
-            <button type="button" aria-label="Hapus item" className="rounded-lg p-2 text-red-400 transition hover:bg-red-50 hover:text-red-600" onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}>
+            <button type="button" aria-label="Hapus item" className="flex h-9 w-9 items-center justify-center rounded-xl border border-red-100 bg-paper text-red-400 transition hover:bg-red-50 hover:text-red-600" onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}>
               <Trash2 size={16} />
             </button>
           </div>
@@ -430,7 +444,7 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }
           </div>
         </div>
       ))}
-      <button type="button" onClick={() => onChange([...items, createItem()])} className="inline-flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 py-2.5 text-sm font-semibold text-emerald-deep transition hover:border-emerald/40">
+      <button type="button" onClick={() => onChange([...items, createItem()])} className="inline-flex h-10 items-center gap-2 rounded-xl border border-emerald/20 bg-emerald-soft px-4 text-sm font-semibold text-emerald-deep transition hover:border-emerald/40">
         <Plus size={15} /> {addLabel}
       </button>
     </div>
@@ -1322,3 +1336,4 @@ export default function AdminPageClient() {
     </div>
   );
 }
+
