@@ -4,8 +4,8 @@ export default function robots() {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/admin", "/api"],
+      allow: ["/", "/api/content", "/api/ratings"],
+      disallow: ["/admin", "/api/auth", "/api/upload"],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
