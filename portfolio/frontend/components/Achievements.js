@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Award, CalendarDays, ExternalLink, FileBadge, FileText, Fingerprint } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
@@ -36,16 +36,97 @@ function isPdf(src = "") {
   return /\.pdf(\?.*)?(#.*)?$/i.test(src);
 }
 
-function pdfThumbnailSrc(src = "") {
-  if (!src) return src;
-  const [base, fragment = ""] = src.split("#");
-  const params = new URLSearchParams(fragment);
-  params.set("toolbar", "0");
-  params.set("navpanes", "0");
-  params.set("scrollbar", "0");
-  params.set("page", "1");
-  params.set("view", "FitH");
-  return `${base}#${params.toString()}`;
+const PDFJS_MODULE = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs";
+const PDFJS_WORKER = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs";
+
+let pdfJsLoader;
+
+function loadPdfJs() {
+  if (!pdfJsLoader) {
+    pdfJsLoader = import(/* webpackIgnore: true */ PDFJS_MODULE).then((pdfjs) => {
+      pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+      return pdfjs;
+    });
+  }
+  return pdfJsLoader;
+}
+
+function PdfThumbnail({ src = "", title = "Preview PDF" }) {
+  const shellRef = useRef(null);
+  const canvasRef = useRef(null);
+  const [box, setBox] = useState({ width: 0, height: 0 });
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const node = shellRef.current;
+    if (!node) return undefined;
+
+    const updateBox = () => {
+      setBox({
+        width: Math.max(220, Math.floor(node.clientWidth - 28)),
+        height: Math.max(120, Math.floor(node.clientHeight - 24)),
+      });
+    };
+    updateBox();
+
+    const observer = new ResizeObserver(updateBox);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !src || !box.width || !box.height) return undefined;
+
+    let cancelled = false;
+    setFailed(false);
+
+    async function renderThumbnail() {
+      try {
+        const pdfjs = await loadPdfJs();
+        if (cancelled) return;
+
+        const pdf = await pdfjs.getDocument({ url: src, withCredentials: false }).promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 1 });
+        const cssScale = Math.min(box.width / viewport.width, box.height / viewport.height);
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        const renderViewport = page.getViewport({ scale: cssScale * pixelRatio });
+        const cssWidth = Math.floor(viewport.width * cssScale);
+        const cssHeight = Math.floor(viewport.height * cssScale);
+
+        canvas.width = Math.floor(renderViewport.width);
+        canvas.height = Math.floor(renderViewport.height);
+        canvas.style.width = `${cssWidth}px`;
+        canvas.style.height = `${cssHeight}px`;
+
+        await page.render({
+          canvasContext: canvas.getContext("2d", { alpha: false }),
+          viewport: renderViewport,
+        }).promise;
+      } catch {
+        if (!cancelled) setFailed(true);
+      }
+    }
+
+    renderThumbnail();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [box.height, box.width, src]);
+
+  return (
+    <div ref={shellRef} className="flex h-full w-full items-center justify-center bg-white p-3">
+      {failed ? (
+        <div className="flex h-full w-full items-center justify-center rounded-xl bg-emerald-soft text-emerald-deep">
+          <FileBadge size={28} />
+        </div>
+      ) : (
+        <canvas ref={canvasRef} aria-label={title} className="block max-h-full max-w-full rounded-sm bg-white shadow-sm" />
+      )}
+    </div>
+  );
 }
 
 function Card({ item, icon: Icon, onClick, compact = false }) {
@@ -231,13 +312,8 @@ export default function Achievements({ achievements = [], certificates = [], sec
                       className="group overflow-hidden rounded-2xl border border-line bg-surface text-left transition hover:border-emerald/35"
                     >
                       {isPdf(asset.src) ? (
-                        <div className="relative h-44 w-full overflow-hidden bg-surface">
-                          <iframe
-                            src={pdfThumbnailSrc(asset.src)}
-                            title={asset.title}
-                            loading="lazy"
-                            className="pointer-events-none absolute left-1/2 top-1/2 h-[32rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 scale-[0.28] border-0 bg-surface"
-                          />
+                        <div className="h-44 w-full overflow-hidden bg-white">
+                          <PdfThumbnail src={asset.src} title={asset.title} />
                         </div>
                       ) : (
                         <SafeImage
@@ -246,8 +322,8 @@ export default function Achievements({ achievements = [], certificates = [], sec
                           loading="lazy"
                           decoding="async"
                           sizes="(max-width: 640px) 90vw, 320px"
-                          className="h-36 w-full"
-                          imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          className="h-36 w-full bg-white"
+                          imgClassName="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105"
                           fallback={<LogoFallback label={asset.title} icon={FileBadge} />}
                         />
                       )}
