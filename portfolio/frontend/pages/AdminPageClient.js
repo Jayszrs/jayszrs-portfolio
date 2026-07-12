@@ -333,13 +333,6 @@ function MultiImageField({
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} gambar</span>
-          <button
-            type="button"
-            onClick={() => setRows((currentRows) => [...currentRows, ""])}
-            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-emerald/20 bg-emerald-soft px-3 text-xs font-semibold text-emerald-deep transition hover:border-emerald/40"
-          >
-            <Plus size={13} /> Tambah
-          </button>
         </div>
       </div>
 
