@@ -76,10 +76,7 @@ export default function Hero({ profile }) {
           <div className="mt-6 sm:mt-7">
             <p className="mb-1 text-xs font-medium uppercase tracking-[0.16em] text-muted sm:text-sm">Saat ini berfokus sebagai</p>
             <p className="max-w-[22rem] break-words font-display text-2xl font-semibold leading-snug text-emerald-deep sm:max-w-none sm:text-3xl sm:leading-tight">
-              <span className="sm:hidden">{profile.roles?.[0] || profile.role}</span>
-              <span className="hidden sm:inline">
-                <TypewriterText words={profile.roles} fallback={profile.role} />
-              </span>
+              <TypewriterText words={profile.roles} fallback={profile.role} />
             </p>
           </div>
 
