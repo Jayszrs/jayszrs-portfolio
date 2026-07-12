@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import SafeImage from "@/frontend/components/SafeImage";
 
@@ -26,6 +26,127 @@ function normalizeItem(item, fallbackTitle) {
   if (typeof item === "string") return { src: item, title: fallbackTitle };
   if (!item.src) return null;
   return { src: item.src, title: item.title || fallbackTitle };
+}
+
+const PDFJS_MODULE = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs";
+const PDFJS_WORKER = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs";
+
+let pdfJsLoader;
+
+function loadPdfJs() {
+  if (!pdfJsLoader) {
+    pdfJsLoader = import(/* webpackIgnore: true */ PDFJS_MODULE).then((pdfjs) => {
+      pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+      return pdfjs;
+    });
+  }
+  return pdfJsLoader;
+}
+
+function MobilePdfPages({ src = "", title = "Preview PDF" }) {
+  const shellRef = useRef(null);
+  const pagesRef = useRef(null);
+  const [width, setWidth] = useState(0);
+  const [status, setStatus] = useState("loading");
+
+  useEffect(() => {
+    const node = shellRef.current;
+    if (!node) return undefined;
+
+    const updateWidth = () => setWidth(Math.max(260, Math.floor(node.clientWidth - 24)));
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const node = pagesRef.current;
+    if (!node || !src || !width) return undefined;
+
+    let cancelled = false;
+    node.replaceChildren();
+    setStatus("loading");
+
+    async function renderPdf() {
+      try {
+        const pdfjs = await loadPdfJs();
+        if (cancelled) return;
+
+        const task = pdfjs.getDocument({ url: src, withCredentials: false });
+        const pdf = await task.promise;
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        const pageWidth = Math.min(width, 760);
+
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+          if (cancelled) return;
+
+          const page = await pdf.getPage(pageNumber);
+          const baseViewport = page.getViewport({ scale: 1 });
+          const cssScale = pageWidth / baseViewport.width;
+          const renderViewport = page.getViewport({ scale: cssScale * pixelRatio });
+          const cssWidth = baseViewport.width * cssScale;
+          const cssHeight = baseViewport.height * cssScale;
+
+          const pageWrap = document.createElement("div");
+          pageWrap.className = "mx-auto overflow-hidden rounded-xl border border-line bg-white shadow-sm";
+          pageWrap.style.width = `${cssWidth}px`;
+          pageWrap.setAttribute("aria-label", `${title} halaman ${pageNumber}`);
+
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.floor(renderViewport.width);
+          canvas.height = Math.floor(renderViewport.height);
+          canvas.style.width = `${cssWidth}px`;
+          canvas.style.height = `${cssHeight}px`;
+          canvas.className = "block h-auto w-full";
+
+          pageWrap.appendChild(canvas);
+          node.appendChild(pageWrap);
+
+          await page.render({
+            canvasContext: canvas.getContext("2d", { alpha: false }),
+            viewport: renderViewport,
+          }).promise;
+        }
+
+        if (!cancelled) setStatus("ready");
+      } catch {
+        if (!cancelled) setStatus("error");
+      }
+    }
+
+    renderPdf();
+
+    return () => {
+      cancelled = true;
+      node.replaceChildren();
+    };
+  }, [src, title, width]);
+
+  return (
+    <div ref={shellRef} className="relative h-full w-full overflow-y-auto bg-surface px-3 py-4">
+      <div ref={pagesRef} className="space-y-4 pb-5" />
+      {status === "loading" && (
+        <div className="absolute inset-0 flex items-center justify-center bg-surface text-sm font-semibold text-muted">
+          Memuat semua halaman PDF...
+        </div>
+      )}
+      {status === "error" && (
+        <div className="flex h-full flex-col items-center justify-center gap-3 px-6 text-center">
+          <p className="text-sm font-semibold text-ink">Preview PDF belum bisa dimuat di perangkat ini.</p>
+          <a
+            href={src}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white"
+          >
+            Buka PDF <ExternalLink size={15} />
+          </a>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function MediaPreview({ src = "", title = "Preview", items = [], initialIndex = 0, onClose }) {
@@ -147,21 +268,25 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
           onPointerCancel={() => setTouchStart(null)}
         >
           {pdf ? (
-            <div className="relative h-full w-full overflow-hidden bg-surface">
-              <iframe
-                key={pdfFrameSrc}
-                src={pdfFrameSrc}
-                title={current.title || title}
-                loading="lazy"
-                onLoad={() => setPdfLoaded(true)}
-                className="h-full w-full border-0 bg-surface"
-              />
-              {!pdfLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-surface text-sm font-semibold text-muted">
-                  Memuat preview PDF...
-                </div>
-              )}
-            </div>
+            useMobilePdf ? (
+              <MobilePdfPages src={current.src} title={current.title || title} />
+            ) : (
+              <div className="relative h-full w-full overflow-hidden bg-surface">
+                <iframe
+                  key={pdfFrameSrc}
+                  src={pdfFrameSrc}
+                  title={current.title || title}
+                  loading="lazy"
+                  onLoad={() => setPdfLoaded(true)}
+                  className="h-full w-full border-0 bg-surface"
+                />
+                {!pdfLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-surface text-sm font-semibold text-muted">
+                    Memuat preview PDF...
+                  </div>
+                )}
+              </div>
+            )
           ) : (
             <SafeImage
               src={current.src}
