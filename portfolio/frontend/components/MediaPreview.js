@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import SafeImage from "@/frontend/components/SafeImage";
 
@@ -21,12 +21,6 @@ function withPdfOptions(src = "") {
   return `${base}#${params.toString()}`;
 }
 
-function withEmbeddedPdfViewer(src = "") {
-  if (!src) return src;
-  const [base] = src.split("#");
-  return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(base)}`;
-}
-
 function normalizeItem(item, fallbackTitle) {
   if (!item) return null;
   if (typeof item === "string") return { src: item, title: fallbackTitle };
@@ -43,7 +37,10 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   const galleryKey = galleryItems.map((item) => `${item.src}|${item.title}`).join("::");
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState(null);
-  const [useMobilePdfViewer, setUseMobilePdfViewer] = useState(false);
+  const [useScaledPdf, setUseScaledPdf] = useState(false);
+  const [pdfBoxWidth, setPdfBoxWidth] = useState(0);
+  const [pdfLoaded, setPdfLoaded] = useState(false);
+  const pdfBoxRef = useRef(null);
   const current = galleryItems[activeIndex] || galleryItems[0];
   const hasMultiple = galleryItems.length > 1;
 
@@ -73,8 +70,12 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
       window.matchMedia("(max-width: 640px)").matches &&
       window.matchMedia("(pointer: coarse)").matches;
 
-    setUseMobilePdfViewer(isAppleTouchDevice || isSmallTouchScreen);
+    setUseScaledPdf(isAppleTouchDevice || isSmallTouchScreen);
   }, []);
+
+  useEffect(() => {
+    setPdfLoaded(false);
+  }, [current?.src]);
 
   const showPrevious = () => {
     if (!hasMultiple) return;
@@ -96,11 +97,39 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
     else showPrevious();
   };
 
-  if (!current?.src) return null;
+  const pdf = Boolean(current?.src && isPdf(current.src));
+  const pdfViewerSrc = withPdfOptions(current?.src || "");
+  const pdfFrameWidth = 1440;
+  const pdfFrameHeight = 2200;
+  const pdfScale = useScaledPdf && pdfBoxWidth ? Math.min(1, Math.max(0.18, (pdfBoxWidth - 24) / pdfFrameWidth)) : 1;
+  const scaledPdfShellStyle = useScaledPdf
+    ? {
+        width: `${pdfFrameWidth * pdfScale}px`,
+        height: `${pdfFrameHeight * pdfScale}px`,
+      }
+    : undefined;
+  const scaledPdfFrameStyle = useScaledPdf
+    ? {
+        width: `${pdfFrameWidth}px`,
+        height: `${pdfFrameHeight}px`,
+        transform: `scale(${pdfScale})`,
+        transformOrigin: "top left",
+      }
+    : undefined;
 
-  const pdf = isPdf(current.src);
-  const pdfViewerSrc = withPdfOptions(current.src);
-  const pdfFrameSrc = useMobilePdfViewer ? withEmbeddedPdfViewer(current.src) : pdfViewerSrc;
+  useEffect(() => {
+    const node = pdfBoxRef.current;
+    if (!node || !pdf || !useScaledPdf) return undefined;
+
+    const updateWidth = () => setPdfBoxWidth(node.clientWidth);
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [pdf, useScaledPdf]);
+
+  if (!current?.src) return null;
 
   return (
     <div
@@ -148,18 +177,23 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
           onPointerCancel={() => setTouchStart(null)}
         >
           {pdf ? (
-            <div className="relative h-full w-full overflow-auto bg-surface">
-              <iframe
-                key={pdfFrameSrc}
-                src={pdfFrameSrc}
-                title={current.title || title}
-                loading="lazy"
-                className={
-                  useMobilePdfViewer
-                    ? "h-full w-full border-0 bg-surface"
-                    : "absolute left-1/2 top-4 h-[46rem] w-[62rem] max-w-none -translate-x-1/2 origin-top scale-[0.38] border-0 bg-surface sm:static sm:h-full sm:w-full sm:translate-x-0 sm:scale-100"
-                }
-              />
+            <div ref={pdfBoxRef} className="relative flex h-full w-full justify-center overflow-auto bg-surface p-3 sm:block sm:p-0">
+              <div className={useScaledPdf ? "relative overflow-hidden bg-surface" : "h-full w-full"} style={scaledPdfShellStyle}>
+                <iframe
+                  key={pdfViewerSrc}
+                  src={pdfViewerSrc}
+                  title={current.title || title}
+                  loading="lazy"
+                  onLoad={() => setPdfLoaded(true)}
+                  className={useScaledPdf ? "block max-w-none border-0 bg-surface" : "h-full w-full border-0 bg-surface"}
+                  style={scaledPdfFrameStyle}
+                />
+              </div>
+              {!pdfLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-surface text-sm font-semibold text-muted">
+                  Memuat preview PDF...
+                </div>
+              )}
             </div>
           ) : (
             <SafeImage
