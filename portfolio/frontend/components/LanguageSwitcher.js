@@ -360,6 +360,8 @@ const INLINE_PATTERNS = Object.fromEntries(
 
 const SKIP_TAGS = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "TEXTAREA", "INPUT", "SELECT", "OPTION", "CODE", "PRE"]);
 const ATTRIBUTES = ["title", "aria-label", "placeholder"];
+const AUTO_TRANSLATE_ENDPOINT = "https://translate.googleapis.com/translate_a/single";
+const AUTO_TRANSLATE_MAX_LENGTH = 1400;
 
 function normalize(text) {
   return text.replace(/\s+/g, " ").trim();
@@ -406,6 +408,38 @@ function translateTextCached(text, language, cache) {
   return translated;
 }
 
+function shouldAutoTranslate(text) {
+  const trimmed = normalize(text);
+  if (trimmed.length < 4 || trimmed.length > AUTO_TRANSLATE_MAX_LENGTH) return false;
+  if (/^https?:\/\//i.test(trimmed) || /^[\w.+-]+@[\w.-]+\.\w+$/.test(trimmed)) return false;
+  if (!/[A-Za-zÀ-ÿ\u0100-\uFFFF]/.test(trimmed)) return false;
+  if (/^[\d\s.,:/()[\]#+-]+$/.test(trimmed)) return false;
+  return true;
+}
+
+async function translateTextAuto(text, language, cache) {
+  if (language === "id" || !shouldAutoTranslate(text)) return text;
+
+  const cacheKey = `auto\u0000${language}\u0000${text}`;
+  if (cache.has(cacheKey)) return cache.get(cacheKey);
+
+  const trimmed = normalize(text);
+  const url = `${AUTO_TRANSLATE_ENDPOINT}?client=gtx&sl=auto&tl=${encodeURIComponent(language)}&dt=t&q=${encodeURIComponent(trimmed)}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Auto translate failed");
+    const data = await response.json();
+    const translated = data?.[0]?.map((part) => part?.[0] || "").join("").trim();
+    const result = translated ? withOriginalSpacing(text, translated) : text;
+    cache.set(cacheKey, result);
+    return result;
+  } catch {
+    cache.set(cacheKey, text);
+    return text;
+  }
+}
+
 function shouldSkipNode(node) {
   const element = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
   return !element || SKIP_TAGS.has(element.tagName) || Boolean(element.closest("[data-no-translate]"));
@@ -439,6 +473,43 @@ function translateTextNode(node, language, originals, cache) {
   if (shouldSkipNode(node) || !normalize(node.nodeValue || "")) return;
   if (!originals.has(node)) originals.set(node, node.nodeValue || "");
   node.nodeValue = translateTextCached(originals.get(node), language, cache);
+}
+
+function collectTranslatableTextNodes(root) {
+  if (root.nodeType === Node.TEXT_NODE) {
+    return shouldSkipNode(root) || !normalize(root.nodeValue || "") ? [] : [root];
+  }
+
+  if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return [];
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (!shouldSkipNode(node) && normalize(node.nodeValue || "")) textNodes.push(node);
+  }
+
+  return textNodes;
+}
+
+async function translateTreeAuto(root, language, originals, cache, isCurrent) {
+  if (language === "id") return;
+  const nodes = collectTranslatableTextNodes(root);
+
+  for (const node of nodes) {
+    if (!isCurrent()) return;
+    if (shouldSkipNode(node)) continue;
+    if (!originals.has(node)) originals.set(node, node.nodeValue || "");
+
+    const original = originals.get(node);
+    const staticTranslation = translateTextCached(original, language, cache);
+    if (staticTranslation !== original || !shouldAutoTranslate(original)) continue;
+
+    const translated = await translateTextAuto(original, language, cache);
+    if (!isCurrent() || !node.isConnected) return;
+    node.nodeValue = translated;
+  }
 }
 
 function translateTree(root, language, originals, cache) {
@@ -479,6 +550,23 @@ export default function LanguageSwitcher() {
   const activeRef = useRef("id");
   const switcherRef = useRef(null);
   const idleRef = useRef(null);
+  const autoRunRef = useRef(0);
+  const mutationIdleRef = useRef(null);
+
+  const translateDynamicContent = (roots, language) => {
+    if (language === "id") return;
+    autoRunRef.current += 1;
+    const runId = autoRunRef.current;
+    roots.forEach((root) => {
+      translateTreeAuto(
+        root,
+        language,
+        originals.current,
+        translationCache.current,
+        () => activeRef.current === language && autoRunRef.current === runId,
+      );
+    });
+  };
 
   useEffect(() => {
     removeGoogleArtifacts();
@@ -493,12 +581,56 @@ export default function LanguageSwitcher() {
       applying.current = true;
       translateTree(document.body, activeRef.current, originals.current, translationCache.current);
       applying.current = false;
+      translateDynamicContent([document.body], activeRef.current);
     };
 
     if (saved !== "id") applyLanguage();
 
     return () => {
       if (idleRef.current && "cancelIdleCallback" in window) window.cancelIdleCallback(idleRef.current);
+      if (mutationIdleRef.current && "cancelIdleCallback" in window) window.cancelIdleCallback(mutationIdleRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const scheduleNewContentTranslation = (roots) => {
+      const language = activeRef.current;
+      if (language === "id" || applying.current || !roots.length) return;
+
+      const run = () => {
+        applying.current = true;
+        roots.forEach((root) => translateTree(root, language, originals.current, translationCache.current));
+        applying.current = false;
+        translateDynamicContent(roots, language);
+      };
+
+      if (mutationIdleRef.current && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(mutationIdleRef.current);
+      }
+
+      if ("requestIdleCallback" in window) {
+        mutationIdleRef.current = window.requestIdleCallback(run, { timeout: 500 });
+      } else {
+        window.setTimeout(run, 64);
+      }
+    };
+
+    const observer = new MutationObserver((mutations) => {
+      const roots = new Set();
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE) {
+            if (!shouldSkipNode(node)) roots.add(node);
+          }
+        });
+      });
+      scheduleNewContentTranslation([...roots]);
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      observer.disconnect();
+      if (mutationIdleRef.current && "cancelIdleCallback" in window) window.cancelIdleCallback(mutationIdleRef.current);
     };
   }, []);
 
@@ -528,6 +660,7 @@ export default function LanguageSwitcher() {
     setActive(code);
     setMenuOpen(false);
     activeRef.current = code;
+    autoRunRef.current += 1;
     document.documentElement.lang = code;
     document.documentElement.dataset.language = code;
     removeGoogleArtifacts();
@@ -536,11 +669,13 @@ export default function LanguageSwitcher() {
     const roots = code === "id" ? [document.body] : priorityTranslationRoots();
     roots.forEach((root) => translateTree(root, code, originals.current, translationCache.current));
     applying.current = false;
+    translateDynamicContent(roots, code);
 
     const translateRest = () => {
       applying.current = true;
       translateTree(document.body, code, originals.current, translationCache.current);
       applying.current = false;
+      translateDynamicContent([document.body], code);
     };
 
     if (code === "id") return;
