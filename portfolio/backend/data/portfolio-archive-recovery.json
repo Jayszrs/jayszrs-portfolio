@@ -1,0 +1,239 @@
+{
+  "kind": "source-document collections; not byte-identical Blob copies",
+  "sourcePdfs": {
+    "portfolio-july.pdf": "eb4048c0ce0798822354db118a153935c4648d602095e8cac25d495e64247b86",
+    "portfolio-large.pdf": "d6ba5631e6bb01afcdd8f2771ca9e2c625e3e3b0923cb024ed970f3212889069"
+  },
+  "images": [
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x236.webp",
+      "sourceFile": "portfolio-large-p17-x236.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 17,
+      "width": 1210,
+      "height": 908,
+      "sourceImageSha256": "9eacb9440648fd14c6fd25aaf983ac5ab64d1dc08fb8ae00c2cdb4e23488d827",
+      "sha256": "ef10575ee7af511def4c7a44cd576d4745fab8a0cf9fd1267564ae51a1a93ee0"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x237.webp",
+      "sourceFile": "portfolio-large-p17-x237.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 17,
+      "width": 1229,
+      "height": 922,
+      "sourceImageSha256": "961c3e8224e69264b2610744135fadb9192faa8e8f1b14ee49233108629b9bbf",
+      "sha256": "913423dc3247409422bad0c7b0e6cd4647540778f17ec6f7cadd61659c98fc5d"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x238.webp",
+      "sourceFile": "portfolio-large-p17-x238.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 17,
+      "width": 1037,
+      "height": 692,
+      "sourceImageSha256": "cc5e7fe2cb61a1bb475ccf15ad3330d9e13c20158e7b6bbb65e6c57aefa45597",
+      "sha256": "8fea27b2ecfd51de2551d89bd83b6f2c47d99a9c29d03353807884cfca3886ea"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x239.webp",
+      "sourceFile": "portfolio-large-p17-x239.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 17,
+      "width": 1037,
+      "height": 692,
+      "sourceImageSha256": "aa3235920f715a476a5fc45645ad628370dc39bcb697bd9f6323b70fc4925b7f",
+      "sha256": "0b1f839be3a598ca884f34aa1a45388dddd0f66e73837f287e0e3015eb3c3607"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x240.webp",
+      "sourceFile": "portfolio-large-p17-x240.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 17,
+      "width": 1229,
+      "height": 922,
+      "sourceImageSha256": "0b9dea849ef6e19087f7c92c84ecb1b97291fba6934fc5bdb5d044fb8a0abeae",
+      "sha256": "4524961350352206b85fea94477fcd124ccb738fc0a5472a63d1c3d26abf484c"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x241.webp",
+      "sourceFile": "portfolio-large-p17-x241.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 17,
+      "width": 1037,
+      "height": 692,
+      "sourceImageSha256": "3570a03be77b6e9d9c24472aa462748abf868ca7bd1f71eaaf6dae3502812ea1",
+      "sha256": "97cd064689ce31415aa375d0fbbde32c1b7edf70778aa4fd619782a7363b0468"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p18-x247.webp",
+      "sourceFile": "portfolio-large-p18-x247.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 18,
+      "width": 837,
+      "height": 591,
+      "sourceImageSha256": "23fd5832342d8b17f58f0057d33792224d060fadf1070e9f94d5ac6034f37f6c",
+      "sha256": "48e190782680eae9ba93afcf643863a2fbbde041683fe332ea6941901cd21187"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p18-x248.webp",
+      "sourceFile": "portfolio-large-p18-x248.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 18,
+      "width": 1556,
+      "height": 874,
+      "sourceImageSha256": "bdbb7a06e18424ce91618485258af44d399cdeb03139d98efd78b72f889412e4",
+      "sha256": "05981b605558a08ad4c83a1cca1c584f926cadef312afdbe697d08dc20589471"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p18-x249.webp",
+      "sourceFile": "portfolio-large-p18-x249.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 18,
+      "width": 980,
+      "height": 551,
+      "sourceImageSha256": "8d878d39d3a34cd051b602ff488f1b864172987b4d621da9e66f2bc483ca62be",
+      "sha256": "cc468424d2b414674bce16933e76b7d2b3ed3bd52f478eb962adb20220c846af"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p15-x1011.webp",
+      "sourceFile": "portfolio-july-p15-x1011.png",
+      "sourcePdf": "portfolio-july.pdf",
+      "sourcePage": 15,
+      "width": 600,
+      "height": 800,
+      "sourceImageSha256": "1481aaf61b4d23cddb38d6a5390de87846fd46b589a9824a9a436c94c8770985",
+      "sha256": "e29f35464410c3909d4f68e2dc22350a547a29290b04e147d4d3d8ee5abb5315"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p15-x1022.webp",
+      "sourceFile": "portfolio-july-p15-x1022.png",
+      "sourcePdf": "portfolio-july.pdf",
+      "sourcePage": 15,
+      "width": 600,
+      "height": 800,
+      "sourceImageSha256": "9222a01478fb2b45243b0c732f8b313ed11cc38f6c27c643b8163885a53a66e8",
+      "sha256": "40b2dbdb8fe4e0a9cb24e539c566ae22a98deeba193f2ee67d24214559db5063"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p14-x851.webp",
+      "sourceFile": "portfolio-large-p14-x851.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 14,
+      "width": 819,
+      "height": 1407,
+      "sourceImageSha256": "d153b3b992924aa5b83934877965b31d0334f0e1489b630eee38cc8a499e1b72",
+      "sha256": "63eb41c7b2a65ea23f69c6ef0ef0cb6fcacdf6ea0e6c4baaf5fd29c103a48920"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p13-x191.webp",
+      "sourceFile": "portfolio-july-p13-x191.png",
+      "sourcePdf": "portfolio-july.pdf",
+      "sourcePage": 13,
+      "width": 480,
+      "height": 640,
+      "sourceImageSha256": "47555afc354bab4baca78522f753f71db70af5f3cebd2018bb68d1efe141f355",
+      "sha256": "c203282d0deb66a61344d066a02feea602340ac410691fe25618b25b80c91dc0"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p13-x192.webp",
+      "sourceFile": "portfolio-july-p13-x192.png",
+      "sourcePdf": "portfolio-july.pdf",
+      "sourcePage": 13,
+      "width": 480,
+      "height": 640,
+      "sourceImageSha256": "3f8388e9f4ab29d41c5c1abe3ba89d176d4d077798a2e85ad91e1442029acba5",
+      "sha256": "d444d32914da70c2ed7d65362f746e751add9922dea120c7206a9e63a4d9671f"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p15-x889.webp",
+      "sourceFile": "portfolio-large-p15-x889.png",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 15,
+      "width": 964,
+      "height": 578,
+      "sourceImageSha256": "2c236bf9c8f5919b84be8de692dfe1d5f211280b4f5d23d26f8c603930bb754d",
+      "sha256": "04d45e6f878759c946c6f8795e203f647eaf4cfcff3ba533d34e080a1b4f90cc"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p15-x900.webp",
+      "sourceFile": "portfolio-large-p15-x900.png",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 15,
+      "width": 768,
+      "height": 435,
+      "sourceImageSha256": "effc0aeef6bf95bdff18b7c6c9baa3f647f007f82c3c294b74e0306cb0eabec7",
+      "sha256": "8ef9f981c841796ed54bbc375d8baa71b61a5a9b9f818cac07015aff6b2919a3"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x227.webp",
+      "sourceFile": "portfolio-large-p16-x227.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 16,
+      "width": 908,
+      "height": 1210,
+      "sourceImageSha256": "53c1383cc898d0539df9d567284ce7e3ac1c8b03418b060f51b0f66b01d36be1",
+      "sha256": "c416869ae6432424ac4ed9180cead1facea72d69ea74694abdc45a7b63c82c10"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x228.webp",
+      "sourceFile": "portfolio-large-p16-x228.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 16,
+      "width": 908,
+      "height": 1210,
+      "sourceImageSha256": "7af090731e5b9a7de674024d0a421469bc7c3e9ee7ce5cae1f6e781b242894c3",
+      "sha256": "c311523cf5eabfe809b9f7089af985a4c82fd8a736c22a7a136f0ed4208bf955"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x229.webp",
+      "sourceFile": "portfolio-large-p16-x229.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 16,
+      "width": 936,
+      "height": 1248,
+      "sourceImageSha256": "03b1f668197a5431463710539f81ddeb4f6f8549d4e9f37cd68fc4dcff17c228",
+      "sha256": "43f4d4ecd85d97b839ed0898a4c5761da4feb58c2135f3b6878fd0a314c815f3"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x230.webp",
+      "sourceFile": "portfolio-large-p16-x230.jpeg",
+      "sourcePdf": "portfolio-large.pdf",
+      "sourcePage": 16,
+      "width": 936,
+      "height": 1248,
+      "sourceImageSha256": "11d201200b13d480395f4ccf2bbac104545f7f455c37389ba95217cb317ef783",
+      "sha256": "cddb8e1f68d5780758c515fe11696fe927e970e373e88c81edcd8b7444c7ab9e"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p19-x264.webp",
+      "sourceFile": "portfolio-july-p19-x264.png",
+      "sourcePdf": "portfolio-july.pdf",
+      "sourcePage": 19,
+      "width": 640,
+      "height": 480,
+      "sourceImageSha256": "5beeb8d322a61aba34c4dbf2ede2a0b76ab49d574a98c6a008fd2b889cecbed6",
+      "sha256": "6385c66b6aeaf713c3992bf661242812f9c439722a3a202a119ec5857b724afb"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p19-x265.webp",
+      "sourceFile": "portfolio-july-p19-x265.png",
+      "sourcePdf": "portfolio-july.pdf",
+      "sourcePage": 19,
+      "width": 720,
+      "height": 540,
+      "sourceImageSha256": "9945289da11be6b1243c2f93a8e181225fbecab735774359f8538bbc18c9ca70",
+      "sha256": "0f1aab712005da3852f5fe136b80cefebd45b908bfabd4bd73617349105430b2"
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p19-x266.webp",
+      "sourceFile": "portfolio-july-p19-x266.png",
+      "sourcePdf": "portfolio-july.pdf",
+      "sourcePage": 19,
+      "width": 720,
+      "height": 540,
+      "sourceImageSha256": "e101432d7a6d205af280059af5e6a239a1f3e98e740d4e6d7776391ba34769c4",
+      "sha256": "ba8f2e068a8ef83ce84a2baba7ecec3265c268ec3625a5880033d77ad4cdffad"
+    }
+  ]
+}

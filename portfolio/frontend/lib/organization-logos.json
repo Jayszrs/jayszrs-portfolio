@@ -83,6 +83,12 @@
       "file": "smpn-135.jpg",
       "source": "Local original portfolio: Logo Smpn 135 Jakarta.jpg",
       "note": "Organization logo preserved in the owner's earlier XAMPP portfolio; original bytes retained. Alternate source, not a verified byte-identical Blob copy."
+    },
+    "ppji": {
+      "file": "ppji.png",
+      "source": "Owner's original portfolio PDF: portfolio-july-p19-x267.png",
+      "sha256": "e9033f90a7292eaaa227824fa13f079aa9f4827498ad99314e5ee7b3f6bdee04",
+      "note": "Original logo image embedded in the owner's portfolio; alternate source, not an identical Blob copy."
     }
   },
   "sources": {
@@ -129,6 +135,7 @@
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783776877581-4nwauy.jpg": "/organization-logos/kawan-kerja.png",
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783773133554-uon65g.png": "/organization-logos/akademi-crypto.jpg",
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839446300-dja5eb.png": "/organization-logos/akademi-crypto.jpg",
-    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783944494591-0t8ce9.png": "/organization-logos/smpn-135.jpg"
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783944494591-0t8ce9.png": "/organization-logos/smpn-135.jpg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783943606692-1nv5nj.png": "/organization-logos/ppji.png"
   }
 }

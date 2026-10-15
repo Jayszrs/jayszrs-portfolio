@@ -6,6 +6,7 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
+import { withRecoveredDocumentation } from "@/frontend/lib/recovered-documentation";
 import { externalUrl } from "@/frontend/lib/urls";
 
 function educationLogoSource(item = {}) {
@@ -16,6 +17,7 @@ export default function Education({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
   const [preview, setPreview] = useState(null);
   if (!items.length) return null;
+  const displayItems = items.map((item) => withRecoveredDocumentation(item, "education"));
 
   return (
     <section id="pendidikan" className="section-pad scroll-mt-28 py-14 sm:scroll-mt-32 sm:py-20">
@@ -29,7 +31,7 @@ export default function Education({ items = [], section = {} }) {
         </div>
 
         <div className="mt-8 grid gap-5">
-          {items.map((item) => {
+          {displayItems.map((item) => {
             const logoSrc = educationLogoSource(item);
 
             return (
@@ -146,6 +148,9 @@ export default function Education({ items = [], section = {} }) {
             {(documentationImages(selected).length > 0 || selected.documentationFile) && (
               <section>
                 <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">Dokumentasi Pendidikan</h3>
+                {selected.recoveredDocumentationLabel && (
+                  <p className="mt-3 text-xs text-muted">{selected.recoveredDocumentationLabel}</p>
+                )}
                 {documentationImages(selected).length > 0 && (
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {documentationImages(selected).map((src, index) => (

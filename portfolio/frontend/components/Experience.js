@@ -9,6 +9,7 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
+import { withRecoveredDocumentation } from "@/frontend/lib/recovered-documentation";
 import { externalUrl } from "@/frontend/lib/urls";
 
 const ORDER = ["Semua", "Proyek", "Magang", "Kerja", "Volunteer", "Organisasi"];
@@ -37,7 +38,8 @@ export default function Experience({ items = [], section = {} }) {
   const [active, setActive] = useState("Semua");
   const [selected, setSelected] = useState(null);
   const [preview, setPreview] = useState(null);
-  const filtered = active === "Semua" ? items : items.filter((item) => item.type === active);
+  const displayItems = items.map((item) => withRecoveredDocumentation(item, "experience"));
+  const filtered = active === "Semua" ? displayItems : displayItems.filter((item) => item.type === active);
 
   return (
     <section id="pengalaman" className="section-pad py-16 sm:py-20">
@@ -210,6 +212,9 @@ export default function Experience({ items = [], section = {} }) {
                 <h3 className="flex items-center gap-2 border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">
                   <ArrowUpRight size={19} className="text-emerald" /> Dokumentasi
                 </h3>
+                {selected.recoveredDocumentationLabel && (
+                  <p className="mt-3 text-xs text-muted">{selected.recoveredDocumentationLabel}</p>
+                )}
                 {(documentationImages(selected).length > 0 || looksLikeImage(documentationFileOf(selected))) && (
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {[...documentationImages(selected), ...(looksLikeImage(documentationFileOf(selected)) ? [documentationFileOf(selected)] : [])].map((src, index) => (

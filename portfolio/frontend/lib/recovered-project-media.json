@@ -106,7 +106,7 @@
       "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783999922529-mn4tx4.png"
     ],
     "sourceUrl": "https://www.canva.com/design/DAHIadDrjZ8/Kg6A8trAKQkv0qlNls92rg/view",
-    "sourceTitle": "Presentation THE 7TH WINACTION – POSTER ENGINEERING - Jaelani Surya Saputra",
+    "sourceTitle": "Presentation THE 7TH WINACTION â€“ POSTER ENGINEERING - Jaelani Surya Saputra",
     "sourceAuthor": "Jaelani Surya",
     "sourceVersion": 49,
     "pages": [
@@ -185,7 +185,7 @@
     "documents": [
       {
         "url": "/project-documents/canva-proj-1783999625735-wfz5.pdf",
-        "title": "PDF preview ? Presentation THE 7TH WINACTION – POSTER ENGINEERING - Jaelani Surya Saputra",
+        "title": "PDF preview ? Presentation THE 7TH WINACTION â€“ POSTER ENGINEERING - Jaelani Surya Saputra",
         "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
         "sha256": "cbdae83cc9abf44459dc8a82fa250982b61ced56ba422e943a2c67fc52850c3e"
       }
@@ -791,5 +791,30 @@
       }
     ],
     "note": "Only the cover was recovered from Figma; original documentation entries are preserved."
+  },
+  "proj-1784715069630-imjd": {
+    "originalLink": "https://github.com/Jayszrs/catatantugasapk.git",
+    "legacyMedia": [
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784715374958-tl913l.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1785334856936-7jco5r.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1785334892410-zrv5s4.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1785334916241-mpyqvs.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1785334930512-381pny.png"
+    ],
+    "sourceUrl": "https://github.com/Jayszrs/catatantugasapk.git",
+    "sourceTitle": "Aplikasi Mobile Laundryuk",
+    "sourceKind": "Screenshot arsip Laundryuk",
+    "coverOnly": true,
+    "pages": [
+      {
+        "url": "/recovered-media/drive/laundryuk-dashboard-admin.png",
+        "page": 1,
+        "width": 410,
+        "height": 726,
+        "sha256": "ba2132f14db7fc5456fef3a9f7b37799fa5b08d89fa93d4ee104c35be5dfae8b"
+      }
+    ],
+    "documents": [],
+    "note": "Dashboard screenshot recovered from owner Drive file 1Mk0SJB_BSds1OTMg0p6bVGeFEEPqkQGq, Screenshot 2026-07-22 134525.png; UI shows laundry operations. Only the cover is restored; four original documentation images remain unresolved. Not a byte-identical Blob claim."
   }
 }

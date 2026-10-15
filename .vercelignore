@@ -8,5 +8,6 @@ backups/**
 portfolio/.agents/
 portfolio/*-check.png
 portfolio/.next*/
+portfolio/.next*
 portfolio/public/recovered-media/project-reports/*.png
 portfolio/public/recovered-media/project-reports/*.jpeg

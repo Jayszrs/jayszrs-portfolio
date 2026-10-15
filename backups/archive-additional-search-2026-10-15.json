@@ -1,0 +1,40 @@
+{
+  "driveNewerImages": {
+    "filter": "trashed = false and modifiedTime >= '2026-07-18T00:00:00'",
+    "pages": 6,
+    "entries": 502,
+    "paginationComplete": true,
+    "matchingUnresolvedBlobSizes": 0,
+    "additionalSourceScreenshot": {
+      "id": "1Mk0SJB_BSds1OTMg0p6bVGeFEEPqkQGq",
+      "name": "Screenshot 2026-07-22 134525.png",
+      "size": 67087,
+      "sha256": "ba2132f14db7fc5456fef3a9f7b37799fa5b08d89fa93d4ee104c35be5dfae8b",
+      "visualContent": "Laundry admin dashboard: omzet, laundry orders, users, services, categories and transactions",
+      "identity": "Source screenshot; not proven byte-identical to a specific blocked Blob object"
+    },
+    "rejectedSourceScreenshot": {
+      "id": "1r8vIGPlfc--D05mjuQ_UFRPBVlCeG1GC",
+      "name": "home_screen.png",
+      "reason": "Catatan Tugas application, not the Laundryuk project; retained privately and not substituted"
+    }
+  },
+  "driveTrashImagesPdfArchives": {"entries": 0},
+  "driveOwnedArchivesAndPresentations": {
+    "zipArchives": 0,
+    "unrelatedPresentations": 5
+  },
+  "canvaPortfolioSource": {
+    "id": "DAGm2DSaGHo",
+    "result": "Connected Canva tool denied access. No bypass, sharing or design changes attempted."
+  },
+  "publicImageOptimizer": {
+    "testedOriginalUrls": 3,
+    "result": "Unsupported width returned 400; allowed width returned 502 OPTIMIZED_EXTERNAL_IMAGE_REQUEST_UNAUTHORIZED. No media recovered and no configuration changes."
+  },
+  "blobMutations": 0,
+  "cmsMutations": 0,
+  "originalBlobDownloadBacklog": 197,
+  "visibleUnresolvedUrlsBefore": 128,
+  "visibleUnresolvedUrlsAfter": 89
+}
