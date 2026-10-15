@@ -48,6 +48,31 @@
     "world-friends-korea": {
       "file": "world-friends-korea.svg",
       "source": "https://www.worldfriendskorea.or.kr/kor/img/logo_hover.svg"
+    },
+    "etiqa": {
+      "file": "etiqa.png",
+      "source": "https://www.etiqa.co.id/media/1b2lr5se/etiqa-logo.png",
+      "note": "Official organization logo used in place of its inaccessible Blob logo."
+    },
+    "fazmastone": {
+      "file": "fazmastone.png",
+      "source": "https://assets.zyrosite.com/Y4LP6Z6M8GixaDgG/logo-fazmastone-hitam-Awv81WO8Raf2yKOZ.png",
+      "note": "Official organization logo used in place of its inaccessible Blob logo."
+    },
+    "fkg-ui": {
+      "file": "fkg-ui.png",
+      "source": "https://fkg.ui.ac.id/wp-content/uploads/sites/64/2026/02/logo-fkg-horisontal-1-02-2-scaled.png",
+      "note": "Official organization logo used in place of its inaccessible Blob logo."
+    },
+    "karya-intertek-kencana": {
+      "file": "karya-intertek-kencana.png",
+      "source": "https://kik-mep.com/wp-content/themes/kik/assets/img/logo-kik.png",
+      "note": "Official organization logo used in place of its inaccessible Blob logo."
+    },
+    "kawan-kerja": {
+      "file": "kawan-kerja.png",
+      "source": "https://kawankerja.id/AppIcons/transparenticon.png",
+      "note": "Official organization logo used in place of its inaccessible Blob logo."
     }
   },
   "sources": {
@@ -86,6 +111,11 @@
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784282881189-htgt4i.png": "/organization-logos/fortinet.svg",
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918655881-fsivrk.png": "/organization-logos/ubp-karawang.png",
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918691533-33caq9.png": "/organization-logos/ubp-karawang.png",
-    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918739691-aghust.png": "/organization-logos/widyatama.png"
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918739691-aghust.png": "/organization-logos/widyatama.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783751775057-cbdh41.png": "/organization-logos/etiqa.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777395321-y49zkw.png": "/organization-logos/fazmastone.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783942121212-5703ni.webp": "/organization-logos/fkg-ui.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784098241596-4q5nwr.png": "/organization-logos/karya-intertek-kencana.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783776877581-4nwauy.jpg": "/organization-logos/kawan-kerja.png"
   }
 }

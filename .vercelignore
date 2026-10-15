@@ -1,0 +1,10 @@
+backups
+backups/**
+.git
+.agents
+.agents/**
+**/node_modules/
+**/.env*
+portfolio/.agents/
+portfolio/*-check.png
+portfolio/.next*/

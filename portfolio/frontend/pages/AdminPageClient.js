@@ -285,9 +285,9 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
             </label>
           </div>
           <p className={`line-clamp-2 text-xs leading-5 ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
-            {status || (value ? "Preview siap. Klik Simpan setelah mengubah gambar." : "JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
+            {status || (value ? "Klik Simpan setelah mengubah gambar." : "JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
           </p>
-          {previewBroken && value && <p className="text-xs text-red-500">Preview gagal dimuat. Cek kembali URL gambarnya.</p>}
+          {previewBroken && value && <p className="text-xs text-red-500">File sumber belum bisa diakses. URL gambar tetap tersimpan.</p>}
         </div>
       </div>
     </div>
@@ -999,7 +999,7 @@ export default function AdminPageClient() {
                   <div className="flex min-w-0 items-center gap-3">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface">
                       {item.image ? (
-                        <img src={item.image} alt="" className="h-full w-full object-contain p-1.5" />
+                        <img src={mediaSource(item.image)} alt="" className="h-full w-full object-contain p-1.5" />
                       ) : (
                         <ImagePlus size={17} className="text-emerald-deep" />
                       )}

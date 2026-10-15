@@ -1,0 +1,63 @@
+[
+  {
+    "kind": "original-design-source",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783779630218-gonz0u.png",
+    "source": "https://drive.google.com/file/d/1Ip6tn9ScArQMTw1IZVxBc4J3DTaLp-cd/view",
+    "localUrl": "/recovered-media/winaction-poster.webp",
+    "originalBackup": "backups/recovered-originals-2026-10-15/winaction-poster.png",
+    "originalSha256": "641eda5506c9e0e7fe16439a0969348002f776c97a236a44a25fd7eec1e52e42",
+    "originalDimensions": [
+      3375,
+      6000
+    ],
+    "note": "Full poster from the existing Selected Design source link. Display copy resized; original PNG retained locally."
+  },
+  {
+    "kind": "original-design-source",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783779913440-r2m81a.png",
+    "source": "https://drive.google.com/file/d/1cUJIxEsbENMRg8mYmoMkeOlrIAsvqRlE/view",
+    "localUrl": "/recovered-media/insyfest-poster.webp",
+    "originalBackup": "backups/recovered-originals-2026-10-15/insyfest-poster.png",
+    "originalSha256": "059e3583b67cbb4349ce6ae62be206464cde4997eb52dbc0830f186c2b1c7ccf",
+    "originalDimensions": [
+      2160,
+      3840
+    ],
+    "note": "Full poster from the existing Selected Design source link. Display copy resized; original PNG retained locally."
+  },
+  {
+    "kind": "official-organization-logo",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783751775057-cbdh41.png",
+    "source": "https://www.etiqa.co.id/media/1b2lr5se/etiqa-logo.png",
+    "localUrl": "/organization-logos/etiqa.png",
+    "sha256": "022f85bc0c48f66ac0470747112924844803190df30ae0a75c9c1aa6bfa7b238"
+  },
+  {
+    "kind": "official-organization-logo",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777395321-y49zkw.png",
+    "source": "https://assets.zyrosite.com/Y4LP6Z6M8GixaDgG/logo-fazmastone-hitam-Awv81WO8Raf2yKOZ.png",
+    "localUrl": "/organization-logos/fazmastone.png",
+    "sha256": "af37d0771f773e3126e45722fa04e76a7cb74b228add262c39412a8328514c43"
+  },
+  {
+    "kind": "official-organization-logo",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783942121212-5703ni.webp",
+    "source": "https://fkg.ui.ac.id/wp-content/uploads/sites/64/2026/02/logo-fkg-horisontal-1-02-2-scaled.png",
+    "localUrl": "/organization-logos/fkg-ui.png",
+    "sha256": "65877ec06ffe3375a486425e27ed1c6b1a7c936ab686f64651d88992ed5207de"
+  },
+  {
+    "kind": "official-organization-logo",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784098241596-4q5nwr.png",
+    "source": "https://kik-mep.com/wp-content/themes/kik/assets/img/logo-kik.png",
+    "localUrl": "/organization-logos/karya-intertek-kencana.png",
+    "sha256": "e2d0bd48c95260358816c3a88ea4125dabc1dfe14b5f4ae1d47090b2e4afa8e8"
+  },
+  {
+    "kind": "official-organization-logo",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783776877581-4nwauy.jpg",
+    "source": "https://kawankerja.id/AppIcons/transparenticon.png",
+    "localUrl": "/organization-logos/kawan-kerja.png",
+    "sha256": "fd1461ea75da314c23de817e036e840122261c1ca3bca5abd6405935133a7cc2"
+  }
+]

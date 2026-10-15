@@ -1,0 +1,1419 @@
+{
+  "sourceFolder": "https://drive.google.com/drive/folders/1vDrXGNt1n_gN5lWcN_89443zfC5-PxYW",
+  "importedOn": "2026-10-15",
+  "patches": [
+    {
+      "collection": "certificates",
+      "id": "certificates-1783783587095-bdcy",
+      "fields": {
+        "image": "/certificates/previews/1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__.webp",
+        "pdfUrl": "/certificates/1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__.pdf",
+        "pdfUrls": [
+          "/certificates/1MNOC2mD27PwNM4ZyonQszqd-s7WvP5_B.pdf",
+          "/certificates/1Czg4AiYUfhQ5MJUxeaXSkBTN5U6BoUBs.pdf",
+          "/certificates/15p_Yhg--qe33Ke8WFi8jS3vYhFFW-Eq-.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__/view",
+          "https://drive.google.com/file/d/1MNOC2mD27PwNM4ZyonQszqd-s7WvP5_B/view",
+          "https://drive.google.com/file/d/1Czg4AiYUfhQ5MJUxeaXSkBTN5U6BoUBs/view",
+          "https://drive.google.com/file/d/15p_Yhg--qe33Ke8WFi8jS3vYhFFW-Eq-/view"
+        ]
+      },
+      "driveFileIds": [
+        "1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__",
+        "1MNOC2mD27PwNM4ZyonQszqd-s7WvP5_B",
+        "1Czg4AiYUfhQ5MJUxeaXSkBTN5U6BoUBs",
+        "15p_Yhg--qe33Ke8WFi8jS3vYhFFW-Eq-"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783838162234-xrpj",
+      "fields": {
+        "image": "/certificates/previews/1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X.webp",
+        "pdfUrl": "/certificates/1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X.pdf",
+        "pdfUrls": [
+          "/certificates/1yi362fAICMwf5aktXfFNV7wgp43n7XN3.pdf",
+          "/certificates/1Wkw4gAL2UC7kcTz1XMrI0eu8AqSswqBl.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X/view",
+          "https://drive.google.com/file/d/1yi362fAICMwf5aktXfFNV7wgp43n7XN3/view",
+          "https://drive.google.com/file/d/1Wkw4gAL2UC7kcTz1XMrI0eu8AqSswqBl/view"
+        ]
+      },
+      "driveFileIds": [
+        "1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X",
+        "1yi362fAICMwf5aktXfFNV7wgp43n7XN3",
+        "1Wkw4gAL2UC7kcTz1XMrI0eu8AqSswqBl"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783917379032-hefw",
+      "fields": {
+        "image": "/certificates/previews/1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv.webp",
+        "pdfUrl": "/certificates/1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv.pdf",
+        "pdfUrls": [
+          "/certificates/1za5f5jPgYX92RGi3qjXcE7KsbFGiMZ3L.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv/view",
+          "https://drive.google.com/file/d/1za5f5jPgYX92RGi3qjXcE7KsbFGiMZ3L/view"
+        ]
+      },
+      "driveFileIds": [
+        "1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv",
+        "1za5f5jPgYX92RGi3qjXcE7KsbFGiMZ3L"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783918964891-9gdw",
+      "fields": {
+        "image": "/certificates/previews/1u9A8QlykIQFi3hC975wvpw6caxi3MXZH.webp",
+        "pdfUrl": "/certificates/1u9A8QlykIQFi3hC975wvpw6caxi3MXZH.pdf",
+        "pdfUrls": [
+          "/certificates/1OhR_wkzHasdpCF_lKjrM9Q424qAKE--9.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1u9A8QlykIQFi3hC975wvpw6caxi3MXZH/view",
+          "https://drive.google.com/file/d/1OhR_wkzHasdpCF_lKjrM9Q424qAKE--9/view"
+        ],
+        "issuer": "Cisco"
+      },
+      "driveFileIds": [
+        "1u9A8QlykIQFi3hC975wvpw6caxi3MXZH",
+        "1OhR_wkzHasdpCF_lKjrM9Q424qAKE--9"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783919531292-juj5",
+      "fields": {
+        "image": "/certificates/previews/1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl.webp",
+        "pdfUrl": "/certificates/1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl/view"
+        ]
+      },
+      "driveFileIds": [
+        "1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783919931539-n8cw",
+      "fields": {
+        "image": "/certificates/previews/1-AMnv3GRUDAAFqBdVLWsKhLBiNXFeJPn.webp",
+        "pdfUrl": "",
+        "pdfUrls": [],
+        "documents": [
+          "/certificates/1-AMnv3GRUDAAFqBdVLWsKhLBiNXFeJPn.jpg"
+        ],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1-AMnv3GRUDAAFqBdVLWsKhLBiNXFeJPn/view"
+        ]
+      },
+      "driveFileIds": [
+        "1-AMnv3GRUDAAFqBdVLWsKhLBiNXFeJPn"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783920857190-favi",
+      "fields": {
+        "image": "/certificates/previews/16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u.webp",
+        "pdfUrl": "/certificates/16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u.pdf",
+        "pdfUrls": [
+          "/certificates/1FDz_vePQ5JfXol-LqOEUEQanj5eRz2HW.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u/view",
+          "https://drive.google.com/file/d/1FDz_vePQ5JfXol-LqOEUEQanj5eRz2HW/view"
+        ]
+      },
+      "driveFileIds": [
+        "16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u",
+        "1FDz_vePQ5JfXol-LqOEUEQanj5eRz2HW"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783921577654-dijp",
+      "fields": {
+        "image": "/certificates/previews/1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg.webp",
+        "pdfUrl": "/certificates/1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg.pdf",
+        "pdfUrls": [
+          "/certificates/1BSLQLFFT752KB8OS0zmfKeYjo24EW0YL.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg/view",
+          "https://drive.google.com/file/d/1BSLQLFFT752KB8OS0zmfKeYjo24EW0YL/view"
+        ]
+      },
+      "driveFileIds": [
+        "1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg",
+        "1BSLQLFFT752KB8OS0zmfKeYjo24EW0YL"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783922538467-ss0v",
+      "fields": {
+        "image": "/certificates/previews/16sDKlouzxV_Kd3k466Phpav5ngp1WM5_.webp",
+        "pdfUrl": "/certificates/16sDKlouzxV_Kd3k466Phpav5ngp1WM5_.pdf",
+        "pdfUrls": [
+          "/certificates/1sbHGcf2hd3QYnwtz_SNBb0BxbVQWBTxH.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/16sDKlouzxV_Kd3k466Phpav5ngp1WM5_/view",
+          "https://drive.google.com/file/d/1sbHGcf2hd3QYnwtz_SNBb0BxbVQWBTxH/view"
+        ]
+      },
+      "driveFileIds": [
+        "16sDKlouzxV_Kd3k466Phpav5ngp1WM5_",
+        "1sbHGcf2hd3QYnwtz_SNBb0BxbVQWBTxH"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783922775578-9xvz",
+      "fields": {
+        "image": "/certificates/previews/1lyIVBAKrhf5-ny4uibLA3-s9cP6iqYKo.webp",
+        "pdfUrl": "",
+        "pdfUrls": [],
+        "documents": [
+          "/certificates/1lyIVBAKrhf5-ny4uibLA3-s9cP6iqYKo.png"
+        ],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1lyIVBAKrhf5-ny4uibLA3-s9cP6iqYKo/view"
+        ]
+      },
+      "driveFileIds": [
+        "1lyIVBAKrhf5-ny4uibLA3-s9cP6iqYKo"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784168775554-fplo",
+      "fields": {
+        "image": "/certificates/previews/1ln7crail9Iq3LL2STEyVX9E6A709MhYH.webp",
+        "pdfUrl": "/certificates/1ln7crail9Iq3LL2STEyVX9E6A709MhYH.pdf",
+        "pdfUrls": [
+          "/certificates/1Tvuc-_aWzCNu5V0_w-uoaDDuVu5W0d9O.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1ln7crail9Iq3LL2STEyVX9E6A709MhYH/view",
+          "https://drive.google.com/file/d/1Tvuc-_aWzCNu5V0_w-uoaDDuVu5W0d9O/view"
+        ]
+      },
+      "driveFileIds": [
+        "1ln7crail9Iq3LL2STEyVX9E6A709MhYH",
+        "1Tvuc-_aWzCNu5V0_w-uoaDDuVu5W0d9O"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784169375330-v80v",
+      "fields": {
+        "image": "/certificates/previews/11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow.webp",
+        "pdfUrl": "/certificates/11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow.pdf",
+        "pdfUrls": [
+          "/certificates/1FpVgoAfrmjCKkPrR7OeYc43pdPvi9RLE.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow/view",
+          "https://drive.google.com/file/d/1FpVgoAfrmjCKkPrR7OeYc43pdPvi9RLE/view"
+        ]
+      },
+      "driveFileIds": [
+        "11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow",
+        "1FpVgoAfrmjCKkPrR7OeYc43pdPvi9RLE"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784171707971-uryg",
+      "fields": {
+        "image": "/certificates/previews/1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal.webp",
+        "pdfUrl": "/certificates/1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal.pdf",
+        "pdfUrls": [
+          "/certificates/1RmPDPLRTMc7P4TAMPpjcGjgmIsKjgyNN.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal/view",
+          "https://drive.google.com/file/d/1RmPDPLRTMc7P4TAMPpjcGjgmIsKjgyNN/view"
+        ]
+      },
+      "driveFileIds": [
+        "1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal",
+        "1RmPDPLRTMc7P4TAMPpjcGjgmIsKjgyNN"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784172159674-jsfk",
+      "fields": {
+        "image": "/certificates/previews/1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab.webp",
+        "pdfUrl": "/certificates/1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab/view"
+        ]
+      },
+      "driveFileIds": [
+        "1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784183695100-neye",
+      "fields": {
+        "image": "/certificates/previews/16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh.webp",
+        "pdfUrl": "/certificates/16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh.pdf",
+        "pdfUrls": [
+          "/certificates/1McDBK56Ozpeavswuoi3XiPsNMR20pKZU.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh/view",
+          "https://drive.google.com/file/d/1McDBK56Ozpeavswuoi3XiPsNMR20pKZU/view"
+        ]
+      },
+      "driveFileIds": [
+        "16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh",
+        "1McDBK56Ozpeavswuoi3XiPsNMR20pKZU"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784184040444-leqf",
+      "fields": {
+        "image": "/certificates/previews/1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL.webp",
+        "pdfUrl": "/certificates/1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL.pdf",
+        "pdfUrls": [
+          "/certificates/1U6JXPU6frG65960FfFryqCl6q9qHI9i-.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL/view",
+          "https://drive.google.com/file/d/1U6JXPU6frG65960FfFryqCl6q9qHI9i-/view"
+        ],
+        "issuer": "Oracle Academy"
+      },
+      "driveFileIds": [
+        "1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL",
+        "1U6JXPU6frG65960FfFryqCl6q9qHI9i-"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784184695972-658u",
+      "fields": {
+        "image": "/certificates/previews/1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX.webp",
+        "pdfUrl": "/certificates/1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX.pdf",
+        "pdfUrls": [
+          "/certificates/1W48hsS6eo5TauE0G6D3dC2ZTT3ZNqacL.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX/view",
+          "https://drive.google.com/file/d/1W48hsS6eo5TauE0G6D3dC2ZTT3ZNqacL/view"
+        ]
+      },
+      "driveFileIds": [
+        "1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX",
+        "1W48hsS6eo5TauE0G6D3dC2ZTT3ZNqacL"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784184891940-t21q",
+      "fields": {
+        "image": "/certificates/previews/1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr.webp",
+        "pdfUrl": "/certificates/1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr.pdf",
+        "pdfUrls": [
+          "/certificates/1kCLyIUl2y7ZZnQVlrqlCRM8extDQAkhK.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr/view",
+          "https://drive.google.com/file/d/1kCLyIUl2y7ZZnQVlrqlCRM8extDQAkhK/view"
+        ]
+      },
+      "driveFileIds": [
+        "1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr",
+        "1kCLyIUl2y7ZZnQVlrqlCRM8extDQAkhK"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784185106020-44gn",
+      "fields": {
+        "image": "/certificates/previews/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5.webp",
+        "pdfUrl": "/certificates/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5.pdf",
+        "pdfUrls": [
+          "/certificates/1gdfH5zvOy54i576_f4q6Yh4eNy9ha5XN.pdf"
+        ],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5/view",
+          "https://drive.google.com/file/d/1gdfH5zvOy54i576_f4q6Yh4eNy9ha5XN/view"
+        ]
+      },
+      "driveFileIds": [
+        "1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5",
+        "1gdfH5zvOy54i576_f4q6Yh4eNy9ha5XN"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "cert-1",
+      "fields": {
+        "image": "/certificates/previews/1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ.webp",
+        "pdfUrl": "/certificates/1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ.pdf",
+        "pdfUrls": [],
+        "documents": [
+          "/certificates/1J-LGZYmzgy6F48Vp-lM5uAOBQA-gujbd.jpg"
+        ],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ/view",
+          "https://drive.google.com/file/d/1J-LGZYmzgy6F48Vp-lM5uAOBQA-gujbd/view"
+        ]
+      },
+      "driveFileIds": [
+        "1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ",
+        "1J-LGZYmzgy6F48Vp-lM5uAOBQA-gujbd"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1783783266030-2j48",
+      "fields": {
+        "image": "/certificates/previews/1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i.webp",
+        "pdfUrl": "/certificates/1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i.pdf",
+        "pdfUrls": [],
+        "documents": [
+          "/certificates/1pvyBc8bfLwOokUpFZbmIrH-oaJEf7bA6.jpg"
+        ],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i/view",
+          "https://drive.google.com/file/d/1pvyBc8bfLwOokUpFZbmIrH-oaJEf7bA6/view"
+        ]
+      },
+      "driveFileIds": [
+        "1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i",
+        "1pvyBc8bfLwOokUpFZbmIrH-oaJEf7bA6"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784170037034-hn3t",
+      "fields": {
+        "image": "/certificates/previews/1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9.webp",
+        "pdfUrl": "/certificates/1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9/view"
+        ]
+      },
+      "driveFileIds": [
+        "1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784170956716-rk74",
+      "fields": {
+        "image": "/certificates/previews/1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6.webp",
+        "pdfUrl": "/certificates/1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6/view"
+        ]
+      },
+      "driveFileIds": [
+        "1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784171205706-ruz5",
+      "fields": {
+        "image": "/certificates/previews/1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA.webp",
+        "pdfUrl": "/certificates/1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA/view"
+        ]
+      },
+      "driveFileIds": [
+        "1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784171380810-rfk9",
+      "fields": {
+        "image": "/certificates/previews/1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC.webp",
+        "pdfUrl": "/certificates/1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC/view"
+        ]
+      },
+      "driveFileIds": [
+        "1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784171522450-pzok",
+      "fields": {
+        "image": "/certificates/previews/1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-.webp",
+        "pdfUrl": "/certificates/1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-/view"
+        ]
+      },
+      "driveFileIds": [
+        "1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784185376492-0s00",
+      "fields": {
+        "image": "/certificates/previews/1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH.webp",
+        "pdfUrl": "/certificates/1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH/view"
+        ]
+      },
+      "driveFileIds": [
+        "1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784280827454-0hx5",
+      "fields": {
+        "image": "/certificates/previews/14UBoYFgKBIn9qAYyK1NiIALi48HnbREW.webp",
+        "pdfUrl": "/certificates/14UBoYFgKBIn9qAYyK1NiIALi48HnbREW.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/14UBoYFgKBIn9qAYyK1NiIALi48HnbREW/view"
+        ]
+      },
+      "driveFileIds": [
+        "14UBoYFgKBIn9qAYyK1NiIALi48HnbREW"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784281014015-mqnc",
+      "fields": {
+        "image": "/certificates/previews/150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb.webp",
+        "pdfUrl": "/certificates/150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb/view"
+        ]
+      },
+      "driveFileIds": [
+        "150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784281230591-28en",
+      "fields": {
+        "image": "/certificates/previews/1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx.webp",
+        "pdfUrl": "/certificates/1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx/view"
+        ]
+      },
+      "driveFileIds": [
+        "1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784281450543-r77k",
+      "fields": {
+        "image": "/certificates/previews/1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m.webp",
+        "pdfUrl": "/certificates/1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m/view"
+        ]
+      },
+      "driveFileIds": [
+        "1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784281632063-igd8",
+      "fields": {
+        "image": "/certificates/previews/1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn.webp",
+        "pdfUrl": "/certificates/1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn/view"
+        ]
+      },
+      "driveFileIds": [
+        "1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn"
+      ]
+    },
+    {
+      "collection": "certificates",
+      "id": "certificates-1784282781535-l3nl",
+      "fields": {
+        "image": "/certificates/previews/1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP.webp",
+        "pdfUrl": "/certificates/1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP/view"
+        ]
+      },
+      "driveFileIds": [
+        "1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP"
+      ]
+    },
+    {
+      "collection": "achievements",
+      "id": "ach-1",
+      "fields": {
+        "image": "/certificates/previews/1r5LFRkpy5JnaflByQICYBq486R3yFBeY.webp",
+        "pdfUrl": "/certificates/1r5LFRkpy5JnaflByQICYBq486R3yFBeY.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1r5LFRkpy5JnaflByQICYBq486R3yFBeY/view"
+        ]
+      },
+      "driveFileIds": [
+        "1r5LFRkpy5JnaflByQICYBq486R3yFBeY"
+      ]
+    },
+    {
+      "collection": "achievements",
+      "id": "achievements-1783918071065-1iyi",
+      "fields": {
+        "image": "/certificates/previews/1zn3ahUoCHkhnPiNJ9WjFYBtYZ9C_D0tu.webp",
+        "pdfUrl": "",
+        "pdfUrls": [],
+        "documents": [
+          "/certificates/1zn3ahUoCHkhnPiNJ9WjFYBtYZ9C_D0tu.png"
+        ],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1zn3ahUoCHkhnPiNJ9WjFYBtYZ9C_D0tu/view"
+        ]
+      },
+      "driveFileIds": [
+        "1zn3ahUoCHkhnPiNJ9WjFYBtYZ9C_D0tu"
+      ]
+    },
+    {
+      "collection": "achievements",
+      "id": "achievements-1783918298191-fdhx",
+      "fields": {
+        "image": "/certificates/previews/1PEYNNLhnZBkxLlo_EnB3AKQER1K40VNl.webp",
+        "pdfUrl": "/certificates/1PEYNNLhnZBkxLlo_EnB3AKQER1K40VNl.pdf",
+        "pdfUrls": [],
+        "documents": [],
+        "sourceDriveUrls": [
+          "https://drive.google.com/file/d/1PEYNNLhnZBkxLlo_EnB3AKQER1K40VNl/view"
+        ]
+      },
+      "driveFileIds": [
+        "1PEYNNLhnZBkxLlo_EnB3AKQER1K40VNl"
+      ]
+    }
+  ],
+  "additions": [
+    {
+      "id": "drive-cert-1BH6kRA6mPZFJUF2po8FF4y7oCDhPPwXF",
+      "title": "Belajar Fundamental Deep Learning",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1BH6kRA6mPZFJUF2po8FF4y7oCDhPPwXF.webp",
+      "credentialId": "ERZRLDMMWZYV",
+      "issuedAt": "24 Mei 2026",
+      "expiresAt": "24 Mei 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/ERZRLDMMWZYV",
+      "pdfUrl": "/certificates/1BH6kRA6mPZFJUF2po8FF4y7oCDhPPwXF.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1BH6kRA6mPZFJUF2po8FF4y7oCDhPPwXF/view"
+      ],
+      "description": "Menyelesaikan kelas deep learning yang membahas neural network dengan TensorFlow dan Keras, pemrosesan bahasa alami, time series, klasifikasi gambar, sistem rekomendasi, serta konversi dan deployment model."
+    },
+    {
+      "id": "drive-cert-1qd3SEsyBqIMn2INj7I45_hrcNa9LFpic",
+      "title": "Belajar Penerapan Data Science dengan Microsoft Fabric",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1qd3SEsyBqIMn2INj7I45_hrcNa9LFpic.webp",
+      "credentialId": "0LZ05LWE3X65",
+      "issuedAt": "21 Januari 2026",
+      "expiresAt": "21 Januari 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/0LZ05LWE3X65",
+      "pdfUrl": "/certificates/1qd3SEsyBqIMn2INj7I45_hrcNa9LFpic.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1qd3SEsyBqIMn2INj7I45_hrcNa9LFpic/view"
+      ],
+      "description": "Menyelesaikan pelatihan alur data science menggunakan Microsoft Fabric, meliputi eksplorasi data melalui notebook, preprocessing dengan Data Wrangler, pelacakan eksperimen menggunakan MLflow, serta batch prediction dan pemantauan model."
+    },
+    {
+      "id": "drive-cert-1SvjKjy0UT9PsPDY1Q03O1fkmE4gfoCuC",
+      "title": "AI Praktis untuk Produktivitas",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1SvjKjy0UT9PsPDY1Q03O1fkmE4gfoCuC.webp",
+      "credentialId": "98XW0OM5JXM3",
+      "issuedAt": "09 Mei 2026",
+      "expiresAt": "09 Mei 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/98XW0OM5JXM3",
+      "pdfUrl": "/certificates/1SvjKjy0UT9PsPDY1Q03O1fkmE4gfoCuC.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1SvjKjy0UT9PsPDY1Q03O1fkmE4gfoCuC/view"
+      ],
+      "description": "Menyelesaikan kelas pemanfaatan AI untuk produktivitas yang mencakup penggunaan alat AI, prompt engineering, penggunaan AI secara etis dan bertanggung jawab, serta strategi adaptasi keterampilan di era AI."
+    },
+    {
+      "id": "drive-cert-1oWqB85zhZjkCDagq7wjxjSUEhJEhjrDE",
+      "title": "Belajar Dasar AI",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1oWqB85zhZjkCDagq7wjxjSUEhJEhjrDE.webp",
+      "credentialId": "1OP8R1YYLZQK",
+      "issuedAt": "19 Maret 2026",
+      "expiresAt": "19 Maret 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/1OP8R1YYLZQK",
+      "pdfUrl": "/certificates/1oWqB85zhZjkCDagq7wjxjSUEhJEhjrDE.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1oWqB85zhZjkCDagq7wjxjSUEhJEhjrDE/view"
+      ],
+      "description": "Menyelesaikan kelas pengantar kecerdasan buatan dengan materi konsep dasar AI, peran data, machine learning, deep learning, dan contoh penerapannya dalam kehidupan sehari-hari."
+    },
+    {
+      "id": "drive-cert-1ARsSX2CfUrncU7bv1gYXsqsygFWLm5k0",
+      "title": "Belajar Fundamental Pemrosesan Data",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1ARsSX2CfUrncU7bv1gYXsqsygFWLm5k0.webp",
+      "credentialId": "QLZ99R0NMZ5D",
+      "issuedAt": "29 Maret 2026",
+      "expiresAt": "29 Maret 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/QLZ99R0NMZ5D",
+      "pdfUrl": "/certificates/1ARsSX2CfUrncU7bv1gYXsqsygFWLm5k0.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1ARsSX2CfUrncU7bv1gYXsqsygFWLm5k0/view"
+      ],
+      "description": "Menyelesaikan pelatihan pemrosesan data menggunakan Python, termasuk praktik software engineering, repositori data, pipeline extract-transform-load, dan automasi. Evaluasi akhir berupa pembangunan ETL pipeline sederhana."
+    },
+    {
+      "id": "drive-cert-11HUCTuD0RSVGeiD4lEXubSUG5comdJwV",
+      "title": "Belajar Dasar Cloud dan Gen AI di AWS",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/11HUCTuD0RSVGeiD4lEXubSUG5comdJwV.webp",
+      "credentialId": "JLX1V2V1NZ72",
+      "issuedAt": "04 April 2026",
+      "expiresAt": "04 April 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/JLX1V2V1NZ72",
+      "pdfUrl": "/certificates/11HUCTuD0RSVGeiD4lEXubSUG5comdJwV.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/11HUCTuD0RSVGeiD4lEXubSUG5comdJwV/view"
+      ],
+      "description": "Menyelesaikan kelas dasar AWS Cloud dan generative AI yang membahas layanan komputasi, jaringan, penyimpanan, database, keamanan, pemantauan, serta pengelolaan biaya dan dukungan di lingkungan AWS."
+    },
+    {
+      "id": "drive-cert-1EBqbEKA4c0BlNYKcyPdmlusi_L0gAOnP",
+      "title": "Spec-Driven Development dengan Kiro",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1EBqbEKA4c0BlNYKcyPdmlusi_L0gAOnP.webp",
+      "credentialId": "81P2OV5EYZOY",
+      "issuedAt": "04 April 2026",
+      "expiresAt": "04 April 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/81P2OV5EYZOY",
+      "pdfUrl": "/certificates/1EBqbEKA4c0BlNYKcyPdmlusi_L0gAOnP.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1EBqbEKA4c0BlNYKcyPdmlusi_L0gAOnP/view"
+      ],
+      "description": "Menyelesaikan kelas Spec-Driven Development menggunakan Kiro, mulai dari perumusan requirements dan desain hingga implementasi task. Materi mencakup penyusunan spesifikasi, pengembangan aplikasi dengan bantuan AI, dan pemeliharaan kualitas kode."
+    },
+    {
+      "id": "drive-cert-142DDeg7ewqnuZbx38HSg8Rv2tLHcBxxh",
+      "title": "Introduction to Financial Literacy",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/142DDeg7ewqnuZbx38HSg8Rv2tLHcBxxh.webp",
+      "credentialId": "72ZDJ8L5LZYW",
+      "issuedAt": "17 Maret 2026",
+      "expiresAt": "17 Maret 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/72ZDJ8L5LZYW",
+      "pdfUrl": "/certificates/142DDeg7ewqnuZbx38HSg8Rv2tLHcBxxh.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/142DDeg7ewqnuZbx38HSg8Rv2tLHcBxxh/view"
+      ],
+      "description": "Menyelesaikan kelas literasi finansial dalam program Coding Camp powered by DBS Foundation, dengan materi pengelolaan keuangan sehari-hari, perencanaan keuangan, pengenalan investasi, dan pengelolaan pinjaman secara bertanggung jawab."
+    },
+    {
+      "id": "drive-cert-1ZVFiQyFz8RbqJKD15fXkwUPX-dV_jUj4",
+      "title": "Membangun Aplikasi Gen AI dengan Microsoft Azure",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1ZVFiQyFz8RbqJKD15fXkwUPX-dV_jUj4.webp",
+      "credentialId": "2VX35Q2Q3PYQ",
+      "issuedAt": "22 Januari 2026",
+      "expiresAt": "22 Januari 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/2VX35Q2Q3PYQ",
+      "pdfUrl": "/certificates/1ZVFiQyFz8RbqJKD15fXkwUPX-dV_jUj4.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1ZVFiQyFz8RbqJKD15fXkwUPX-dV_jUj4/view"
+      ],
+      "description": "Menyelesaikan kelas pengembangan aplikasi generative AI menggunakan Microsoft Azure AI Foundry. Materi meliputi pemilihan dan deployment model, SDK, Prompt Flow, RAG dengan data kustom, fine-tuning, serta evaluasi dan responsible AI."
+    },
+    {
+      "id": "drive-cert-1DYmVRRH6aAiLbj0ii9rQkGoJKV4TMI88",
+      "title": "Belajar Machine Learning untuk Pemula",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1DYmVRRH6aAiLbj0ii9rQkGoJKV4TMI88.webp",
+      "credentialId": "98XW0V03LXM3",
+      "issuedAt": "26 Maret 2026",
+      "expiresAt": "26 Maret 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/98XW0V03LXM3",
+      "pdfUrl": "/certificates/1DYmVRRH6aAiLbj0ii9rQkGoJKV4TMI88.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1DYmVRRH6aAiLbj0ii9rQkGoJKV4TMI88/view"
+      ],
+      "description": "Menyelesaikan kelas dasar machine learning dengan fokus pada data tabular, klasifikasi, regresi, clustering, feature engineering, evaluasi, dan hyperparameter tuning. Proyek akhir mencakup pembangunan model supervised dan unsupervised learning."
+    },
+    {
+      "id": "drive-cert-1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj",
+      "title": "Belajar Strategi Pengembangan Diri",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj.webp",
+      "credentialId": "N9ZON5QD6XG5",
+      "issuedAt": "27 Maret 2026",
+      "expiresAt": "27 Maret 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/N9ZON5QD6XG5",
+      "pdfUrl": "/certificates/1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj/view"
+      ],
+      "description": "Menyelesaikan kelas strategi pengembangan diri yang membahas growth mindset, pengenalan potensi diri, pengelolaan waktu, kemampuan beradaptasi, dan refleksi. Evaluasi mencakup penyusunan personal development plan."
+    },
+    {
+      "id": "drive-cert-13LX0J9-uxPQqL22TMA05L8z61C2RhBUT",
+      "title": "Memulai Pemrograman dengan Python",
+      "issuer": "Dicoding Indonesia",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/13LX0J9-uxPQqL22TMA05L8z61C2RhBUT.webp",
+      "credentialId": "N9ZO28OD6PG5",
+      "issuedAt": "24 Januari 2026",
+      "expiresAt": "24 Januari 2029",
+      "credentialUrl": "https://www.dicoding.com/certificates/N9ZO28OD6PG5",
+      "pdfUrl": "/certificates/13LX0J9-uxPQqL22TMA05L8z61C2RhBUT.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/13LX0J9-uxPQqL22TMA05L8z61C2RhBUT/view"
+      ],
+      "description": "Menyelesaikan kelas dasar Python, termasuk tipe data, ekspresi, percabangan, perulangan, array, matriks, fungsi, object-oriented programming, style guide, unit testing, dan pengenalan library yang umum digunakan."
+    },
+    {
+      "id": "drive-cert-1Vw1yRrBVhk7d2KRgrXRAmvzL2IGFxrRR",
+      "title": "DevCoach 233: DevOps - Code is Not Enough, Introduction to the Art of System Design",
+      "issuer": "Dicoding Event",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1Vw1yRrBVhk7d2KRgrXRAmvzL2IGFxrRR.webp",
+      "credentialId": "",
+      "issuedAt": "30 April 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1Vw1yRrBVhk7d2KRgrXRAmvzL2IGFxrRR.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1Vw1yRrBVhk7d2KRgrXRAmvzL2IGFxrRR/view"
+      ],
+      "description": "Mengikuti sesi DevCoach tentang pengantar system design dalam pengembangan perangkat lunak dan DevOps, untuk memperluas pemahaman perancangan sistem di luar penulisan kode."
+    },
+    {
+      "id": "drive-cert-1vJF41Aqt3JyonlnBqHWylfKPa3XSICgI",
+      "title": "DevCoach 238 - Mengenal RAG: Dari Konsep ke Implementasi Pertamamu",
+      "issuer": "Dicoding Event",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1vJF41Aqt3JyonlnBqHWylfKPa3XSICgI.webp",
+      "credentialId": "",
+      "issuedAt": "17 Juli 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1vJF41Aqt3JyonlnBqHWylfKPa3XSICgI.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1vJF41Aqt3JyonlnBqHWylfKPa3XSICgI/view"
+      ],
+      "description": "Mengikuti sesi pengenalan Retrieval Augmented Generation yang membahas konsep RAG dan langkah awal implementasinya dalam aplikasi berbasis AI."
+    },
+    {
+      "id": "drive-cert-1fDHv_N4yGrrQyTLtu3iYulL5v0DZck4-",
+      "title": "DevCoach 239: Hermes - Jangan Cuma Pakai Chatbot, Saatnya Punya Hermes Agent Sendiri!",
+      "issuer": "Dicoding Event",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1fDHv_N4yGrrQyTLtu3iYulL5v0DZck4-.webp",
+      "credentialId": "",
+      "issuedAt": "31 Juli 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1fDHv_N4yGrrQyTLtu3iYulL5v0DZck4-.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1fDHv_N4yGrrQyTLtu3iYulL5v0DZck4-/view"
+      ],
+      "description": "Mengikuti sesi DevCoach mengenai Hermes dan pengenalan penggunaan AI agent, sebagai perluasan wawasan dari interaksi chatbot menuju alur kerja berbasis agent."
+    },
+    {
+      "id": "drive-cert-1ZrJSbQoI7sVXNJf9pVKKz7RwRdwU30Wc",
+      "title": "IDCamp Alumni Dialogue #2 - Effective Communication in a Hybrid & Digital World",
+      "issuer": "Indosat Ooredoo Hutchison Digital Camp",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1ZrJSbQoI7sVXNJf9pVKKz7RwRdwU30Wc.webp",
+      "credentialId": "",
+      "issuedAt": "29 April 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1ZrJSbQoI7sVXNJf9pVKKz7RwRdwU30Wc.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1ZrJSbQoI7sVXNJf9pVKKz7RwRdwU30Wc/view"
+      ],
+      "description": "Mengikuti dialog alumni IDCamp tentang komunikasi efektif dalam lingkungan kerja hybrid dan digital, dengan fokus pada pengembangan keterampilan komunikasi profesional."
+    },
+    {
+      "id": "drive-cert-1m4yANA8aJS-zFq2XfWK92Kj1j-QA7xIo",
+      "title": "METC Soft Skill Series #3 - Mindset on Point: Cara Berpikir yang Dicari di Dunia Kerja",
+      "issuer": "Microsoft Elevate Training Center",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1m4yANA8aJS-zFq2XfWK92Kj1j-QA7xIo.webp",
+      "credentialId": "",
+      "issuedAt": "5 Juni 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1m4yANA8aJS-zFq2XfWK92Kj1j-QA7xIo.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1m4yANA8aJS-zFq2XfWK92Kj1j-QA7xIo/view"
+      ],
+      "description": "Mengikuti sesi pengembangan soft skill tentang pola pikir yang dibutuhkan di dunia kerja dan kesiapan beradaptasi dalam lingkungan profesional."
+    },
+    {
+      "id": "drive-cert-1Aan-s86A2q22gIy0-mDStyWQLvB0CihW",
+      "title": "METC x Dicoding Live #2 - Future with AI: Tren dan Peluang di Era Transformasi Digital",
+      "issuer": "Microsoft Elevate Training Center",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1Aan-s86A2q22gIy0-mDStyWQLvB0CihW.webp",
+      "credentialId": "",
+      "issuedAt": "25 Mei 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1Aan-s86A2q22gIy0-mDStyWQLvB0CihW.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1Aan-s86A2q22gIy0-mDStyWQLvB0CihW/view"
+      ],
+      "description": "Mengikuti sesi mengenai tren AI dan peluangnya dalam transformasi digital untuk memperluas wawasan mengenai perkembangan teknologi dan arah kebutuhan keterampilan."
+    },
+    {
+      "id": "drive-cert-14McvVNIyXVydeO9kgTjqsqVPrwDSC1Y-",
+      "title": "Sinergi Machine Learning dan Generative AI",
+      "issuer": "Microsoft Elevate Training Center",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/14McvVNIyXVydeO9kgTjqsqVPrwDSC1Y-.webp",
+      "credentialId": "elevate/certificate/2026/OFLK3X8V5P",
+      "issuedAt": "28 April 2026",
+      "expiresAt": "",
+      "credentialUrl": "https://www.dicoding.com/elevate/certificates/OFLK3X8V5P",
+      "pdfUrl": "/certificates/14McvVNIyXVydeO9kgTjqsqVPrwDSC1Y-.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/14McvVNIyXVydeO9kgTjqsqVPrwDSC1Y-/view"
+      ],
+      "description": "Berpartisipasi dalam offline workshop training bertema sinergi machine learning dan generative AI yang diselenggarakan melalui Microsoft Elevate Training Center."
+    },
+    {
+      "id": "drive-cert-1vdUq9sG9fqCtYTLq9MrUa-fBhVS1TceW",
+      "title": "Virtual Roadshow METC x Startup Bandung - Menerapkan Data Science untuk Solusi Model AI secara End to End",
+      "issuer": "Microsoft Elevate Training Center",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1vdUq9sG9fqCtYTLq9MrUa-fBhVS1TceW.webp",
+      "credentialId": "",
+      "issuedAt": "29 Mei 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1vdUq9sG9fqCtYTLq9MrUa-fBhVS1TceW.pdf",
+      "pdfUrls": [
+        "/certificates/1u4zFky_rQ-NYuFfW_fnGT0TzIjMhOcnh.pdf"
+      ],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1vdUq9sG9fqCtYTLq9MrUa-fBhVS1TceW/view",
+        "https://drive.google.com/file/d/1u4zFky_rQ-NYuFfW_fnGT0TzIjMhOcnh/view"
+      ],
+      "description": "Mengikuti virtual roadshow yang membahas penerapan data science untuk solusi model AI secara end to end, dari perspektif alur kerja pengembangan solusi berbasis data."
+    },
+    {
+      "id": "drive-cert-1UQBjCN5jo7_WPeGo6xc6XfpysapG5hj8",
+      "title": "AWS AI Academy 2026 - Level Dasar & Pemula",
+      "issuer": "Dicoding Indonesia / AWS Training and Certification",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/1UQBjCN5jo7_WPeGo6xc6XfpysapG5hj8.webp",
+      "credentialId": "AWS2026/L1-AI-0003",
+      "issuedAt": "7 Agustus 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1UQBjCN5jo7_WPeGo6xc6XfpysapG5hj8.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1UQBjCN5jo7_WPeGo6xc6XfpysapG5hj8/view"
+      ],
+      "description": "Menyelesaikan pelatihan level Dasar dan Pemula (Basic & Beginner) pada program AWS AI Academy 2026, sebagaimana tercantum pada sertifikat kelulusan yang diterbitkan Dicoding Indonesia."
+    },
+    {
+      "id": "drive-cert-12og3KvCcXT8qi3Cp43qPlBu6VZOixYIO",
+      "title": "Content Creator - Make Money From Our Social Media",
+      "issuer": "BIGFAIR RISE 2025",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/12og3KvCcXT8qi3Cp43qPlBu6VZOixYIO.webp",
+      "credentialId": "",
+      "issuedAt": "2 Februari 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/12og3KvCcXT8qi3Cp43qPlBu6VZOixYIO.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/12og3KvCcXT8qi3Cp43qPlBu6VZOixYIO/view"
+      ],
+      "description": "Mengikuti seminar nasional Content Creator dalam BIGFAIR RISE 2025 dengan topik Make Money From Our Social Media bersama Tifani Hernang. Kegiatan memperluas wawasan mengenai pengembangan konten dan pemanfaatan media sosial."
+    },
+    {
+      "id": "drive-cert-1zrc9wzfruBDDTZnyS1PtmtN_GX6vzo-n",
+      "title": "Career Preparation - Get Ready for Career",
+      "issuer": "BIGFAIR RISE 2025",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/1zrc9wzfruBDDTZnyS1PtmtN_GX6vzo-n.webp",
+      "credentialId": "",
+      "issuedAt": "2 Februari 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/1zrc9wzfruBDDTZnyS1PtmtN_GX6vzo-n.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1zrc9wzfruBDDTZnyS1PtmtN_GX6vzo-n/view"
+      ],
+      "description": "Mengikuti pelatihan Career Preparation dalam BIGFAIR RISE 2025 dengan tema Get Ready for Career bersama Vina Muliana, sebagai bagian dari persiapan memasuki dunia kerja."
+    },
+    {
+      "id": "drive-cert-1yr4iSk2KLk_Ie94IDCVeTO57GjGwZYVt",
+      "title": "Mahasiswa Prestasi - Persistence & Consistency Are Key",
+      "issuer": "BIGFAIR RISE 2025",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/1yr4iSk2KLk_Ie94IDCVeTO57GjGwZYVt.webp",
+      "credentialId": "",
+      "issuedAt": "2 Februari 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/1yr4iSk2KLk_Ie94IDCVeTO57GjGwZYVt.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1yr4iSk2KLk_Ie94IDCVeTO57GjGwZYVt/view"
+      ],
+      "description": "Mengikuti seminar nasional Mahasiswa Prestasi dalam BIGFAIR RISE 2025 dengan topik Persistence & Consistency Are Key bersama M. Ficky Haris Ardiansyah, untuk memperluas wawasan mengenai ketekunan dan konsistensi dalam pengembangan prestasi."
+    },
+    {
+      "id": "drive-cert-1EXfedBFsVMiIgeZABhW-lHWAJSPbwWkS",
+      "title": "Entrepreneur - Zero Point to High Point",
+      "issuer": "BIGFAIR RISE 2025",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/1EXfedBFsVMiIgeZABhW-lHWAJSPbwWkS.webp",
+      "credentialId": "",
+      "issuedAt": "2 Februari 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/1EXfedBFsVMiIgeZABhW-lHWAJSPbwWkS.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1EXfedBFsVMiIgeZABhW-lHWAJSPbwWkS/view"
+      ],
+      "description": "Mengikuti pelatihan entrepreneurship dalam BIGFAIR RISE 2025 dengan tema Zero Point to High Point bersama Abi Atria, untuk memperluas wawasan dan motivasi dalam kewirausahaan."
+    },
+    {
+      "id": "drive-cert-18JazIBos86AuYlkn3uCrzW30bWqN6Zwj",
+      "title": "Personal Branding - Setup Our Personal Branding",
+      "issuer": "BIGFAIR RISE 2025",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/18JazIBos86AuYlkn3uCrzW30bWqN6Zwj.webp",
+      "credentialId": "",
+      "issuedAt": "2 Februari 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/18JazIBos86AuYlkn3uCrzW30bWqN6Zwj.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/18JazIBos86AuYlkn3uCrzW30bWqN6Zwj/view"
+      ],
+      "description": "Mengikuti seminar nasional Personal Branding dalam BIGFAIR RISE 2025 dengan topik Setup Our Personal Branding bersama Verliza Tasha, sebagai pengembangan pemahaman mengenai citra diri profesional."
+    },
+    {
+      "id": "drive-cert-1FNXuq9r5z-cEL40pk4FLzp4j-xYCGScD",
+      "title": "Public Speaking - Dare to Speak to Get Attention",
+      "issuer": "BIGFAIR RISE 2025",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/1FNXuq9r5z-cEL40pk4FLzp4j-xYCGScD.webp",
+      "credentialId": "",
+      "issuedAt": "2 Februari 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/1FNXuq9r5z-cEL40pk4FLzp4j-xYCGScD.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1FNXuq9r5z-cEL40pk4FLzp4j-xYCGScD/view"
+      ],
+      "description": "Mengikuti pelatihan Public Speaking dalam BIGFAIR RISE 2025 dengan tema Dare to Speak to Get Attention bersama Savira Jasmine Sasongko untuk memperluas wawasan komunikasi dan berbicara di depan umum."
+    },
+    {
+      "id": "drive-cert-1vw8YlkKTh4t4-MPZeqTmIXMbAlzHnhyr",
+      "title": "International Youth Goals Singapore, Malaysia, and Thailand Batch #2 - Online Selection",
+      "issuer": "International Youth Goals / BIGFAIR",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/1vw8YlkKTh4t4-MPZeqTmIXMbAlzHnhyr.webp",
+      "credentialId": "",
+      "issuedAt": "April 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/1vw8YlkKTh4t4-MPZeqTmIXMbAlzHnhyr.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1vw8YlkKTh4t4-MPZeqTmIXMbAlzHnhyr/view"
+      ],
+      "description": "Mendapatkan certificate of appreciation atas partisipasi dalam proses seleksi online International Youth Goals Singapore, Malaysia, and Thailand Batch #2 pada April 2025."
+    },
+    {
+      "id": "drive-cert-13Inyjv3i8DTKiWEjwg3GJrUWGe45Kcm5",
+      "title": "Web3 University Tour Jakarta",
+      "issuer": "Binance Academy / Tokocrypto / Coinvestasi",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/13Inyjv3i8DTKiWEjwg3GJrUWGe45Kcm5.webp",
+      "credentialId": "",
+      "issuedAt": "25 November 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/13Inyjv3i8DTKiWEjwg3GJrUWGe45Kcm5.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/13Inyjv3i8DTKiWEjwg3GJrUWGe45Kcm5/view"
+      ],
+      "description": "Berpartisipasi sebagai peserta seminar edukatif Web3 University Tour Jakarta yang diselenggarakan oleh Binance Academy, Tokocrypto, dan Coinvestasi di Universitas Pancasila."
+    },
+    {
+      "id": "drive-cert-1MY-RH-jarWPKseXifDFBH9UQNonHlJHC",
+      "title": "Training Basic Video Editor",
+      "issuer": "HMTI Universitas Bani Saleh",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/1MY-RH-jarWPKseXifDFBH9UQNonHlJHC.webp",
+      "credentialId": "",
+      "issuedAt": "November 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "",
+      "pdfUrls": [],
+      "documents": [
+        "/certificates/1MY-RH-jarWPKseXifDFBH9UQNonHlJHC.png"
+      ],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1MY-RH-jarWPKseXifDFBH9UQNonHlJHC/view"
+      ],
+      "description": "Mengikuti pelatihan offline Basic Video Editor sebagai peserta pada 17, 18, 24, dan 25 November 2025 yang diselenggarakan oleh HMTI Universitas Bani Saleh."
+    },
+    {
+      "id": "drive-cert-1Hz4XnfTdew8AYmcJVXW8pajlWGgUW42s",
+      "title": "Certificate of Apprenticeship - Video Editor",
+      "issuer": "PT Kawan Kerja Indonesia",
+      "year": "2025",
+      "logo": "",
+      "image": "/certificates/previews/1Hz4XnfTdew8AYmcJVXW8pajlWGgUW42s.webp",
+      "credentialId": "0111/KKI/VE-ITS/V/2025",
+      "issuedAt": "8 Mei 2025",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1Hz4XnfTdew8AYmcJVXW8pajlWGgUW42s.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1Hz4XnfTdew8AYmcJVXW8pajlWGgUW42s/view"
+      ],
+      "description": "Menyelesaikan program magang sebagai Video Editor di PT Kawan Kerja Indonesia pada 15 Maret sampai 1 Mei 2025. Sertifikat magang diterbitkan di Bandung pada 8 Mei 2025."
+    },
+    {
+      "id": "drive-cert-134fEE8LabVrPXB3D8murSc9v1DieafR5",
+      "title": "Webinar EIGRP Fundamentals - Cisco Enterprise Core Technologies",
+      "issuer": "ID-Networkers (IDN.ID)",
+      "year": "2026",
+      "logo": "",
+      "image": "/certificates/previews/134fEE8LabVrPXB3D8murSc9v1DieafR5.webp",
+      "credentialId": "WSIDN-4114.20398",
+      "issuedAt": "31 Juli 2026",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/134fEE8LabVrPXB3D8murSc9v1DieafR5.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/134fEE8LabVrPXB3D8murSc9v1DieafR5/view"
+      ],
+      "description": "Menyelesaikan webinar EIGRP Fundamentals yang diselenggarakan ID-Networkers, dengan fokus pengenalan EIGRP untuk peserta yang mempersiapkan Cisco Enterprise Core Technologies."
+    },
+    {
+      "id": "drive-cert-1T3tIk0z2xr1VL2dF9EpVrpczqclSvnkj",
+      "title": "Workshop Data Engineer Fundamental - Panitia",
+      "issuer": "HMTI Universitas Bani Saleh",
+      "year": "2024",
+      "logo": "",
+      "image": "/certificates/previews/1T3tIk0z2xr1VL2dF9EpVrpczqclSvnkj.webp",
+      "credentialId": "",
+      "issuedAt": "13 Oktober 2024",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1T3tIk0z2xr1VL2dF9EpVrpczqclSvnkj.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1T3tIk0z2xr1VL2dF9EpVrpczqclSvnkj/view"
+      ],
+      "description": "Berpartisipasi sebagai panitia Workshop Data Engineer Fundamental yang dilaksanakan pada 13 Oktober 2024 oleh HMTI Universitas Bani Saleh."
+    },
+    {
+      "id": "drive-cert-1eJO6Dl4tuSIXMM36VBKyt7fS6SLuizXb",
+      "title": "Training Organization HMTI 2024",
+      "issuer": "HMTI Universitas Bani Saleh",
+      "year": "2024",
+      "logo": "",
+      "image": "/certificates/previews/1eJO6Dl4tuSIXMM36VBKyt7fS6SLuizXb.webp",
+      "credentialId": "",
+      "issuedAt": "5 Maret 2024",
+      "expiresAt": "",
+      "credentialUrl": "",
+      "pdfUrl": "/certificates/1eJO6Dl4tuSIXMM36VBKyt7fS6SLuizXb.pdf",
+      "pdfUrls": [],
+      "documents": [],
+      "sourceDriveUrls": [
+        "https://drive.google.com/file/d/1eJO6Dl4tuSIXMM36VBKyt7fS6SLuizXb/view"
+      ],
+      "description": "Mengikuti Training Organization HMTI Universitas Bani Saleh sebagai peserta pada 23 sampai 25 Februari 2024 di Bogor, Jawa Barat. Sertifikat diterbitkan pada 5 Maret 2024."
+    }
+  ],
+  "mediaAliases": {
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783783745129-57zhxb.pdf": "/certificates/1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783838709112-x7ommd.pdf": "/certificates/1MNOC2mD27PwNM4ZyonQszqd-s7WvP5_B.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783783821092-hlszbw.png": "/certificates/previews/1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839185916-pf6tqh.pdf": "/certificates/1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839195408-ms37kq.pdf": "/certificates/1yi362fAICMwf5aktXfFNV7wgp43n7XN3.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839243701-mtd7a2.png": "/certificates/previews/1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783917482371-kvuxxy.pdf": "/certificates/1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783917559852-12ayy2.pdf": "/certificates/1za5f5jPgYX92RGi3qjXcE7KsbFGiMZ3L.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783917505639-hbtp5q.png": "/certificates/previews/1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783919291582-kxhuss.pdf": "/certificates/1u9A8QlykIQFi3hC975wvpw6caxi3MXZH.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783919310863-o56075.pdf": "/certificates/1OhR_wkzHasdpCF_lKjrM9Q424qAKE--9.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783919060913-cf9r42.png": "/certificates/previews/1u9A8QlykIQFi3hC975wvpw6caxi3MXZH.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783919650495-jg58jj.pdf": "/certificates/1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783919666199-wzsk6j.png": "/certificates/previews/1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784168939344-a5paw9.pdf": "/certificates/1-AMnv3GRUDAAFqBdVLWsKhLBiNXFeJPn.jpg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783920449121-b74bpd.png": "/certificates/previews/1-AMnv3GRUDAAFqBdVLWsKhLBiNXFeJPn.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783921227252-me0e2t.pdf": "/certificates/16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783921239201-guxfgg.pdf": "/certificates/1FDz_vePQ5JfXol-LqOEUEQanj5eRz2HW.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783921285191-qtwhlq.png": "/certificates/previews/16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922012414-uj6y83.pdf": "/certificates/1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922022782-5w89et.pdf": "/certificates/1BSLQLFFT752KB8OS0zmfKeYjo24EW0YL.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922066704-m9ebec.png": "/certificates/previews/1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922658034-rp2zhl.pdf": "/certificates/16sDKlouzxV_Kd3k466Phpav5ngp1WM5_.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922666643-un6bjm.pdf": "/certificates/1sbHGcf2hd3QYnwtz_SNBb0BxbVQWBTxH.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922718435-l3ptyr.png": "/certificates/previews/16sDKlouzxV_Kd3k466Phpav5ngp1WM5_.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783923013072-7fphzn.pdf": "/certificates/1lyIVBAKrhf5-ny4uibLA3-s9cP6iqYKo.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783923045905-yhsn5f.png": "/certificates/previews/1lyIVBAKrhf5-ny4uibLA3-s9cP6iqYKo.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169238087-tryzye.pdf": "/certificates/1ln7crail9Iq3LL2STEyVX9E6A709MhYH.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169246868-f1gt96.pdf": "/certificates/1Tvuc-_aWzCNu5V0_w-uoaDDuVu5W0d9O.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169341636-0p1zjz.png": "/certificates/previews/1ln7crail9Iq3LL2STEyVX9E6A709MhYH.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169545985-j3jibc.pdf": "/certificates/11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169551726-l1jabg.pdf": "/certificates/1FpVgoAfrmjCKkPrR7OeYc43pdPvi9RLE.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169497182-7jz3ln.png": "/certificates/previews/11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171917432-lig9mg.pdf": "/certificates/1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171923670-7suxj8.pdf": "/certificates/1RmPDPLRTMc7P4TAMPpjcGjgmIsKjgyNN.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171954040-vw7qry.png": "/certificates/previews/1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784172923774-o3j4dh.pdf": "/certificates/1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784175017628-o8oboz.webp": "/certificates/previews/1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784183948720-xe57r6.pdf": "/certificates/16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784183957613-17exs5.pdf": "/certificates/1McDBK56Ozpeavswuoi3XiPsNMR20pKZU.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784183971351-177hvn.png": "/certificates/previews/16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184381181-dsctda.pdf": "/certificates/1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184594492-go1knz.jpg": "/certificates/previews/1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184807918-4evjom.pdf": "/certificates/1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184813235-gacbw5.pdf": "/certificates/1W48hsS6eo5TauE0G6D3dC2ZTT3ZNqacL.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184827269-ntz11j.png": "/certificates/previews/1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184986670-6wi22f.pdf": "/certificates/1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184992628-qju3s6.pdf": "/certificates/1kCLyIUl2y7ZZnQVlrqlCRM8extDQAkhK.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185025022-wcydk4.png": "/certificates/previews/1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185241269-k7vfyg.pdf": "/certificates/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185248694-sm0mb0.pdf": "/certificates/1gdfH5zvOy54i576_f4q6Yh4eNy9ha5XN.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185291760-gnwnsc.png": "/certificates/previews/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783781648537-uohlvj.pdf": "/certificates/1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783782485604-0epgi2.webp": "/certificates/previews/1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783783343478-n8mqmi.pdf": "/certificates/1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783783360038-ahdlls.webp": "/certificates/previews/1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784170380410-stseus.pdf": "/certificates/1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784170533109-aae6ka.jpg": "/certificates/previews/1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171081606-wd1arl.pdf": "/certificates/1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171091163-anbcm9.jpg": "/certificates/previews/1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171256977-j9pazh.pdf": "/certificates/1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171265720-ko8rwg.jpg": "/certificates/previews/1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171449683-474epo.pdf": "/certificates/1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171474513-808w9q.jpg": "/certificates/previews/1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171578622-218vpl.pdf": "/certificates/1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171597376-hluj13.jpg": "/certificates/previews/1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185474080-8jd7l4.pdf": "/certificates/1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185514847-8jni9q.png": "/certificates/previews/1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784280884153-hqjf82.pdf": "/certificates/14UBoYFgKBIn9qAYyK1NiIALi48HnbREW.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784280993077-1qyrla.png": "/certificates/previews/14UBoYFgKBIn9qAYyK1NiIALi48HnbREW.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281027683-d77mh1.pdf": "/certificates/150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281139492-ismmla.png": "/certificates/previews/150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281258773-7kpzau.pdf": "/certificates/1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281363647-wtaqer.png": "/certificates/previews/1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281465999-br81w4.pdf": "/certificates/1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281595353-rfanhc.png": "/certificates/previews/1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281645508-5nlvrn.pdf": "/certificates/1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281730228-8lu8tz.png": "/certificates/previews/1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784282797445-z0x3ph.pdf": "/certificates/1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP.pdf",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784282877710-80rz0x.png": "/certificates/previews/1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918668601-aa4ulp.png": "/certificates/previews/1r5LFRkpy5JnaflByQICYBq486R3yFBeY.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918539292-o49nf7.png": "/certificates/previews/1zn3ahUoCHkhnPiNJ9WjFYBtYZ9C_D0tu.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918726426-72h04b.png": "/certificates/previews/1PEYNNLhnZBkxLlo_EnB3AKQER1K40VNl.webp"
+  }
+}

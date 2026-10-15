@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import SafeImage, { ImageUnavailable } from "@/frontend/components/SafeImage";
-import { isBlobSource } from "@/frontend/lib/media";
+import { isBlobSource, mediaSource } from "@/frontend/lib/media";
 
 function isPdf(src = "") {
   return /\.pdf(\?.*)?(#.*)?$/i.test(src);
@@ -24,9 +24,9 @@ function withPdfOptions(src = "") {
 
 function normalizeItem(item, fallbackTitle) {
   if (!item) return null;
-  if (typeof item === "string") return { src: item, title: fallbackTitle };
+  if (typeof item === "string") return { src: mediaSource(item), title: fallbackTitle };
   if (!item.src) return null;
-  return { src: item.src, title: item.title || fallbackTitle };
+  return { src: mediaSource(item.src), title: item.title || fallbackTitle };
 }
 
 const PDFJS_MODULE = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs";
@@ -154,7 +154,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   const galleryItems = useMemo(() => {
     const normalized = (items || []).map((item) => normalizeItem(item, title)).filter(Boolean);
     if (normalized.length) return normalized;
-    return src ? [{ src, title }] : [];
+    return src ? [{ src: mediaSource(src), title }] : [];
   }, [items, src, title]);
   const galleryKey = galleryItems.map((item) => `${item.src}|${item.title}`).join("::");
   const [activeIndex, setActiveIndex] = useState(initialIndex);
@@ -263,15 +263,15 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
             )}
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            {pdf && (
+            {current.src && (
               <a
                 href={current.src}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Buka PDF penuh"
+                aria-label={pdf ? "Buka PDF penuh" : "Buka dokumen penuh"}
                 className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-surface px-3 text-xs font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald"
               >
-                PDF <ExternalLink size={14} />
+                {pdf ? "PDF" : "Buka"} <ExternalLink size={14} />
               </a>
             )}
             <button

@@ -6,6 +6,7 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { externalUrl } from "@/frontend/lib/urls";
+import { certificatePreview, mediaSource } from "@/frontend/lib/media";
 
 function certificatePdfs(item = {}) {
   const extras = [
@@ -15,7 +16,9 @@ function certificatePdfs(item = {}) {
     ...(Array.isArray(item.documents) ? item.documents : []),
   ];
 
-  return [item.pdfUrl, ...extras].filter((src) => typeof src === "string" && src.trim());
+  return [...new Set([item.pdfUrl, ...extras]
+    .filter((src) => typeof src === "string" && src.trim())
+    .map((src) => mediaSource(src)))];
 }
 
 function mediaAssets(item = {}, kind = "") {
@@ -27,6 +30,7 @@ function mediaAssets(item = {}, kind = "") {
     : [
         item.image && { src: item.image, title: `Dokumentasi ${item.title}` },
         item.logo && { src: item.logo, title: `Logo ${item.issuer || item.title}` },
+        ...certificatePdfs(item).map((src, index) => ({ src, title: `Dokumen ${item.title}${index ? ` ${index + 1}` : ""}` })),
       ].filter(Boolean);
 
   return assets.filter((asset, index, list) => list.findIndex((itemAsset) => itemAsset.src === asset.src) === index);
@@ -52,6 +56,13 @@ function loadPdfJs() {
 }
 
 function PdfThumbnail({ src = "", title = "Preview PDF" }) {
+  const preview = certificatePreview(src);
+  return preview ? (
+    <SafeImage src={preview} alt={title} className="h-full w-full bg-white" imgClassName="object-contain p-3" sizes="320px" />
+  ) : <RenderedPdfThumbnail src={src} title={title} />;
+}
+
+function RenderedPdfThumbnail({ src = "", title = "Preview PDF" }) {
   const shellRef = useRef(null);
   const canvasRef = useRef(null);
   const [box, setBox] = useState({ width: 0, height: 0 });
@@ -375,13 +386,13 @@ export default function Achievements({ achievements = [], certificates = [], sec
                   Lihat credential <ExternalLink size={14} />
                 </a>
               )}
-              {selected.pdfUrl && (
+              {certificatePdfs(selected).length > 0 && (
                 <button
                   type="button"
-                  onClick={() => openGroupPreview(selected.pdfUrl, `Sertifikat ${selected.title}`)}
+                  onClick={() => openGroupPreview(certificatePdfs(selected)[0], `Sertifikat ${selected.title}`)}
                   className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink"
                 >
-                  Dokumentasi PDF <FileText size={14} />
+                  Buka sertifikat <FileText size={14} />
                 </button>
               )}
             </div>
