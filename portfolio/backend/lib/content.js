@@ -7,10 +7,12 @@ import { mergeContent } from "@/backend/lib/content-defaults";
 const filePath = path.join(process.cwd(), "backend", "data", "content.json");
 
 let supabaseClient;
+let supabaseFreshClient;
 let supabaseWriteClient;
 
-function getSupabase() {
-  if (supabaseClient !== undefined) return supabaseClient;
+function getSupabase({ fresh = false } = {}) {
+  const cached = fresh ? supabaseFreshClient : supabaseClient;
+  if (cached !== undefined) return cached;
 
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key =
@@ -20,8 +22,17 @@ function getSupabase() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  supabaseClient = url && key ? createClient(url, key) : null;
-  return supabaseClient;
+  const client = url && key ? createClient(url, key, {
+    global: {
+      fetch: (input, init) => fetch(input, {
+        ...init,
+        ...(fresh ? { cache: "no-store" } : { next: { revalidate: 60, tags: ["portfolio-content"] } }),
+      }),
+    },
+  }) : null;
+  if (fresh) supabaseFreshClient = client;
+  else supabaseClient = client;
+  return client;
 }
 
 function getSupabaseWriter() {
@@ -79,7 +90,7 @@ function withLocalFallback(localData, remoteData) {
 export async function readContent({ fresh = false } = {}) {
   if (fresh) noStore();
   const localContent = await readLocalContent();
-  const supabase = getSupabase();
+  const supabase = getSupabase({ fresh });
 
   if (supabase) {
     const { data, error } = await supabase

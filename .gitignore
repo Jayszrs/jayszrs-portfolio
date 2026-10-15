@@ -1,3 +1,6 @@
 .vercel
 .env*
 backups/photo-source-links-*.html
+backups/connected-drive-recovery-*/
+portfolio/public/recovered-media/project-reports/*.png
+portfolio/public/recovered-media/project-reports/*.jpeg

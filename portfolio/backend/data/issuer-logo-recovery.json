@@ -1,0 +1,50 @@
+[
+  {
+    "file": "dicoding.png",
+    "source": "/certificates/1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj.pdf",
+    "note": "Logo extracted from the printed certificate header.",
+    "sha256": "f767e061adbd2ec8a1c5389aaeaca09c789550c96a0afd992e1602919f4d70fe"
+  },
+  {
+    "file": "microsoft.png",
+    "source": "https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png",
+    "note": "Official Microsoft homepage asset.",
+    "sha256": "112fec798b78aa02e102a724b5cb1990c0f909bc1d8b7b1fa256eab41bbc0960"
+  },
+  {
+    "file": "indosat.svg",
+    "source": "https://ioh.co.id/_nuxt/logo-ioh.BliL6vXr.svg",
+    "note": "Official Indosat homepage asset.",
+    "sha256": "efe2d0572216dce25bb5e30633a22b8fa6b6d7066bcde6cd9af54139706dc834"
+  },
+  {
+    "file": "id-networkers.png",
+    "source": "https://www.idn.id/wp-content/uploads/2019/12/LOGO-IDN-SOSMED-300x94.png",
+    "note": "Official ID-Networkers homepage asset.",
+    "sha256": "4ef0930a1d40394cb41fe6d93e7ffbb29b52b020636541b01fbfce0e3e784ced"
+  },
+  {
+    "file": "bigfair.png",
+    "source": "/certificates/1vw8YlkKTh4t4-MPZeqTmIXMbAlzHnhyr.png",
+    "note": "Logo extracted from original certificate.",
+    "sha256": "30de7d1128b6f0d518a1684920e01f6140b0493b78e0506ef1bc6eac18c62b53"
+  },
+  {
+    "file": "international-youth-goals.png",
+    "source": "/certificates/1vw8YlkKTh4t4-MPZeqTmIXMbAlzHnhyr.png",
+    "note": "Logo extracted from original certificate.",
+    "sha256": "5678c8026a9132121b01e4993e883404d808ea05e7b1c77d52f2e7e8f7e95728"
+  },
+  {
+    "file": "web3-university.png",
+    "source": "/certificates/13Inyjv3i8DTKiWEjwg3GJrUWGe45Kcm5.pdf",
+    "note": "Partner logos extracted from original certificate.",
+    "sha256": "43f2b02dfae664fa71442d761bb9ed5faaf7ea3b34dcdef74d25962ab044f8a5"
+  },
+  {
+    "file": "hmti-bani-saleh.png",
+    "source": "/certificates/1MY-RH-jarWPKseXifDFBH9UQNonHlJHC.png",
+    "note": "HMTI logo extracted from original certificate.",
+    "sha256": "aa50ee29d233967b9f8ccc7b63768ad72865feded3f130322144dfc52c8820ce"
+  }
+]

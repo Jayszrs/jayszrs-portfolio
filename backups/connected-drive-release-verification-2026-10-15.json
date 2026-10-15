@@ -1,0 +1,50 @@
+{
+  "deployment": "dpl_x8ARPc6SzdG4AgA7eWxKmUpnVLDk",
+  "ready": true,
+  "newExactAssets": [
+    {
+      "url": "/recovered-media/drive/cv-jaelani-surya-saputra.pdf",
+      "status": 200,
+      "sha256": "81ed5787171b569634d2695b34fadc706f0152962ce28b3891c67fdf7c5101b3"
+    },
+    {
+      "url": "/recovered-media/drive/jaelani-surya.jpg",
+      "status": 200,
+      "sha256": "47e391ae0cd7482b7ca849220259e8d5c6b5ff8b2a3805b2b262a22d1a5c8ba0"
+    },
+    {
+      "url": "/recovered-media/drive/img_4307.jpg",
+      "status": 200,
+      "sha256": "de8c7f0dd80abc785708cda79398d96b9ea0f7bc34388d69c14dbca40cc6c452"
+    },
+    {
+      "url": "/recovered-media/drive/img_4306.jpg",
+      "status": 200,
+      "sha256": "9aafba931a52dc6bc8e1fa53d74924e82f9f81242cde0fabc0de5ed763b8395c"
+    },
+    {
+      "url": "/recovered-media/drive/img-20220804-wa0020.jpg",
+      "status": 200,
+      "sha256": "2aa7d7f1fca1e8921caf1c07dc42f23abdd76325bf45fb8644a9cf43b08cb1a9"
+    },
+    {
+      "url": "/recovered-media/drive/img_4262.jpg",
+      "status": 200,
+      "sha256": "944d429eed8e24049d8cf13f28c2ace06327465768b96ac33c752e437ae05f9f"
+    },
+    {
+      "url": "/recovered-media/drive/dji-mimo-20260609.jpg",
+      "status": 200,
+      "sha256": "85c77e9047cc5f7f9402c667f3e7fa8f09533fc03707d7c9e663dad5f6fd19d6"
+    }
+  ],
+  "certificatePdfsVerified": 78,
+  "websitePdfReferences": 79,
+  "totalDistinctAvailablePdfs": 79,
+  "cvDownloadLinkRecovered": true,
+  "nonRatingCmsSectionsUnchanged": true,
+  "certificates": 67,
+  "achievements": 3,
+  "verifiedAt": "2026-10-15T09:21:08.664Z",
+  "sourceReferences": 9
+}

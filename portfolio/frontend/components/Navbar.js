@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, Download, Eye, Menu, Star, X } from "lucide-react";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import { scrollToTarget } from "@/frontend/lib/hashScroll";
+import { mediaSource } from "@/frontend/lib/media";
 
 const LINKS = [
   { href: "/", label: "Beranda" },
@@ -22,7 +23,8 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
   const [hash, setHash] = useState("");
   const [resumePreview, setResumePreview] = useState(false);
   const pathname = usePathname();
-  const hasResume = Boolean(cvUrl);
+  const resumeUrl = mediaSource(cvUrl);
+  const hasResume = Boolean(resumeUrl);
 
   useEffect(() => {
     const syncHash = () => setHash(window.location.hash || "");
@@ -87,7 +89,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           {compact ? "CV" : "Preview"} <Eye size={14} />
         </button>
         <a
-          href={cvUrl}
+          href={resumeUrl}
           download
           onClick={() => setOpen(false)}
           className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-ink px-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white md:h-8 lg:px-3.5"
@@ -218,7 +220,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
         </div>
       )}
       <MediaPreview
-        src={resumePreview ? cvUrl : ""}
+        src={resumePreview ? resumeUrl : ""}
         title="Preview Resume"
         onClose={() => setResumePreview(false)}
       />

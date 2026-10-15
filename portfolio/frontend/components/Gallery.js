@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Image as ImageIcon, ListChecks, UserRound } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Image as ImageIcon, ListChecks, UserRound, FileText, Download } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage from "@/frontend/components/SafeImage";
@@ -171,9 +171,9 @@ export default function Gallery({ items = [], section = {} }) {
                 )}
                 {selected.recoveredMediaSource && (
                   <p className="mt-3 text-xs leading-6 text-muted">
-                    Preview dari presentasi Canva. {" "}
+                    Dokumentasi dari {selected.recoveredMediaKind}. {" "}
                     <a href={selected.recoveredMediaSource} target="_blank" rel="noreferrer" className="font-semibold text-emerald-deep underline underline-offset-4">
-                      Buka presentasi asli untuk resolusi penuh
+                      Buka sumber asli
                     </a>
                   </p>
                 )}
@@ -214,6 +214,13 @@ export default function Gallery({ items = [], section = {} }) {
                 )}
               </section>
             )}
+            {selected.recoveredDocuments?.length > 0 && <section>
+              <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">Dokumen proyek</h3>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">{selected.recoveredDocuments.map((file) => <div key={file.url} className="rounded-2xl border border-line bg-surface p-4">
+                <FileText size={23} className="mb-3 text-emerald" /><h4 className="text-sm font-semibold text-ink">{file.title}</h4><p className="mt-2 text-xs leading-5 text-muted">{file.kind}</p>
+                <div className="mt-4 flex gap-3"><button type="button" onClick={() => setPreview({ items: selected.recoveredDocuments.map((doc) => ({ src: doc.url, title: doc.title })), initialIndex: selected.recoveredDocuments.indexOf(file), title: file.title })} className="rounded-full bg-emerald px-4 py-2 text-xs font-semibold text-white">Buka PDF</button><a href={file.url} download className="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink">Unduh <Download size={13} /></a></div>
+              </div>)}</div>
+            </section>}
             {selected.link && (
               <a href={externalUrl(selected.link)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Buka proyek <ArrowUpRight size={15} />

@@ -1,0 +1,40 @@
+{
+  "deployment": "dpl_8ojkjAFQnYjHyBQ45tNCUyxgFw1w",
+  "status": "READY",
+  "verifiedFiles": 98,
+  "projectPdfs": 7,
+  "issuerLogos": 8,
+  "certificates": 67,
+  "achievements": 3,
+  "cmsUnchanged": true,
+  "publicPageCertificateCount": 67,
+  "github": {
+    "days": 369,
+    "total": 848,
+    "top": [
+      {
+        "name": "pcipnuippnukotabekasinews",
+        "commits": 102
+      },
+      {
+        "name": "jayszrs-portfolio",
+        "commits": 91
+      },
+      {
+        "name": "sitpermatahatibekasi",
+        "commits": 54
+      },
+      {
+        "name": "jayszrs-3290e1ce",
+        "commits": 51
+      },
+      {
+        "name": "inventarisfazmastone",
+        "commits": 44
+      }
+    ]
+  },
+  "instagramAndTikTokTabsRendered": true,
+  "browserInteractionVerified": false,
+  "verifiedAt": "2026-10-15T09:47:11.196Z"
+}

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { readContent, writeContent } from "@/backend/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -12,6 +12,7 @@ function jsonNoStore(body, init = {}) {
 }
 
 function revalidatePublicPages() {
+  revalidateTag("portfolio-content");
   ["/", "/tentang", "/pendidikan", "/keahlian", "/pengalaman", "/proyek", "/pencapaian", "/kontak"].forEach((path) => {
     revalidatePath(path);
   });

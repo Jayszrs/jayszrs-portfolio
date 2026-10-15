@@ -81,7 +81,15 @@
         "sha256": "e40809ac162ab20eb1530fcae656a80c39d7dac4b3fa3657a2483e96d9175b2e"
       }
     ],
-    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads."
+    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads.",
+    "documents": [
+      {
+        "url": "/project-documents/canva-proj-1783999146468-3wdg.pdf",
+        "title": "PDF preview ? Presentasi Lomba Poster INSYFEST Jaelani Surya Saputra ",
+        "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+        "sha256": "50a230804e7c29a6a3c575fabd87f3cc1a07171e07898e171d3c57ee81ae26ff"
+      }
+    ]
   },
   "proj-1783999625735-wfz5": {
     "originalLink": "https://canva.link/m5h1a3va92yfup1",
@@ -98,7 +106,7 @@
       "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783999922529-mn4tx4.png"
     ],
     "sourceUrl": "https://www.canva.com/design/DAHIadDrjZ8/Kg6A8trAKQkv0qlNls92rg/view",
-    "sourceTitle": "Presentation THE 7TH WINACTION \u2013 POSTER ENGINEERING - Jaelani Surya Saputra",
+    "sourceTitle": "Presentation THE 7TH WINACTION – POSTER ENGINEERING - Jaelani Surya Saputra",
     "sourceAuthor": "Jaelani Surya",
     "sourceVersion": 49,
     "pages": [
@@ -173,7 +181,15 @@
         "sha256": "ad88d2734e748fdf43cc76b180aae598db7f8e1b5117ec2c0811a77bcbdaf4c1"
       }
     ],
-    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads."
+    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads.",
+    "documents": [
+      {
+        "url": "/project-documents/canva-proj-1783999625735-wfz5.pdf",
+        "title": "PDF preview ? Presentation THE 7TH WINACTION – POSTER ENGINEERING - Jaelani Surya Saputra",
+        "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+        "sha256": "cbdae83cc9abf44459dc8a82fa250982b61ced56ba422e943a2c67fc52850c3e"
+      }
+    ]
   },
   "proj-1784098734630-0vg4": {
     "originalLink": "https://canva.link/7zw1buy62kzjauw",
@@ -308,7 +324,15 @@
         "sha256": "cf9b4858a1fb5c2eb57060a6f12c73eb7d33f967e46d4a1a6011afd34b350453"
       }
     ],
-    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads."
+    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads.",
+    "documents": [
+      {
+        "url": "/project-documents/canva-proj-1784098734630-0vg4.pdf",
+        "title": "PDF preview ? Pitch Deck Desain Logo PRABANGKARA HARMONI IPNU IPPNU Kota Bekasi",
+        "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+        "sha256": "e35dbab49e9bd84bf553ca7447b381eb3a902c76e6ab7341ca816a9c0bd406de"
+      }
+    ]
   },
   "proj-1784099379544-nh9n": {
     "originalLink": "https://canva.link/bqiypzrbqp7urji",
@@ -400,6 +424,372 @@
         "sha256": "fc23348e79409c8f90e78a4739c5fd38576f3180ae08b2d4f3c6f23f975550b0"
       }
     ],
-    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads."
+    "note": "Native previews obtained from the public Canva presentation linked by this exact portfolio project. Not byte-identical copies of the blocked Blob uploads.",
+    "documents": [
+      {
+        "url": "/project-documents/canva-proj-1784099379544-nh9n.pdf",
+        "title": "PDF preview ? Porject UAS Kelompok 8 Keamanan Siber Materi Analisis Keamanan Sistem Berbasis SIEM terhadap Serangan Web Application",
+        "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+        "sha256": "56bfe14d3b3b881eb12bf1672294cbfb093dd4e9facd200acafd8a818a71a543"
+      }
+    ]
+  },
+  "proj-1783952458183-xg5o": {
+    "originalLink": "https://github.com/Jayszrs/juspos.git",
+    "legacyMedia": [
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952489443-f4fx3y.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952526666-gbm1n9.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952549049-ibs3s4.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952572028-ewz98g.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952593201-494rmz.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952617216-oqe2t3.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952637762-uf72c0.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952658149-g5t5qu.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952673596-embvwa.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952690524-ieu83l.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952722273-m2jgz1.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952742384-z7rhwj.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952759809-332wu1.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783952786919-97h8o7.png"
+    ],
+    "sourceUrl": "https://docs.google.com/document/d/1DjVSmjc7Ui77eFZC7nPS2HysN2nnxEoVgWSwiuTwDfk/edit",
+    "sourceTitle": "Web Point Of Sale Kasir Restoran & Jus",
+    "sourceKind": "Makalah proyek",
+    "pages": [
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p31-x93.webp",
+        "page": 1,
+        "width": 1947,
+        "height": 2048,
+        "sha256": "d8a3d6e78e0fbe80aa02e05e54e844c708c5d130e771a85fde0917c63bc6f33d"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p10-x28.webp",
+        "page": 2,
+        "width": 1032,
+        "height": 1762,
+        "sha256": "8cb2304e51b03ea102024ea4c459d5c52f54be50733e3b7ad909df4cf3176dbb"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p12-x34.webp",
+        "page": 3,
+        "width": 901,
+        "height": 692,
+        "sha256": "3e5ecdd8944e7e3916fbdb744bd2a11f74fbfde968aaf342eea17450c196e128"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p15-x43.webp",
+        "page": 4,
+        "width": 1089,
+        "height": 1382,
+        "sha256": "cef1ad3d4828aa0ce8f72ce7ad7ff4973aebcc3950c2b2ff320aee7aaadfe47a"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p18-x51.webp",
+        "page": 5,
+        "width": 751,
+        "height": 1791,
+        "sha256": "ab730858abd47097f07b8e70ecd86a75ee537de1c4cf2d92a0a3295ae72b2d4c"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p21-x59.webp",
+        "page": 6,
+        "width": 702,
+        "height": 2002,
+        "sha256": "372ee4525b7eed2f5fd2053dd23827e333b0493e4f6a040cabee18f1158fabc3"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p24-x67.webp",
+        "page": 7,
+        "width": 1682,
+        "height": 922,
+        "sha256": "8a7bc39c21ac9df62b4218bed551f813d5e3537c313db498bbadc549dbd6043e"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p24-x69.webp",
+        "page": 8,
+        "width": 1119,
+        "height": 539,
+        "sha256": "6606ddf625986820e00ce7bd38dfca8ae360123e97e605b395d9e49f08f0e0b4"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p25-x72.webp",
+        "page": 9,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "1a8e8a2d6c082467ea8302a542b45de8cc289e1dc769867dc8cbd05a5ddf8947"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p25-x73.webp",
+        "page": 10,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "a0c711f4f07a05ce338037bb0065168a7be4b93caeaacf5bf5a76a00707b19bb"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p26-x76.webp",
+        "page": 11,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "abb3bc461067bed97194142a8d772fa4fecac60c86eb21556fd65316c5a2f054"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p27-x79.webp",
+        "page": 12,
+        "width": 2048,
+        "height": 1917,
+        "sha256": "08fa36e0f40265633f48eae9bb3df5d0eb4f32526e65500697842f7082e79834"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p28-x82.webp",
+        "page": 13,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "5cd93d2fe2934e3f54816e703cad3805b9bab63cfc467a8ca42d0a57948cea17"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p28-x83.webp",
+        "page": 14,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "052145daa8e67bade93728a870ef4ffba5e26b9e2202bb2a78c0a5afafd3c03a"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p29-x86.webp",
+        "page": 15,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "a4aeacb3b82e00194129dd4c66dc31924d29d45239d287cfb2848446fcff039a"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p29-x87.webp",
+        "page": 16,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "c013a1044b67cae860b2ba7c8be96b37b55a640422a967b91175ecaddc011f9a"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p30-x90.webp",
+        "page": 17,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "44dd0b8764d17f48cbec1fc6b1056b35094af0360a0014108a940c56a0979dd6"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p32-x96.webp",
+        "page": 18,
+        "width": 1947,
+        "height": 2048,
+        "sha256": "170bcf14941a7d686266a9de92712d4c80fe245ebe1ad0d7b8651401c90a993e"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p33-x99.webp",
+        "page": 19,
+        "width": 1947,
+        "height": 2048,
+        "sha256": "482c144a99ff472a5de285f6e0dafe2d0f69a297db32109b43ec66344cbce93d"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p34-x102.webp",
+        "page": 20,
+        "width": 1947,
+        "height": 2048,
+        "sha256": "8c4da0971bbf12abd1d8d8ef3aad07692bbcd21ab283a73ac7006266eb453ed2"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p35-x105.webp",
+        "page": 21,
+        "width": 1947,
+        "height": 2048,
+        "sha256": "f90d78d88e2b18da65c5105093506e1a45ed8d3b8694e395a9c0cf0597411286"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p36-x108.webp",
+        "page": 22,
+        "width": 2048,
+        "height": 1184,
+        "sha256": "9ddca6de230681856d81ba52aef86cc5f41cc8fc700bcd92ed41a98f63367fb3"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p37-x111.webp",
+        "page": 23,
+        "width": 1840,
+        "height": 2048,
+        "sha256": "861ed773d99e72ef26aabd07288972d768b1efc4fe9e6bd7439d88afaedae128"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-restoran-p37-x112.webp",
+        "page": 24,
+        "width": 1366,
+        "height": 711,
+        "sha256": "4fd612d659e3ac99f6317f3f0881787dd7aa961243bcfb172902af0876974e2f"
+      }
+    ],
+    "documents": [
+      {
+        "url": "/project-documents/proyek-restoran.pdf",
+        "title": "Makalah lengkap ? Web Point Of Sale Kasir Restoran & Jus",
+        "kind": "Ekspor PDF dari dokumen sumber",
+        "sha256": "4b804f19ae941c1bb5ba9d330df5bba873ec48b02fed9adbba1d0311c3dd4962"
+      }
+    ],
+    "note": "Original source report diagrams and screenshots. Not claimed to be identical to inaccessible Blob image bytes."
+  },
+  "proj-1783954558399-6c07": {
+    "originalLink": "https://www.figma.com/proto/KRoiGrM2XdVtlaaJVIiHPp/Project-IMK?node-id=167-2&t=VXifjWEPg8o6C7gq-1",
+    "legacyMedia": [
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954603251-z386pb.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954628943-eyzmvb.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954638455-shzaa3.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954649621-x9k1q2.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954659421-4mjbzc.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954677256-zrla21.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954689004-hsnn2l.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954700082-dp4q7q.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954708714-jrcqgf.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954720614-e3jmyu.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954731180-j5j8rf.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954745354-ae1r4f.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954754634-zujvkt.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783954766883-yl18mu.png"
+    ],
+    "sourceUrl": "https://docs.google.com/document/d/1gBQkad5rXRoj4LcJd54F1TCvqvrFhSySkqIplfwnOq8/edit",
+    "sourceTitle": "UI UX Designer Mobile Application BisKita TransPatriot",
+    "sourceKind": "Makalah proyek",
+    "pages": [
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p42-x109.webp",
+        "page": 1,
+        "width": 1672,
+        "height": 941,
+        "sha256": "2345fcdccf9d9e34d984e25e8b8cfc7b13af0664af4ceae78c5b76e77624b35f"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p6-x19.webp",
+        "page": 2,
+        "width": 749,
+        "height": 172,
+        "sha256": "72cd352f5549e1536b363578f5581d3e8060c23cdf814fbc989a94cf46c04b3a"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p7-x24.webp",
+        "page": 3,
+        "width": 774,
+        "height": 169,
+        "sha256": "803f3139b3198fad36ac4f6a9eb4a6d362047a8efdfc1a95c44b1c44213f263d"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p15-x42.webp",
+        "page": 4,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "dd011dbf9337d611d16ea84c565fb3abbeb43b1448cfa619b99e92c6740e4126"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p19-x52.webp",
+        "page": 5,
+        "width": 1382,
+        "height": 1138,
+        "sha256": "c225c7a7194c4d625946e9baa2494f3ec7bca20240a660e9116a89a43af22a39"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p20-x55.webp",
+        "page": 6,
+        "width": 1448,
+        "height": 1086,
+        "sha256": "27b2dc731a5d1a51ed81c428f8f3bd7ccf15ee432d4441ee82f1ee8159673eef"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p23-x62.webp",
+        "page": 7,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "cb60c1acd303f77fd157ec008dd136ffd8d5730f14c17637cfcc28209eb92b0c"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p24-x65.webp",
+        "page": 8,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "dc08886284337cdabfeeb485ac38a4f847cdff1c124424e06d1bce29e8b1babf"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p25-x68.webp",
+        "page": 9,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "dc08886284337cdabfeeb485ac38a4f847cdff1c124424e06d1bce29e8b1babf"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p26-x71.webp",
+        "page": 10,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "db0698f54049bf5ae905fdefefbf8f52dd26e80582d359061b95cae14cd0a360"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p27-x74.webp",
+        "page": 11,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "db0698f54049bf5ae905fdefefbf8f52dd26e80582d359061b95cae14cd0a360"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p31-x83.webp",
+        "page": 12,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "640e5293a6dc5508249644929a96135d3393cfb6ec6f9b2f83a186b1fb8b6fcc"
+      },
+      {
+        "url": "/recovered-media/project-reports/proyek-buskita-p36-x95.webp",
+        "page": 13,
+        "width": 1536,
+        "height": 1024,
+        "sha256": "009a046e4775ffb671aa3bb03eeab9eb37087e0511a62dcd5b18f04b011bd6a5"
+      }
+    ],
+    "documents": [
+      {
+        "url": "/project-documents/proyek-buskita.pdf",
+        "title": "Makalah lengkap ? UI UX Designer Mobile Application BisKita TransPatriot",
+        "kind": "Ekspor PDF dari dokumen sumber",
+        "sha256": "2c94d5d269966d5b8cf8ef2482de5904e15b0068d5a38674f430fdd16a4598a1"
+      }
+    ],
+    "note": "Original source report diagrams and screenshots. Not claimed to be identical to inaccessible Blob image bytes."
+  },
+  "proj-1783957476680-84i7": {
+    "originalLink": "https://www.figma.com/design/vLtRiCpydvse845o59tM3s/Budidaya-Uang.Id?node-id=0-1&t=ZXOIYupWX3LtjWpc-1",
+    "legacyMedia": [
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783957846229-6qyx4x.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783957874402-couix0.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783957892902-g58ait.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783957934986-dj6m8g.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783957964107-wjjmg0.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783958004974-8yj522.png"
+    ],
+    "sourceUrl": "https://www.figma.com/design/vLtRiCpydvse845o59tM3s/Budidaya-Uang.Id?node-id=0-1&t=ZXOIYupWX3LtjWpc-1",
+    "sourceTitle": "UI UX Designer Mobile Application Budidaya Uang",
+    "sourceKind": "Desain Figma",
+    "coverOnly": true,
+    "pages": [
+      {
+        "url": "/recovered-media/figma/budidaya-uang-beranda.png",
+        "page": 1,
+        "width": 438,
+        "height": 940,
+        "sha256": "405f2788348e68328022c639ac19933fea41d5824b250e114359d628890136c5"
+      }
+    ],
+    "documents": [
+      {
+        "url": "/project-documents/budidaya-uang-beranda.pdf",
+        "title": "Preview PDF beranda Budidaya Uang",
+        "kind": "Preview dari ekspor gambar Figma",
+        "sha256": "1d60e2c897cf3a8b420122e0f363220653dfc4087466b594408931f6071351e2"
+      }
+    ],
+    "note": "Only the cover was recovered from Figma; original documentation entries are preserved."
   }
 }

@@ -3,6 +3,7 @@ import Navbar from "@/frontend/components/Navbar";
 import Hero from "@/frontend/components/Hero";
 import About from "@/frontend/components/About";
 import LazyHomeSections from "@/frontend/components/LazyHomeSections";
+import SocialMedia from "@/frontend/components/SocialMedia";
 import { profileHeroImages } from "@/frontend/lib/profileImages";
 import { externalUrl } from "@/frontend/lib/urls";
 
@@ -116,6 +117,7 @@ export default async function Home() {
       <JsonLd content={content} />
       <Navbar brandName={content.profile.brandName} fullName={content.profile.fullName} cvUrl={content.profile.cvUrl} />
       <Hero profile={content.profile} />
+      <SocialMedia socials={content.profile.socials} />
       <About about={content.about} section={content.sections.about} />
       <LazyHomeSections content={content} />
     </main>

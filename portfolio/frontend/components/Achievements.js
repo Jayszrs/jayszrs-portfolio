@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Award, CalendarDays, ExternalLink, FileBadge, FileText, Fingerprint } from "lucide-react";
+import { Award, CalendarDays, ExternalLink, FileBadge, FileText, Fingerprint, Search } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import { externalUrl } from "@/frontend/lib/urls";
 import { certificatePreview, mediaSource } from "@/frontend/lib/media";
+import { issuerLogo } from "@/frontend/lib/issuer-logo";
 
 function certificatePdfs(item = {}) {
   const extras = [
@@ -172,9 +173,9 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
         <div className="flex h-full flex-col">
           <div className="flex items-start gap-4">
             <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white p-2.5">
-              {item.image || item.logo ? (
+              {issuerLogo(item) ? (
                 <SafeImage
-                  src={item.logo || item.image}
+                  src={issuerLogo(item)}
                   alt={`Logo ${item.issuer || item.title}`}
                   loading="lazy"
                   decoding="async"
@@ -251,6 +252,12 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
 export default function Achievements({ achievements = [], certificates = [], section = {} }) {
   const [selected, setSelected] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [search, setSearch] = useState("");
+  const [issuer, setIssuer] = useState("");
+  const issuers = [...new Set(certificates.map((item) => item.issuer.trim()))].sort();
+  const visibleCertificates = certificates.filter((item) =>
+    (!issuer || item.issuer.trim() === issuer) &&
+    `${item.title} ${item.issuer} ${item.description || ""}`.toLowerCase().includes(search.trim().toLowerCase()));
   const openGroupPreview = (src, fallbackTitle) => {
     if (!src || !selected) return;
     const group = selected.kind === "Sertifikat" ? certificates : achievements;
@@ -279,11 +286,20 @@ export default function Achievements({ achievements = [], certificates = [], sec
         {certificates.length > 0 && (
           <div className="mt-12">
             <p className="mb-4 text-sm font-semibold text-ink/70">{section.certificatesLabel || "Sertifikat"}</p>
+            <div className="glass mb-6 grid gap-3 rounded-2xl p-4 sm:grid-cols-[1fr_260px]">
+              <label className="flex items-center gap-3 rounded-xl border border-line bg-surface px-3 text-muted">
+                <Search size={17} aria-hidden="true" /><span className="sr-only">Cari sertifikat</span>
+                <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Cari keahlian, sertifikat, atau penerbit…" className="min-w-0 flex-1 bg-transparent py-3 text-sm text-ink outline-none placeholder:text-muted" />
+              </label>
+              <label><span className="sr-only">Filter penerbit sertifikat</span><select value={issuer} onChange={(event) => setIssuer(event.target.value)} className="w-full rounded-xl border border-line bg-surface px-3 py-3 text-sm text-ink"><option value="">Semua penerbit</option>{issuers.map((name) => <option key={name} value={name}>{name}</option>)}</select></label>
+              <p className="text-xs text-muted sm:col-span-2" role="status">{visibleCertificates.length} dari {certificates.length} sertifikat</p>
+            </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {certificates.map((item) => (
+              {visibleCertificates.map((item) => (
                 <Card key={item.id} item={item} icon={FileBadge} compact onClick={() => setSelected({ ...item, kind: "Sertifikat" })} />
               ))}
             </div>
+            {!visibleCertificates.length && <p className="rounded-2xl border border-dashed border-line p-8 text-center text-sm text-muted">Belum ada sertifikat yang cocok. Coba kata kunci atau penerbit lain.</p>}
           </div>
         )}
       </div>
@@ -295,14 +311,16 @@ export default function Achievements({ achievements = [], certificates = [], sec
               <button
                 type="button"
                 onClick={() => {
-                  const src = selected.image || selected.logo || selected.pdfUrl;
+                  const src = selected.kind === "Sertifikat"
+                    ? certificatePdfs(selected)[0]
+                    : selected.image || selected.logo || selected.pdfUrl;
                   openGroupPreview(src, selected.title);
                 }}
                 className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-white"
               >
-                {selected.logo || selected.image ? (
+                {issuerLogo(selected) ? (
                   <SafeImage
-                    src={selected.logo || selected.image}
+                    src={issuerLogo(selected)}
                     alt={`Logo ${selected.issuer}`}
                     loading="lazy"
                     decoding="async"

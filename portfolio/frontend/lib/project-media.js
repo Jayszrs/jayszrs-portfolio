@@ -12,8 +12,10 @@ export function withRecoveredProjectMedia(item = {}) {
 
   const images = recovered.pages.map((page) => page.url);
   return {
-    ...withDocumentationImages(item, images.slice(1)),
+    ...(recovered.coverOnly ? item : withDocumentationImages(item, images.slice(1))),
     image: images[0],
     recoveredMediaSource: recovered.sourceUrl,
+    recoveredMediaKind: recovered.sourceKind || "Presentasi Canva",
+    recoveredDocuments: recovered.documents || [],
   };
 }

@@ -10,6 +10,7 @@ import TikTokIcon from "@/frontend/components/TikTokIcon";
 import { profileHeroImages } from "@/frontend/lib/profileImages";
 import { scrollToTarget } from "@/frontend/lib/hashScroll";
 import { externalUrl } from "@/frontend/lib/urls";
+import { mediaSource } from "@/frontend/lib/media";
 
 export default function Hero({ profile }) {
   const { socials } = profile;
@@ -21,7 +22,8 @@ export default function Hero({ profile }) {
   const [activeImage, setActiveImage] = useState(0);
   const [dragStart, setDragStart] = useState(null);
   const [resumePreview, setResumePreview] = useState(false);
-  const hasResume = Boolean(profile.cvUrl);
+  const resumeUrl = mediaSource(profile.cvUrl);
+  const hasResume = Boolean(resumeUrl);
   const currentHeroImage = heroImages[activeImage] || heroImages[0] || "";
   const hasMultipleHeroImages = heroImages.length > 1;
 
@@ -138,7 +140,7 @@ export default function Hero({ profile }) {
                   <span className="hidden sm:inline">Preview Resume</span> <Eye size={16} />
                 </button>
                 <a
-                  href={profile.cvUrl}
+                  href={resumeUrl}
                   download
                   className="glass-pill inline-flex h-11 w-11 items-center justify-center gap-2 rounded-full text-sm font-semibold text-ink transition hover:border-emerald/40 hover:text-emerald-deep sm:h-12 sm:w-auto sm:px-5"
                   aria-label="Download Resume"
@@ -263,7 +265,7 @@ export default function Hero({ profile }) {
         </div>
       </div>
       <MediaPreview
-        src={resumePreview ? profile.cvUrl : ""}
+        src={resumePreview ? resumeUrl : ""}
         title="Preview Resume"
         onClose={() => setResumePreview(false)}
       />

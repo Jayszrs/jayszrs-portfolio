@@ -12,7 +12,7 @@ I need help preserving the existing personal photos and documents in my Blob sto
 - Store status: `limits-exceeded-suspended`; billing state: `suspended`; usageQuotaExceeded: true.
 - The read-only object listing returns 369 objects, totaling 280,164,989 bytes.
 - Public reads and authenticated SDK get() both return HTTP 403. The response says the store is blocked.
-- 202 original Blob media files remain unavailable for download. Source previews from four Canva presentations now cover 40 project references; 162 media URLs still have no accessible replacement at all.
+- 197 original Blob media files remain unavailable for download. Source previews, original project reports and a recovered design cover now provide additional replacements; 128 image URLs still have no accessible replacement at all. The website's earlier PDF references have been restored from verified source copies.
 
 Can you provide a read-only export, temporarily restore download access for a backup, or confirm the exact date normal read access will return? Please do not delete any files or change my plan, billing, tokens, permissions, or project connections. I am not authorizing a paid upgrade or trial.
 

@@ -112,5 +112,95 @@
     "blobEtag": "\"7104ed03fc113883f22ea039ca390c3e\"",
     "originalBackup": "backups/recovered-originals-2026-10-15/ipnu-ippnu-pelantikan-2.webp",
     "note": "Original public documentation photo located through browser download history. Downloaded bytes match both size and MD5/ETag of the Blob object."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784282088595-3h44a4.pdf",
+    "source": "https://drive.google.com/file/d/1oiRdJjwK7whl9gC47g5j65sE6pqzRbKU/view",
+    "localUrl": "/recovered-media/drive/cv-jaelani-surya-saputra.pdf",
+    "sha256": "81ed5787171b569634d2695b34fadc706f0152962ce28b3891c67fdf7c5101b3",
+    "blobEtag": "\"9236b360ac80cb529870f6cfddc18fac\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/cv-indonesia.pdf",
+    "note": "Downloaded through connected Google Drive. Original file bytes match both size and MD5/ETag from the read-only Blob inventory."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783920453542-yr4axt.jpg",
+    "source": "https://drive.google.com/file/d/1aSSnDxGF27ZXSPC-Ph3nSfVDAhwZpb5a/view?usp=drivesdk",
+    "localUrl": "/recovered-media/drive/jaelani-surya.jpg",
+    "sha256": "47e391ae0cd7482b7ca849220259e8d5c6b5ff8b2a3805b2b262a22d1a5c8ba0",
+    "blobEtag": "\"0f9579f58738b90c68c0218706b77734\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/jaelani-surya.jpg",
+    "note": "Downloaded through connected Google Drive. Original file bytes match both size and MD5/ETag from the read-only Blob inventory."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718118328-usj8ya.jpg",
+    "source": "https://drive.google.com/file/d/1FKJ_esxKYbXieELjjTej_xVr7ouEsPO-/view?usp=drivesdk",
+    "localUrl": "/recovered-media/drive/img_4307.jpg",
+    "sha256": "de8c7f0dd80abc785708cda79398d96b9ea0f7bc34388d69c14dbca40cc6c452",
+    "blobEtag": "\"bd783fbda98af592a694a517d8a66b5e\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/IMG_4307.JPG",
+    "note": "Downloaded through connected Google Drive. Original file bytes match both size and MD5/ETag from the read-only Blob inventory."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718141587-nrs425.jpg",
+    "source": "https://drive.google.com/file/d/1OHOn_mctKa_VbmE8nr5BXFOmn8o0TEwZ/view?usp=drivesdk",
+    "localUrl": "/recovered-media/drive/img_4306.jpg",
+    "sha256": "9aafba931a52dc6bc8e1fa53d74924e82f9f81242cde0fabc0de5ed763b8395c",
+    "blobEtag": "\"d72e6ea1e7bad29d4b121d013ebe0f39\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/IMG_4306.JPG",
+    "note": "Downloaded through connected Google Drive. Original file bytes match both size and MD5/ETag from the read-only Blob inventory."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718406149-yl1d3c.jpg",
+    "source": "https://drive.google.com/file/d/1sAbQa21urGuxYpHZXFekQ8n2Qta8bKQB/view?usp=drivesdk",
+    "localUrl": "/recovered-media/drive/img-20220804-wa0020.jpg",
+    "sha256": "2aa7d7f1fca1e8921caf1c07dc42f23abdd76325bf45fb8644a9cf43b08cb1a9",
+    "blobEtag": "\"31a1ae87755d2ee07a8344b13e9a7235\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/IMG-20220804-WA0020.jpg",
+    "note": "Downloaded through connected Google Drive. Original file bytes match both size and MD5/ETag from the read-only Blob inventory."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784098483214-wimg6x.jpg",
+    "source": "https://drive.google.com/file/d/10c2vP2FYFhZ9Mx4fwtnIaFfv6kbR4Gm2/view?usp=drivesdk",
+    "localUrl": "/recovered-media/drive/img_4262.jpg",
+    "sha256": "944d429eed8e24049d8cf13f28c2ace06327465768b96ac33c752e437ae05f9f",
+    "blobEtag": "\"889e0ec0048acfa4127dce6f8b71c7ba\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/IMG_4262.JPG",
+    "note": "Downloaded through connected Google Drive. Original file bytes match both size and MD5/ETag from the read-only Blob inventory."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783704786900-krxlnp.jpg",
+    "source": "https://drive.google.com/file/d/1oPJs_OBny1YmaWkDFZtBbcAyNy1OsNDj/view",
+    "localUrl": "/recovered-media/drive/dji-mimo-20260609.jpg",
+    "sha256": "85c77e9047cc5f7f9402c667f3e7fa8f09533fc03707d7c9e663dad5f6fd19d6",
+    "blobEtag": "\"5035260721b9ed7d05833698a58cff44\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/dji_mimo_20260609_152804_0_1780999896756_photo.jpg",
+    "note": "Original bytes match size and MD5/ETag. Also replaces two recovered low-resolution cache variants with their exact full-resolution original."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783708755492-t9cain.jpg",
+    "source": "https://drive.google.com/file/d/1oPJs_OBny1YmaWkDFZtBbcAyNy1OsNDj/view",
+    "localUrl": "/recovered-media/drive/dji-mimo-20260609.jpg",
+    "sha256": "85c77e9047cc5f7f9402c667f3e7fa8f09533fc03707d7c9e663dad5f6fd19d6",
+    "blobEtag": "\"5035260721b9ed7d05833698a58cff44\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/dji_mimo_20260609_152804_0_1780999896756_photo.jpg",
+    "note": "Original bytes match size and MD5/ETag. Also replaces two recovered low-resolution cache variants with their exact full-resolution original."
+  },
+  {
+    "kind": "exact-original-from-connected-drive",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783717899280-9zv4vx.jpg",
+    "source": "https://drive.google.com/file/d/1oPJs_OBny1YmaWkDFZtBbcAyNy1OsNDj/view",
+    "localUrl": "/recovered-media/drive/dji-mimo-20260609.jpg",
+    "sha256": "85c77e9047cc5f7f9402c667f3e7fa8f09533fc03707d7c9e663dad5f6fd19d6",
+    "blobEtag": "\"5035260721b9ed7d05833698a58cff44\"",
+    "originalBackup": "backups/connected-drive-recovery-2026-10-15/dji_mimo_20260609_152804_0_1780999896756_photo.jpg",
+    "note": "Original bytes match size and MD5/ETag. Also replaces two recovered low-resolution cache variants with their exact full-resolution original."
   }
 ]
