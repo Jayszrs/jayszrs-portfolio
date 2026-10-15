@@ -59,5 +59,38 @@
     "source": "https://kawankerja.id/AppIcons/transparenticon.png",
     "localUrl": "/organization-logos/kawan-kerja.png",
     "sha256": "fd1461ea75da314c23de817e036e840122261c1ca3bca5abd6405935133a7cc2"
+  },
+  {
+    "kind": "exact-local-original",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777091436-jax0ww.png",
+    "source": "C:\\xampp\\htdocs\\Pemograman Web\\Portofolio Jay Szrs\\image\\Logo Fulday.PNG",
+    "localUrl": "/recovered-media/fulday-original.png",
+    "sha256": "cc983ea25334c662c2e8ad9405e36cba04cb718909b3356527b95c7dc460b897",
+    "blobEtag": "\"90944d3a1c3b6daabb577a8205b4ee82\"",
+    "note": "Byte-identical original found in the old XAMPP portfolio. Size and MD5 match the Blob inventory."
+  },
+  {
+    "kind": "organization-logo-from-original-portfolio",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783773133554-uon65g.png",
+    "source": "C:\\xampp\\htdocs\\Pemograman Web\\Portofolio Jay Szrs\\image\\Logo Akademi Crypto.jpg",
+    "localUrl": "/organization-logos/akademi-crypto.jpg",
+    "sha256": "2e3402b7b30f914af03be3184228048760eaeaa7698f98fa3dd914f8beb12f9a",
+    "note": "Existing organization logo found in the owner's old portfolio. Organization identity verified visually. Not a byte-identical Blob recovery."
+  },
+  {
+    "kind": "organization-logo-from-original-portfolio",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839446300-dja5eb.png",
+    "source": "C:\\xampp\\htdocs\\Pemograman Web\\Portofolio Jay Szrs\\image\\Logo Akademi Crypto.jpg",
+    "localUrl": "/organization-logos/akademi-crypto.jpg",
+    "sha256": "2e3402b7b30f914af03be3184228048760eaeaa7698f98fa3dd914f8beb12f9a",
+    "note": "Existing organization logo found in the owner's old portfolio. Organization identity verified visually. Not a byte-identical Blob recovery."
+  },
+  {
+    "kind": "organization-logo-from-original-portfolio",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783944494591-0t8ce9.png",
+    "source": "C:\\xampp\\htdocs\\Pemograman Web\\Portofolio Jay Szrs\\image\\Logo Smpn 135 Jakarta.jpg",
+    "localUrl": "/organization-logos/smpn-135.jpg",
+    "sha256": "3d8b83c7c7d3a64f5abc6c08a10fa5459765881780b401d3a3cd25bab44d896e",
+    "note": "Existing organization logo found in the owner's old portfolio. Organization identity verified visually. Not a byte-identical Blob recovery."
   }
 ]

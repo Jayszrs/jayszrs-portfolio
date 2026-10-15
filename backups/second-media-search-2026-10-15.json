@@ -1,0 +1,122 @@
+{
+  "roots": [
+    {
+      "root": "C:\\common_attachment",
+      "files": 2,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\InstantFileBuf",
+      "files": 0,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\inetpub",
+      "files": 0,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\src",
+      "files": 17778,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Workspaces",
+      "files": 0,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\laragon\\www",
+      "files": 0,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\xampp\\htdocs",
+      "files": 42407,
+      "sizeMatchesHashed": 3
+    },
+    {
+      "root": "C:\\Users\\Public",
+      "files": 2261,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\.cache",
+      "files": 1,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\.codex\\attachments",
+      "files": 21,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Local\\Backup",
+      "files": 1,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Local\\CapCut\\User Data",
+      "files": 2537,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Local\\CapCut\\Videos",
+      "files": 0,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Local\\OpenAI",
+      "files": 16,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Local\\Packages",
+      "files": 75552,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Roaming\\Adobe",
+      "files": 0,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Roaming\\Opera Software",
+      "files": 2,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Roaming\\Code\\Cache",
+      "files": 489,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Roaming\\Code\\Cache\\Cache_Data",
+      "files": 487,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Roaming\\Antigravity\\Cache",
+      "files": 34,
+      "sizeMatchesHashed": 0
+    },
+    {
+      "root": "C:\\Users\\jaela\\AppData\\Roaming\\Antigravity IDE\\Cache",
+      "files": 191,
+      "sizeMatchesHashed": 0
+    }
+  ],
+  "newExactMatches": [
+    {
+      "file": "C:\\xampp\\htdocs\\Pemograman Web\\image\\Logo Fulday.PNG",
+      "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777091436-jax0ww.png",
+      "new": true
+    },
+    {
+      "file": "C:\\xampp\\htdocs\\Pemograman Web\\Portofolio Jay Szrs\\image\\Logo Fulday.PNG",
+      "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777091436-jax0ww.png",
+      "new": true
+    }
+  ],
+  "unresolved": 204
+}

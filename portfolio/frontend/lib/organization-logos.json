@@ -73,6 +73,16 @@
       "file": "kawan-kerja.png",
       "source": "https://kawankerja.id/AppIcons/transparenticon.png",
       "note": "Official organization logo used in place of its inaccessible Blob logo."
+    },
+    "akademi-crypto": {
+      "file": "akademi-crypto.jpg",
+      "source": "Local original portfolio: Logo Akademi Crypto.jpg",
+      "note": "Organization logo preserved in the owner's earlier XAMPP portfolio; original bytes retained. Alternate source, not a verified byte-identical Blob copy."
+    },
+    "smpn-135": {
+      "file": "smpn-135.jpg",
+      "source": "Local original portfolio: Logo Smpn 135 Jakarta.jpg",
+      "note": "Organization logo preserved in the owner's earlier XAMPP portfolio; original bytes retained. Alternate source, not a verified byte-identical Blob copy."
     }
   },
   "sources": {
@@ -116,6 +126,9 @@
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777395321-y49zkw.png": "/organization-logos/fazmastone.png",
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783942121212-5703ni.webp": "/organization-logos/fkg-ui.png",
     "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784098241596-4q5nwr.png": "/organization-logos/karya-intertek-kencana.png",
-    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783776877581-4nwauy.jpg": "/organization-logos/kawan-kerja.png"
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783776877581-4nwauy.jpg": "/organization-logos/kawan-kerja.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783773133554-uon65g.png": "/organization-logos/akademi-crypto.jpg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839446300-dja5eb.png": "/organization-logos/akademi-crypto.jpg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783944494591-0t8ce9.png": "/organization-logos/smpn-135.jpg"
   }
 }

@@ -1,6 +1,6 @@
 # Media recovery: 15 October 2026
 
-Recovery is incomplete. 208 distinct media URLs in the current content still have no accessible replacement.
+Recovery is incomplete. 204 distinct media URLs in the current content still have no accessible replacement.
 
 ## Verified storage state
 
@@ -39,7 +39,7 @@ Documentation: https://vercel.com/docs/vercel-blob/usage-and-pricing#hobby
 ## Preserved evidence and next step
 
 - `../backups/blob-object-inventory-2026-10-15.json`: metadata for all 369 listed objects; no credentials.
-- `../backups/unresolved-media-2026-10-15.json`: the remaining 208 URLs and their content fields.
+- `../backups/unresolved-media-2026-10-15.json`: the remaining 204 URLs and their content fields.
 - `../backups/content-2026-10-15.json`: pre-repair content snapshot.
 - `scripts/backup-blob-readonly.cjs`: uses only the SDK's read operations. Lists by default; `--download` backs up original bytes locally with size/ETag integrity checks, resumes existing valid files, and stops at the first storage-block response.
 
@@ -61,3 +61,16 @@ Review and map verified originals to website assets before publishing. This comm
 - Production deployment `dpl_JDhZRH8Y4ZzvLRw4DVr3yQyexGgJ` was promoted to `jayszrs.my.id`. All seven images returned HTTP 200 with matching SHA-256 checksums; its client bundle includes all seven mappings. Actual SelectedDesigns and Experience component server rendering resolves those mappings.
 - The public API still returns 67 certificates and 3 achievements; the Ethical Hacker PDF returns HTTP 200 with the original checksum. The six unrelated content sections remain unchanged after deployment.
 - Browser interaction testing is unavailable because no browser is connected.
+
+## Second search, 15 October 2026
+
+- Found the byte-identical Fulday logo in `C:/xampp/htdocs/Pemograman Web/Portofolio Jay Szrs/image/Logo Fulday.PNG`. Both size and MD5 match the listed Blob object `1783777091436-jax0ww.png`.
+- Found the existing Akademi Crypto and SMPN 135 logos in that same original portfolio. These provide alternate logo sources for three additional blocked URLs; they are not claimed to be identical to the inaccessible Blob versions.
+- Inspected additional roots under XAMPP, C:/src, public folders, application data, CapCut, Windows app packages and editor caches. Evidence and per-root counts are saved in `../backups/second-media-search-2026-10-15.json`.
+- Checked Next.js image caches in the Fazma Stone and MahameruBaja projects: no additional exact URL matches.
+- Checked all current image/PDF entries and commit history of the four GitHub repositories linked by the portfolio. No matching original Blob file size was present. A deleted 7 MB Laundryuk submission ZIP was recovered from its initial commit and checked: 79 entries, 7 image/PDF files, no exact originals matching the Blob inventory.
+- Examined available Windows thumbnail caches: nine extracted thumbnails, none of the missing documentation photos.
+- Internet Archive returned no captures of the Blob URLs. Historical deployment pages redirected to Vercel authentication; protection settings were not changed.
+- The official Vercel CLI download operation also returned 403. No storage, token or billing changes were performed.
+- Original CMS data was compared against the previous snapshot again: the six unrelated sections are unchanged; 67 certificates and 3 achievements remain present.
+- Published as deployment `dpl_4kCBNypcg6Kph9UgaMUvtaasG1Rq` and promoted to `jayszrs.my.id`. All three newly restored image files return HTTP 200 with matching SHA-256 checksums; the deployed client bundle contains all four source mappings. Actual Experience and Education components render the recovered sources. Production build and certificate integrity checks passed. The release was staged from individually reviewed source files, excluding backups, credentials and caches.

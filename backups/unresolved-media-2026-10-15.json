@@ -183,12 +183,6 @@
     ]
   },
   {
-    "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783944494591-0t8ce9.png",
-    "fields": [
-      "education.2.logo"
-    ]
-  },
-  {
     "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718002716-dx3wej.jpg",
     "fields": [
       "education.2.documentationImage",
@@ -292,12 +286,6 @@
     ]
   },
   {
-    "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783773133554-uon65g.png",
-    "fields": [
-      "experience.3.image"
-    ]
-  },
-  {
     "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783772491233-akl27b.jpg",
     "fields": [
       "experience.3.documentationImage",
@@ -355,22 +343,10 @@
     ]
   },
   {
-    "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777091436-jax0ww.png",
-    "fields": [
-      "experience.6.image"
-    ]
-  },
-  {
     "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783777121420-fh1fvo.jpg",
     "fields": [
       "experience.6.documentationImage",
       "experience.6.documentationImages.0"
-    ]
-  },
-  {
-    "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839446300-dja5eb.png",
-    "fields": [
-      "experience.8.image"
     ]
   },
   {
