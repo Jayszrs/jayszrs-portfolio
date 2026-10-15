@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ImageOff } from "lucide-react";
+import { mediaSource, serveImageDirectly } from "@/frontend/lib/media";
 
 export function initialsFrom(text = "") {
   return String(text)
@@ -32,6 +33,16 @@ function unavailableSource(src) {
   return !String(src || "").trim();
 }
 
+export function ImageUnavailable() {
+  return (
+    <div role="status" className="flex h-full w-full flex-col items-center justify-center gap-3 bg-surface px-6 text-center">
+      <ImageOff size={32} className="text-muted" />
+      <p className="text-sm font-semibold text-ink">Gambar belum tersedia.</p>
+      <p className="max-w-sm text-sm text-muted">File sumber belum bisa diakses. Coba lagi nanti.</p>
+    </div>
+  );
+}
+
 export default function SafeImage({
   src,
   alt = "",
@@ -43,13 +54,15 @@ export default function SafeImage({
   loading,
   decoding = "async",
   quality = 70,
+  unoptimized = false,
+  onError,
   ...props
 }) {
-  const [failed, setFailed] = useState(unavailableSource(src));
-
-  useEffect(() => {
-    setFailed(unavailableSource(src));
-  }, [src]);
+  const source = mediaSource(src);
+  const [failedSource, setFailedSource] = useState(null);
+  const [directSource, setDirectSource] = useState(null);
+  const direct = unoptimized || serveImageDirectly(source) || directSource === source;
+  const failed = unavailableSource(source) || failedSource === source;
 
   if (failed) {
     return <div className={className}>{fallback || <LogoFallback label={alt} />}</div>;
@@ -58,7 +71,9 @@ export default function SafeImage({
   return (
     <div className={`relative overflow-hidden ${className}`}>
       <Image
-        src={src}
+        {...props}
+        key={`${source}-${direct}`}
+        src={source}
         alt={alt}
         fill
         sizes={sizes}
@@ -66,9 +81,16 @@ export default function SafeImage({
         loading={priority ? undefined : loading || "lazy"}
         decoding={decoding}
         quality={quality}
+        unoptimized={direct}
         className={imgClassName}
-        onError={() => setFailed(true)}
-        {...props}
+        onError={(event) => {
+          // An optimizer failure need not mean the original remote image is unavailable.
+          if (!direct && /^https?:\/\//i.test(source)) setDirectSource(source);
+          else {
+            setFailedSource(source);
+            onError?.(event);
+          }
+        }}
       />
     </div>
   );

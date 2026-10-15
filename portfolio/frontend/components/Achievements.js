@@ -56,6 +56,20 @@ function PdfThumbnail({ src = "", title = "Preview PDF" }) {
   const canvasRef = useRef(null);
   const [box, setBox] = useState({ width: 0, height: 0 });
   const [failed, setFailed] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = shellRef.current;
+    if (!node) return undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const node = shellRef.current;
@@ -76,9 +90,11 @@ function PdfThumbnail({ src = "", title = "Preview PDF" }) {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || !src || !box.width || !box.height) return undefined;
+    if (!visible || !canvas || !src || !box.width || !box.height) return undefined;
 
     let cancelled = false;
+    let loadingTask;
+    let renderTask;
     setFailed(false);
 
     async function renderThumbnail() {
@@ -86,8 +102,11 @@ function PdfThumbnail({ src = "", title = "Preview PDF" }) {
         const pdfjs = await loadPdfJs();
         if (cancelled) return;
 
-        const pdf = await pdfjs.getDocument({ url: src, withCredentials: false }).promise;
+        loadingTask = pdfjs.getDocument({ url: src, withCredentials: false });
+        const pdf = await loadingTask.promise;
+        if (cancelled) return;
         const page = await pdf.getPage(1);
+        if (cancelled) return;
         const viewport = page.getViewport({ scale: 1 });
         const cssScale = Math.min(box.width / viewport.width, box.height / viewport.height);
         const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -100,10 +119,11 @@ function PdfThumbnail({ src = "", title = "Preview PDF" }) {
         canvas.style.width = `${cssWidth}px`;
         canvas.style.height = `${cssHeight}px`;
 
-        await page.render({
+        renderTask = page.render({
           canvasContext: canvas.getContext("2d", { alpha: false }),
           viewport: renderViewport,
-        }).promise;
+        });
+        await renderTask.promise;
       } catch {
         if (!cancelled) setFailed(true);
       }
@@ -113,14 +133,19 @@ function PdfThumbnail({ src = "", title = "Preview PDF" }) {
 
     return () => {
       cancelled = true;
+      renderTask?.cancel();
+      loadingTask?.destroy().catch(() => {});
     };
-  }, [box.height, box.width, src]);
+  }, [box.height, box.width, src, visible]);
 
   return (
     <div ref={shellRef} className="flex h-full w-full items-center justify-center bg-white p-3">
       {failed ? (
         <div className="flex h-full w-full items-center justify-center rounded-xl bg-emerald-soft text-emerald-deep">
-          <FileBadge size={28} />
+          <div className="flex flex-col items-center gap-2 p-3 text-center">
+            <FileBadge size={28} />
+            <p className="text-xs font-semibold">Preview PDF belum tersedia</p>
+          </div>
         </div>
       ) : (
         <canvas ref={canvasRef} aria-label={title} className="block max-h-full max-w-full rounded-sm bg-white shadow-sm" />

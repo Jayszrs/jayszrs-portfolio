@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
-import SafeImage from "@/frontend/components/SafeImage";
+import SafeImage, { ImageUnavailable } from "@/frontend/components/SafeImage";
+import { isBlobSource } from "@/frontend/lib/media";
 
 function isPdf(src = "") {
   return /\.pdf(\?.*)?(#.*)?$/i.test(src);
@@ -160,8 +161,11 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   const [touchStart, setTouchStart] = useState(null);
   const [useMobilePdf, setUseMobilePdf] = useState(false);
   const [pdfLoaded, setPdfLoaded] = useState(false);
+  const [pdfCheck, setPdfCheck] = useState({ src: "", status: "loading" });
   const current = galleryItems[activeIndex] || galleryItems[0];
   const hasMultiple = galleryItems.length > 1;
+  const pdfStatus = !isBlobSource(current?.src) ? "ready"
+    : pdfCheck.src === current?.src ? pdfCheck.status : "loading";
 
   useEffect(() => {
     if (!galleryItems.length) return undefined;
@@ -194,6 +198,25 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
 
   useEffect(() => {
     setPdfLoaded(false);
+    setPdfCheck({ src: current?.src, status: "loading" });
+    if (!isPdf(current?.src) || !isBlobSource(current?.src)) {
+      return undefined;
+    }
+    // Avoid embedding a storage error page as if it were a successfully loaded PDF.
+    const controller = new AbortController();
+    let active = true;
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    fetch(current.src, { method: "HEAD", signal: controller.signal })
+      .then((response) => {
+        if (active) setPdfCheck({ src: current.src, status: response.ok ? "ready" : "error" });
+      })
+      .catch(() => { if (active) setPdfCheck({ src: current.src, status: "error" }); })
+      .finally(() => clearTimeout(timeout));
+    return () => {
+      active = false;
+      clearTimeout(timeout);
+      controller.abort();
+    };
   }, [current?.src]);
 
   const showPrevious = () => {
@@ -268,8 +291,15 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
           onPointerCancel={() => setTouchStart(null)}
         >
           {pdf ? (
-            useMobilePdf ? (
-              <MobilePdfPages src={current.src} title={current.title || title} />
+            pdfStatus === "error" ? (
+              <div role="status" className="flex h-full flex-col items-center justify-center gap-3 bg-surface px-6 text-center">
+                <p className="text-sm font-semibold text-ink">PDF belum bisa diakses.</p>
+                <p className="max-w-sm text-sm text-muted">File sumber sedang tidak tersedia. Coba lagi nanti atau buka lewat tombol PDF di atas.</p>
+              </div>
+            ) : pdfStatus === "loading" ? (
+              <div role="status" className="flex h-full items-center justify-center bg-surface text-sm font-semibold text-muted">Memuat preview PDF...</div>
+            ) : useMobilePdf ? (
+              <MobilePdfPages key={current.src} src={current.src} title={current.title || title} />
             ) : (
               <div className="relative h-full w-full overflow-hidden bg-surface">
                 <iframe
@@ -289,12 +319,14 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
             )
           ) : (
             <SafeImage
+              key={current.src}
               src={current.src}
               alt={current.title || title}
               loading="eager"
               sizes="95vw"
               className="h-full w-full"
               imgClassName="h-full w-full object-contain"
+              fallback={<ImageUnavailable />}
             />
           )}
           {hasMultiple && (

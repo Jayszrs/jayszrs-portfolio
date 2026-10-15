@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Github, Linkedin, Instagram, ArrowUpRight, ChevronLeft, ChevronRight, Download, Eye, Star } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import SafeImage from "@/frontend/components/SafeImage";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import TypewriterText from "@/frontend/components/TypewriterText";
 import TikTokIcon from "@/frontend/components/TikTokIcon";
@@ -184,16 +184,16 @@ export default function Hero({ profile }) {
               onPointerLeave={() => setDragStart(null)}
             >
               {currentHeroImage ? (
-                <Image
+                <SafeImage
                   key={currentHeroImage}
                   src={currentHeroImage}
                   alt={profile.fullName}
-                  fill
                   priority
                   quality={76}
                   fetchPriority="high"
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 420px, 380px"
-                  className="object-cover"
+                  className="h-full w-full"
+                  imgClassName="object-cover"
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-emerald-soft text-sm font-semibold text-emerald-deep">

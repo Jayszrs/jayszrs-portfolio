@@ -9,6 +9,7 @@ import {
 import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
 import { documentationImages, withDocumentationImages } from "@/frontend/lib/documentation";
 import { profileHeroImages, withProfileHeroImages } from "@/frontend/lib/profileImages";
+import { mediaSource } from "@/frontend/lib/media";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
@@ -255,7 +256,7 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
           style={{ width: previewSize, height: previewSize }}
         >
           {value && !previewBroken ? (
-            <img src={value} alt="" className="h-full w-full object-cover" onError={() => setPreviewBroken(true)} />
+            <img src={mediaSource(value)} alt="" loading="lazy" className="h-full w-full object-cover" onError={() => setPreviewBroken(true)} />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-emerald-soft">
               <ImagePlus size={compact ? 18 : 20} className="text-emerald-deep" />
