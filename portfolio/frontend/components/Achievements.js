@@ -160,17 +160,17 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
       <button type="button" onClick={onClick} className="glass group min-h-[13rem] rounded-2xl p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
         <div className="flex h-full flex-col">
           <div className="flex items-start gap-4">
-            <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface p-2.5">
+            <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white p-2.5">
               {item.image || item.logo ? (
                 <SafeImage
-                  src={item.image || item.logo}
-                  alt={item.title}
+                  src={item.logo || item.image}
+                  alt={`Logo ${item.issuer || item.title}`}
                   loading="lazy"
                   decoding="async"
                   sizes="64px"
                   className="h-full w-full"
                   imgClassName="h-full w-full object-contain"
-                  fallback={<LogoFallback label={item.title || item.issuer} icon={Icon} />}
+                  fallback={<LogoFallback label={item.issuer || item.title} icon={Icon} />}
                 />
               ) : (
                 <Icon size={26} className="text-emerald-deep" />
@@ -200,7 +200,15 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
           decoding="async"
           className="h-40 w-full overflow-hidden"
           imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-          fallback={<LogoFallback label={item.title || item.issuer} icon={Icon} />}
+          fallback={(
+            <SafeImage
+              src={item.logo}
+              alt={`Logo ${item.issuer || item.title}`}
+              className="h-full w-full bg-white"
+              imgClassName="object-contain p-5"
+              fallback={<LogoFallback label={item.issuer || item.title} icon={Icon} />}
+            />
+          )}
         />
       ) : item.logo ? (
         <SafeImage
@@ -208,7 +216,7 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
           alt={`Logo ${item.issuer}`}
           loading="lazy"
           decoding="async"
-          className="flex h-40 w-full items-center justify-center bg-surface"
+          className="flex h-40 w-full items-center justify-center bg-white"
           imgClassName="h-full w-full object-contain p-7"
           fallback={<LogoFallback label={item.issuer || item.title} icon={Icon} />}
         />
@@ -279,11 +287,11 @@ export default function Achievements({ achievements = [], certificates = [], sec
                   const src = selected.image || selected.logo || selected.pdfUrl;
                   openGroupPreview(src, selected.title);
                 }}
-                className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft"
+                className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-white"
               >
-                {selected.image || selected.logo ? (
+                {selected.logo || selected.image ? (
                   <SafeImage
-                    src={selected.image || selected.logo}
+                    src={selected.logo || selected.image}
                     alt={`Logo ${selected.issuer}`}
                     loading="lazy"
                     decoding="async"

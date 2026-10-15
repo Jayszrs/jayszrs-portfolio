@@ -64,3 +64,11 @@ The recovery script only reads local files and copies matching cache entries int
 Blob images are served directly to avoid routing failed downloads through `/_next/image`. Other remote images retry their original URL once if optimization fails. The media viewer shows an unavailable message for failed images and checks Blob PDF availability before embedding them.
 
 The manifest uses a relative `start_url` so the app stays on the origin where it was opened, including localhost and preview deployments.
+
+## Publisher logos on the achievements page
+
+`public/organization-logos/` bundles 11 publisher/university marks for the 33 certificates and 3 achievements currently in production. `frontend/lib/organization-logos.json` records the downloaded asset sources and maps 36 original Blob logo URLs to local files. Most assets come from the organizations' official sites; the Widyatama mark comes from Indonesian Wikipedia because downloads from the official site were blocked.
+
+Certificate cards and detail headers prefer the publisher's `logo` over the certificate's `image` badge. Local logos use direct same-origin URLs and a white background for visibility in both themes. Achievement cards can show the publisher logo when their original documentation image is unavailable. This restores publisher branding, not certificate badges, documents, or PDFs. Original content records and Blob files remain unchanged.
+
+Commit the new logo directory and JSON manifest along with the component changes, then deploy the updated code to make these logos appear on the production website.

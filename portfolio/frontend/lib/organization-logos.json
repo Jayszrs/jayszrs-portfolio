@@ -1,0 +1,91 @@
+{
+  "assets": {
+    "cisco": {
+      "file": "cisco.svg",
+      "source": "https://brand-assets.security.cisco.com/cisco-light.svg"
+    },
+    "ekraf": {
+      "file": "ekraf.webp",
+      "source": "https://ekraf.go.id/app-logo-no-text.webp"
+    },
+    "fortinet": {
+      "file": "fortinet.svg",
+      "source": "https://www.fortinet.com/content/dam/fortinet/images/general/fortinet-logo.svg"
+    },
+    "ibm-skillsbuild": {
+      "file": "ibm-skillsbuild.svg",
+      "source": "https://skillsbuild.org/",
+      "note": "Unmodified IBM footer SVG extracted from the official homepage."
+    },
+    "komdigi": {
+      "file": "komdigi.png",
+      "source": "https://e-penyiaran.komdigi.go.id/assets/media/logos/komdiginew.png"
+    },
+    "nvidia": {
+      "file": "nvidia.svg",
+      "source": "https://www.nvidia.com/",
+      "note": "Unmodified n24-nvidia-logo SVG symbol extracted into a standalone SVG."
+    },
+    "opswat": {
+      "file": "opswat.svg",
+      "source": "https://static.opswat.com/uploads/brand-hub/opswat-logos.zip",
+      "note": "Secondary/RGB/SVG/OPSWAT_logo_notag_midnight.svg"
+    },
+    "oracle": {
+      "file": "oracle.jpg",
+      "source": "https://www.oracle.com/splash/oralogo_small.gif",
+      "note": "The official endpoint serves JPEG bytes."
+    },
+    "ubp-karawang": {
+      "file": "ubp-karawang.png",
+      "source": "https://ubpkarawang.ac.id/wp-content/uploads/2021/11/Logo-UBP-Karawang-1.png"
+    },
+    "widyatama": {
+      "file": "widyatama.png",
+      "source": "https://upload.wikimedia.org/wikipedia/id/2/23/Logowidyatama.png",
+      "note": "Existing university mark from Indonesian Wikipedia; official website refused downloads."
+    },
+    "world-friends-korea": {
+      "file": "world-friends-korea.svg",
+      "source": "https://www.worldfriendskorea.or.kr/kor/img/logo_hover.svg"
+    }
+  },
+  "sources": {
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783782481266-7yh2gn.webp": "/organization-logos/ekraf.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783783355595-yvmnag.webp": "/organization-logos/ekraf.webp",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783783789520-18gs6a.png": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783839237075-6m3dij.png": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783917499510-uca8pj.png": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783919048783-3too39.png": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783919657537-95d0yt.png": "/organization-logos/ibm-skillsbuild.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783920453542-yr4axt.jpg": "/organization-logos/world-friends-korea.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783921276695-odm9eb.png": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922032332-rekjwu.png": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783922695762-cpdkae.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783923071840-h3gs47.png": "/organization-logos/opswat.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169344834-ao9gc0.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784169383908-g3rxbe.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784170529547-28hao0.jpg": "/organization-logos/komdigi.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171087344-yigm5k.jpg": "/organization-logos/komdigi.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171262743-zfux14.jpg": "/organization-logos/komdigi.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171471435-uak8ia.jpg": "/organization-logos/komdigi.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171593409-kb75e3.jpg": "/organization-logos/komdigi.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784171927818-j6d0bi.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784175013449-u12tmb.webp": "/organization-logos/nvidia.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784183965934-0sx8fh.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184406274-400v93.jpg": "/organization-logos/oracle.jpg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184821338-21qzzh.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784184972511-so3pz4.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185255841-7yl8ld.webp": "/organization-logos/cisco.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784185431568-x3sdtz.png": "/organization-logos/fortinet.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784280861883-yx6alj.png": "/organization-logos/fortinet.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281100953-orllpg.png": "/organization-logos/fortinet.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281327089-prhj27.png": "/organization-logos/fortinet.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281566232-oud4hl.png": "/organization-logos/fortinet.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784281726943-5d96y4.png": "/organization-logos/fortinet.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784282881189-htgt4i.png": "/organization-logos/fortinet.svg",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918655881-fsivrk.png": "/organization-logos/ubp-karawang.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918691533-33caq9.png": "/organization-logos/ubp-karawang.png",
+    "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783918739691-aghust.png": "/organization-logos/widyatama.png"
+  }
+}
