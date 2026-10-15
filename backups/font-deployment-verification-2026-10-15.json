@@ -1,0 +1,14 @@
+{
+  "deployment": "dpl_8w5kU464UJLGZxjh8UvhJWDgwzU3",
+  "state": "READY",
+  "cacheUsed": false,
+  "homeStatus": 200,
+  "fontUrl": "https://jayszrs.my.id/_next/static/media/dd867eac9d8707d9-s.p.ttf",
+  "fontSha256": "89b3fb38aa0d275d7a731d0d817a4f1622b316b4d7fbdedcf02ee9099ff68bc8",
+  "fontWeight": "400 800",
+  "externalGoogleFontCSS": false,
+  "nonRatingCmsSectionsUnchanged": true,
+  "certificates": 67,
+  "achievements": 3,
+  "verifiedAt": "2026-10-15T08:24:21.287Z"
+}

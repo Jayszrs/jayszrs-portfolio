@@ -6,6 +6,7 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
+import { withRecoveredProjectMedia } from "@/frontend/lib/project-media";
 import { externalUrl } from "@/frontend/lib/urls";
 
 function CaseStudySection({ title, children }) {
@@ -23,6 +24,7 @@ export default function Gallery({ items = [], section = {} }) {
   const trackRef = useRef(null);
   const [selected, setSelected] = useState(null);
   const [preview, setPreview] = useState(null);
+  const displayItems = items.map(withRecoveredProjectMedia);
 
   const scrollByAmount = (dir) => {
     const el = trackRef.current;
@@ -63,7 +65,7 @@ export default function Gallery({ items = [], section = {} }) {
           ref={trackRef}
           className="mt-8 flex gap-4 overflow-x-auto scroll-smooth pb-4 sm:mt-10 sm:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
-          {items.map((item) => (
+          {displayItems.map((item) => (
             <button
               key={item.id}
               type="button"
@@ -166,6 +168,14 @@ export default function Gallery({ items = [], section = {} }) {
                 </h3>
                 {selected.documentation && (
                   <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{selected.documentation}</p>
+                )}
+                {selected.recoveredMediaSource && (
+                  <p className="mt-3 text-xs leading-6 text-muted">
+                    Preview dari presentasi Canva. {" "}
+                    <a href={selected.recoveredMediaSource} target="_blank" rel="noreferrer" className="font-semibold text-emerald-deep underline underline-offset-4">
+                      Buka presentasi asli untuk resolusi penuh
+                    </a>
+                  </p>
                 )}
                 {documentationImages(selected).length > 0 && (
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

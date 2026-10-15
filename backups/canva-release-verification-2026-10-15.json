@@ -1,0 +1,23 @@
+{
+  "deployment": "dpl_7rFGGhSiVAdmNB46uPanD9ToV2TB",
+  "verifiedPages": 45,
+  "collections": 4,
+  "certificates": 67,
+  "achievements": 3,
+  "unchangedSections": [
+    "profile",
+    "about",
+    "sections",
+    "pageHeroes",
+    "education",
+    "capabilities",
+    "experience",
+    "gallery",
+    "selectedDesigns",
+    "achievements",
+    "certificates",
+    "contact"
+  ],
+  "recoveredBundle": "/_next/static/chunks/app/proyek/page-32491c90591cde16.js",
+  "verifiedAt": "2026-10-15T08:18:45.597Z"
+}

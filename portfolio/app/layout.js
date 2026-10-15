@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import IntroLoader from "@/frontend/components/IntroLoader";
 import DeferredLanguageSwitcher from "@/frontend/components/DeferredLanguageSwitcher";
 import MouseSpotlight from "@/frontend/components/MouseSpotlight";
@@ -12,9 +12,10 @@ const personName = "Jaelani Surya Saputra";
 const siteDescription =
   "Portfolio resmi Jaelani Surya Saputra, dikenal sebagai Jay Szrs atau jayszrs, untuk IT infrastructure, web development, AI engineer, software engineering, dan dokumentasi proyek.";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+const jakarta = localFont({
+  src: "./fonts/PlusJakartaSans-Variable.ttf",
+  weight: "400 800",
+  style: "normal",
   variable: "--font-jakarta",
   display: "swap",
 });

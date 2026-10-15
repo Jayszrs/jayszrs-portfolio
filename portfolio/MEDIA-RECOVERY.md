@@ -1,6 +1,6 @@
 # Media recovery: 15 October 2026
 
-Recovery is incomplete. 202 distinct media URLs in the current content still have no accessible replacement.
+Recovery is incomplete. 162 distinct media URLs still have no accessible replacement. Four project collections now display 45 native Canva preview pages from their original source presentations, covering 40 legacy project media references. The original bytes of 202 Blob objects still await download; those references have been preserved.
 
 ## Verified storage state
 
@@ -39,7 +39,8 @@ Documentation: https://vercel.com/docs/vercel-blob/usage-and-pricing#hobby
 ## Preserved evidence and next step
 
 - `../backups/blob-object-inventory-2026-10-15.json`: metadata for all 369 listed objects; no credentials.
-- `../backups/unresolved-media-2026-10-15.json`: the remaining 202 URLs and their content fields.
+- `../backups/unresolved-media-2026-10-15.json`: the remaining 162 URLs without accessible replacement media.
+- `../backups/blob-originals-not-yet-downloaded-2026-10-15.json`: 202 original Blob URLs still awaiting a download, including the project images now represented by Canva source previews.
 - `../backups/content-2026-10-15.json`: pre-repair content snapshot.
 - `scripts/backup-blob-readonly.cjs`: uses only the SDK's read operations. Lists by default; `--download` backs up original bytes locally with size/ETag integrity checks, resumes existing valid files, and stops at the first storage-block response.
 
@@ -84,3 +85,22 @@ Review and map verified originals to website assets before publishing. This comm
 - Inspected 54,525 additional browser storage/cache entries, including service-worker caches, browser file-system data and blob storage across Chrome profiles and Edge. Checked image/PDF payloads against the known Blob size/ETag values and inspected ZIP payloads where present. No additional matching original was found.
 - Browser automation has no connected browser. Windows Computer Use initialization could load its package, but listing apps failed because its native pipe is unavailable. No authentication dialogs were automated and no account or browser settings were changed. The user was given the local source-link list and asked to log in manually or supply recovered original files.
 - Both documentation photos were published in deployment `dpl_btct4Dzf4wYv5twgz5QgTh2WSDwK` and promoted to `jayszrs.my.id`. Production HTTP GETs return 200 with the exact original SHA-256 values; the deployed client bundle contains both recovery mappings. The actual Experience component renders the photos. Production build and all 91 original certificate integrity checks passed; six unrelated content sections and certificate counts remain unchanged.
+
+## Fourth search: project documentation
+
+- Checked 389 embedded images in 76 local Office documents and 1,228 embedded images in 226 PDFs. No additional byte-identical original matched the Blob inventory. Checked 41,346 image/PDF candidates in IDE and agent media directories, also with no exact original match.
+- The documented Canva oEmbed endpoint returned the titles, authors and public embed links of four exact projects linked by the CMS. The normal embed page with a supported browser client header supplied its native page previews. Downloaded and visually inspected every preview: INSYFEST (9 pages), WINACTION (10), Prabangkara Harmoni (16), and SIEM analysis (10).
+- These are provider-generated previews of the actual source designs, not copies of the inaccessible Blob image bytes. Native preview sizes are approximately 595 x 335; three final Prabangkara logo pages are square. No upscaling, image generation, invented documentation or replacement stock images were used. The public interface links to the original presentation for full resolution.
+- `frontend/lib/recovered-project-media.json` preserves the original project link, all 40 legacy media URLs, source version, page order, dimensions and SHA-256 values. Exact downloaded files are served locally under `/recovered-media/canva/` and backed up under `../backups/recovered-canva-pages-2026-10-15/`.
+- `withRecoveredProjectMedia` provides a display-only source collection for these four exact project IDs and their unchanged media/link snapshots. This preserves all CMS data, including the older 11-image Prabangkara selection; its current 16-page source deck is displayed separately. Any later admin media/link edits take precedence over the recovery snapshot.
+- Figma public oEmbed metadata and overview thumbnails were obtained. They were not substituted for individual documentation screenshots; the generic Project IMK overview does not establish the correct BisKita prototype frame. A connected Figma account is still needed to inspect/export the appropriate frames. Canva and Figma plugins were suggested but no connection was confirmed.
+- Browser control remains unavailable (`chrome` is not available). No account, Blob, billing, token or protection settings were changed.
+- Verification passed for all 45 native preview checksums, actual Gallery cover rendering, preservation of CMS data, and precedence of later admin media/link edits.
+- Published as deployment `dpl_7rFGGhSiVAdmNB46uPanD9ToV2TB` and promoted to `jayszrs.my.id`. Production GETs verified all 45 PNG files with matching SHA-256 checksums and the deployed project bundle contains all four source collections. All 12 non-rating CMS sections match the pre-release snapshot; 67 certificates and 3 achievements remain intact. Local and production builds passed. Release staging excluded backups, credentials and caches.
+- Remaining 162 distinct URLs without an accessible replacement are grouped as: projects 93, profile 8, education 24, experience 36, and ratings 1. Original references remain preserved; the 40 older Canva Blob files are also retained separately in the 202-object original-download backlog.
+
+## Deployment repair
+
+- Git deployment for commit `ed57c45` failed in `next/font/google` while parsing a downloaded font URL (`Cannot read properties of null (reading '1')`).
+- Bundled the official Plus Jakarta Sans variable font and its OFL license under `app/fonts/`; `app/layout.js` now uses `next/font/local` with the same CSS variable and 400–800 weight range. Builds no longer request Google Fonts for this font. Upstream version and SHA-256 are recorded beside the font.
+- Clean local build passed. A production build with its cache disabled also passed, deployment `dpl_8w5kU464UJLGZxjh8UvhJWDgwzU3`, and was promoted to `jayszrs.my.id`. The homepage and emitted font return HTTP 200; the served font SHA-256 matches the original. All 12 non-rating CMS sections remain unchanged, including 67 certificates and 3 achievements. No Blob or billing settings changed. Source changes have not been committed or pushed to GitHub.
