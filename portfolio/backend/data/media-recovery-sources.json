@@ -92,5 +92,25 @@
     "localUrl": "/organization-logos/smpn-135.jpg",
     "sha256": "3d8b83c7c7d3a64f5abc6c08a10fa5459765881780b401d3a3cd25bab44d896e",
     "note": "Existing organization logo found in the owner's old portfolio. Organization identity verified visually. Not a byte-identical Blob recovery."
+  },
+  {
+    "kind": "exact-original-from-download-history",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783719266442-rnguv5.webp",
+    "source": "https://storage.nu.or.id/storage/post/16_9/mid/desain-tanpa-judul_1778513181.webp",
+    "localUrl": "/recovered-media/ipnu-ippnu-pelantikan-1.webp",
+    "sha256": "1925138f9489ee3f18afd293e1fd2470ecd817ca3570ed444b7475936b577023",
+    "blobEtag": "\"eed723764294fbfcb51bac7b3147b646\"",
+    "originalBackup": "backups/recovered-originals-2026-10-15/ipnu-ippnu-pelantikan-1.webp",
+    "note": "Original public documentation photo located through browser download history. Downloaded bytes match both size and MD5/ETag of the Blob object."
+  },
+  {
+    "kind": "exact-original-from-download-history",
+    "oldUrl": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783719305404-sdnw6g.webp",
+    "source": "https://storage.nu.or.id/storage/post/16_9/mid/desain-tanpa-judul-18_1779295714.webp",
+    "localUrl": "/recovered-media/ipnu-ippnu-pelantikan-2.webp",
+    "sha256": "3479c59c100fde5ab6286f3455641c8bac50d2f6e3df2177a0ceb3be58a0f582",
+    "blobEtag": "\"7104ed03fc113883f22ea039ca390c3e\"",
+    "originalBackup": "backups/recovered-originals-2026-10-15/ipnu-ippnu-pelantikan-2.webp",
+    "note": "Original public documentation photo located through browser download history. Downloaded bytes match both size and MD5/ETag of the Blob object."
   }
 ]

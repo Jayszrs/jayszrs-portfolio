@@ -1,2 +1,3 @@
 .vercel
 .env*
+backups/photo-source-links-*.html

@@ -1,0 +1,25 @@
+{
+  "browserCacheEntriesChecked": 54525,
+  "cacheSearchComplete": true,
+  "additionalCacheOriginals": 0,
+  "downloadsExamined": 1841,
+  "sizeMatchedDownloadRecords": 55,
+  "exactOriginalFilesRecovered": [
+    {
+      "name": "pel.webp",
+      "blobUrls": [
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783719266442-rnguv5.webp"
+      ],
+      "sha256": "1925138f9489ee3f18afd293e1fd2470ecd817ca3570ed444b7475936b577023"
+    },
+    {
+      "name": "nu.webp",
+      "blobUrls": [
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783719305404-sdnw6g.webp"
+      ],
+      "sha256": "3479c59c100fde5ab6286f3455641c8bac50d2f6e3df2177a0ceb3be58a0f582"
+    }
+  ],
+  "privateGooglePhotosViewerLinks": 29,
+  "remainingUnresolved": 202
+}

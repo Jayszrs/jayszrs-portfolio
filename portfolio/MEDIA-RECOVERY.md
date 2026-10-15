@@ -1,6 +1,6 @@
 # Media recovery: 15 October 2026
 
-Recovery is incomplete. 204 distinct media URLs in the current content still have no accessible replacement.
+Recovery is incomplete. 202 distinct media URLs in the current content still have no accessible replacement.
 
 ## Verified storage state
 
@@ -39,7 +39,7 @@ Documentation: https://vercel.com/docs/vercel-blob/usage-and-pricing#hobby
 ## Preserved evidence and next step
 
 - `../backups/blob-object-inventory-2026-10-15.json`: metadata for all 369 listed objects; no credentials.
-- `../backups/unresolved-media-2026-10-15.json`: the remaining 204 URLs and their content fields.
+- `../backups/unresolved-media-2026-10-15.json`: the remaining 202 URLs and their content fields.
 - `../backups/content-2026-10-15.json`: pre-repair content snapshot.
 - `scripts/backup-blob-readonly.cjs`: uses only the SDK's read operations. Lists by default; `--download` backs up original bytes locally with size/ETag integrity checks, resumes existing valid files, and stops at the first storage-block response.
 
@@ -74,3 +74,13 @@ Review and map verified originals to website assets before publishing. This comm
 - The official Vercel CLI download operation also returned 403. No storage, token or billing changes were performed.
 - Original CMS data was compared against the previous snapshot again: the six unrelated sections are unchanged; 67 certificates and 3 achievements remain present.
 - Published as deployment `dpl_4kCBNypcg6Kph9UgaMUvtaasG1Rq` and promoted to `jayszrs.my.id`. All three newly restored image files return HTTP 200 with matching SHA-256 checksums; the deployed client bundle contains all four source mappings. Actual Experience and Education components render the recovered sources. Production build and certificate integrity checks passed. The release was staged from individually reviewed source files, excluding backups, credentials and caches.
+
+## Third search, 15 October 2026
+
+- Browser download-history metadata identified 55 size-matched candidate downloads, including 24 direct Google Photos downloads, public documentation images, LinkedIn media and expired image-conversion downloads. File-size matches alone were treated as candidates, not restored originals.
+- Recovered two exact original WebP photos of the IPNU/IPPNU inauguration and work meeting from their public NU source URLs. Their bytes match both the size and MD5/ETag in the Blob inventory. They restore `experience.1.documentationImages.0` and `.1`, including their legacy fields. Original files were preserved in the local backup folder; CMS data was not changed.
+- Identified 29 distinct Google Photos viewer links, including some original versions before image conversion/compression. Saved a private local link list under `../backups/photo-source-links-2026-10-15.html`; it is excluded from Git and deployment. No credentials or cookies were extracted. Direct Google Photos requests redirect to `accounts.google.com` and require the owner's login.
+- Expired LinkedIn CDN URLs return 403; the public profile request returns 999. Expired image-conversion downloads return 400. These responses were not treated as recovered media.
+- Inspected 54,525 additional browser storage/cache entries, including service-worker caches, browser file-system data and blob storage across Chrome profiles and Edge. Checked image/PDF payloads against the known Blob size/ETag values and inspected ZIP payloads where present. No additional matching original was found.
+- Browser automation has no connected browser. Windows Computer Use initialization could load its package, but listing apps failed because its native pipe is unavailable. No authentication dialogs were automated and no account or browser settings were changed. The user was given the local source-link list and asked to log in manually or supply recovered original files.
+- Both documentation photos were published in deployment `dpl_btct4Dzf4wYv5twgz5QgTh2WSDwK` and promoted to `jayszrs.my.id`. Production HTTP GETs return 200 with the exact original SHA-256 values; the deployed client bundle contains both recovery mappings. The actual Experience component renders the photos. Production build and all 91 original certificate integrity checks passed; six unrelated content sections and certificate counts remain unchanged.
