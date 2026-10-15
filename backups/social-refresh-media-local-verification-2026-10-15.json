@@ -1,0 +1,179 @@
+{
+  "baseUrl": "http://localhost:3020",
+  "status": "PASS",
+  "files": [
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x236.webp",
+      "bytes": 339838,
+      "sha256": "ef10575ee7af511def4c7a44cd576d4745fab8a0cf9fd1267564ae51a1a93ee0",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x237.webp",
+      "bytes": 270378,
+      "sha256": "913423dc3247409422bad0c7b0e6cd4647540778f17ec6f7cadd61659c98fc5d",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x238.webp",
+      "bytes": 236216,
+      "sha256": "8fea27b2ecfd51de2551d89bd83b6f2c47d99a9c29d03353807884cfca3886ea",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x239.webp",
+      "bytes": 224892,
+      "sha256": "0b1f839be3a598ca884f34aa1a45388dddd0f66e73837f287e0e3015eb3c3607",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x240.webp",
+      "bytes": 319156,
+      "sha256": "4524961350352206b85fea94477fcd124ccb738fc0a5472a63d1c3d26abf484c",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p17-x241.webp",
+      "bytes": 270420,
+      "sha256": "97cd064689ce31415aa375d0fbbde32c1b7edf70778aa4fd619782a7363b0468",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p18-x247.webp",
+      "bytes": 182532,
+      "sha256": "48e190782680eae9ba93afcf643863a2fbbde041683fe332ea6941901cd21187",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p18-x248.webp",
+      "bytes": 323032,
+      "sha256": "05981b605558a08ad4c83a1cca1c584f926cadef312afdbe697d08dc20589471",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p18-x249.webp",
+      "bytes": 183426,
+      "sha256": "cc468424d2b414674bce16933e76b7d2b3ed3bd52f478eb962adb20220c846af",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p15-x1011.webp",
+      "bytes": 135878,
+      "sha256": "e29f35464410c3909d4f68e2dc22350a547a29290b04e147d4d3d8ee5abb5315",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p15-x1022.webp",
+      "bytes": 128342,
+      "sha256": "40b2dbdb8fe4e0a9cb24e539c566ae22a98deeba193f2ee67d24214559db5063",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p14-x851.webp",
+      "bytes": 266616,
+      "sha256": "63eb41c7b2a65ea23f69c6ef0ef0cb6fcacdf6ea0e6c4baaf5fd29c103a48920",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p13-x191.webp",
+      "bytes": 51116,
+      "sha256": "c203282d0deb66a61344d066a02feea602340ac410691fe25618b25b80c91dc0",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p13-x192.webp",
+      "bytes": 104222,
+      "sha256": "d444d32914da70c2ed7d65362f746e751add9922dea120c7206a9e63a4d9671f",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p15-x889.webp",
+      "bytes": 187090,
+      "sha256": "04d45e6f878759c946c6f8795e203f647eaf4cfcff3ba533d34e080a1b4f90cc",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p15-x900.webp",
+      "bytes": 76650,
+      "sha256": "8ef9f981c841796ed54bbc375d8baa71b61a5a9b9f818cac07015aff6b2919a3",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x227.webp",
+      "bytes": 206788,
+      "sha256": "c416869ae6432424ac4ed9180cead1facea72d69ea74694abdc45a7b63c82c10",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x228.webp",
+      "bytes": 164828,
+      "sha256": "c311523cf5eabfe809b9f7089af985a4c82fd8a736c22a7a136f0ed4208bf955",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x229.webp",
+      "bytes": 420298,
+      "sha256": "43f4d4ecd85d97b839ed0898a4c5761da4feb58c2135f3b6878fd0a314c815f3",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-large-p16-x230.webp",
+      "bytes": 420716,
+      "sha256": "cddb8e1f68d5780758c515fe11696fe927e970e373e88c81edcd8b7444c7ab9e",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p19-x264.webp",
+      "bytes": 94086,
+      "sha256": "6385c66b6aeaf713c3992bf661242812f9c439722a3a202a119ec5857b724afb",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p19-x265.webp",
+      "bytes": 107696,
+      "sha256": "0f1aab712005da3852f5fe136b80cefebd45b908bfabd4bd73617349105430b2",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/portfolio-archive/portfolio-july-p19-x266.webp",
+      "bytes": 113514,
+      "sha256": "ba8f2e068a8ef83ce84a2baba7ecec3265c268ec3625a5880033d77ad4cdffad",
+      "status": 200
+    },
+    {
+      "url": "/recovered-media/drive/laundryuk-dashboard-admin.png",
+      "bytes": 67087,
+      "sha256": "ba2132f14db7fc5456fef3a9f7b37799fa5b08d89fa93d4ee104c35be5dfae8b",
+      "status": 200
+    },
+    {
+      "url": "/organization-logos/ppji.png",
+      "bytes": 45559,
+      "sha256": "e9033f90a7292eaaa227824fa13f079aa9f4827498ad99314e5ee7b3f6bdee04",
+      "status": 200
+    }
+  ],
+  "ssrPages": [
+    "/pengalaman",
+    "/pendidikan",
+    "/proyek"
+  ],
+  "educationClientIncludesAllArchiveImages": true,
+  "preservedCmsSections": [
+    "profile",
+    "about",
+    "sections",
+    "pageHeroes",
+    "education",
+    "capabilities",
+    "experience",
+    "gallery",
+    "selectedDesigns",
+    "achievements",
+    "certificates",
+    "contact"
+  ],
+  "certificates": 67,
+  "achievements": 3,
+  "interactiveBrowserVerification": "Unavailable: no connected browser"
+}

@@ -2,5 +2,8 @@
 .env*
 backups/photo-source-links-*.html
 backups/connected-drive-recovery-*/
+backups/storage-audit-*/
+backups/blob-originals/
+backups/social-source-*/
 portfolio/public/recovered-media/project-reports/*.png
 portfolio/public/recovered-media/project-reports/*.jpeg

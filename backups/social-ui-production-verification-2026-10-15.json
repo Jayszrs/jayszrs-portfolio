@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "deployment": "dpl_624LJrT9dPRC7vohvCs25MPGagwH",
+  "homepageReadme": true,
+  "tiktokErrorEmbedRemoved": true,
+  "instagramProfileUiPresent": true,
+  "localTikTokIconSha256": "6f54ac8d325faacea8935bdc44cbed60206a6b408641799e5fea1cba7c1a0af7",
+  "readmeBlocks": 6,
+  "technologies": 78,
+  "calendarDays": 369,
+  "totalContributions": 848,
+  "verifiedRepositoryCount": 20,
+  "rankedRepositoryCount": 24,
+  "rankingKind": "owner-commits",
+  "criticalPdfs": [
+    {
+      "path": "/recovered-media/drive/cv-jaelani-surya-saputra.pdf",
+      "sha256": "81ed5787171b569634d2695b34fadc706f0152962ce28b3891c67fdf7c5101b3",
+      "bytes": 711860,
+      "status": 200
+    },
+    {
+      "path": "/certificates/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5.pdf",
+      "sha256": "c4b76d77e44b39c7c335382a06a6f3d7c44c3be48e334a3ff4b6bb5ee254caaa",
+      "bytes": 229947,
+      "status": 200
+    },
+    {
+      "path": "/certificates/1gdfH5zvOy54i576_f4q6Yh4eNy9ha5XN.pdf",
+      "sha256": "1c19c327e9e59f5d9be6b451782d6ffc875799e3ee5e97054e52b471ab6c81df",
+      "bytes": 1149577,
+      "status": 200
+    }
+  ],
+  "browserInteractionVerified": false
+}

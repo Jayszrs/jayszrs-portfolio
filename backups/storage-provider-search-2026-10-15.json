@@ -1,0 +1,32 @@
+{
+  "supabase": {
+    "serverCredentialConfigured": true,
+    "storageBuckets": 0,
+    "publicTables": [
+      "portfolio_data"
+    ],
+    "contentRows": 1,
+    "contentColumns": [
+      "id",
+      "data"
+    ],
+    "distinctBlobUrlReferences": 265,
+    "embeddedImageOrPdfDataUris": 0,
+    "remoteMutations": 0,
+    "credentialRole": "server-secret",
+    "rawBinaryOrBase64Candidates": 0
+  },
+  "blob": {
+    "objectsBefore": 369,
+    "objectsNow": 369,
+    "sameUrlSet": true,
+    "sameSizes": true,
+    "originalBacklog": 197,
+    "backlogObjectsStillListed": 197,
+    "authenticatedDownloadStatus": 403,
+    "listedDoesNotVerifyDownloadableBytes": true,
+    "remoteMutations": 0
+  },
+  "newOriginalFilesRecovered": 0,
+  "visibleImageBacklog": 89
+}
