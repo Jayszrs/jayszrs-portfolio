@@ -1,0 +1,11 @@
+{
+  "archive": "backups/media-recovery-2026-10-17.zip",
+  "bytes": 148290491,
+  "sha256": "270eab2c38f668dbd5ff7d88f98f2a69b5847407fdc2fba97648dae6a97f08b6",
+  "filesVerified": 431,
+  "pdfFiles": 91,
+  "imageFiles": 327,
+  "crcVerified": true,
+  "remainingUnresolvedImageUrls": 69,
+  "remoteMutations": 0
+}

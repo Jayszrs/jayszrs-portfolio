@@ -8,5 +8,6 @@ backups/social-source-*/
 backups/source-recheck-*/
 backups/pdf-verification-*/
 backups/pdf-recovery-*.zip
+backups/media-recovery-*.zip
 portfolio/public/recovered-media/project-reports/*.png
 portfolio/public/recovered-media/project-reports/*.jpeg
