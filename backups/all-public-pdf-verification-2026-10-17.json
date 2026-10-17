@@ -1,0 +1,1620 @@
+{
+  "date": "2026-10-17",
+  "baseUrl": "https://jayszrs.my.id",
+  "status": "PASS",
+  "uniquePdfs": 86,
+  "livePdfReferenceFields": 79,
+  "resolvedReferenceTargets": 79,
+  "verifiedPages": 234,
+  "files": [
+    {
+      "url": "/certificates/11HUCTuD0RSVGeiD4lEXubSUG5comdJwV.pdf",
+      "sha256": "29a2db32b1de1d645788a1fe5b04f21f84fc8a10fc00c6e381890d863298d43c",
+      "kind": "original-certificate",
+      "name": "Certificate Jaelani Surya Saputra Belajar Dasar Cloud dan Gen AI di AWS.pdf",
+      "references": [
+        {
+          "field": "certificates.38.pdfUrl",
+          "original": "/certificates/11HUCTuD0RSVGeiD4lEXubSUG5comdJwV.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 932691,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "404e0d5014a065c9c6.png",
+      "parserWarnings": "closepath with no current point\n... repeated 13 times..."
+    },
+    {
+      "url": "/certificates/11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow.pdf",
+      "sha256": "7e812e141d1efaf071b1b8851977be7aa5114bc1fab20ea0610ab7155124d899",
+      "kind": "original-certificate",
+      "name": "Certificate Jaelani Surya Saputra DevNet Associate.pdf",
+      "references": [
+        {
+          "field": "certificates.13.pdfUrl",
+          "original": "/certificates/11xsXrKX9Zk2oxxxA2Lx9-rQVxgKDmvow.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1141856,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "bfb781a818dd070ff0.png"
+    },
+    {
+      "url": "/certificates/134fEE8LabVrPXB3D8murSc9v1DieafR5.pdf",
+      "sha256": "78b35bc429e2d83c88b0f66acb064daaf2fddee47dd14a3a721a52df4e65a9e2",
+      "kind": "original-certificate",
+      "name": "Sertifikat Webinar EIGRP Fundamentals Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.64.pdfUrl",
+          "original": "/certificates/134fEE8LabVrPXB3D8murSc9v1DieafR5.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 2350072,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "ab442d0a323221373d.png"
+    },
+    {
+      "url": "/certificates/13Inyjv3i8DTKiWEjwg3GJrUWGe45Kcm5.pdf",
+      "sha256": "10cd6b13dc38eafbd82d419c8a7c41026dc6a76e866e6e52e0b617879392ff9b",
+      "kind": "original-certificate",
+      "name": "Certificate Coinvestasi Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.61.pdfUrl",
+          "original": "/certificates/13Inyjv3i8DTKiWEjwg3GJrUWGe45Kcm5.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 106460,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "64d84163e9f2c48e91.png"
+    },
+    {
+      "url": "/certificates/13LX0J9-uxPQqL22TMA05L8z61C2RhBUT.pdf",
+      "sha256": "015859ce2c8eaa1d3539ea459cb864acfcb9438363afd92aa5a7cfdda2608713",
+      "kind": "original-certificate",
+      "name": "Sertifikat Memulai Pemrograman dengan Python Dicoding  Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.44.pdfUrl",
+          "original": "/certificates/13LX0J9-uxPQqL22TMA05L8z61C2RhBUT.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 930772,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "d183fd5d545ce77516.png",
+      "parserWarnings": "closepath with no current point\n... repeated 13 times..."
+    },
+    {
+      "url": "/certificates/142DDeg7ewqnuZbx38HSg8Rv2tLHcBxxh.pdf",
+      "sha256": "a8f8d08882918b553686001edc52ce77d242f4eaf0586063902f068a145cf6e2",
+      "kind": "original-certificate",
+      "name": "Introduction to Financial Literacy Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.40.pdfUrl",
+          "original": "/certificates/142DDeg7ewqnuZbx38HSg8Rv2tLHcBxxh.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 920761,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "cae082746c10f1f27a.png",
+      "parserWarnings": "closepath with no current point\n... repeated 4 times..."
+    },
+    {
+      "url": "/certificates/14McvVNIyXVydeO9kgTjqsqVPrwDSC1Y-.pdf",
+      "sha256": "380d881b34808753d626b885ed4da45b6030f619c3ae2f3b5362e3a9b010c4f1",
+      "kind": "original-certificate",
+      "name": "Sinergi Machine Learning dan Generative AI Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.51.pdfUrl",
+          "original": "/certificates/14McvVNIyXVydeO9kgTjqsqVPrwDSC1Y-.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1500414,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "eb0e4fd98df72ad596.png"
+    },
+    {
+      "url": "/certificates/14UBoYFgKBIn9qAYyK1NiIALi48HnbREW.pdf",
+      "sha256": "f42412fcc9c723b62ec0841e2a3e8d87fc692469ce45ba67867e7af7d02a36a6",
+      "kind": "original-certificate",
+      "name": "Fortinet Certificate Introduction to the Threat Landscape 3.0.pdf",
+      "references": [
+        {
+          "field": "certificates.27.pdfUrl",
+          "original": "/certificates/14UBoYFgKBIn9qAYyK1NiIALi48HnbREW.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 176378,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "2780c64c83e2381563.png"
+    },
+    {
+      "url": "/certificates/150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb.pdf",
+      "sha256": "7e66fabe9883b644b28e5b99ed3ca64583bb0dfe11fd1e970da09aad59ba18f6",
+      "kind": "original-certificate",
+      "name": "Fortinet Certified Associate in Cybersecurity Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.28.pdfUrl",
+          "original": "/certificates/150VLpqOe_ryXyBSpUEspCvcIH7B7kKJb.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 470377,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "6f934d56c462f1a290.png"
+    },
+    {
+      "url": "/certificates/15p_Yhg--qe33Ke8WFi8jS3vYhFFW-Eq-.pdf",
+      "sha256": "34363645bdbfde3a1b7aae02e36fd9333026e366b5cbb03c606535f2e86ed50a",
+      "kind": "original-certificate",
+      "name": "CCNA- Introduction to Networks.pdf",
+      "references": [
+        {
+          "field": "certificates.2.pdfUrls.2",
+          "original": "/certificates/15p_Yhg--qe33Ke8WFi8jS3vYhFFW-Eq-.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 192062,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "8a7583f7a39c306d78.png"
+    },
+    {
+      "url": "/certificates/16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh.pdf",
+      "sha256": "70707561668337077a5c6c8f8b572802def552bb17744499adcbd5b4e67d7167",
+      "kind": "original-certificate",
+      "name": "Operating Systems Basics Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.21.pdfUrl",
+          "original": "/certificates/16XSDwjZ0JzGh7jJJU_3B8hliK6p0zZTh.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229887,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "208a9f310f261ae5fb.png"
+    },
+    {
+      "url": "/certificates/16sDKlouzxV_Kd3k466Phpav5ngp1WM5_.pdf",
+      "sha256": "676dc752c16d9e13695aad68485ad4fed44c5837b43e4a84f73236a8867810f6",
+      "kind": "original-certificate",
+      "name": "Certificate Introduction Internet of Things Cisco International Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.10.pdfUrl",
+          "original": "/certificates/16sDKlouzxV_Kd3k466Phpav5ngp1WM5_.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1101999,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "842672728f10c1dff2.png"
+    },
+    {
+      "url": "/certificates/16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u.pdf",
+      "sha256": "6f5a76634b0fa8437eb36c40ca8131daa8d2a141bbb40524266dc82517fc455c",
+      "kind": "original-certificate",
+      "name": "Certificate Intro to Data Science Update Jaelani Surya Saputa (1).pdf",
+      "references": [
+        {
+          "field": "certificates.8.pdfUrl",
+          "original": "/certificates/16yGvqmmhIeXs8g9i1Xg8nrZWExlLKD9u.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229775,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "895411386b10f3d382.png"
+    },
+    {
+      "url": "/certificates/1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA.pdf",
+      "sha256": "4f79b9e50d8fbea9d3f1f725ed034f3fa800d67804e4363b0e89d5a376eda51e",
+      "kind": "original-certificate",
+      "name": "Sertifikat_JAELANI SURYA SAPUTRA_Pemanfaatan Aplikasi Chat Bagi Wirausahawan Pemula.pdf",
+      "references": [
+        {
+          "field": "certificates.16.pdfUrl",
+          "original": "/certificates/1A1G6fwp4wlOOpzSgcQynrtHuta8aY8zA.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 151693,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "506cb4d330645ace3e.png"
+    },
+    {
+      "url": "/certificates/1ARsSX2CfUrncU7bv1gYXsqsygFWLm5k0.pdf",
+      "sha256": "9a4ce514a0be8babc191c06d1f4d4734d242fabd4758189b9066657ca6494a7b",
+      "kind": "original-certificate",
+      "name": "Certificate Belajar Fundamental Pemrosesan Data Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.37.pdfUrl",
+          "original": "/certificates/1ARsSX2CfUrncU7bv1gYXsqsygFWLm5k0.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 934825,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "8977a5f6f0c3f3dfcc.png",
+      "parserWarnings": "closepath with no current point\n... repeated 6 times..."
+    },
+    {
+      "url": "/certificates/1Aan-s86A2q22gIy0-mDStyWQLvB0CihW.pdf",
+      "sha256": "0aedae5ddcb4c1d11061cedc51e211fbee071e72338bae5bbfc6770798d48551",
+      "kind": "original-certificate",
+      "name": "metc-x-dicoding-live-2-future-with-ai-tren-dan-peluang-di-era-transformasi-digital-certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.50.pdfUrl",
+          "original": "/certificates/1Aan-s86A2q22gIy0-mDStyWQLvB0CihW.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 156806,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "e42ac5362dbc51a768.png"
+    },
+    {
+      "url": "/certificates/1BH6kRA6mPZFJUF2po8FF4y7oCDhPPwXF.pdf",
+      "sha256": "e1a7426daaeff8017612c3c65ec2d53a6ec4a7c2b077b2dffe356102ac766c75",
+      "kind": "original-certificate",
+      "name": "Belajar Fundamental Deep Learning Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.33.pdfUrl",
+          "original": "/certificates/1BH6kRA6mPZFJUF2po8FF4y7oCDhPPwXF.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 930640,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "af02fff981f7552e5a.png",
+      "parserWarnings": "closepath with no current point\n... repeated 10 times..."
+    },
+    {
+      "url": "/certificates/1BSLQLFFT752KB8OS0zmfKeYjo24EW0YL.pdf",
+      "sha256": "6a86e177d33faeb198b74330ef8548170e588873d05a6291238bb9e8719c397e",
+      "kind": "original-certificate",
+      "name": "Certificate Introduce Cyber Security Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.9.pdfUrls.0",
+          "original": "/certificates/1BSLQLFFT752KB8OS0zmfKeYjo24EW0YL.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229926,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "91fe31bb9795ba6ffa.png"
+    },
+    {
+      "url": "/certificates/1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i.pdf",
+      "sha256": "ac39028c19f83606cc1221db0640f99f18ccd33de5f1bbbfc23191cb1536657f",
+      "kind": "original-certificate",
+      "name": "Sertifikat Partisipasi Program Badan Ekraf Digital Talent 2026 Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.1.pdfUrl",
+          "original": "/certificates/1CRw5_HCoCUDE6OwxsAjM0LOvBviC_R_i.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 970152,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "ecd6221387fd5c0480.png"
+    },
+    {
+      "url": "/certificates/1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP.pdf",
+      "sha256": "150ab434435a88145021a69f22a80bcf866b488ac68023d0d6730cc6f491576b",
+      "kind": "original-certificate",
+      "name": "Technical Introduction to Cybersecurity 3.0 Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.32.pdfUrl",
+          "original": "/certificates/1Cxigk55lfWrgXsEFYRYRPBgjkIGuODzP.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 176382,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "3768f3fd157923b2f5.png"
+    },
+    {
+      "url": "/certificates/1Czg4AiYUfhQ5MJUxeaXSkBTN5U6BoUBs.pdf",
+      "sha256": "7f954586799b794607263845c1101c292610fe4cb58459e8ed336c66e403862d",
+      "kind": "original-certificate",
+      "name": "CCNA Introduction to Networks Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.2.pdfUrls.1",
+          "original": "/certificates/1Czg4AiYUfhQ5MJUxeaXSkBTN5U6BoUBs.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 216103,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "e4b4fb56f13cf2226d.png"
+    },
+    {
+      "url": "/certificates/1DYmVRRH6aAiLbj0ii9rQkGoJKV4TMI88.pdf",
+      "sha256": "8b36a2bd8e41a5568f684e82e0f871d278a59ef9aa08ce0f863436d472673120",
+      "kind": "original-certificate",
+      "name": "Sertifikat Belajar Machine Learning untuk Pemula Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.42.pdfUrl",
+          "original": "/certificates/1DYmVRRH6aAiLbj0ii9rQkGoJKV4TMI88.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 930565,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "0cbc3fbf5a29f4c29f.png",
+      "parserWarnings": "closepath with no current point\n... repeated 9 times..."
+    },
+    {
+      "url": "/certificates/1EBqbEKA4c0BlNYKcyPdmlusi_L0gAOnP.pdf",
+      "sha256": "5731bd7a5f52e4a0ab0a0cb028e1ae92a836a2780747ec2061728a81d53870ab",
+      "kind": "original-certificate",
+      "name": "Certificate Jaelani Surya Saputra Spec-Driven Development dengan Kiro.pdf",
+      "references": [
+        {
+          "field": "certificates.39.pdfUrl",
+          "original": "/certificates/1EBqbEKA4c0BlNYKcyPdmlusi_L0gAOnP.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 929592,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "ceecce68cff40ce25f.png",
+      "parserWarnings": "closepath with no current point\n... repeated 5 times..."
+    },
+    {
+      "url": "/certificates/1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X.pdf",
+      "sha256": "a9aca0292da0c0643c26264c68b98310998f3e62f4d58a1e919aa18851d02144",
+      "kind": "original-certificate",
+      "name": "CCNA Switching Routing and Wireless Essentials Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.3.pdfUrl",
+          "original": "/certificates/1F6BWD5SD_5gwd28d5u2jphHyxk60XD4X.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 198688,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "34605f37dfb8a5df56.png"
+    },
+    {
+      "url": "/certificates/1FDz_vePQ5JfXol-LqOEUEQanj5eRz2HW.pdf",
+      "sha256": "66061009a95a52a045f760eb66f1e6475b7057d5c5f68ddb5d9109535cd2f3e6",
+      "kind": "original-certificate",
+      "name": "Certificate Intro to Data Science Update Jaelani Surya Saputa.pdf",
+      "references": [
+        {
+          "field": "certificates.8.pdfUrls.0",
+          "original": "/certificates/1FDz_vePQ5JfXol-LqOEUEQanj5eRz2HW.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1178535,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "05c9fb2f8b69329fd2.png"
+    },
+    {
+      "url": "/certificates/1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal.pdf",
+      "sha256": "b40d9575583007702d1ee1021d9c46dea47157aff3a84702936b47a2969093ec",
+      "kind": "original-certificate",
+      "name": "Certificate Networking Basics Cisco International Jaelani Surya Saputra (2).pdf",
+      "references": [
+        {
+          "field": "certificates.19.pdfUrl",
+          "original": "/certificates/1FEYT3KJBwQ7qkQBfxKjYXSbp1dRsWsal.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229099,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "7304eec18bd72658ca.png"
+    },
+    {
+      "url": "/certificates/1FpVgoAfrmjCKkPrR7OeYc43pdPvi9RLE.pdf",
+      "sha256": "0075ce95a5955251f87e5991847c4e2d36830770b2c6cad9f16a0375513c065d",
+      "kind": "original-certificate",
+      "name": "DevNet Associate Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.13.pdfUrls.0",
+          "original": "/certificates/1FpVgoAfrmjCKkPrR7OeYc43pdPvi9RLE.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 189244,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "bfda5d9531a7bdd154.png"
+    },
+    {
+      "url": "/certificates/1Hz4XnfTdew8AYmcJVXW8pajlWGgUW42s.pdf",
+      "sha256": "db4de387463787a5bececbfd6cc332ca5d246206a2f388aab7b91f6ee4d2002a",
+      "kind": "original-certificate",
+      "name": "Sertifikat_Magang_Video Editor_Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.63.pdfUrl",
+          "original": "/certificates/1Hz4XnfTdew8AYmcJVXW8pajlWGgUW42s.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 419543,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "8d491f7bc89d02b704.png"
+    },
+    {
+      "url": "/certificates/1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX.pdf",
+      "sha256": "665a9be88e79680aa470fda68b57890c60602ddac266aab114974f854d3e1d8e",
+      "kind": "original-certificate",
+      "name": "Computer Hardware Basics Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.23.pdfUrl",
+          "original": "/certificates/1I1iwp7KmkdhpAvZh9x8p_aMz1OVttGMX.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229323,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "74b8c599e5d7e45152.png"
+    },
+    {
+      "url": "/certificates/1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9.pdf",
+      "sha256": "dfd5469b0df27075fd7d6fb19a674d8e4daa47505c24bbdc75d090bfcf19e352",
+      "kind": "original-certificate",
+      "name": "Sertifikat Peserta Literasi DigitalNOMOR _ 33523729_23-32325_LITDIG_2024.pdf",
+      "references": [
+        {
+          "field": "certificates.14.pdfUrl",
+          "original": "/certificates/1KfCxagpBFC2jug6a0YBPYgii9BMn_7U9.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 434055,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "75cd171d46c1a354a1.png"
+    },
+    {
+      "url": "/certificates/1MNOC2mD27PwNM4ZyonQszqd-s7WvP5_B.pdf",
+      "sha256": "fc5c08f4a51fcc0a454b7e9a4a41f10e6f3c7f2f049a2b2d84c841de4124eeb3",
+      "kind": "original-certificate",
+      "name": "CCNA - Introduction to Networks Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.2.pdfUrls.0",
+          "original": "/certificates/1MNOC2mD27PwNM4ZyonQszqd-s7WvP5_B.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 196540,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "a31ea0a826aa90aaa1.png"
+    },
+    {
+      "url": "/certificates/1McDBK56Ozpeavswuoi3XiPsNMR20pKZU.pdf",
+      "sha256": "a75cd15bcb25f42052c13074d02c79ab1d967d453c753465b85f683eb53bdd0d",
+      "kind": "original-certificate",
+      "name": "Certificate Operating Systems Basics Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.21.pdfUrls.0",
+          "original": "/certificates/1McDBK56Ozpeavswuoi3XiPsNMR20pKZU.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1308376,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "e835a284df54d5e913.png"
+    },
+    {
+      "url": "/certificates/1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab.pdf",
+      "sha256": "1332a407080edff320f8a3e8b2f254ad52437c6de6b7341387b7574e4d3d0b85",
+      "kind": "original-certificate",
+      "name": "Certificate of Competency With AI on Jetson Nano Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.20.pdfUrl",
+          "original": "/certificates/1O9O_NbKzHDR4ZiCwKsT-EBA4lR672Nab.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 69725,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "578ae27b4abd51911a.png"
+    },
+    {
+      "url": "/certificates/1OhR_wkzHasdpCF_lKjrM9Q424qAKE--9.pdf",
+      "sha256": "85882b4233ffc3af547b298f0b1127a13d3827c07ed7d8a26ba20e5e40204d92",
+      "kind": "original-certificate",
+      "name": "Certificate Discovering Entrepreneurship Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.5.pdfUrls.0",
+          "original": "/certificates/1OhR_wkzHasdpCF_lKjrM9Q424qAKE--9.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1160276,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "3e1938b824024620fd.png"
+    },
+    {
+      "url": "/certificates/1PEYNNLhnZBkxLlo_EnB3AKQER1K40VNl.pdf",
+      "sha256": "e2cca37c5b19b6910c1b6bece7345d98737bc62a633c96c634fffd5c1f45fd29",
+      "kind": "original-certificate",
+      "name": "Certificate As Participant Scientic Poster Engineering Competition .pdf",
+      "references": [
+        {
+          "field": "achievements.2.pdfUrl",
+          "original": "/certificates/1PEYNNLhnZBkxLlo_EnB3AKQER1K40VNl.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1605632,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "1a5c92a139d79a2044.png"
+    },
+    {
+      "url": "/certificates/1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl.pdf",
+      "sha256": "6f39d8ec68198245ef8b98a865a652f78a054d0fe16cc57a725baaa490213e9a",
+      "kind": "original-certificate",
+      "name": "Certificate AI Fundamentals Foundations for Understanding AI IBM.pdf",
+      "references": [
+        {
+          "field": "certificates.6.pdfUrl",
+          "original": "/certificates/1PKKEeIm2TA1Y--uuOQPOszDkTV04-cSl.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 66054,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "24c217e542e1dab9cc.png"
+    },
+    {
+      "url": "/certificates/1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m.pdf",
+      "sha256": "c3fd9dc880727a35284a025968428177343d03db97948f598bbf565850965a27",
+      "kind": "original-certificate",
+      "name": "Getting Started in Cybersecurity 3.0 Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.30.pdfUrl",
+          "original": "/certificates/1QpT7DEVbD0AAh0vxEMBcFfQUeNWYHH8m.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 176370,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "3c425eb7779beb70dc.png"
+    },
+    {
+      "url": "/certificates/1RmPDPLRTMc7P4TAMPpjcGjgmIsKjgyNN.pdf",
+      "sha256": "b2d8a6fc284da28b1efe80e9250cb1e561eaa717ae1050a6dedb67f2b0100fb8",
+      "kind": "original-certificate",
+      "name": "Certificate Networking Basics Cisco International Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.19.pdfUrls.0",
+          "original": "/certificates/1RmPDPLRTMc7P4TAMPpjcGjgmIsKjgyNN.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1182806,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "f9ce5070f9fc183fd2.png"
+    },
+    {
+      "url": "/certificates/1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj.pdf",
+      "sha256": "31cf3a442fd5c03920377620f3ac3020e2fa171ff594fa59f2c4b4ac294ddfbf",
+      "kind": "original-certificate",
+      "name": "Sertifikat Belajar Strategi Pengembangan Diri Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.43.pdfUrl",
+          "original": "/certificates/1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 921826,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "6405586a4ef65f6a79.png",
+      "parserWarnings": "closepath with no current point\n... repeated 8 times..."
+    },
+    {
+      "url": "/certificates/1SvjKjy0UT9PsPDY1Q03O1fkmE4gfoCuC.pdf",
+      "sha256": "3edb532cf4bb6ae266cb03a4dc89ef346ba428fa77fb878cbeba04daad0305c1",
+      "kind": "original-certificate",
+      "name": "Certificate AI Praktis untuk Produktivitas Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.35.pdfUrl",
+          "original": "/certificates/1SvjKjy0UT9PsPDY1Q03O1fkmE4gfoCuC.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 923522,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "188979a76c64cf02df.png",
+      "parserWarnings": "closepath with no current point\n... repeated 6 times..."
+    },
+    {
+      "url": "/certificates/1T3tIk0z2xr1VL2dF9EpVrpczqclSvnkj.pdf",
+      "sha256": "6374021e83b7b9c2cc3ae3c06779a14f936ce9087514119040e18f06c921aa5b",
+      "kind": "original-certificate",
+      "name": "Certificate Crew Workshop Data Engineer Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.65.pdfUrl",
+          "original": "/certificates/1T3tIk0z2xr1VL2dF9EpVrpczqclSvnkj.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 805058,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "58d5647fe25354a546.png"
+    },
+    {
+      "url": "/certificates/1Tvuc-_aWzCNu5V0_w-uoaDDuVu5W0d9O.pdf",
+      "sha256": "1e53a7c30a552b530fefe8893bf35db4b4cdff9db267220b628ef480c40b632b",
+      "kind": "original-certificate",
+      "name": "Certificate IT Essentials Intenational Cisco Jaelani Surya Saputra (1).pdf",
+      "references": [
+        {
+          "field": "certificates.12.pdfUrls.0",
+          "original": "/certificates/1Tvuc-_aWzCNu5V0_w-uoaDDuVu5W0d9O.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1156332,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "387e1362e0e9200e71.png"
+    },
+    {
+      "url": "/certificates/1U6JXPU6frG65960FfFryqCl6q9qHI9i-.pdf",
+      "sha256": "521d864962f328222d0521742f620793415f7763326bcc2e698f658cc86743fb",
+      "kind": "original-certificate",
+      "name": "JAELANI SURYA SAPUTRA_Database_Design_–_English_Award_Of_Completion_on_the_5th_of_March__2026 (1).pdf",
+      "references": [
+        {
+          "field": "certificates.22.pdfUrls.0",
+          "original": "/certificates/1U6JXPU6frG65960FfFryqCl6q9qHI9i-.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 15440435,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "ecd90c3c4f6215ff7c.png"
+    },
+    {
+      "url": "/certificates/1UQBjCN5jo7_WPeGo6xc6XfpysapG5hj8.pdf",
+      "sha256": "8355f2e1e4715b88afdd2123ade66eb51fd0cf17ab5adcc4df410933fc1b59d3",
+      "kind": "original-certificate",
+      "name": "Sertifikat Level Dasar & Pemula AWS AI Academy 2026 Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.53.pdfUrl",
+          "original": "/certificates/1UQBjCN5jo7_WPeGo6xc6XfpysapG5hj8.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1210254,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "f75035a7ae15a38057.png"
+    },
+    {
+      "url": "/certificates/1Vw1yRrBVhk7d2KRgrXRAmvzL2IGFxrRR.pdf",
+      "sha256": "9e7583b4e8d9956307cf79f115d06465f20f5b1529b788fd8750b135dc74a1c4",
+      "kind": "original-certificate",
+      "name": "DevCoach 233 Devops Code is Not Enough Introduction To The Art Of System Design Certificate",
+      "references": [
+        {
+          "field": "certificates.45.pdfUrl",
+          "original": "/certificates/1Vw1yRrBVhk7d2KRgrXRAmvzL2IGFxrRR.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 156043,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "af284708dd93cf316a.png",
+      "parserWarnings": "invalid character in hex string\n... repeated 92 times..."
+    },
+    {
+      "url": "/certificates/1W48hsS6eo5TauE0G6D3dC2ZTT3ZNqacL.pdf",
+      "sha256": "3fcdcf6a64bdc31468931482d5b4bec287f1c21fe26f2e7e881695f2a02c61a0",
+      "kind": "original-certificate",
+      "name": "ComputerHardwareBasics Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.23.pdfUrls.0",
+          "original": "/certificates/1W48hsS6eo5TauE0G6D3dC2ZTT3ZNqacL.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1272482,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "1cea6edd8dd1ebf285.png"
+    },
+    {
+      "url": "/certificates/1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv.pdf",
+      "sha256": "de9a244701043176c3b0fa058b16c33c550c10d437bef206f12fb7d9d5c9c1a5",
+      "kind": "original-certificate",
+      "name": "C++ Essentials 1 Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.4.pdfUrl",
+          "original": "/certificates/1W8B-m_IJrPyW3P8Aw5cGCKrXz_OnjcGv.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 235001,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "09687ad61e702d08e7.png"
+    },
+    {
+      "url": "/certificates/1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ.pdf",
+      "sha256": "a895b9d446915e8a9b8f8068108e234f8ef84e452510e1654c4ebe96e6d8ebed",
+      "kind": "original-certificate",
+      "name": "Sertifikat Kelulusan Pelatihan Productivity with Al Bootcamp pada Program Badan Ekraf Digital Talent 2026 Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.0.pdfUrl",
+          "original": "/certificates/1WDPWtdSMOb31biiXILWsl_eFoV4EfkSQ.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 854503,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "eb5908caca786a64a9.png"
+    },
+    {
+      "url": "/certificates/1Wkw4gAL2UC7kcTz1XMrI0eu8AqSswqBl.pdf",
+      "sha256": "c8409225900b282d0649be7006661f84a79690d68d60bc33d56f97e0c05d4eb3",
+      "kind": "original-certificate",
+      "name": "CCNASRWE Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.3.pdfUrls.1",
+          "original": "/certificates/1Wkw4gAL2UC7kcTz1XMrI0eu8AqSswqBl.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1170302,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "600fc5bcc63f1f95c6.png"
+    },
+    {
+      "url": "/certificates/1ZVFiQyFz8RbqJKD15fXkwUPX-dV_jUj4.pdf",
+      "sha256": "172a38cb658fa1e800b4c3e873d39753ebe66509fd927e1f91c608eb19d96598",
+      "kind": "original-certificate",
+      "name": "Membangun Aplikasi Gen AI dengan Microsoft Azure Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.41.pdfUrl",
+          "original": "/certificates/1ZVFiQyFz8RbqJKD15fXkwUPX-dV_jUj4.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 933267,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "9366c647a84c2a4a89.png",
+      "parserWarnings": "closepath with no current point\n... repeated 10 times..."
+    },
+    {
+      "url": "/certificates/1ZrJSbQoI7sVXNJf9pVKKz7RwRdwU30Wc.pdf",
+      "sha256": "d59c1468d9e97b573848584665c11dcee88acbdf15be9d4232f9f22ddb4b180f",
+      "kind": "original-certificate",
+      "name": "IDCamp Alumni Dialogue #2 - Effective Communication in a Hybrid & Digital World Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.48.pdfUrl",
+          "original": "/certificates/1ZrJSbQoI7sVXNJf9pVKKz7RwRdwU30Wc.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 156662,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "765b745569a85982b3.png"
+    },
+    {
+      "url": "/certificates/1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-.pdf",
+      "sha256": "ca884cf4fb3d69dfdd7dfe2a3dbab5bd35d10662b2a6ae379e5e84504d35f3c1",
+      "kind": "original-certificate",
+      "name": "Sertifikat_JAELANI SURYA SAPUTRA_Pengenalan Produk Digital dan Desain Grafis Bagi Angkatan Kerja Muda.pdf",
+      "references": [
+        {
+          "field": "certificates.18.pdfUrl",
+          "original": "/certificates/1bfscLiuSj5i8JeoyZTHVCl4js1hMoYT-.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 192677,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "702ac08ec5e736c1e5.png"
+    },
+    {
+      "url": "/certificates/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5.pdf",
+      "sha256": "c4b76d77e44b39c7c335382a06a6f3d7c44c3be48e334a3ff4b6bb5ee254caaa",
+      "kind": "original-certificate",
+      "name": "Ethical Hacker Certificate International Cisco Jaelani Surya Saputra (1).pdf",
+      "references": [
+        {
+          "field": "certificates.25.pdfUrl",
+          "original": "/certificates/1cGI6koOofmvEb3yYPiiDhea-EBeQPLQ5.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229947,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "bf28b2c130b3680fba.png"
+    },
+    {
+      "url": "/certificates/1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL.pdf",
+      "sha256": "b2ef9abfac3089914d015102ba2bdbaa82871459e3957c0b8b40e10d3acae493",
+      "kind": "original-certificate",
+      "name": "JAELANI SURYA SAPUTRA_Database_Design_–_English_Award_Of_Completion_on_the_5th_of_March__2026.pdf",
+      "references": [
+        {
+          "field": "certificates.22.pdfUrl",
+          "original": "/certificates/1cafZRDeEc1wCejTHmrMA9oBPg_IwdEcL.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 15361726,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "c49b4212745821a29d.png"
+    },
+    {
+      "url": "/certificates/1eJO6Dl4tuSIXMM36VBKyt7fS6SLuizXb.pdf",
+      "sha256": "a81681c72f649d01372a14c13b90595c7868096199dfbe6dc3396b9d4abbf67b",
+      "kind": "original-certificate",
+      "name": "Certificate of Training Organization Jae.pdf",
+      "references": [
+        {
+          "field": "certificates.66.pdfUrl",
+          "original": "/certificates/1eJO6Dl4tuSIXMM36VBKyt7fS6SLuizXb.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 601349,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "48b8ada21cfdf0b884.png"
+    },
+    {
+      "url": "/certificates/1fDHv_N4yGrrQyTLtu3iYulL5v0DZck4-.pdf",
+      "sha256": "8ec4660d1ee358b66741c71f29e21456aa7ad9ea80f6b197ffec238f631388e3",
+      "kind": "original-certificate",
+      "name": "DevCoach 239 Hermes Jangan Cuma Pakai Chatbot Saatnya Punya Hermes Agent Sendiri Certificate.pdf",
+      "references": [
+        {
+          "field": "certificates.47.pdfUrl",
+          "original": "/certificates/1fDHv_N4yGrrQyTLtu3iYulL5v0DZck4-.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 156874,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "6bef49864b8b458265.png",
+      "parserWarnings": "invalid character in hex string\n... repeated 101 times..."
+    },
+    {
+      "url": "/certificates/1gdfH5zvOy54i576_f4q6Yh4eNy9ha5XN.pdf",
+      "sha256": "1c19c327e9e59f5d9be6b451782d6ffc875799e3ee5e97054e52b471ab6c81df",
+      "kind": "original-certificate",
+      "name": "Ethical Hacker Certificate International Cisco Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.25.pdfUrls.0",
+          "original": "/certificates/1gdfH5zvOy54i576_f4q6Yh4eNy9ha5XN.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1149577,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "ab67ddca687fa57728.png"
+    },
+    {
+      "url": "/certificates/1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn.pdf",
+      "sha256": "64a8b8d9af5d80c3f6a366a15bbabb0a9212f93aad3bbd20d99fe2c79b0bf56d",
+      "kind": "original-certificate",
+      "name": "Secure Wireless LAN 7.4 Administrator Self-Paced Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.31.pdfUrl",
+          "original": "/certificates/1hGDUK30LlcgcaNEkqDAULTbYPCll5-fn.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 176399,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "62315a4af1b1fcc676.png"
+    },
+    {
+      "url": "/certificates/1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg.pdf",
+      "sha256": "2d9d4125afac4ac78da8630165b540bf180d76d776bb4525bf11cf798399d668",
+      "kind": "original-certificate",
+      "name": "Certificate Introduce Cyber Security Jaelani Surya Saputra (1).pdf",
+      "references": [
+        {
+          "field": "certificates.9.pdfUrl",
+          "original": "/certificates/1hXueS48aO-lB3TQZ6rylcIAVEg4T9Hjg.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1094941,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "786e3a5471ebb0b81f.png"
+    },
+    {
+      "url": "/certificates/1kCLyIUl2y7ZZnQVlrqlCRM8extDQAkhK.pdf",
+      "sha256": "91dbbd83a8a681b2a20b4bf73599c9d71b184cbbe93aab97bffde0d3af062d21",
+      "kind": "original-certificate",
+      "name": "Certificat Cisco International Endpoint Security Jaelani Surya Saputra .pdf",
+      "references": [
+        {
+          "field": "certificates.24.pdfUrls.0",
+          "original": "/certificates/1kCLyIUl2y7ZZnQVlrqlCRM8extDQAkhK.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1303755,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "b28d7287ad9aa2b036.png"
+    },
+    {
+      "url": "/certificates/1ln7crail9Iq3LL2STEyVX9E6A709MhYH.pdf",
+      "sha256": "8b1e6d5e96a27ed14b0f647c17ea6d0221483e367f04326f8b95c0adb135a5d7",
+      "kind": "original-certificate",
+      "name": "Certificate IT Essentials Intenational Cisco Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.12.pdfUrl",
+          "original": "/certificates/1ln7crail9Iq3LL2STEyVX9E6A709MhYH.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 217652,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "8310c423a469926de3.png"
+    },
+    {
+      "url": "/certificates/1m4yANA8aJS-zFq2XfWK92Kj1j-QA7xIo.pdf",
+      "sha256": "d1047ddbdfd493fc835261d0d98c0e151878e15526e6cd3c2be204923168578c",
+      "kind": "original-certificate",
+      "name": "METC Soft Skill Series #3 - Mindset on Point Cara Berpikir yang Dicari di Dunia Kerja.pdf",
+      "references": [
+        {
+          "field": "certificates.49.pdfUrl",
+          "original": "/certificates/1m4yANA8aJS-zFq2XfWK92Kj1j-QA7xIo.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 156765,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "53ae77fa6fd186b0c9.png",
+      "parserWarnings": "invalid character in hex string\n... repeated 59 times..."
+    },
+    {
+      "url": "/certificates/1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6.pdf",
+      "sha256": "e402718ee54f1f66d9496738e244c760de2b3a4b587a605144d74652018bd5e2",
+      "kind": "original-certificate",
+      "name": "Sertifikat_JAELANI SURYA SAPUTRA_Operator Komputer Madya.pdf",
+      "references": [
+        {
+          "field": "certificates.15.pdfUrl",
+          "original": "/certificates/1nBQ5evKRc1F6oCHuHiOyOaqIDAlu6qn6.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 283730,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "c1f950c4dbc68d84a3.png"
+    },
+    {
+      "url": "/certificates/1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH.pdf",
+      "sha256": "e5d869acf5779004042c5460c84b52620974d529538ba756eac9f90454a16b83",
+      "kind": "original-certificate",
+      "name": "FortiGate 7.6 Operator Self-Paced Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.26.pdfUrl",
+          "original": "/certificates/1no1jn13yVlx6iGlF6d4ZCb_GgynxUfgH.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 176368,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "b9203f79c284bb0bbd.png"
+    },
+    {
+      "url": "/certificates/1oWqB85zhZjkCDagq7wjxjSUEhJEhjrDE.pdf",
+      "sha256": "9c7e4acd4fc9cddb4df31ab90ef56022f7b5fee221078d01af732eff1b6fe050",
+      "kind": "original-certificate",
+      "name": "Certificate Belajar Dasar AI Jaelani Surya Saputra Dicoding.pdf",
+      "references": [
+        {
+          "field": "certificates.36.pdfUrl",
+          "original": "/certificates/1oWqB85zhZjkCDagq7wjxjSUEhJEhjrDE.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 939107,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "48b19d5869236552b6.png",
+      "parserWarnings": "closepath with no current point\n... repeated 5 times..."
+    },
+    {
+      "url": "/certificates/1qd3SEsyBqIMn2INj7I45_hrcNa9LFpic.pdf",
+      "sha256": "86a5ce98c2f79d46fa541eeb6f3f9dca3f512fe60a9bd5bc8ae374831683ace7",
+      "kind": "original-certificate",
+      "name": "Belajar Penerapan Data Science dengan Microsoft Fabric Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.34.pdfUrl",
+          "original": "/certificates/1qd3SEsyBqIMn2INj7I45_hrcNa9LFpic.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 931321,
+      "pages": 3,
+      "contentType": "application/pdf",
+      "thumbnail": "d3ffb7183b18073001.png",
+      "parserWarnings": "closepath with no current point\n... repeated 8 times..."
+    },
+    {
+      "url": "/certificates/1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx.pdf",
+      "sha256": "e2d154907ef1dd61642fd83408756d9ba7e2bf7c2473eaae424202436fef0a79",
+      "kind": "original-certificate",
+      "name": "Fortinet Certified Fundamentals in Cybersecurity Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.29.pdfUrl",
+          "original": "/certificates/1r0yjK3ZmpDq_myrdDM1NfMZ_k8B_jODx.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 474948,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "87edf3891cd989333a.png"
+    },
+    {
+      "url": "/certificates/1r5LFRkpy5JnaflByQICYBq486R3yFBeY.pdf",
+      "sha256": "8363a5e92774f20b3a5e36ee4c4eeeb8ec526b29376698f2f6379f7332a8390d",
+      "kind": "original-certificate",
+      "name": "Certificate Juara 3 Lomba Poster Design Tingkat Nasional Jaelani Surya Saputra Insyfest.pdf",
+      "references": [
+        {
+          "field": "achievements.0.pdfUrl",
+          "original": "/certificates/1r5LFRkpy5JnaflByQICYBq486R3yFBeY.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 941646,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "7c41dd912e40400ba5.png"
+    },
+    {
+      "url": "/certificates/1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__.pdf",
+      "sha256": "51dc697cd4d3e0285a262ff73616b157cae3bfba5c5130f37f768f63ef91860a",
+      "kind": "original-certificate",
+      "name": "CCNA - Introduction to Networks Certificate Jaelani Surya Saputra (1).pdf",
+      "references": [
+        {
+          "field": "certificates.2.pdfUrl",
+          "original": "/certificates/1s1iGtg-dp4LWcIkdMvSm5lRNiTJt8G__.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1139472,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "477b58caafce7477d8.png"
+    },
+    {
+      "url": "/certificates/1sbHGcf2hd3QYnwtz_SNBb0BxbVQWBTxH.pdf",
+      "sha256": "223096bf8a8453b3e60f35ef9a833aa843a28bb46be4aa8f40c28eb7d65dfc09",
+      "kind": "original-certificate",
+      "name": "Certificate Introduction Internet of Things Cisco International Jaelani Surya Saputra (1).pdf",
+      "references": [
+        {
+          "field": "certificates.10.pdfUrls.0",
+          "original": "/certificates/1sbHGcf2hd3QYnwtz_SNBb0BxbVQWBTxH.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 230056,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "2aef6149931d6ec25c.png"
+    },
+    {
+      "url": "/certificates/1u4zFky_rQ-NYuFfW_fnGT0TzIjMhOcnh.pdf",
+      "sha256": "e2b7e2719ced53288f933a3792cd8b1e109f41d1ee7e2fcb077a9ec1afe7b7cf",
+      "kind": "original-certificate",
+      "name": "virtual-roadshow-metc-x-startup-bandung-menerapkan-data-science-untuk-solusi-model-ai-secara-end-to-end-certificate.pdf",
+      "references": [
+        {
+          "field": "certificates.52.pdfUrls.0",
+          "original": "/certificates/1u4zFky_rQ-NYuFfW_fnGT0TzIjMhOcnh.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 156584,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "57dff34e66ca752302.png",
+      "parserWarnings": "syntax error: invalid key in dict\ncannot load object (11 0 R) into cache\nsyntax error: invalid key in dict\ncannot load object (11 0 R) into cache"
+    },
+    {
+      "url": "/certificates/1u9A8QlykIQFi3hC975wvpw6caxi3MXZH.pdf",
+      "sha256": "ef4923360d18c25204be32346ff8b69558d0750f25205a9afd7957a680c22443",
+      "kind": "original-certificate",
+      "name": "Discovering Entrepreneurship Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.5.pdfUrl",
+          "original": "/certificates/1u9A8QlykIQFi3hC975wvpw6caxi3MXZH.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229705,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "e2013592cc1c30e1fe.png"
+    },
+    {
+      "url": "/certificates/1vJF41Aqt3JyonlnBqHWylfKPa3XSICgI.pdf",
+      "sha256": "e80726215abea55479f23e4d889d2bb5f5c2b3c1f137267be6185a6b30e5876e",
+      "kind": "original-certificate",
+      "name": "DevCoach 238 - Mengenal RAG Dari Konsep ke Implementasi Pertamamu.pdf",
+      "references": [
+        {
+          "field": "certificates.46.pdfUrl",
+          "original": "/certificates/1vJF41Aqt3JyonlnBqHWylfKPa3XSICgI.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 157277,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "b6f795284d823bd43e.png",
+      "parserWarnings": "invalid character in hex string\n... repeated 298 times..."
+    },
+    {
+      "url": "/certificates/1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC.pdf",
+      "sha256": "310d72cc016a7d1c06047daf2286822d1f13dff8faa20dfade4a2c346c9356ed",
+      "kind": "original-certificate",
+      "name": "Sertifikat_JAELANI SURYA SAPUTRA_Pemasaran Digital Dasar.pdf",
+      "references": [
+        {
+          "field": "certificates.17.pdfUrl",
+          "original": "/certificates/1vKSBN6OeX1TxIG9NoaFhWH3NJgtBsunC.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 253488,
+      "pages": 2,
+      "contentType": "application/pdf",
+      "thumbnail": "187c9e071970f3b137.png"
+    },
+    {
+      "url": "/certificates/1vdUq9sG9fqCtYTLq9MrUa-fBhVS1TceW.pdf",
+      "sha256": "e2b7e2719ced53288f933a3792cd8b1e109f41d1ee7e2fcb077a9ec1afe7b7cf",
+      "kind": "original-certificate",
+      "name": "Virtual Roadshow METC x Startup Bandung Menerapkan Data Science untuk Solusi Model Al secara End to End.pdf",
+      "references": [
+        {
+          "field": "certificates.52.pdfUrl",
+          "original": "/certificates/1vdUq9sG9fqCtYTLq9MrUa-fBhVS1TceW.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 156584,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "c321752603ec64468b.png",
+      "parserWarnings": "syntax error: invalid key in dict\ncannot load object (11 0 R) into cache\nsyntax error: invalid key in dict\ncannot load object (11 0 R) into cache"
+    },
+    {
+      "url": "/certificates/1yi362fAICMwf5aktXfFNV7wgp43n7XN3.pdf",
+      "sha256": "a122a4113c51675e4df8b0a567b5e839dff1ad514df4916b0b701425e5ea8cc9",
+      "kind": "original-certificate",
+      "name": "CCNA Switching Routing and Wireless Essentials Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.3.pdfUrls.0",
+          "original": "/certificates/1yi362fAICMwf5aktXfFNV7wgp43n7XN3.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 245017,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "5fcc76b545b0f64bd5.png"
+    },
+    {
+      "url": "/certificates/1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr.pdf",
+      "sha256": "9f74454b9d7c7b962b897c4de3b07b313eaae7aee122060fcd40812db1fb6bd8",
+      "kind": "original-certificate",
+      "name": "Endpoint Security Certificate Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.24.pdfUrl",
+          "original": "/certificates/1zDHaaVSYWm4SMukkA6RZBvq6YLUiIeIr.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 229260,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "994d85f4447eeff992.png"
+    },
+    {
+      "url": "/certificates/1za5f5jPgYX92RGi3qjXcE7KsbFGiMZ3L.pdf",
+      "sha256": "f689de786071154db7cc33083fd3142f56ec210ba1a46a7649380534e32390ed",
+      "kind": "original-certificate",
+      "name": "Certificate C++ Essentials 1 Jaelani Surya Saputra.pdf",
+      "references": [
+        {
+          "field": "certificates.4.pdfUrls.0",
+          "original": "/certificates/1za5f5jPgYX92RGi3qjXcE7KsbFGiMZ3L.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1167651,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "8c7af390d681910dce.png"
+    },
+    {
+      "url": "/project-documents/budidaya-uang-beranda.pdf",
+      "sha256": "1d60e2c897cf3a8b420122e0f363220653dfc4087466b594408931f6071351e2",
+      "kind": "Preview dari ekspor gambar Figma",
+      "name": "Preview PDF beranda Budidaya Uang",
+      "references": [],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 130324,
+      "pages": 1,
+      "contentType": "application/pdf",
+      "thumbnail": "24f4c86f073ef6975f.png"
+    },
+    {
+      "url": "/project-documents/canva-proj-1783999146468-3wdg.pdf",
+      "sha256": "50a230804e7c29a6a3c575fabd87f3cc1a07171e07898e171d3c57ee81ae26ff",
+      "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+      "name": "PDF preview ? Presentasi Lomba Poster INSYFEST Jaelani Surya Saputra ",
+      "references": [],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 530190,
+      "pages": 9,
+      "contentType": "application/pdf",
+      "thumbnail": "cdc974731e83fa2ed1.png"
+    },
+    {
+      "url": "/project-documents/canva-proj-1783999625735-wfz5.pdf",
+      "sha256": "cbdae83cc9abf44459dc8a82fa250982b61ced56ba422e943a2c67fc52850c3e",
+      "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+      "name": "PDF preview ? Presentation THE 7TH WINACTION â€“ POSTER ENGINEERING - Jaelani Surya Saputra",
+      "references": [],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 797395,
+      "pages": 10,
+      "contentType": "application/pdf",
+      "thumbnail": "17380479af913b9a1d.png"
+    },
+    {
+      "url": "/project-documents/canva-proj-1784098734630-0vg4.pdf",
+      "sha256": "e35dbab49e9bd84bf553ca7447b381eb3a902c76e6ab7341ca816a9c0bd406de",
+      "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+      "name": "PDF preview ? Pitch Deck Desain Logo PRABANGKARA HARMONI IPNU IPPNU Kota Bekasi",
+      "references": [],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 1794321,
+      "pages": 16,
+      "contentType": "application/pdf",
+      "thumbnail": "324c9387392aee58dd.png"
+    },
+    {
+      "url": "/project-documents/canva-proj-1784099379544-nh9n.pdf",
+      "sha256": "56bfe14d3b3b881eb12bf1672294cbfb093dd4e9facd200acafd8a818a71a543",
+      "kind": "Preview dari halaman Canva; resolusi penuh di presentasi sumber",
+      "name": "PDF preview ? Porject UAS Kelompok 8 Keamanan Siber Materi Analisis Keamanan Sistem Berbasis SIEM terhadap Serangan Web Application",
+      "references": [],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 321235,
+      "pages": 10,
+      "contentType": "application/pdf",
+      "thumbnail": "7883072f45bc6d3c1f.png"
+    },
+    {
+      "url": "/project-documents/proyek-buskita.pdf",
+      "sha256": "2c94d5d269966d5b8cf8ef2482de5904e15b0068d5a38674f430fdd16a4598a1",
+      "kind": "Ekspor PDF dari dokumen sumber",
+      "name": "Makalah lengkap ? UI UX Designer Mobile Application BisKita TransPatriot",
+      "references": [],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 13086360,
+      "pages": 43,
+      "contentType": "application/pdf",
+      "thumbnail": "b3de13a48dd8bcc88c.png"
+    },
+    {
+      "url": "/project-documents/proyek-restoran.pdf",
+      "sha256": "4b804f19ae941c1bb5ba9d330df5bba873ec48b02fed9adbba1d0311c3dd4962",
+      "kind": "Ekspor PDF dari dokumen sumber",
+      "name": "Makalah lengkap ? Web Point Of Sale Kasir Restoran & Jus",
+      "references": [],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 5271415,
+      "pages": 37,
+      "contentType": "application/pdf",
+      "thumbnail": "610dff81028a0d898a.png"
+    },
+    {
+      "url": "/recovered-media/drive/cv-jaelani-surya-saputra.pdf",
+      "sha256": "81ed5787171b569634d2695b34fadc706f0152962ce28b3891c67fdf7c5101b3",
+      "kind": "original-recovery",
+      "name": "cv-jaelani-surya-saputra.pdf",
+      "references": [
+        {
+          "field": "profile.cvUrl",
+          "original": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784282088595-3h44a4.pdf"
+        }
+      ],
+      "status": "PASS",
+      "httpStatus": 200,
+      "bytes": 711860,
+      "pages": 4,
+      "contentType": "application/pdf",
+      "thumbnail": "4230ea407a1829d381.png"
+    }
+  ],
+  "failures": [],
+  "remoteMutations": 0,
+  "originalSourcePdfs": 79,
+  "additionalProjectPdfs": 7,
+  "parserWarnings": [
+    {
+      "url": "/certificates/11HUCTuD0RSVGeiD4lEXubSUG5comdJwV.pdf",
+      "warning": "closepath with no current point\n... repeated 13 times..."
+    },
+    {
+      "url": "/certificates/13LX0J9-uxPQqL22TMA05L8z61C2RhBUT.pdf",
+      "warning": "closepath with no current point\n... repeated 13 times..."
+    },
+    {
+      "url": "/certificates/142DDeg7ewqnuZbx38HSg8Rv2tLHcBxxh.pdf",
+      "warning": "closepath with no current point\n... repeated 4 times..."
+    },
+    {
+      "url": "/certificates/1ARsSX2CfUrncU7bv1gYXsqsygFWLm5k0.pdf",
+      "warning": "closepath with no current point\n... repeated 6 times..."
+    },
+    {
+      "url": "/certificates/1BH6kRA6mPZFJUF2po8FF4y7oCDhPPwXF.pdf",
+      "warning": "closepath with no current point\n... repeated 10 times..."
+    },
+    {
+      "url": "/certificates/1DYmVRRH6aAiLbj0ii9rQkGoJKV4TMI88.pdf",
+      "warning": "closepath with no current point\n... repeated 9 times..."
+    },
+    {
+      "url": "/certificates/1EBqbEKA4c0BlNYKcyPdmlusi_L0gAOnP.pdf",
+      "warning": "closepath with no current point\n... repeated 5 times..."
+    },
+    {
+      "url": "/certificates/1RxN8TfVYtRr2YEIbglWEO_Ztf81aPSxj.pdf",
+      "warning": "closepath with no current point\n... repeated 8 times..."
+    },
+    {
+      "url": "/certificates/1SvjKjy0UT9PsPDY1Q03O1fkmE4gfoCuC.pdf",
+      "warning": "closepath with no current point\n... repeated 6 times..."
+    },
+    {
+      "url": "/certificates/1Vw1yRrBVhk7d2KRgrXRAmvzL2IGFxrRR.pdf",
+      "warning": "invalid character in hex string\n... repeated 92 times..."
+    },
+    {
+      "url": "/certificates/1ZVFiQyFz8RbqJKD15fXkwUPX-dV_jUj4.pdf",
+      "warning": "closepath with no current point\n... repeated 10 times..."
+    },
+    {
+      "url": "/certificates/1fDHv_N4yGrrQyTLtu3iYulL5v0DZck4-.pdf",
+      "warning": "invalid character in hex string\n... repeated 101 times..."
+    },
+    {
+      "url": "/certificates/1m4yANA8aJS-zFq2XfWK92Kj1j-QA7xIo.pdf",
+      "warning": "invalid character in hex string\n... repeated 59 times..."
+    },
+    {
+      "url": "/certificates/1oWqB85zhZjkCDagq7wjxjSUEhJEhjrDE.pdf",
+      "warning": "closepath with no current point\n... repeated 5 times..."
+    },
+    {
+      "url": "/certificates/1qd3SEsyBqIMn2INj7I45_hrcNa9LFpic.pdf",
+      "warning": "closepath with no current point\n... repeated 8 times..."
+    },
+    {
+      "url": "/certificates/1u4zFky_rQ-NYuFfW_fnGT0TzIjMhOcnh.pdf",
+      "warning": "syntax error: invalid key in dict\ncannot load object (11 0 R) into cache\nsyntax error: invalid key in dict\ncannot load object (11 0 R) into cache"
+    },
+    {
+      "url": "/certificates/1vJF41Aqt3JyonlnBqHWylfKPa3XSICgI.pdf",
+      "warning": "invalid character in hex string\n... repeated 298 times..."
+    },
+    {
+      "url": "/certificates/1vdUq9sG9fqCtYTLq9MrUa-fBhVS1TceW.pdf",
+      "warning": "syntax error: invalid key in dict\ncannot load object (11 0 R) into cache\nsyntax error: invalid key in dict\ncannot load object (11 0 R) into cache"
+    }
+  ]
+}

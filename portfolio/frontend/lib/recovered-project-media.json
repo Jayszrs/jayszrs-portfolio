@@ -816,5 +816,208 @@
     ],
     "documents": [],
     "note": "Dashboard screenshot recovered from owner Drive file 1Mk0SJB_BSds1OTMg0p6bVGeFEEPqkQGq, Screenshot 2026-07-22 134525.png; UI shows laundry operations. Only the cover is restored; four original documentation images remain unresolved. Not a byte-identical Blob claim."
+  },
+  "proj-1784794090796-xcsa": {
+    "originalLink": "https://github.com/Jayszrs/zakatyuk_baznaskotabekasi.git",
+    "legacyMedia": [
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794117068-uftwtk.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794562595-u8o86u.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794567226-vzv8hd.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794573371-rwz4v9.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794578328-iiru4g.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794583156-78sn8w.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794587760-ieg9k4.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794595082-cbtvow.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794600303-gyz8xp.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794611923-zs4ey8.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794618400-9ht5h4.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794624745-qfl991.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794630941-bzlt65.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794635599-nmqpfb.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794639892-g3jyln.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794647040-t87gto.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794653789-1i25ha.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794660629-bbd5ip.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794665239-hv0upp.png",
+      "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784794669481-r95yiq.png"
+    ],
+    "sourceUrl": "https://github.com/Jayszrs/zakatyuk_baznaskotabekasi/tree/main/zakatyuk/screenshots",
+    "sourceTitle": "Aplikasi Mobile Zakat Baznas Kota Bekasi",
+    "sourceKind": "Screenshot repositori sumber",
+    "pages": [
+      {
+        "url": "/recovered-media/github-baznas/final_running.png",
+        "page": 1,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "84ef5e26c610a3fc1cefb7b44ca48c4013bcc4037e71bde88e0dc97d874e39cc",
+        "gitSha": "b5f1e90ca27d1a21b40500e2a4a99b37722dc8ea",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/final_running.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/baznas_exact_logo_check.png",
+        "page": 2,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "a4acb8a7165ca841cb2303b54bbeb08f942c38a2a25d320d2a515ec0a72cfd11",
+        "gitSha": "9210fbb585bacf13172eb72de2f899b9af59130f",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/baznas_exact_logo_check.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/splash.png",
+        "page": 3,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "8edba0aa4582a747e9bdfbc4a08face0d02b674efc71b78743e2c26844f9904e",
+        "gitSha": "6eecebc6a5b0239bb44994a20a460569385c1d12",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/splash.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/transaction_form_add.png",
+        "page": 4,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "4fdd2a187bae55a95e563988e13fc8d83b6a802f375e9182410debd693df2193",
+        "gitSha": "1fc6f6ac54dc28933663d2a3040fe25c9f8067c3",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/transaction_form_add.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/form_filled_top.png",
+        "page": 5,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "cdb7591861c8c1eaae5f542387e7a03887d36faf3b4a8b2c86ee4f6fbed4b4ae",
+        "gitSha": "b5033aef6551fc31b54bc72230630c09d51fe260",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/form_filled_top.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/form_filled_bottom.png",
+        "page": 6,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "0997e191b9d8e8d950cff7607778f237d2e909d11bf47c5c000c862536c02c0f",
+        "gitSha": "db1754c53231c984002fc509e588d3f8621c8306",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/form_filled_bottom.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/before_save_visible.png",
+        "page": 7,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "259b5e11681f2cf80f0922520a5185f4de55a759f6ee33866e98666e6ba0a5ca",
+        "gitSha": "4875597f63b725b833f5ea33101d7dad0f678a99",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/before_save_visible.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/transaction_list_with_data.png",
+        "page": 8,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "a5e3279dcee7a87b69b2aba08ce02110376aa9ecc86eadc20c037fa3a06a30ff",
+        "gitSha": "122f5fee3e033072065de1beb53c5d2f53e798c4",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/transaction_list_with_data.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/transaction_detail.png",
+        "page": 9,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "5830259bf24d7f17724ce6704c82f13afd4a64d32efba06b45ae5071397abccc",
+        "gitSha": "a7ad0405ab185cd0888aace56861911c4a545330",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/transaction_detail.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/transaction_form_edit.png",
+        "page": 10,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "03d4c776305cd04e95ecfc5aa5a2a7db372a22f088b17b510119792185ca9bdf",
+        "gitSha": "e5593d320651864c1d0d80d45bc4671ae14ea3a7",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/transaction_form_edit.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/delete_confirmation_dialog.png",
+        "page": 11,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "5d1c324b2f3fceea46f051631ae709f2c52adee26c46a25bbec46bfa68d68134",
+        "gitSha": "2e61b0e048a276a7474d30ad8c0b3102a63510d5",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/delete_confirmation_dialog.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/empty_after_delete.png",
+        "page": 12,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "3454a11bbb7338a9afe467616f7e0bd7b52f29918dec2b2b440f08b456d3af7e",
+        "gitSha": "2586d49cd687171be6af99cf065b73a780cee9c0",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/empty_after_delete.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/transaction_list_empty.png",
+        "page": 13,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "a8d9e829c899511399415ea90920c714322565074576a0f4932ecf933712d1a6",
+        "gitSha": "7927d081e764005c1e11478f557480900c1eca42",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/transaction_list_empty.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/persistence_after_restart.png",
+        "page": 14,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "49f5cfe5f9d0ba40cb4d30c6346baf2e4b6901c0157e1582ccf36b4fb56f14e0",
+        "gitSha": "0218ea2e0fdd587bdee76bdfd788f5596ce69acf",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/persistence_after_restart.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/after_handwriting_close.png",
+        "page": 15,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "852e1f4d4fa35199904a812ba936378f736a61acf2379874ff6cc471af6b8e18",
+        "gitSha": "76eddddb989798a0190014017ccb9de487749945",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/after_handwriting_close.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/after_splash_check.png",
+        "page": 16,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "58371c76acf4474396ecafc685ccddf3424fe5547e2a0346d8b25fbd0333c78c",
+        "gitSha": "9928a69754f38595670daacda8d680cb1cbcf605",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/after_splash_check.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/baznas_onboarding_check.png",
+        "page": 17,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "a39be8b2e93862dc83de9fe53e49494fc3ab83f202c5add9f6bc6b6830e9cbb5",
+        "gitSha": "4556e8b19a09d1b7b09f9026646c9adbd6ae3d86",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/baznas_onboarding_check.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/current.png",
+        "page": 18,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "09427024564d354f2067c881437d19509c4c9d8b417aaa73659cf2bbd182ae1e",
+        "gitSha": "1e34c81816b9675a358048a2d85874ff07c66a72",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/current.png"
+      },
+      {
+        "url": "/recovered-media/github-baznas/dashboard.png",
+        "page": 19,
+        "width": 1080,
+        "height": 2400,
+        "sha256": "578574e6c2e07219afa1d0d4b2a1d089ff568dad292597b5c168d6e7f56cce21",
+        "gitSha": "8c804fb09d42f4fd1880ac24c449417a06a68bac",
+        "sourceUrl": "https://raw.githubusercontent.com/Jayszrs/zakatyuk_baznaskotabekasi/main/zakatyuk/screenshots/dashboard.png"
+      }
+    ],
+    "documents": [],
+    "note": "19 existing screenshot files recovered byte-for-byte from the linked project repository, verified by Git blob SHA-1 and SHA-256. They represent the authentic source screenshot collection, not proven one-to-one copies of the 20 inaccessible Blob uploads. CMS references are unchanged; later admin media/link edits take precedence."
   }
 }

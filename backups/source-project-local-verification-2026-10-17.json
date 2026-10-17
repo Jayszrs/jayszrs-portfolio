@@ -1,0 +1,140 @@
+{
+  "status": "PASS",
+  "baseUrl": "http://localhost:3021",
+  "files": [
+    {
+      "url": "/recovered-media/github-baznas/final_running.png",
+      "sha256": "84ef5e26c610a3fc1cefb7b44ca48c4013bcc4037e71bde88e0dc97d874e39cc",
+      "bytes": 118643,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/baznas_exact_logo_check.png",
+      "sha256": "a4acb8a7165ca841cb2303b54bbeb08f942c38a2a25d320d2a515ec0a72cfd11",
+      "bytes": 272505,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/splash.png",
+      "sha256": "8edba0aa4582a747e9bdfbc4a08face0d02b674efc71b78743e2c26844f9904e",
+      "bytes": 42772,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/transaction_form_add.png",
+      "sha256": "4fdd2a187bae55a95e563988e13fc8d83b6a802f375e9182410debd693df2193",
+      "bytes": 133208,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/form_filled_top.png",
+      "sha256": "cdb7591861c8c1eaae5f542387e7a03887d36faf3b4a8b2c86ee4f6fbed4b4ae",
+      "bytes": 138784,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/form_filled_bottom.png",
+      "sha256": "0997e191b9d8e8d950cff7607778f237d2e909d11bf47c5c000c862536c02c0f",
+      "bytes": 132577,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/before_save_visible.png",
+      "sha256": "259b5e11681f2cf80f0922520a5185f4de55a759f6ee33866e98666e6ba0a5ca",
+      "bytes": 131818,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/transaction_list_with_data.png",
+      "sha256": "a5e3279dcee7a87b69b2aba08ce02110376aa9ecc86eadc20c037fa3a06a30ff",
+      "bytes": 121281,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/transaction_detail.png",
+      "sha256": "5830259bf24d7f17724ce6704c82f13afd4a64d32efba06b45ae5071397abccc",
+      "bytes": 139377,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/transaction_form_edit.png",
+      "sha256": "03d4c776305cd04e95ecfc5aa5a2a7db372a22f088b17b510119792185ca9bdf",
+      "bytes": 135522,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/delete_confirmation_dialog.png",
+      "sha256": "5d1c324b2f3fceea46f051631ae709f2c52adee26c46a25bbec46bfa68d68134",
+      "bytes": 115612,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/empty_after_delete.png",
+      "sha256": "3454a11bbb7338a9afe467616f7e0bd7b52f29918dec2b2b440f08b456d3af7e",
+      "bytes": 127531,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/transaction_list_empty.png",
+      "sha256": "a8d9e829c899511399415ea90920c714322565074576a0f4932ecf933712d1a6",
+      "bytes": 119231,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/persistence_after_restart.png",
+      "sha256": "49f5cfe5f9d0ba40cb4d30c6346baf2e4b6901c0157e1582ccf36b4fb56f14e0",
+      "bytes": 110557,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/after_handwriting_close.png",
+      "sha256": "852e1f4d4fa35199904a812ba936378f736a61acf2379874ff6cc471af6b8e18",
+      "bytes": 128994,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/after_splash_check.png",
+      "sha256": "58371c76acf4474396ecafc685ccddf3424fe5547e2a0346d8b25fbd0333c78c",
+      "bytes": 118656,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/baznas_onboarding_check.png",
+      "sha256": "a39be8b2e93862dc83de9fe53e49494fc3ab83f202c5add9f6bc6b6830e9cbb5",
+      "bytes": 164835,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/current.png",
+      "sha256": "09427024564d354f2067c881437d19509c4c9d8b417aaa73659cf2bbd182ae1e",
+      "bytes": 119408,
+      "httpStatus": 200
+    },
+    {
+      "url": "/recovered-media/github-baznas/dashboard.png",
+      "sha256": "578574e6c2e07219afa1d0d4b2a1d089ff568dad292597b5c168d6e7f56cce21",
+      "bytes": 62640,
+      "httpStatus": 200
+    }
+  ],
+  "galleryCoverServerRendered": true,
+  "all19ImagesInProjectClient": true,
+  "preservedCmsSections": [
+    "profile",
+    "about",
+    "sections",
+    "pageHeroes",
+    "education",
+    "capabilities",
+    "experience",
+    "gallery",
+    "selectedDesigns",
+    "achievements",
+    "certificates",
+    "contact"
+  ],
+  "certificates": 67,
+  "achievements": 3,
+  "browserInteractionVerified": false,
+  "deploymentPerformed": false
+}

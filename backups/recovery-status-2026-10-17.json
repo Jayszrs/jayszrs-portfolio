@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-17",
+  "blob": {
+    "objects": 369,
+    "unchangedUrls": true,
+    "unchangedSizes": true,
+    "authenticatedOriginalDownloadStatus": 403,
+    "originalBacklog": 197,
+    "originalBacklogStillListed": 197,
+    "newExactBlobOriginalsDownloaded": 0
+  },
+  "supabase": {
+    "storageBuckets": 0,
+    "publicTables": [
+      "portfolio_data"
+    ],
+    "cmsRows": 1,
+    "embeddedFileDataUris": 0,
+    "serverCredentialUsed": true
+  },
+  "projectSourceRecovery": {
+    "project": "Aplikasi Mobile Zakat Baznas Kota Bekasi",
+    "originalRepositoryScreenshots": 19,
+    "sourceByteIdentity": "Git blob SHA-1 and SHA-256 verified",
+    "notClaimedAsExactBlobCopies": true,
+    "sourceCollectionReplacesOldMediaReferences": 20,
+    "localVisibleUnresolvedUrls": 69,
+    "liveVisibleUnresolvedUrls": 89
+  },
+  "pdfs": {
+    "publishedPdfsVerified": 86,
+    "liveReferencesVerified": 79,
+    "pagesParsed": 234,
+    "privateAdditionalSourcePdfsRecovered": 5,
+    "backupArchivePdfCount": 91,
+    "archiveVerified": true
+  },
+  "access": {
+    "vercelProjectInspection": "403 forbidden, userActionRequired",
+    "vercelStoreMetadata": "403 forbidden through MCP and CLI",
+    "googleDrive": "plugin discovery reports not installed; reconnection suggested, not confirmed"
+  },
+  "remoteMutations": 0,
+  "deployment": "Not performed: project access denied; new recovery is local only"
+}

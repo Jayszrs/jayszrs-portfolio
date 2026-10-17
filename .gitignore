@@ -5,5 +5,8 @@ backups/connected-drive-recovery-*/
 backups/storage-audit-*/
 backups/blob-originals/
 backups/social-source-*/
+backups/source-recheck-*/
+backups/pdf-verification-*/
+backups/pdf-recovery-*.zip
 portfolio/public/recovered-media/project-reports/*.png
 portfolio/public/recovered-media/project-reports/*.jpeg
