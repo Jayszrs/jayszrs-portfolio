@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-10-18T02:15:53.833945+00:00",
+  "driveRootEntriesReviewed": 295,
+  "archivesFound": 3,
+  "relevantArchivesRetrieved": 2,
+  "files": [
+    {
+      "name": "fazma-report.pdf",
+      "source": "https://docs.google.com/document/d/1V6UM3z0XatRj2Dcf-_bILo7Bu9uNmDI4ZU35t2X9jKs/edit",
+      "bytes": 2825494,
+      "sha256": "e11998ad0d627d561de4a0a4fc645db5fc2bed563f7644b56348b8cf4ca8d71a",
+      "pages": 145,
+      "embeddedImageCount": 8
+    },
+    {
+      "name": "laundry-archive.zip",
+      "source": "https://drive.google.com/file/d/1NBrBrwO4MaqHVEOY-ndY1kNYZBOt-rGe/view",
+      "bytes": 7996581,
+      "sha256": "4510b5005d6dbd4f81f9e6e0683b09d8ff7c42a0da1afc92a0e4629509de7969",
+      "archiveEntries": 1
+    },
+    {
+      "name": "baznas-archive.zip",
+      "source": "https://drive.google.com/file/d/14N3PBSmrFmbG-ZFBLo3Qpcb0p-5jJ5di/view",
+      "bytes": 7220506,
+      "sha256": "4d3714d5a7f390b21bb3e3bb8566dee7703eb78abce9c9f3a50f830f5c6a3f84",
+      "archiveEntries": 80
+    }
+  ],
+  "fazmaReportIdentity": "Owner-authored Fazma inventory-system report, distinct from the company-profile portfolio project; not substituted for missing website screenshots",
+  "laundryArchiveIdentity": "APK only; inspected as ZIP without execution, 7 image/PDF entries checked, no original Blob MD5/size match",
+  "baznasArchiveIdentity": "One onboarding screenshot and app logo, no missing legacy screenshot match; existing Baznas collection unchanged",
+  "additionalFoldersChecked": {
+    "unnamed": 0,
+    "freelancePortfolio": 4,
+    "biskita": 3
+  },
+  "historicalPhotoFilenameSearchMatches": 0,
+  "gmail": "requires reauthentication; no message or attachment was read",
+  "localVisibleUnresolvedImageUrls": 68,
+  "productionVisibleUnresolvedImageUrls": 69,
+  "cmsMutations": 0,
+  "storageMutations": 0,
+  "filesExecuted": 0
+}

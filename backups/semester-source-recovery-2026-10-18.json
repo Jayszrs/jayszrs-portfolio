@@ -1,0 +1,77 @@
+{
+  "capturedAt": "2026-10-18T02:31:30.416858+00:00",
+  "archive": {
+    "file": "backups/connected-drive-recovery-2026-10-18/web2-owner-archive.zip",
+    "bytes": 88864209,
+    "entries": 37154,
+    "crcVerified": true,
+    "md5": "0025f4471475edf1375b947ebf873a58",
+    "sha256": "592ff57ae0fae78570dcb8193a9d1b097c24971b35747930adfd4172888b8b51",
+    "source": "https://drive.google.com/file/d/1hIv6hKiNY55rihVFhiPTg5jc5XsrRLid/view"
+  },
+  "pdfs": [
+    {
+      "name": "0-2301111110042 - Jaelani Surya Saputra - Tugas 1 - Pemrograman Web 2 .pdf",
+      "sourcePath": "backups/connected-drive-recovery-2026-10-18/web2-owner-extracted/0-2301111110042 - Jaelani Surya Saputra - Tugas 1 - Pemrograman Web 2 .pdf",
+      "bytes": 4585111,
+      "pages": 37,
+      "sha256": "ae56bacc11b4dca3143ba3fb91d8d162ce47d06fb407a8b3988008d1c0574a9e"
+    },
+    {
+      "name": "10-TUGAS 3 Pemrograman WEB 2 Jaelani Surya Saputra - 2301111110042 S1 TI A 6 Pagi.pdf",
+      "sourcePath": "backups/connected-drive-recovery-2026-10-18/web2-owner-extracted/10-TUGAS 3 Pemrograman WEB 2 Jaelani Surya Saputra - 2301111110042 S1 TI A 6 Pagi.pdf",
+      "bytes": 479975,
+      "pages": 31,
+      "sha256": "2ff4a93d604e17ab3e7c7e9f954063ff6b231e7d6df8dc6ccc8bba5e3d8909e7"
+    },
+    {
+      "name": "11-UAS Pemrograman Web 2 Fazma Stone.pdf",
+      "sourcePath": "backups/connected-drive-recovery-2026-10-18/web2-owner-extracted/11-UAS Pemrograman Web 2 Fazma Stone.pdf",
+      "bytes": 2825494,
+      "pages": 145,
+      "sha256": "42e3dad1f1eec256b4b47f608f5ec42329ffe8e4efea3929c54178594a15f47e"
+    },
+    {
+      "name": "12-UTS Ganjil Pemrograman Web 2 Jaelani Surya Saputra 2301111110042 S1 TI 6 A Pagi.pdf",
+      "sourcePath": "backups/connected-drive-recovery-2026-10-18/web2-owner-extracted/12-UTS Ganjil Pemrograman Web 2 Jaelani Surya Saputra 2301111110042 S1 TI 6 A Pagi.pdf",
+      "bytes": 4890731,
+      "pages": 72,
+      "sha256": "1d60f73a30ce12626706e8bd3c197b4511e7f1f0418c48c7f595cccac51d40c8"
+    },
+    {
+      "name": "9-TUGAS 2 Pemrograman WEB 2 Jaelani Surya Saputra 2301111110042 S1 TI A 6 Pagi.pdf",
+      "sourcePath": "backups/connected-drive-recovery-2026-10-18/web2-owner-extracted/9-TUGAS 2 Pemrograman WEB 2 Jaelani Surya Saputra 2301111110042 S1 TI A 6 Pagi.pdf",
+      "bytes": 4522259,
+      "pages": 32,
+      "sha256": "956ae0bae34443f6ad4828a230fe88a7af24b6f8362bc3c76064bdf6daf35385"
+    },
+    {
+      "name": "basis-data-owner.pdf",
+      "sourcePath": "backups/connected-drive-recovery-2026-10-18/basis-data-owner.pdf",
+      "bytes": 142632,
+      "pages": 4,
+      "sha256": "d3546348e164824e7a8e8d344d7fd97a6d6a134ca5a7e8ccefd5eae6c8fbc3a4"
+    }
+  ],
+  "uniquePdfs": 6,
+  "parsedPdfPages": 321,
+  "uniquePdfImagesReviewed": 35,
+  "archivedGitBlobObjectsChecked": 29057,
+  "archivedGitOriginalMatches": 0,
+  "allZipMemberSizeCandidates": 9,
+  "zipOriginalMatches": 0,
+  "footageImageMetadataReviewed": 248,
+  "footageSizeMatches": 0,
+  "remainingUnresolvedImageUrls": 68,
+  "newMissingWebsiteImagesRecovered": 0,
+  "publications": 0,
+  "remoteContentMutations": 0,
+  "iotVideoCandidate": {
+    "source": "https://drive.google.com/file/d/1qfDqrEk6dUD-vzM53QByfHEchRefNiV0/view",
+    "bytes": 5893911,
+    "sha256": "7a7cbf93313fe1b3fbae974cb15fa1adc3dea850218f141ee72877290719e98b",
+    "nativeFramesReviewed": 3,
+    "visibleProjectTitle": "Logika Ambang Batas Curah Hujan",
+    "result": "Different project from water-level monitoring; not substituted or published"
+  }
+}
