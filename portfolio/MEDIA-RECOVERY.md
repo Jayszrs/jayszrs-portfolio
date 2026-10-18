@@ -2,6 +2,15 @@
 
 Image recovery is incomplete. The latest production check confirms 69 distinct image URLs still have no accessible replacement. All 79 current CMS PDF-reference fields resolve to verified copies; 86 public PDFs are available, including seven additional project reports/previews. The original bytes of 197 Blob objects still await download; those references have been preserved.
 
+## Latest work: 18 October 2026 (local recovery)
+
+- Recovered the original DPM logo design embedded in the owner's native Google Doc, `FILOSOFI LOGO Dewan Perwakilan Mahasiswa 2025-2026`. Saved the complete transparent 1563 × 1563 PNG without modifying its bytes. Its SHA-256 is `55af5de1cbb8471182efe677e4872fdb74bf42c28907b8174ef9625618518d9d`. This is an original design source, not a claim of byte identity with the blocked upload. Provenance: `backend/data/dpm-logo-recovery-2026-10-18.json`.
+- Mapped only the old DPM image URL to `/organization-logos/dpm-bani-saleh.png`. CMS content and unrelated mappings are preserved. Later admin changes to the image URL continue to win. The local visible backlog is now 68; production remains 69 until deployment.
+- Build, existing archive/source recovery checks, checksum of the locally served PNG, Experience-page HTML inclusion, and equality of all 12 non-rating CMS sections with production passed. Evidence: `../backups/recovery-status-2026-10-18.json`.
+- Drive is connected again. Fully paginated three relevant school photo folders; no remaining upload-size match was found. Checked original portfolio PDF revision histories: both have only one retained revision. Downloaded and visually reviewed the June (21-page) and September (23-page) portfolio archives; their documentation is already represented by existing recoveries. Checked Canva's accessible uploaded-image folder (14 entries); no remaining original documentation match was identified. The old portfolio Canva design remains inaccessible, and Figma screenshot export still reports the Starter-plan tool limit.
+- Vercel CLI project inspection still returns `forbidden`, `retryable: false`, `userActionRequired: true`. The connector returns no matching project under the known team. No deployment, credential changes or storage mutations were attempted. Computer Use inventory is empty (`apps: []`, `browsers: []`), including a recheck after the user's request; Drive access does not provide Google Photos library access.
+- Saved and verified supplemental backup `../backups/media-recovery-2026-10-18.zip` (6,022,031 bytes): original DPM image, two original portfolio PDF archives, registry, provenance and verification evidence. The complete 17 October recovery bundle remains preserved separately. No signed provider URLs are persisted in these backups.
+
 ## Second pass: 17 October 2026
 
 - The previously local Baznas recovery is now deployed: all 19 PNG responses match their repository SHA-256, and the project page HTML includes the recovered cover. No deployment was performed during this pass. The previous 89-live / 69-local distinction below is historical; the current visible backlog is 69.
