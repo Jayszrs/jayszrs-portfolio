@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-10-19T22:21:19.953Z",
+  "dateJakarta": "2026-10-20",
+  "pages": 31,
+  "imagesScanned": 2213,
+  "paginationComplete": true,
+  "sizeMatchCount": 0,
+  "filenameCandidates": [
+    {
+      "id": "1u4JTdxKTgCKqTht8IaOEiCTlTVXnbgUQ",
+      "title": "Copy of IMG_2307.JPG",
+      "size": "8671204",
+      "url": "https://drive.google.com/file/d/1u4JTdxKTgCKqTht8IaOEiCTlTVXnbgUQ/view?usp=drivesdk"
+    },
+    {
+      "id": "1sAbQa21urGuxYpHZXFekQ8n2Qta8bKQB",
+      "title": "IMG-20220804-WA0020.jpg",
+      "size": "130884",
+      "url": "https://drive.google.com/file/d/1sAbQa21urGuxYpHZXFekQ8n2Qta8bKQB/view?usp=drivesdk"
+    },
+    {
+      "id": "1ey3_EqwsHooQ9zUhJ7TGxlq_XLXr3Hkw",
+      "title": "IMG_20221105_114125.jpg",
+      "size": "5154311",
+      "url": "https://drive.google.com/file/d/1ey3_EqwsHooQ9zUhJ7TGxlq_XLXr3Hkw/view?usp=drivesdk"
+    },
+    {
+      "id": "1cVgkeD4AMoMX9SXtpLQjXlRCH-ZRe6JL",
+      "title": "IMG_20221105_163727.jpg",
+      "size": "16057345",
+      "url": "https://drive.google.com/file/d/1cVgkeD4AMoMX9SXtpLQjXlRCH-ZRe6JL/view?usp=drivesdk"
+    },
+    {
+      "id": "1bC1mmt04SHiIpfwhRj1jMC0l41jUkb3Y",
+      "title": "IMG_20221105_232127.jpg",
+      "size": "7891541",
+      "url": "https://drive.google.com/file/d/1bC1mmt04SHiIpfwhRj1jMC0l41jUkb3Y/view?usp=drivesdk"
+    },
+    {
+      "id": "1a-g2E_f0k254B0T47-v4-RDrEWGvW5hs",
+      "title": "IMG_20221105_232350.jpg",
+      "size": "13856363",
+      "url": "https://drive.google.com/file/d/1a-g2E_f0k254B0T47-v4-RDrEWGvW5hs/view?usp=drivesdk"
+    },
+    {
+      "id": "1J7Oxkv6urqcUBCuzJb679SyUNohgczUT",
+      "title": "IMG_20221020_152206.jpg",
+      "size": "2419405",
+      "url": "https://drive.google.com/file/d/1J7Oxkv6urqcUBCuzJb679SyUNohgczUT/view?usp=drivesdk"
+    },
+    {
+      "id": "1IjUxUmKbLLudOOO1_qMNkaOLtaGIhnAn",
+      "title": "IMG_20221020_155535.jpg",
+      "size": "2863700",
+      "url": "https://drive.google.com/file/d/1IjUxUmKbLLudOOO1_qMNkaOLtaGIhnAn/view?usp=drivesdk"
+    },
+    {
+      "id": "1IXuqwH5PuRG0SehP_h5QvNXU9xDzwGjz",
+      "title": "IMG_20221020_155647.jpg",
+      "size": "3191114",
+      "url": "https://drive.google.com/file/d/1IXuqwH5PuRG0SehP_h5QvNXU9xDzwGjz/view?usp=drivesdk"
+    },
+    {
+      "id": "1IOz5bz1s99LCLGj1rNyPE5TPDcMmo8Hw",
+      "title": "IMG_20221020_161043.jpg",
+      "size": "3242203",
+      "url": "https://drive.google.com/file/d/1IOz5bz1s99LCLGj1rNyPE5TPDcMmo8Hw/view?usp=drivesdk"
+    },
+    {
+      "id": "10c2vP2FYFhZ9Mx4fwtnIaFfv6kbR4Gm2",
+      "title": "IMG_4262.JPG",
+      "size": "3225386",
+      "url": "https://drive.google.com/file/d/10c2vP2FYFhZ9Mx4fwtnIaFfv6kbR4Gm2/view?usp=drivesdk"
+    },
+    {
+      "id": "1FKJ_esxKYbXieELjjTej_xVr7ouEsPO-",
+      "title": "IMG_4307.JPG",
+      "size": "2859287",
+      "url": "https://drive.google.com/file/d/1FKJ_esxKYbXieELjjTej_xVr7ouEsPO-/view?usp=drivesdk"
+    },
+    {
+      "id": "1OHOn_mctKa_VbmE8nr5BXFOmn8o0TEwZ",
+      "title": "IMG_4306.JPG",
+      "size": "2842885",
+      "url": "https://drive.google.com/file/d/1OHOn_mctKa_VbmE8nr5BXFOmn8o0TEwZ/view?usp=drivesdk"
+    }
+  ],
+  "scope": "All accessible non-trashed image metadata returned by the Google Drive connector; Google Photos is separate",
+  "newImagesSinceOctober18": 0,
+  "companyFolders": {
+    "JuneVideos": 6,
+    "JulyVideos": 4,
+    "images": 0
+  },
+  "browserInventory": {
+    "apps": 0,
+    "browsers": 0
+  },
+  "remoteMutations": 0
+}

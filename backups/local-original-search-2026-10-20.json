@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-19T22:19:50.449512+00:00",
+  "roots": [
+    "C:\\Users\\jaela\\Downloads",
+    "C:\\Users\\jaela\\Desktop",
+    "C:\\Users\\jaela\\Documents",
+    "C:\\Users\\jaela\\OneDrive"
+  ],
+  "scope": "media files outside current workspace; symlinks/build/dependency directories excluded",
+  "mediaFilesScanned": 3905,
+  "sameSizeCandidates": 0,
+  "exactMatches": [],
+  "readErrors": 1,
+  "elapsedSeconds": 8.6,
+  "remoteMutations": 0
+}

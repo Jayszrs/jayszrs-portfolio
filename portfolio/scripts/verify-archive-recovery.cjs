@@ -60,7 +60,12 @@ for (const [id, recovered] of Object.entries(registry)) {
   assert.equal(withRecoveredDocumentation(item, "other-section"), item);
 }
 assert.equal(JSON.stringify(source), original, "CMS snapshot must not be mutated");
-assert.equal(paths.size, 23);
+assert.equal([...paths].filter((url) => url.startsWith("/recovered-media/portfolio-archive/")).length, 23);
+const school = source.education.find((item) => item.id === "edu-1783687555779-fkc2");
+const schoolPhotos = registry[school.id].images.map((image) => image.url);
+assert.equal(schoolPhotos.length, 2);
+assert.deepEqual(Array.from(documentation.documentationImages(withRecoveredDocumentation(school, "education")).slice(0, 2)), schoolPhotos);
+assert.equal(paths.size, 25);
 const laundry = source.gallery.find((item) => item.id === "proj-1784715069630-imjd");
 const restoredLaundry = withRecoveredProjectMedia(laundry);
 assert.equal(restoredLaundry.image, "/recovered-media/drive/laundryuk-dashboard-admin.png");

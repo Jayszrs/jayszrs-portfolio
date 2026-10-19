@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-20",
+  "kind": "owner-confirmed-original-drive-school-photos",
+  "ownerConfirmation": "keduanya masukan",
+  "section": "education",
+  "recordId": "edu-1783687555779-fkc2",
+  "identity": "Native Drive photo bytes confirmed by the owner as school documentation; no byte identity or one-to-one mapping to blocked Blob uploads is claimed",
+  "files": [
+    {
+      "url": "/recovered-media/school-drive/IMG_20221020_152206.jpg",
+      "sourceFile": "IMG_20221020_152206.jpg",
+      "source": "https://drive.google.com/file/d/1J7Oxkv6urqcUBCuzJb679SyUNohgczUT/view",
+      "bytes": 2419405,
+      "sha256": "79eb74a3f026e20583d9b5af1a10e3477b013658438157ad11825927989367ed",
+      "width": 4160,
+      "height": 2352
+    },
+    {
+      "url": "/recovered-media/school-drive/IMG_20221105_114125.jpg",
+      "sourceFile": "IMG_20221105_114125.jpg",
+      "source": "https://drive.google.com/file/d/1ey3_EqwsHooQ9zUhJ7TGxlq_XLXr3Hkw/view",
+      "bytes": 5154311,
+      "sha256": "688ed7e03cbf25e3965d375b8350b3d9be1d0f47d3fef044912985e2d5d78fb7",
+      "width": 3000,
+      "height": 4000
+    }
+  ],
+  "cmsMutations": 0,
+  "storageMutations": 0
+}

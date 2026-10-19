@@ -1,4 +1,15 @@
-# Media recovery: 15 October 2026
+# Media recovery: 20 October 2026
+
+## Latest work: 20 October 2026
+
+- Recovered two native Google Drive school photos, `IMG_20221020_152206.jpg` and `IMG_20221105_114125.jpg`. The owner reviewed both candidates and explicitly requested both be included. Added them first in the SMA Negeri 71 Jakarta documentation collection. Preserved every existing CMS URL and documentation entry; the new sources are not asserted byte-identical to any blocked Blob upload. Provenance and SHA-256: `backend/data/school-photo-recovery-2026-10-20.json`.
+- Production build and certificate, source-project, and archive recovery checks passed. The actual locally served JPEG bytes match their native sources; both URLs appear in the Education-page HTML. All 12 non-rating CMS sections remain equal to production. The documentation registry now contains nine collections and 25 unique recovered photos. Evidence: `../backups/school-photo-local-verification-2026-10-20.json`.
+- The two additions are local, not deployed. Vercel project inspection via both the connector and the mapped CLI fallback returned 403 for the known project/team. No deployment or Git push was attempted. The 370 previously deployed recovery assets all passed public GET and SHA-256 verification again; there are 372 local assets after these two additions.
+- Rechecked all 86 public PDFs: 79 CMS PDF-reference fields resolve, 234 pages parsed, all first pages rendered and visually reviewed, zero failed downloads/checksums. All 67 certificate records contain document references. Evidence: `../backups/all-public-pdf-verification-2026-10-20.json`.
+- Fully paginated all 31 image-search pages from connected Drive (2,213 image records). No remaining Blob-upload file-size match was found. Same-date filename candidates led to the two owner-confirmed photos above. Scanned 3,905 local media files outside the workspace; no exact original match was found. Two additional company folders contained ten videos and no images. Evidence: `../backups/drive-image-search-2026-10-20.json`, `../backups/local-original-search-2026-10-20.json`.
+- Original Blob availability still returns 403 on a single read-only request. Computer Use still reports no connected browser. There are 68 unresolved image URLs in both current production and the local display resolver. Adding the owner-confirmed photos does not establish which unavailable original URL each corresponds to, so the backlog has not been artificially reduced. No Blob, Supabase, CMS, billing, or credential settings were modified.
+
+## Previously verified baseline
 
 Image recovery is incomplete. The latest production check confirms 68 distinct image URLs still have no accessible replacement. All 79 current CMS PDF-reference fields resolve to verified copies; 86 public PDFs are available, including seven additional project reports/previews. The original bytes of 197 Blob objects still await download; those references have been preserved.
 

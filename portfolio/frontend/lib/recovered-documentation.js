@@ -13,10 +13,9 @@ export function withRecoveredDocumentation(item = {}, section) {
 
   const unavailable = new Set(recovered.unavailableDocumentation);
   const seen = new Set();
-  const images = [
-    ...documentationImages(item).filter((url) => !unavailable.has(url)),
-    ...recovered.images.map((image) => image.url),
-  ].filter((url) => {
+  const retained = documentationImages(item).filter((url) => !unavailable.has(url));
+  const restored = recovered.images.map((image) => image.url);
+  const images = (recovered.prependImages ? [...restored, ...retained] : [...retained, ...restored]).filter((url) => {
     const resolved = mediaSource(url);
     if (seen.has(resolved)) return false;
     seen.add(resolved);

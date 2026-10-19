@@ -1,4 +1,63 @@
 {
+  "edu-1783687555779-fkc2": {
+    "section": "education",
+    "snapshot": {
+      "image": "",
+      "logo": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783687621547-emphwl.png",
+      "documentationImage": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783689120664-iyg52b.jpg",
+      "documentationImage2": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783717799731-0ywalo.jpg",
+      "documentationImage3": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783717825308-83y5hc.jpg",
+      "documentationFile": "",
+      "documentationImages": [
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783689120664-iyg52b.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783717799731-0ywalo.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783717825308-83y5hc.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718032033-ooi2rx.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718118328-usj8ya.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718141587-nrs425.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718176273-jzbzi6.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718220050-b3wfma.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718254205-opaqwg.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718406149-yl1d3c.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718441627-lp75s0.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718471137-hoeblq.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718494622-4wtf5m.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718528296-bx3jor.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718575845-lve51w.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718713071-gtr2xj.jpg",
+        "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1784098483214-wimg6x.jpg"
+      ],
+      "org": "",
+      "orgLink": "",
+      "title": "",
+      "institution": "SMA Negeri 71 Jakarta",
+      "link": "https://sman71.sch.id/"
+    },
+    "sourceLabel": "Dokumentasi SMA Negeri 71 Jakarta",
+    "sourceKind": "Foto asli Google Drive",
+    "prependImages": true,
+    "unavailableDocumentation": [],
+    "images": [
+      {
+        "url": "/recovered-media/school-drive/IMG_20221020_152206.jpg",
+        "sourceFile": "IMG_20221020_152206.jpg",
+        "source": "https://drive.google.com/file/d/1J7Oxkv6urqcUBCuzJb679SyUNohgczUT/view",
+        "bytes": 2419405,
+        "width": 4160,
+        "height": 2352,
+        "sha256": "79eb74a3f026e20583d9b5af1a10e3477b013658438157ad11825927989367ed"
+      },
+      {
+        "url": "/recovered-media/school-drive/IMG_20221105_114125.jpg",
+        "sourceFile": "IMG_20221105_114125.jpg",
+        "source": "https://drive.google.com/file/d/1ey3_EqwsHooQ9zUhJ7TGxlq_XLXr3Hkw/view",
+        "bytes": 5154311,
+        "width": 3000,
+        "height": 4000,
+        "sha256": "688ed7e03cbf25e3965d375b8350b3d9be1d0f47d3fef044912985e2d5d78fb7"
+      }
+    ]
+  },
   "edu-1": {
     "section": "education",
     "snapshot": {

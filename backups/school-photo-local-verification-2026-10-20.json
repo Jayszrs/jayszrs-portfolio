@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-20",
+  "checkedAt": "2026-10-19T22:25:42.418304+00:00",
+  "status": "PASS",
+  "baseUrl": "http://127.0.0.1:3108",
+  "files": [
+    {
+      "url": "/recovered-media/school-drive/IMG_20221020_152206.jpg",
+      "bytes": 2419405,
+      "sha256": "79eb74a3f026e20583d9b5af1a10e3477b013658438157ad11825927989367ed",
+      "status": "PASS",
+      "inEducationHtml": true
+    },
+    {
+      "url": "/recovered-media/school-drive/IMG_20221105_114125.jpg",
+      "bytes": 5154311,
+      "sha256": "688ed7e03cbf25e3965d375b8350b3d9be1d0f47d3fef044912985e2d5d78fb7",
+      "status": "PASS",
+      "inEducationHtml": true
+    }
+  ],
+  "educationHtmlIncludesBothPhotos": true,
+  "cmsSectionsEqualProduction": [
+    "profile",
+    "about",
+    "sections",
+    "pageHeroes",
+    "education",
+    "capabilities",
+    "experience",
+    "gallery",
+    "selectedDesigns",
+    "achievements",
+    "certificates",
+    "contact"
+  ],
+  "currentProductionUnresolvedImages": 68,
+  "localUnresolvedImages": 68,
+  "ownerConfirmedSchoolPhotosAdded": 2,
+  "deploymentStatus": "blocked: Vercel connector and CLI project read return 403 forbidden for the known project/team",
+  "browserClickThrough": "Unavailable: browser inventory empty",
+  "remoteMutations": 0
+}
