@@ -1,4 +1,20 @@
-# Portfolio glass refresh
+# Soft graphite glass
+
+## Current direction, supersedes the earlier brief below
+
+The owner explicitly changed the palette to gray and white glass on 20 October 2026. Public portfolio: Experience; admin: Operate. ENERGY 2 / RHYTHM 2 / MOTION 2. The single authored motion is the hanging photo badge; other surfaces use quiet state transitions and respect reduced motion.
+
+- Light: paper #f1f2f4, surface #ffffff, ink #30343b, muted #626872, line #d3d7dd, accent #626b78, accent-soft #e8eaee, accent-deep #4a525e.
+- Dark: paper #181a1e, surface #25282e, ink #f0f1f3, muted #b0b6c0, line #454b55, accent #b1b8c3, accent-soft #343941, accent-deep #d2d7df.
+- Legacy emerald token names are compatibility aliases to neutral values. Keep Plus Jakarta Sans and the red Kali mark. Actual photos, organization logos, README badges, and platform embeds retain original colors.
+- Remove the grid and colored haze. White translucent surfaces, subtle upper highlights, and soft downward shadows establish depth. Floating navigation/dialogs use real blur; form fields remain legible.
+- Hero: fabric strap, metal clip, actual portrait, printed name/role. Keep all original CMS photo URLs; do not present a missing-photo placeholder as recovered media.
+- GitHub: actual account profile and rendered README only. No contribution calendar, repository ranking, or activity statistics.
+- TikTok: official per-post player, one active video, controls, muted autoplay when visible, and a five-video selection when verified data is available. No sample videos or made-up metrics.
+- Instagram: actual public profile preview and owner-confirmed GODS track. Music is curated by the owner, not a live Instagram music API feed.
+- Preserve admin fields, upload/save endpoints, recovery previews, and source values. Keep mobile scrolling, keyboard focus, and loading/error states.
+
+## Earlier brief and verification history (historical, not current palette guidance)
 
 User direction: improve public pages and the admin CMS with glassmorphism, keep the existing colors, preserve content, and continue recovering original media. Antislop mode: DURING, explicitly selected for this session.
 

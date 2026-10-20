@@ -195,7 +195,7 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
           </div>
           <div className="mt-auto flex items-center justify-between pt-5">
             <p className="font-mono text-xs text-emerald-deep">{item.issuedAt || item.year}</p>
-            <span className="text-xs font-semibold text-ink/50 transition group-hover:text-emerald">Detail →</span>
+            <span className="text-xs font-semibold text-muted transition group-hover:text-emerald-deep">Detail →</span>
           </div>
         </div>
       </button>
@@ -242,7 +242,7 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
         <p className="mt-1 text-sm text-muted">{item.issuer}</p>
         <div className="mt-4 flex items-center justify-between">
           <p className="font-mono text-xs text-emerald-deep">{item.issuedAt || item.year}</p>
-          <span className="text-xs font-semibold text-ink/50 transition group-hover:text-emerald">Detail →</span>
+          <span className="text-xs font-semibold text-muted transition group-hover:text-emerald-deep">Detail →</span>
         </div>
       </div>
     </button>

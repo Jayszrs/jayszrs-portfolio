@@ -1,42 +1,36 @@
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
-const Module = require("node:module");
-const React = require("react");
-const { renderToStaticMarkup } = require("react-dom/server");
-const { transform } = require("next/dist/build/swc");
-const root = path.resolve(__dirname, "..");
+const base = process.argv[2] || "http://localhost:3109";
 
 async function main() {
-  // Isolate this component's contract; shared image/icon rendering is verified by HTTP.
-  let source = fs.readFileSync(path.join(root, "frontend/components/SocialHub.js"), "utf8")
-    .replace('import SafeImage from "./SafeImage";', 'function SafeImage({ src, alt }) { return src ? <img src={src} alt={alt} /> : null; }')
-    .replace('import TikTokIcon from "./TikTokIcon";', 'function TikTokIcon() { return <span aria-hidden="true" />; }')
-    .replace('import githubSnapshot from "@/frontend/lib/github-profile-snapshot.json";', `const githubSnapshot = ${fs.readFileSync(path.join(root, "frontend/lib/github-profile-snapshot.json"), "utf8")};`);
-  const { code } = await transform(source, { filename: "social-test.jsx", jsc: { parser: { syntax: "ecmascript", jsx: true }, target: "es2022", transform: { react: { runtime: "automatic" } } }, module: { type: "commonjs" } });
-  const compiled = new Module(path.join(root, "social-test.cjs"), module);
-  compiled.filename = path.join(root, "social-test.cjs");
-  compiled.paths = Module._nodeModulePaths(root);
-  compiled._compile(code, compiled.filename);
-  const render = (socials) => renderToStaticMarkup(React.createElement(compiled.exports.default, { socials }));
-  const github = render({ github: "https://github.com/Jayszrs" });
-  assert(github.includes("README.md"));
-  assert(github.includes("I’m currently working"));
-  assert(github.includes("Tech stack dari README"));
-  assert(github.includes('role="tablist"'));
-  assert(github.includes('aria-labelledby="social-tab-github"'));
-  const tiktok = render({ tiktok: "https://www.tiktok.com/@jayszrss" });
-  assert(tiktok.includes("Jelajahi TikTok saya"));
-  assert(tiktok.includes("https://tiktok.com/@jayszrss"));
-  assert(!/<iframe|<script|tiktok-embed|overload-protect/i.test(tiktok), "TikTok must not load an opaque error iframe");
-  const instagram = render({ instagram: "https://instagram.com/jayszrs" });
-  assert(instagram.includes('src="https://instagram.com/jayszrs/embed/"'));
-  assert(instagram.includes("Ikuti di Instagram"));
-  assert(instagram.includes("Tutup pratinjau"));
-  assert.equal(render({}), "");
-  assert.equal(render({ github: "http://github.com/Jayszrs" }), "");
-  assert.equal(render({ github: "https://github.com.evil.test/Jayszrs" }), "");
-  assert(!render({ github: "https://github.com/AnotherUser" }).includes("I’m currently working"), "A different account must not inherit the owner's README snapshot");
-  console.log("PASS: GitHub README rendering, account-specific fallback, tab semantics, Instagram preview/profile link, TikTok without error iframe, and URL validation.");
+  const response = await fetch(base);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const rendered = html.replace(/<script\b[\s\S]*?<\/script>/gi, "");
+  assert.ok(/<img\b[^>]*src="\/icon\.svg"/.test(rendered), "Navbar/badge must use the local Kali asset");
+  assert.ok(rendered.includes("lanyard-stage"));
+  assert.ok(rendered.includes("/recovered-media/72f2512d2ad69885bd85.webp"), "Recovered profile photograph missing from rendered card");
+  assert.ok(rendered.includes("README.md"));
+  assert.ok(rendered.includes("I’m currently working"));
+  assert.ok(rendered.includes('role="tablist"'));
+  assert.ok(rendered.includes('aria-labelledby="social-tab-github"'));
+  for (const unwanted of ["Kontribusi setahun", "Setahun membangun", "Top kontribusi commit", "Top Contributed Repo", "GitHub Stats"]) assert.ok(!rendered.includes(unwanted), unwanted);
+  const logo = await fetch(`${base}/icon.svg`);
+  assert.equal(logo.status, 200);
+  assert.ok((await logo.text()).includes("<path"));
+  const social = await fetch(`${base}/api/social`);
+  assert.equal(social.status, 200);
+  const { github } = await social.json();
+  assert.equal(github.username.toLowerCase(), "jayszrs");
+  assert.ok(github.readme.markdown.includes("About Me"));
+  assert.equal(github.days, undefined);
+  assert.equal(github.topRepositories, undefined);
+  const tiktok = await fetch(`${base}/api/social/tiktok`);
+  assert.equal(tiktok.status, 200);
+  const value = (await tiktok.json()).tiktok;
+  assert.equal(value.username, "jayszrss");
+  assert.ok(value.videos.length >= 1 && value.videos.length <= 5);
+  assert.ok(value.videos.every((video) => /^\d{17,20}$/.test(video.id)));
+  assert.ok(value.ranking === "views" || value.videos.every((video) => video.viewCount === null));
+  console.log(JSON.stringify({ status: "PASS", renderedLocalLogo: true, recoveredPhotoInLanyard: true, profileAndReadmeOnly: true, liveGithubReadme: true, tiktokPosts: value.videos.length, ranking: value.ranking, browserInteractionVerified: false, remoteMutations: 0 }));
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });

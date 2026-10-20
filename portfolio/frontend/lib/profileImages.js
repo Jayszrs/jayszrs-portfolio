@@ -1,4 +1,11 @@
 import { compactUrls } from "@/frontend/lib/documentation";
+import unavailableLegacy from "./profile-unavailable-legacy.json";
+import { mediaSource } from "./media";
+
+export function profileDisplayImages(profile = {}) {
+  // Keep unavailable originals in the editor. A later recovery alias brings them back automatically.
+  return profileHeroImages(profile).filter((url) => !unavailableLegacy.includes(url) || mediaSource(url) !== url);
+}
 
 export function profileHeroImages(profile = {}) {
   return compactUrls([

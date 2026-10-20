@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { readContent, writeContent } from "@/backend/lib/content";
+import { verifyAdminSession } from "@/backend/lib/admin-session.cjs";
 
 export const dynamic = "force-dynamic";
 
@@ -28,8 +29,8 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const session = cookies().get("jayszrs_admin");
-  if (!session || session.value !== "ok") {
+  const session = (await cookies()).get("jayszrs_admin");
+  if (!verifyAdminSession(session?.value)) {
     return jsonNoStore({ error: "Unauthorized" }, { status: 401 });
   }
 

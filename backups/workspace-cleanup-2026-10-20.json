@@ -1,0 +1,16 @@
+﻿{
+    "checkedAt":  "2026-10-20T16:15:44.0576596Z",
+    "status":  "QUARANTINED",
+    "source":  "C:\\Users\\jaela\\Downloads\\Project2 Web\\jayszrs-portfolio\\portfolio\\.next-glass-review",
+    "destination":  "C:\\Users\\jaela\\Downloads\\Project2 Web\\jayszrs-cleanup-2026-10-20\\portfolio\\.next-glass-review",
+    "files":  227,
+    "bytes":  117720056,
+    "sourceModulesRemoved":  [
+                                 "IntroLoader.js",
+                                 "MouseSpotlight.js",
+                                 "SocialMedia.js"
+                             ],
+    "protectedMediaRetained":  6,
+    "originalRecoveryArchivesDeleted":  0,
+    "remoteMutations":  0
+}

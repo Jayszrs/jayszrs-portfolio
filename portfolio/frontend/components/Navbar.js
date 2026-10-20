@@ -123,7 +123,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
     <header className="fixed left-0 right-0 top-3 z-50 flex justify-center px-4 sm:top-4 sm:px-4">
       <nav aria-label="Navigasi utama" className="glass glass-float flex w-full max-w-7xl items-center justify-between gap-3 rounded-[1.75rem] px-3 py-2.5 lg:rounded-full lg:px-4 lg:py-2 xl:px-5">
         <Link href="/" onClick={handleBrandClick} className="flex min-w-0 shrink-0 items-center gap-2.5 lg:min-w-[9.75rem]">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm sm:h-9 sm:w-9">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#ef3340] shadow-sm sm:h-9 sm:w-9">
             <img
               src="/icon.svg"
               alt=""
@@ -144,7 +144,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
                 className={`block rounded-full px-2.5 py-2 text-sm font-medium transition xl:px-3.5 ${
                   isActive(link.href)
                     ? "bg-ink text-paper"
-                    : "text-ink/65 hover:bg-surface/70 hover:text-ink"
+                    : "text-muted hover:bg-surface/70 hover:text-ink"
                 }`}
               >
                 {link.label}

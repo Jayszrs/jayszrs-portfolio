@@ -36,6 +36,14 @@ const { adminRecoveredMedia } = loadHelper("admin-media.js", {
 });
 const source = JSON.parse(fs.readFileSync(path.join(process.env.TEMP, "jayszrs-all-media-current.json"), "utf8").replace(/^\uFEFF/, ""));
 const original = JSON.stringify(source);
+const profileImages = loadHelper("profileImages.js", {
+  ...documentation, ...media, unavailableLegacy: read("frontend/lib/profile-unavailable-legacy.json"),
+});
+const visibleProfile = profileImages.profileDisplayImages(source.profile);
+assert.equal(visibleProfile.length, 3);
+assert.equal(profileImages.profileHeroImages(source.profile).length, 10, "Original profile uploads must stay in the editor");
+for (const url of visibleProfile) assert.ok(fs.existsSync(path.join(root, "public", media.mediaSource(url))));
+assert.ok(profileImages.profileDisplayImages({ ...source.profile, heroImages: ["https://example.com/new-admin-photo.jpg"], heroImage: "", heroImage2: "", heroImage3: "", heroImage4: "" }).includes("https://example.com/new-admin-photo.jpg"), "New admin media must remain visible");
 const paths = new Set();
 let removedSlots = 0;
 for (const [id, recovered] of Object.entries(registry)) {

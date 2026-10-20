@@ -132,7 +132,7 @@ export default function Capabilities({ capabilities, section = {} }) {
             <div className="mt-4 rounded-2xl border border-line p-4">
               <div className="mb-2 flex items-center gap-2">
                 <Sparkles size={16} className="text-gold" />
-                <p className="text-xs font-semibold uppercase tracking-wider text-ink/65">Penggunaan</p>
+                <p className="text-xs font-semibold text-muted">Penggunaan</p>
               </div>
               <p className="text-sm leading-relaxed text-muted">{selected.usage || "Catatan penggunaan belum diisi."}</p>
             </div>

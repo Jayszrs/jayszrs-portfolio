@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { put } from "@vercel/blob"; // Import fungsi put
+import { verifyAdminSession } from "@/backend/lib/admin-session.cjs";
 
 export async function POST(request) {
-  const session = cookies().get("jayszrs_admin");
-  if (!session || session.value !== "ok") {
+  const session = (await cookies()).get("jayszrs_admin");
+  if (!verifyAdminSession(session?.value)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

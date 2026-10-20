@@ -1,19 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import { X } from "lucide-react";
+import useDialog from "@/frontend/lib/useDialog";
 
 export default function DetailModal({ open, onClose, eyebrow, title, children, size = "default" }) {
-  useEffect(() => {
-    if (!open) return undefined;
-    const handleKey = (event) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => {
-      window.removeEventListener("keydown", handleKey);
-    };
-  }, [open, onClose]);
+  const dialogRef = useDialog(open, onClose);
 
   if (!open) return null;
 
@@ -26,6 +17,8 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
     >
       <div
         role="dialog"
+        ref={dialogRef}
+        tabIndex={-1}
         aria-modal="true"
         aria-labelledby="detail-modal-title"
         className={`glass-dialog max-h-[90svh] w-full overflow-y-auto overscroll-contain rounded-[1.75rem] p-6 [-webkit-overflow-scrolling:touch] sm:p-8 ${
@@ -41,6 +34,7 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
           </div>
           <button
             type="button"
+            data-dialog-close
             onClick={onClose}
             aria-label="Tutup detail"
             className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-emerald/40 hover:text-emerald-deep"

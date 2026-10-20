@@ -17,28 +17,10 @@ function parseProfileReadme(markdown, username) {
   const technologies = [...new Set([...techSection.matchAll(/!\[([^\]]{1,70})\]\(https:\/\/img\.shields\.io\/[^)]+\)/g)].map((match) => plainText(match[1])))].slice(0, 100);
   return {
     sourceUrl: `https://github.com/${username}/${username}#readme`,
+    markdown: text.split(/^#{1,3}[^\n]*(?:GitHub Stats|Top Contributed Repo)[^\n]*$/im)[0].replace(/(?:<br\s*\/?\s*>\s*)+/gi, "\n\n").trim(),
     blocks: intro.map((body, index) => ({ label: labels[index], body })),
     technologies,
   };
-}
-
-function parseContributionCalendar(html) {
-  const tips = new Map();
-  for (const match of html.matchAll(/<tool-tip\b([^>]*)>([\s\S]*?)<\/tool-tip>/g)) {
-    const id = /\bfor="([^"]+)"/.exec(match[1])?.[1];
-    const text = match[2].replace(/<[^>]*>/g, "").trim();
-    const count = /^([\d,]+)\s+contribution/.exec(text);
-    if (id && (count || /^No contributions\b/.test(text))) tips.set(id, count ? Number(count[1].replace(/,/g, "")) : 0);
-  }
-  const days = [];
-  for (const match of html.matchAll(/<(?:td|rect)\b([^>]*\bdata-date="\d{4}-\d{2}-\d{2}"[^>]*)>/g)) {
-    const attrs = match[1];
-    const date = /data-date="([^"]+)"/.exec(attrs)?.[1];
-    const id = /\bid="([^"]+)"/.exec(attrs)?.[1];
-    const level = Number(/data-level="(\d)"/.exec(attrs)?.[1]);
-    if (date && id && tips.has(id) && level >= 0 && level <= 4) days.push({ date, count: tips.get(id), level });
-  }
-  return days.sort((a, b) => a.date.localeCompare(b.date));
 }
 
 async function request(url, json = true, signal) {
@@ -52,50 +34,28 @@ async function readGitHubSocial(username) {
   const budget = AbortSignal.timeout(20000);
   const read = (url, json = true) => request(url, json, budget);
   const base = `https://api.github.com/users/${encodeURIComponent(username)}`;
-  const [profileResult, repoResult, calendarResult, readmeResult] = await Promise.allSettled([
-    read(base), read(`${base}/repos?per_page=100&sort=pushed`),
-    read(`https://github.com/users/${encodeURIComponent(username)}/contributions`, false),
-    read(`https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(username)}/readme`),
+  const [profileResult, readmeResult] = await Promise.allSettled([
+    read(base),
+    (async () => {
+      try {
+        const result = await read(`https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(username)}/readme`);
+        if (result.encoding !== "base64" || typeof result.content !== "string") throw new Error("README unavailable");
+        return Buffer.from(result.content, "base64").toString("utf8");
+      } catch {
+        return read(`https://raw.githubusercontent.com/${encodeURIComponent(username)}/${encodeURIComponent(username)}/HEAD/README.md`, false);
+      }
+    })(),
   ]);
   const profile = profileResult.status === "fulfilled" ? profileResult.value : null;
-  const repos = repoResult.status === "fulfilled" && Array.isArray(repoResult.value) ? repoResult.value : [];
-  const candidates = repos.filter((repo) => !repo.fork && (repo.owner?.login || "").toLowerCase() === username.toLowerCase()).slice(0, 30);
-  let cursor = 0;
-  const ranked = [];
-  await Promise.all(Array.from({ length: Math.min(candidates.length, 4) }, async () => {
-    for (;;) {
-      const index = cursor++;
-      if (index >= candidates.length || budget.aborted) return;
-      const repo = candidates[index];
-      let commits = null;
-      try {
-        const contributors = await read(`https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo.name)}/contributors?per_page=100`);
-        const contributor = Array.isArray(contributors) && contributors.find((c) => c.login?.toLowerCase() === username.toLowerCase());
-        if (contributor) commits = contributor.contributions;
-      } catch { /* Keep a repository link when GitHub's rate limit is reached. */ }
-      ranked.push({ name: repo.name, url: repo.html_url, description: repo.description, language: repo.language, stars: repo.stargazers_count, commits, pushedAt: repo.pushed_at });
-    }
-  }));
-  const parsedDays = calendarResult.status === "fulfilled" ? parseContributionCalendar(calendarResult.value) : [];
-  const days = parsedDays.length >= 300 ? parsedDays : [];
-  const markdown = readmeResult.status === "fulfilled" && readmeResult.value?.encoding === "base64" && typeof readmeResult.value.content === "string"
-    ? Buffer.from(readmeResult.value.content, "base64").toString("utf8") : "";
+  const markdown = readmeResult.status === "fulfilled" ? readmeResult.value : "";
   const readme = markdown ? parseProfileReadme(markdown, username) : null;
-  if (!profile && !ranked.length && !days.length && !readme) throw new Error("GitHub is temporarily unavailable");
-  const verified = ranked.filter((repo) => repo.commits !== null);
+  if (!profile && !readme) throw new Error("GitHub is temporarily unavailable");
   return {
     username, profileUrl: `https://github.com/${username}`, avatar: profile?.avatar_url,
-    name: profile?.name || profile?.login || username, bio: profile?.bio || "",
-    company: profile?.company || "", location: profile?.location || "", readme,
-    followers: profile?.followers ?? null, repositories: profile?.public_repos ?? null,
-    days, totalContributions: days.length ? days.reduce((n, d) => n + d.count, 0) : null,
-    topRepositories: verified.length
-      ? verified.sort((a, b) => b.commits - a.commits || b.stars - a.stars).slice(0, 5)
-      : ranked.sort((a, b) => String(b.pushedAt).localeCompare(String(a.pushedAt))).slice(0, 5),
-    rankingKind: verified.length ? "owner-commits" : "recent-repositories",
-    verifiedRepositoryCount: verified.length,
-    rankedRepositoryCount: candidates.length, updatedAt: new Date().toISOString(),
+    name: profile?.name || profile?.login, bio: profile?.bio,
+    company: profile?.company, location: profile?.location, readme,
+    updatedAt: new Date().toISOString(),
   };
 }
 
-module.exports = { parseContributionCalendar, parseProfileReadme, readGitHubSocial };
+module.exports = { parseProfileReadme, readGitHubSocial };

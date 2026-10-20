@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import SafeImage, { ImageUnavailable } from "@/frontend/components/SafeImage";
 import { isBlobSource, mediaSource } from "@/frontend/lib/media";
+import useDialog from "@/frontend/lib/useDialog";
 
 function isPdf(src = "") {
   return /\.pdf(\?.*)?(#.*)?$/i.test(src);
@@ -163,6 +164,7 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
   const [pdfLoaded, setPdfLoaded] = useState(false);
   const [pdfCheck, setPdfCheck] = useState({ src: "", status: "loading" });
   const current = galleryItems[activeIndex] || galleryItems[0];
+  const dialogRef = useDialog(Boolean(current?.src), onClose);
   const hasMultiple = galleryItems.length > 1;
   const pdfStatus = !isBlobSource(current?.src) ? "ready"
     : pdfCheck.src === current?.src ? pdfCheck.status : "loading";
@@ -247,12 +249,12 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
 
   return (
     <div
-      className="glass-scrim fixed inset-0 z-[130] flex items-end justify-center overscroll-contain bg-black/70 p-3 sm:items-center sm:p-6"
+      className="glass-scrim fixed inset-0 z-[200] flex items-end justify-center overscroll-contain bg-black/70 p-3 sm:items-center sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div role="dialog" aria-modal="true" aria-label={current.title || title} className="glass-dialog w-full max-w-6xl overflow-hidden rounded-[1.5rem]">
+      <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={current.title || title} className="glass-dialog w-full max-w-6xl overflow-hidden rounded-[1.5rem]">
         <div className="flex items-center justify-between gap-4 border-b border-line px-4 py-3 sm:px-5">
           <div className="min-w-0">
             <p className="truncate font-display text-lg font-semibold text-ink">{current.title || title}</p>
@@ -278,7 +280,8 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
               type="button"
               onClick={onClose}
               aria-label="Tutup preview"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-emerald/40 hover:text-emerald"
+              data-dialog-close
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-emerald/40 hover:text-emerald"
             >
               <X size={18} />
             </button>

@@ -12,6 +12,7 @@ import { profileHeroImages, withProfileHeroImages } from "@/frontend/lib/profile
 import { mediaSource } from "@/frontend/lib/media";
 import RecoveredMediaPanel from "@/frontend/components/RecoveredMediaPanel";
 import SafeImage from "@/frontend/components/SafeImage";
+import socialCuration from "@/frontend/lib/social-curation.json";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
@@ -931,6 +932,17 @@ export default function AdminPageClient() {
             <TextField label="LinkedIn URL" value={content.profile?.socials?.linkedin} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, linkedin: v } } })} />
             <TextField label="Instagram URL" value={content.profile?.socials?.instagram} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, instagram: v } } })} />
             <TextField label="TikTok URL" value={content.profile?.socials?.tiktok} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...(content.profile.socials || {}), tiktok: v } } })} />
+            <div className="space-y-4 border-t border-line pt-5 sm:col-span-2">
+              <h3 className="font-display text-base font-semibold text-ink">Musik & video pilihan</h3>
+              <p className="text-xs leading-6 text-muted">Musik profil diatur di sini. Perubahan lagu di akun Instagram pribadi tidak tersinkron otomatis. Token TikTok tetap disimpan di server.</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[['title', 'Judul lagu'], ['artist', 'Artis'], ['spotifyUrl', 'Link lagu Spotify']].map(([key, label]) => {
+                  const music = content.profile.socialHighlights?.instagramMusic ?? (/instagram\.com\/(?:jayszrs)\/?(?:[?#].*)?$/i.test(content.profile.socials?.instagram || '') ? socialCuration.instagramMusic : {});
+                  return <TextField key={key} label={label} value={music[key] || ''} onChange={(value) => setContent({ ...content, profile: { ...content.profile, socialHighlights: { ...content.profile.socialHighlights, instagramMusic: { ...music, [key]: value } } } })} />;
+                })}
+              </div>
+              <TextField label="Video TikTok pilihan (satu URL postingan lengkap per baris, maksimal 5)" textarea rows={5} placeholder="https://www.tiktok.com/@username/video/..." value={(content.profile.socialHighlights?.tiktokVideos ?? (/tiktok\.com\/@jayszrss\/?(?:[?#].*)?$/i.test(content.profile.socials?.tiktok || '') ? socialCuration.tiktokVideos : [])).map((value) => typeof value === 'string' ? value : value.url).join('\n')} onChange={(value) => setContent({ ...content, profile: { ...content.profile, socialHighlights: { ...content.profile.socialHighlights, tiktokVideos: value.split('\n').map((url) => url.trim()).filter(Boolean).slice(0, 5) } } })} />
+            </div>
           </div>
         )}
 

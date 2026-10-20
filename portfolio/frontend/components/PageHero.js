@@ -1,33 +1,16 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowDownRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
-const accents = {
-  emerald: "from-emerald/15 via-emerald/5 to-transparent",
-  gold: "from-gold/15 via-gold/5 to-transparent",
-  ink: "from-ink/10 via-ink/[0.03] to-transparent",
-};
-
-export default function PageHero({ eyebrow, title, description, accent = "emerald", count }) {
+export default function PageHero({ eyebrow, title, description, count }) {
   return (
-    <section className="section-pad pt-28 sm:pt-32">
-      <div className={`relative mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-surface/80 bg-gradient-to-br ${accents[accent]} px-5 py-10 shadow-glass sm:rounded-[2rem] sm:px-12 sm:py-16`}>
-        <div className="absolute -right-16 -top-20 h-64 w-64 rounded-full border border-surface/70 bg-surface/30" />
-        <div className="relative max-w-3xl">
-          <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-ink/60 transition hover:text-emerald sm:mb-10">
-            <ArrowLeft size={15} /> Kembali ke beranda
-          </Link>
-          <div className="flex items-center gap-3">
-            <p className="eyebrow">{eyebrow}</p>
-            {count !== undefined && (
-              <span className="rounded-full bg-surface/70 px-2.5 py-1 font-mono text-[10px] text-ink/55">{count} item</span>
-            )}
-          </div>
-          <h1 className="mt-3 max-w-2xl font-display text-[2.35rem] font-semibold leading-tight text-ink sm:text-5xl lg:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-relaxed">{description}</p>
+    <section className="section-pad pt-28 sm:pt-32" aria-label={eyebrow || undefined}>
+      <div className="glass-strong relative mx-auto max-w-7xl rounded-3xl px-6 py-8 sm:px-12 sm:py-12">
+        <Link href="/" className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-muted underline-offset-4 transition hover:text-ink hover:underline"><ArrowLeft size={15} />Kembali ke beranda</Link>
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <h1 className="max-w-3xl text-balance font-display text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-tight tracking-[-0.025em] text-ink">{title}</h1>
+          {count !== undefined && <span className="text-sm tabular-nums text-muted">{count} item</span>}
         </div>
-        <ArrowDownRight className="absolute bottom-8 right-8 hidden text-ink/20 sm:block" size={42} />
+        {description && <p className="mt-5 max-w-2xl text-base leading-8 text-muted sm:text-lg">{description}</p>}
       </div>
     </section>
   );
