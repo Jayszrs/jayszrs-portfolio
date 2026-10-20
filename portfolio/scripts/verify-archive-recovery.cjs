@@ -31,6 +31,9 @@ const { withRecoveredDocumentation } = loadHelper("recovered-documentation.js", 
 const { withRecoveredProjectMedia } = loadHelper("project-media.js", {
   ...documentation, recoveredProjects: read("frontend/lib/recovered-project-media.json"),
 });
+const { adminRecoveredMedia } = loadHelper("admin-media.js", {
+  ...documentation, ...media, withRecoveredDocumentation, withRecoveredProjectMedia,
+});
 const source = JSON.parse(fs.readFileSync(path.join(process.env.TEMP, "jayszrs-all-media-current.json"), "utf8").replace(/^\uFEFF/, ""));
 const original = JSON.stringify(source);
 const paths = new Set();
@@ -71,6 +74,24 @@ const restoredLaundry = withRecoveredProjectMedia(laundry);
 assert.equal(restoredLaundry.image, "/recovered-media/drive/laundryuk-dashboard-admin.png");
 assert.deepEqual(restoredLaundry.documentationImages, laundry.documentationImages);
 assert.equal(withRecoveredProjectMedia({ ...laundry, image: "/admin-new-cover.png" }).image, "/admin-new-cover.png");
+// The admin preview must expose real public recovery files without rewriting the edit form.
+let adminPreviewFiles = 0;
+for (const section of ["education", "experience", "gallery"]) {
+  for (const item of source[section]) {
+    const before = JSON.stringify(item);
+    const preview = adminRecoveredMedia(item, section);
+    assert.equal(JSON.stringify(item), before, "Admin preview changed original CMS fields");
+    assert.equal(new Set(preview.map((entry) => entry.src)).size, preview.length);
+    for (const entry of preview) {
+      assert.ok(fs.existsSync(path.join(root, "public", entry.src)), entry.src);
+      adminPreviewFiles += 1;
+    }
+  }
+}
+for (const url of schoolPhotos) assert.ok(adminRecoveredMedia(school, "education").some((entry) => entry.src === url));
+const editedSchool = { ...school, documentationImages: ["/admin-new-photo.jpg"] };
+assert.ok(adminRecoveredMedia(editedSchool, "education").every((entry) => !schoolPhotos.includes(entry.src)), "Admin edits must disable the old collection preview");
+assert.ok(source.gallery.some((item) => adminRecoveredMedia(item, "gallery").some((entry) => entry.kind === "pdf")), "Project PDFs missing from admin preview");
 const unresolved = read("../backups/unresolved-media-2026-10-15.json");
 const stillVisible = new Set();
 function collect(value) {
@@ -86,4 +107,4 @@ collect({ ...source,
 if (process.argv.includes("--refresh-backlog")) {
   fs.writeFileSync(path.join(root, "../backups/unresolved-media-2026-10-15.json"), JSON.stringify(unresolved.filter((entry) => stillVisible.has(entry.url)), null, 2) + "\n");
 }
-console.log(JSON.stringify({ status: "PASS", collections: Object.keys(registry).length, uniqueImages: paths.size, laundryCoverRestored: true, unresolvedDocumentationSlotsReplacedBySourceCollections: removedSlots, remainingVisibleUnresolvedUrls: stillVisible.size, cmsUnchanged: true, laterAdminEditsWin: true }));
+console.log(JSON.stringify({ status: "PASS", collections: Object.keys(registry).length, uniqueImages: paths.size, laundryCoverRestored: true, adminPreviewFiles, unresolvedDocumentationSlotsReplacedBySourceCollections: removedSlots, remainingVisibleUnresolvedUrls: stillVisible.size, cmsUnchanged: true, laterAdminEditsWin: true }));

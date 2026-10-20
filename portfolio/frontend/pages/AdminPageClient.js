@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   LogOut, Plus, Trash2, Save, Loader2, ImagePlus, Lock,
@@ -10,6 +10,8 @@ import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
 import { documentationImages, withDocumentationImages } from "@/frontend/lib/documentation";
 import { profileHeroImages, withProfileHeroImages } from "@/frontend/lib/profileImages";
 import { mediaSource } from "@/frontend/lib/media";
+import RecoveredMediaPanel from "@/frontend/components/RecoveredMediaPanel";
+import SafeImage from "@/frontend/components/SafeImage";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
@@ -381,11 +383,13 @@ function MultiImageField({
 }
 
 function TextField({ label, value = "", onChange, textarea, mono, type = "text", placeholder = "", rows = 3 }) {
+  const id = useId();
   return (
     <div className="space-y-1.5">
-      {label && <label className="block text-xs font-semibold text-ink/70">{label}</label>}
+      {label && <label htmlFor={id} className="block text-xs font-semibold text-ink/70">{label}</label>}
       {textarea ? (
         <textarea
+          id={id}
           value={value || ""}
           onChange={(e) => onChange(e.target.value)}
           rows={rows}
@@ -394,6 +398,7 @@ function TextField({ label, value = "", onChange, textarea, mono, type = "text",
         />
       ) : (
         <input
+          id={id}
           type="text"
           inputMode={type === "tel" ? "tel" : undefined}
           value={value || ""}
@@ -407,17 +412,18 @@ function TextField({ label, value = "", onChange, textarea, mono, type = "text",
 }
 
 function SelectField({ label, value, onChange, options }) {
+  const id = useId();
   return (
     <div className="space-y-1.5">
-      <label className="block text-xs font-semibold text-ink/70">{label}</label>
-      <select value={value || ""} onChange={(event) => onChange(event.target.value)} className="field">
+      <label htmlFor={id} className="block text-xs font-semibold text-ink/70">{label}</label>
+      <select id={id} value={value || ""} onChange={(event) => onChange(event.target.value)} className="field">
         {options.map((option) => <option key={option} value={option}>{option}</option>)}
       </select>
     </div>
   );
 }
 
-function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }) {
+function CollectionEditor({ items = [], onChange, fields, createItem, addLabel, mediaSection }) {
   const updateItem = (index, key, value) => {
     const next = [...items];
     next[index] = { ...next[index], [key]: value };
@@ -437,12 +443,13 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel }
           <div className="flex items-center justify-between">
             <div>
               <span className="rounded-full bg-paper px-2 py-1 font-mono text-[11px] font-semibold text-muted">#{index + 1}</span>
-              <p className="mt-1 font-display text-sm font-semibold text-ink">{item.name || item.title || "Item baru"}</p>
+              <p className="mt-1 font-display text-sm font-semibold text-ink">{item.name || item.title || item.institution || "Item baru"}</p>
             </div>
-            <button type="button" aria-label="Hapus item" className="flex h-9 w-9 items-center justify-center rounded-xl border border-red-100 bg-paper text-red-400 transition hover:bg-red-50 hover:text-red-600" onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}>
+            <button type="button" aria-label={`Hapus ${item.name || item.title || item.institution || "item"}`} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-paper text-muted transition hover:bg-red-50 hover:text-red-600" onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}>
               <Trash2 size={16} />
             </button>
           </div>
+          {mediaSection && <RecoveredMediaPanel item={item} section={mediaSection} />}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {fields.map((field) => {
               const fieldValue = field.kind === "images" ? documentationImages(item) : item[field.key] || "";
@@ -571,6 +578,8 @@ function SectionTextsEditor({ content, setContent }) {
 
 export default function AdminPageClient() {
   const [authed, setAuthed] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [loginBusy, setLoginBusy] = useState(false);
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
@@ -590,7 +599,10 @@ export default function AdminPageClient() {
       .then((r) => r.json())
       .then((d) => setAuthed(d.authenticated))
       .catch(() => setAuthed(false))
-      .finally(() => window.clearTimeout(timer));
+      .finally(() => {
+        window.clearTimeout(timer);
+        setAuthLoading(false);
+      });
 
     return () => {
       window.clearTimeout(timer);
@@ -624,15 +636,23 @@ export default function AdminPageClient() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoginError("");
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    if (res.ok) {
-      setAuthed(true);
-    } else {
-      setLoginError("Password salah. Coba lagi.");
+    setLoginBusy(true);
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      if (res.ok) {
+        setAuthed(true);
+        setPassword("");
+      } else {
+        setLoginError(res.status === 401 ? "Password salah. Coba lagi." : "Login belum berhasil. Coba lagi nanti.");
+      }
+    } catch {
+      setLoginError("Koneksi terputus. Coba masuk lagi.");
+    } finally {
+      setLoginBusy(false);
     }
   };
 
@@ -666,10 +686,14 @@ export default function AdminPageClient() {
     }
   };
 
+  if (authLoading) {
+    return <div role="status" className="admin-login-shell flex min-h-screen items-center justify-center gap-3 text-sm text-muted"><Loader2 size={20} className="animate-spin" /> Memeriksa sesi admin…</div>;
+  }
+
   if (!authed) {
     return (
       <div className="admin-login-shell relative flex min-h-screen items-center justify-center overflow-hidden bg-paper px-4 py-10">
-        <form onSubmit={handleLogin} className="admin-login-card relative w-full max-w-md rounded-2xl border border-line bg-surface p-7 shadow-glass-lg sm:p-8">
+        <form onSubmit={handleLogin} className="admin-login-card glass-strong glass-float relative w-full max-w-md rounded-3xl p-7 sm:p-8">
           <div className="mb-6 flex items-center justify-between gap-4">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-paper">
               <Lock size={18} />
@@ -682,21 +706,28 @@ export default function AdminPageClient() {
           <h1 className="font-display text-2xl font-semibold text-ink">Masuk admin.</h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">Kelola konten portfolio, upload gambar, dan update resume dari satu panel.</p>
 
+          <label htmlFor="admin-password" className="mt-7 block text-xs font-semibold text-ink">Password admin</label>
           <input
+            id="admin-password"
             type="password"
+            autoComplete="current-password"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password admin"
-            className="field mt-7"
+            className="field mt-2"
+            aria-invalid={Boolean(loginError)}
+            aria-describedby={loginError ? "admin-login-error" : undefined}
             autoFocus
           />
-          {loginError && <p className="mt-2 text-xs text-red-500">{loginError}</p>}
+          {loginError && <p id="admin-login-error" role="alert" className="mt-2 text-sm text-red-500">{loginError}</p>}
 
           <button
             type="submit"
-            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-3 text-sm font-semibold text-paper transition hover:bg-emerald hover:text-white"
+            disabled={loginBusy}
+            className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-ink py-3 text-sm font-semibold text-paper transition hover:bg-emerald-deep disabled:opacity-60"
           >
-            Masuk <ExternalLink size={14} />
+            {loginBusy ? <><Loader2 size={16} className="animate-spin" /> Memeriksa…</> : <>Masuk <ExternalLink size={14} /></>}
           </button>
         </form>
       </div>
@@ -757,15 +788,15 @@ export default function AdminPageClient() {
       : "border-line bg-surface text-muted";
 
   return (
-    <div className="min-h-screen bg-paper pb-44">
-      <header className="sticky top-0 z-40 border-b border-line bg-paper/90 px-4 py-3 backdrop-blur-xl sm:px-6">
+    <div className="admin-studio min-h-screen pb-32">
+      <header className="glass-float sticky top-0 z-40 border-b border-line px-4 py-3 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink text-paper">
               <LayoutDashboard size={18} />
             </div>
             <div className="min-w-0">
-              <p className="truncate font-display text-base font-semibold text-ink sm:text-lg">Content Studio</p>
+              <h1 className="truncate font-display text-base font-semibold text-ink sm:text-lg">Content Studio</h1>
               <p className="text-xs text-muted">Kelola portofolio jayszrs.</p>
             </div>
           </div>
@@ -781,14 +812,15 @@ export default function AdminPageClient() {
             <Link
               href="/"
               target="_blank"
-              className="flex h-10 items-center gap-2 rounded-xl border border-line bg-surface/70 px-3 text-sm font-semibold text-ink transition hover:border-emerald/30"
+              aria-label="Lihat website di tab baru"
+              className="glass-pill flex h-11 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-ink transition hover:border-emerald/30"
             >
               <ExternalLink size={14} /> <span className="hidden sm:inline">Preview</span>
             </Link>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex h-10 items-center gap-2 rounded-xl bg-emerald px-3.5 text-sm font-semibold text-white transition hover:bg-emerald-deep disabled:opacity-60 sm:px-4"
+              className="flex h-11 items-center gap-2 rounded-xl bg-ink px-3.5 text-sm font-semibold text-paper transition hover:bg-emerald-deep disabled:opacity-60 sm:px-4"
             >
               {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
               Simpan
@@ -796,7 +828,8 @@ export default function AdminPageClient() {
             <button
               onClick={handleLogout}
               title="Keluar"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-line text-ink transition hover:bg-surface"
+              aria-label="Keluar dari admin"
+              className="glass-pill flex h-11 w-11 items-center justify-center rounded-xl text-ink transition hover:bg-surface"
             >
               <LogOut size={15} />
             </button>
@@ -807,33 +840,49 @@ export default function AdminPageClient() {
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
         <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {stats.map(([label, value]) => (
-            <div key={label} className="rounded-xl border border-line bg-surface/80 p-4 shadow-glass">
+            <div key={label} className="glass flex items-baseline justify-between gap-3 rounded-2xl p-4 sm:block sm:p-5">
               <p className="font-display text-2xl font-semibold text-ink">{value}</p>
               <p className="mt-1 truncate text-xs text-muted">{label}</p>
             </div>
           ))}
         </div>
 
-        <div className="mb-8 rounded-2xl border border-line bg-surface/80 p-3 shadow-glass">
-          <div className="mb-3 flex flex-col gap-1 px-1 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="font-display text-xl font-semibold text-ink">{tab}</p>
-              <p className="text-sm text-muted">{tabDescriptions[tab]}</p>
-            </div>
-            <p className="text-xs font-semibold text-emerald-deep">Upload gambar lalu klik Simpan.</p>
-          </div>
-          <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {TABS.map((t) => (
+        <div className="admin-workspace">
+        <aside className="admin-navigation glass rounded-2xl p-2 lg:p-3">
+          <p className="hidden px-3 pb-3 pt-2 text-xs font-semibold text-muted lg:block">Bagian website</p>
+          <div role="tablist" aria-label="Bagian konten" className="admin-tabs">
+            {TABS.map((t, index) => (
               <button
                 key={t}
+                type="button"
+                role="tab"
+                id={`admin-tab-${index}`}
+                aria-selected={tab === t}
+                aria-controls="admin-editor"
+                tabIndex={tab === t ? 0 : -1}
                 onClick={() => setTab(t)}
-                className={`shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${tab === t ? "bg-ink text-paper shadow-glass" : "bg-paper text-ink/70 hover:bg-emerald-soft hover:text-emerald-deep"}`}
+                onKeyDown={(event) => {
+                  const delta = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+                  if (delta === undefined && event.key !== "Home" && event.key !== "End") return;
+                  event.preventDefault();
+                  const next = event.key === "Home" ? 0 : event.key === "End" ? TABS.length - 1 : (index + delta + TABS.length) % TABS.length;
+                  setTab(TABS[next]);
+                  document.getElementById(`admin-tab-${next}`)?.focus();
+                }}
+                className="admin-tab shrink-0 text-left text-sm font-semibold"
               >
                 {t}
               </button>
             ))}
           </div>
-        </div>
+        </aside>
+
+        <section id="admin-editor" role="tabpanel" tabIndex={0} aria-labelledby={`admin-tab-${TABS.indexOf(tab)}`} className="admin-editor">
+          <div className="admin-editor-heading">
+            <h2 className="font-display text-2xl font-semibold text-ink">{tab}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{tabDescriptions[tab]}</p>
+            <p className="mt-3 text-xs text-emerald-deep">Simpan setelah mengubah konten atau mengunggah file.</p>
+          </div>
 
         {tab === "Profil" && (
           <div className="glass grid grid-cols-1 gap-5 rounded-2xl p-6 sm:grid-cols-2">
@@ -943,6 +992,7 @@ export default function AdminPageClient() {
 
         {tab === "Pendidikan" && (
           <CollectionEditor
+            mediaSection="education"
             items={content.education || []}
             onChange={(items) => setContent({ ...content, education: items })}
             fields={[
@@ -999,7 +1049,7 @@ export default function AdminPageClient() {
                   <div className="flex min-w-0 items-center gap-3">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface">
                       {item.image ? (
-                        <img src={mediaSource(item.image)} alt="" className="h-full w-full object-contain p-1.5" />
+                        <SafeImage src={item.image} alt={item.org || item.title} className="h-full w-full" imgClassName="object-contain p-1.5" sizes="48px" fallback={<ImagePlus size={17} className="text-emerald-deep" />} />
                       ) : (
                         <ImagePlus size={17} className="text-emerald-deep" />
                       )}
@@ -1014,6 +1064,7 @@ export default function AdminPageClient() {
                     setContent({ ...content, experience: content.experience.filter((_, idx) => idx !== i) });
                   }}><Trash2 size={16} /></button>
                 </div>
+                <RecoveredMediaPanel item={item} section="experience" />
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <SelectField label="Kategori" value={item.type} options={["Proyek", "Magang", "Kerja", "Volunteer", "Organisasi"]} onChange={(v) => {
                     const next = [...content.experience]; next[i] = { ...item, type: v }; setContent({ ...content, experience: next });
@@ -1085,10 +1136,11 @@ export default function AdminPageClient() {
               <div key={item.id} className="glass space-y-3 rounded-2xl p-5">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs text-muted">#{i + 1}</span>
-                  <button className="text-red-400 hover:text-red-600" onClick={() => {
+                  <button type="button" aria-label={`Hapus proyek ${item.title || i + 1}`} className="flex h-11 w-11 items-center justify-center rounded-xl text-muted transition hover:bg-red-50 hover:text-red-600" onClick={() => {
                     setContent({ ...content, gallery: content.gallery.filter((_, idx) => idx !== i) });
                   }}><Trash2 size={16} /></button>
                 </div>
+                <RecoveredMediaPanel item={item} section="gallery" />
                 <TextField label="Judul Proyek" value={item.title} onChange={(v) => {
                   const next = [...content.gallery]; next[i] = { ...item, title: v }; setContent({ ...content, gallery: next });
                 }} />
@@ -1311,18 +1363,20 @@ export default function AdminPageClient() {
             </div>
           </div>
         )}
+        </section>
+        </div>
       </main>
 
       <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[160] sm:right-6">
         {saveMenuOpen && (
-          <div className="mb-2 w-[min(21rem,calc(100vw-2rem))] space-y-2 rounded-2xl border border-line bg-paper/98 p-2.5 shadow-[0_-18px_60px_rgba(13,25,21,0.18)]">
-            <button
-              type="button"
+          <div className="glass-strong glass-float mb-2 w-[min(21rem,calc(100vw-2rem))] space-y-2 rounded-2xl p-2.5">
+            <div
+              role="status"
               className={`flex min-h-11 w-full items-center gap-2 rounded-xl border px-3 text-left text-xs font-semibold ${saveStatusClass}`}
             >
               {saveError ? <AlertCircle size={15} /> : savedAt ? <CheckCircle2 size={15} /> : <Save size={15} />}
               <span className="truncate">{saveStatus}</span>
-            </button>
+            </div>
             <Link
               href="/"
               target="_blank"

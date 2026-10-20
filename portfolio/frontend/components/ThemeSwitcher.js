@@ -50,7 +50,7 @@ export default function ThemeSwitcher() {
 
   return (
     <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-5 z-[90] sm:bottom-6 sm:right-6">
-      <div className="hidden items-center gap-1 rounded-2xl border border-line bg-surface/90 p-1.5 shadow-glass-lg backdrop-blur-xl sm:flex">
+      <div className="glass-strong glass-float hidden items-center gap-1 rounded-2xl p-1.5 sm:flex">
         {OPTIONS.map((option) => {
           const Icon = option.icon;
           const active = preference === option.value;
@@ -62,7 +62,7 @@ export default function ThemeSwitcher() {
               aria-label={`Gunakan tema ${option.label}`}
               aria-pressed={active}
               title={option.label}
-              className={`flex h-10 w-10 items-center justify-center rounded-xl transition ${
+              className={`flex h-11 w-11 items-center justify-center rounded-xl transition ${
                 active ? "bg-ink text-paper shadow-sm" : "text-muted hover:bg-paper hover:text-ink"
               }`}
             >
@@ -74,7 +74,7 @@ export default function ThemeSwitcher() {
 
       <div className="relative sm:hidden">
         {menuOpen && (
-          <div className="absolute bottom-full right-0 mb-2 flex flex-col gap-1 rounded-2xl border border-line bg-surface/95 p-1.5 shadow-glass-lg backdrop-blur-xl">
+          <div className="glass-strong glass-float absolute bottom-full right-0 mb-2 flex flex-col gap-1 rounded-2xl p-1.5">
             {OPTIONS.map((option) => {
               const Icon = option.icon;
               return (
@@ -83,7 +83,8 @@ export default function ThemeSwitcher() {
                   type="button"
                   onClick={() => chooseTheme(option.value)}
                   aria-label={`Gunakan tema ${option.label}`}
-                  className={`flex h-10 w-10 items-center justify-center rounded-xl ${
+                  aria-pressed={preference === option.value}
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl ${
                     preference === option.value ? "bg-ink text-paper" : "text-muted"
                   }`}
                 >
@@ -98,7 +99,7 @@ export default function ThemeSwitcher() {
           onClick={() => setMenuOpen((value) => !value)}
           aria-label="Pilih tema tampilan"
           aria-expanded={menuOpen}
-          className="flex h-10 w-10 items-center justify-center rounded-2xl border border-line bg-surface/95 text-ink shadow-glass-lg backdrop-blur-xl"
+          className="glass-strong glass-float flex h-11 w-11 items-center justify-center rounded-2xl text-ink"
         >
           <CurrentIcon size={17} />
         </button>

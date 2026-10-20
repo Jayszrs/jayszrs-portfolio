@@ -121,14 +121,14 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
 
   return (
     <header className="fixed left-0 right-0 top-3 z-50 flex justify-center px-4 sm:top-4 sm:px-4">
-      <nav className="glass flex w-full max-w-7xl items-center justify-between gap-3 rounded-[1.75rem] px-3 py-2.5 lg:rounded-full lg:px-4 lg:py-2 xl:px-5">
+      <nav aria-label="Navigasi utama" className="glass glass-float flex w-full max-w-7xl items-center justify-between gap-3 rounded-[1.75rem] px-3 py-2.5 lg:rounded-full lg:px-4 lg:py-2 xl:px-5">
         <Link href="/" onClick={handleBrandClick} className="flex min-w-0 shrink-0 items-center gap-2.5 lg:min-w-[9.75rem]">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ef3340] p-1.5 shadow-sm sm:h-9 sm:w-9">
             <img
-              src="https://api.iconify.design/simple-icons:kalilinux.svg?color=%23ffffff"
+              src="/icon.svg"
               alt=""
               aria-hidden="true"
-              className="h-full w-full"
+              className="h-full w-full object-contain"
             />
           </span>
           <span className="block max-w-[7rem] truncate font-display text-sm font-semibold text-[#ef3340] sm:max-w-[10rem] lg:max-w-[8.5rem]">{brandName}</span>
@@ -139,6 +139,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
             <li key={link.href}>
               <Link
                 href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
                 onClick={(event) => handleNavClick(event, link.href)}
                 className={`block rounded-full px-2.5 py-2 text-sm font-medium transition xl:px-3.5 ${
                   isActive(link.href)
@@ -176,13 +177,14 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           className="flex h-11 w-11 items-center justify-center rounded-full text-ink lg:hidden"
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
       {open && (
-        <div className="glass-strong absolute top-16 w-[calc(100%-2rem)] max-w-[30rem] rounded-3xl p-3 lg:hidden">
+        <div id="mobile-navigation" className="glass-strong glass-float absolute top-20 max-h-[calc(100svh-7rem)] w-[calc(100%-2rem)] max-w-[30rem] overflow-y-auto rounded-3xl p-3 lg:hidden">
           <ul className="flex flex-col gap-1">
             {LINKS.map((link) => (
               <li key={link.href}>

@@ -696,7 +696,7 @@ export default function LanguageSwitcher() {
     >
       <div className="relative">
         {menuOpen && (
-          <div className="absolute bottom-full right-0 mb-2 w-40 overflow-hidden rounded-2xl border border-line bg-surface/95 p-1.5 shadow-glass-lg backdrop-blur-xl sm:w-44">
+          <div className="glass-strong glass-float absolute bottom-full right-0 mb-2 w-40 overflow-hidden rounded-2xl p-1.5 sm:w-44">
             {LANGUAGES.map((language) => {
               const selected = active === language.code;
               return (
@@ -730,7 +730,7 @@ export default function LanguageSwitcher() {
           onClick={() => setMenuOpen((value) => !value)}
           aria-label="Pilih bahasa"
           aria-expanded={menuOpen}
-          className="flex h-10 items-center gap-1.5 rounded-2xl border border-line bg-surface/95 px-2.5 text-ink shadow-glass-lg backdrop-blur-xl transition hover:border-emerald/30 hover:bg-paper sm:h-11 sm:gap-2 sm:px-3"
+          className="glass-strong glass-float flex h-11 items-center gap-1.5 rounded-2xl px-2.5 text-ink transition hover:border-emerald/30 sm:gap-2 sm:px-3"
         >
           <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-paper">
             <Languages size={15} />

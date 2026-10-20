@@ -1,7 +1,5 @@
 import localFont from "next/font/local";
-import IntroLoader from "@/frontend/components/IntroLoader";
 import DeferredLanguageSwitcher from "@/frontend/components/DeferredLanguageSwitcher";
-import MouseSpotlight from "@/frontend/components/MouseSpotlight";
 import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
 import "./globals.css";
 
@@ -108,8 +106,6 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="bg-paper text-ink font-body antialiased">
-        <IntroLoader />
-        <MouseSpotlight />
         <DeferredLanguageSwitcher />
         <ThemeSwitcher />
         {children}

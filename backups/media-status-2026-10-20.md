@@ -2,7 +2,7 @@
 
 ## Foto yang ditambahkan lokal
 
-Dua foto asli Google Drive sudah dikonfirmasi pemilik dan ditambahkan pertama di dokumentasi SMA Negeri 71 Jakarta. Build, checksum unduhan lokal, tampilan URL dalam HTML pendidikan, serta pemeriksaan prioritas edit CMS lolos. Belum dipublikasikan: inspeksi proyek Vercel melalui connector dan CLI sama-sama 403.
+Dua foto asli Google Drive sudah dikonfirmasi pemilik dan ditambahkan pertama di dokumentasi SMA Negeri 71 Jakarta. Build, checksum unduhan lokal, tampilan URL dalam HTML pendidikan, serta pemeriksaan prioritas edit CMS lolos. Verifikasi produksi terbaru pada 20 Oktober 2026 pukul 15:27 UTC memastikan kedua foto sudah dipublikasikan: seluruh 372 aset pulihan cocok dengan checksum lokal. Akses pengelolaan deployment Vercel melalui connector/CLI sebelumnya terhalang 403; hasil baca aset publik ini terpisah dari akses pengelolaan tersebut.
 
 - IMG_20221020_152206.jpg
 - IMG_20221105_114125.jpg
@@ -36,7 +36,7 @@ Tidak ada kegagalan pada 86 PDF publik yang diperiksa. Semua 79 referensi PDF CM
 - 3.905 file media lokal di Downloads, Desktop, Documents dan OneDrive: tidak ada kecocokan asli.
 - Satu percobaan baca file asli Blob: 403 Forbidden.
 - Browser: apps=[], browsers=[]; Google Photos belum bisa dibaca lewat koneksi browser.
-- 370 aset yang telah dipublikasikan sebelumnya: seluruhnya cocok dengan checksum lokal. Ada dua foto tambahan lokal.
+- 372 aset yang telah dipublikasikan: seluruhnya cocok dengan checksum lokal, termasuk kedua foto sekolah tambahan.
 
 ## PDF yang diverifikasi
 

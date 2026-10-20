@@ -247,12 +247,12 @@ export default function MediaPreview({ src = "", title = "Preview", items = [], 
 
   return (
     <div
-      className="fixed inset-0 z-[130] flex items-end justify-center overscroll-contain bg-black/70 p-3 sm:items-center sm:p-6"
+      className="glass-scrim fixed inset-0 z-[130] flex items-end justify-center overscroll-contain bg-black/70 p-3 sm:items-center sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="w-full max-w-6xl overflow-hidden rounded-[1.5rem] border border-surface/70 bg-paper shadow-2xl">
+      <div role="dialog" aria-modal="true" aria-label={current.title || title} className="glass-dialog w-full max-w-6xl overflow-hidden rounded-[1.5rem]">
         <div className="flex items-center justify-between gap-4 border-b border-line px-4 py-3 sm:px-5">
           <div className="min-w-0">
             <p className="truncate font-display text-lg font-semibold text-ink">{current.title || title}</p>

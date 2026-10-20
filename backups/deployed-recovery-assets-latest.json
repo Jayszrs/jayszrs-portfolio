@@ -1,8 +1,8 @@
 {
-  "capturedAt": "2026-10-19T22:19:01.713Z",
+  "capturedAt": "2026-10-20T15:27:02.536Z",
   "baseUrl": "https://jayszrs.my.id",
-  "recoveredFileCount": 370,
-  "recoveredFilesVerified": 370,
+  "recoveredFileCount": 372,
+  "recoveredFilesVerified": 372,
   "recoveredFilesFailed": 0,
   "baznasCoverInProjectHtml": true,
   "unresolvedBlobImageUrls": 68,
@@ -2596,6 +2596,20 @@
       "expected": "4fd612d659e3ac99f6317f3f0881787dd7aa961243bcfb172902af0876974e2f"
     },
     {
+      "url": "/recovered-media/school-drive/IMG_20221020_152206.jpg",
+      "status": "PASS",
+      "bytes": 2419405,
+      "sha256": "79eb74a3f026e20583d9b5af1a10e3477b013658438157ad11825927989367ed",
+      "expected": "79eb74a3f026e20583d9b5af1a10e3477b013658438157ad11825927989367ed"
+    },
+    {
+      "url": "/recovered-media/school-drive/IMG_20221105_114125.jpg",
+      "status": "PASS",
+      "bytes": 5154311,
+      "sha256": "688ed7e03cbf25e3965d375b8350b3d9be1d0f47d3fef044912985e2d5d78fb7",
+      "expected": "688ed7e03cbf25e3965d375b8350b3d9be1d0f47d3fef044912985e2d5d78fb7"
+    },
+    {
       "url": "/recovered-media/winaction-poster.webp",
       "status": "PASS",
       "bytes": 514790,
@@ -2650,75 +2664,73 @@
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783717799731-0ywalo.jpg",
       "fields": [
-        "education.1.documentationImage2",
-        "education.1.documentationImages.1"
+        "education.1.documentationImages.3"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783717825308-83y5hc.jpg",
       "fields": [
-        "education.1.documentationImage3",
-        "education.1.documentationImages.2"
+        "education.1.documentationImages.4"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718032033-ooi2rx.jpg",
       "fields": [
-        "education.1.documentationImages.3"
+        "education.1.documentationImages.5"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718176273-jzbzi6.jpg",
       "fields": [
-        "education.1.documentationImages.6"
+        "education.1.documentationImages.8"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718220050-b3wfma.jpg",
       "fields": [
-        "education.1.documentationImages.7"
+        "education.1.documentationImages.9"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718254205-opaqwg.jpg",
       "fields": [
-        "education.1.documentationImages.8"
+        "education.1.documentationImages.10"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718441627-lp75s0.jpg",
       "fields": [
-        "education.1.documentationImages.10"
+        "education.1.documentationImages.12"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718471137-hoeblq.jpg",
       "fields": [
-        "education.1.documentationImages.11"
+        "education.1.documentationImages.13"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718494622-4wtf5m.jpg",
       "fields": [
-        "education.1.documentationImages.12"
+        "education.1.documentationImages.14"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718528296-bx3jor.jpg",
       "fields": [
-        "education.1.documentationImages.13"
+        "education.1.documentationImages.15"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718575845-lve51w.jpg",
       "fields": [
-        "education.1.documentationImages.14"
+        "education.1.documentationImages.16"
       ]
     },
     {
       "url": "https://lbwd86fivkbbined.public.blob.vercel-storage.com/1783718713071-gtr2xj.jpg",
       "fields": [
-        "education.1.documentationImages.15"
+        "education.1.documentationImages.17"
       ]
     },
     {

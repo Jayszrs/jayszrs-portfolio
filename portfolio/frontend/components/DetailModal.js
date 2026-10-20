@@ -19,7 +19,7 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-end justify-center overscroll-contain bg-black/60 p-3 backdrop-blur-sm sm:items-center sm:p-6"
+      className="glass-scrim fixed inset-0 z-[100] flex items-end justify-center overscroll-contain bg-black/60 p-3 sm:items-center sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -28,7 +28,7 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
         role="dialog"
         aria-modal="true"
         aria-labelledby="detail-modal-title"
-        className={`max-h-[90svh] w-full overflow-y-auto overscroll-contain rounded-[1.75rem] border border-surface/70 bg-paper p-6 shadow-2xl [-webkit-overflow-scrolling:touch] sm:p-8 ${
+        className={`glass-dialog max-h-[90svh] w-full overflow-y-auto overscroll-contain rounded-[1.75rem] p-6 [-webkit-overflow-scrolling:touch] sm:p-8 ${
           size === "wide" ? "max-w-6xl" : "max-w-xl"
         }`}
       >
@@ -43,7 +43,7 @@ export default function DetailModal({ open, onClose, eyebrow, title, children, s
             type="button"
             onClick={onClose}
             aria-label="Tutup detail"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-emerald/40 hover:text-emerald"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-emerald/40 hover:text-emerald-deep"
           >
             <X size={18} />
           </button>
