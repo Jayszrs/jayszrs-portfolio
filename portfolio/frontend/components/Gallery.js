@@ -8,6 +8,7 @@ import SafeImage from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
 import { withRecoveredProjectMedia } from "@/frontend/lib/project-media";
 import { externalUrl } from "@/frontend/lib/urls";
+import useDragScroll from "@/frontend/lib/useDragScroll";
 
 function CaseStudySection({ title, children }) {
   if (!children) return null;
@@ -22,6 +23,7 @@ function CaseStudySection({ title, children }) {
 
 export default function Gallery({ items = [], section = {} }) {
   const trackRef = useRef(null);
+  useDragScroll(trackRef);
   const [selected, setSelected] = useState(null);
   const [preview, setPreview] = useState(null);
   const displayItems = items.map(withRecoveredProjectMedia);
@@ -63,7 +65,7 @@ export default function Gallery({ items = [], section = {} }) {
 
         <div
           ref={trackRef}
-          className="mt-8 flex gap-4 overflow-x-auto scroll-smooth pb-4 sm:mt-10 sm:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="mouse-scroll-track mt-8 flex gap-4 overflow-x-auto scroll-smooth pb-4 sm:mt-10 sm:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {displayItems.map((item) => (
             <button

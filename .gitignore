@@ -1,4 +1,5 @@
 .vercel
+portfolio/.impeccable/review/
 .env*
 backups/photo-source-links-*.html
 backups/connected-drive-recovery-*/

@@ -35,14 +35,14 @@ export default function useLanyardPhysics({ stage, badge, rope, leftEdge, rightE
     };
     const tick = (time) => {
       frame = 0;
-      if (!mode.current.enabled || mode.current.reduced) return;
+      if (!mode.current.enabled || (mode.current.reduced && !simulation.pose().dragging)) return;
       simulation.step(lastTime ? time - lastTime : 1000 / 60);
       lastTime = time;
       draw();
       if (!simulation.pose().sleeping) frame = requestAnimationFrame(tick);
     };
     const wake = () => {
-      if (!frame && mode.current.enabled && !mode.current.reduced) { lastTime = 0; frame = requestAnimationFrame(tick); }
+      if (!frame && mode.current.enabled && (!mode.current.reduced || simulation?.pose().dragging)) { lastTime = 0; frame = requestAnimationFrame(tick); }
     };
     const stop = () => { cancelAnimationFrame(frame); frame = 0; lastTime = 0; };
     const coordinates = (event) => {
@@ -59,35 +59,24 @@ export default function useLanyardPhysics({ stage, badge, rope, leftEdge, rightE
       stop();
       pointer = null;
       dragCallback.current?.(false);
-      const cardWidth = Math.max(170, Math.min(270, width - 56));
+      const cardWidth = Math.max(170, Math.min(270, width * 0.7, width - 80));
       simulation = createLanyardPhysics({ width, height, cardWidth, cardHeight: cardWidth / 0.7, initialSwing: !mode.current.reduced });
       draw(); wake();
     };
     const start = (event) => {
-      if (!simulation || mode.current.reduced || !mode.current.enabled || event.button !== 0 || !event.isPrimary) return;
-      pointer = { id: event.pointerId, start: coordinates(event), active: false };
-      if (event.pointerType !== "touch") {
-        pointer.active = true;
-        simulation.beginDrag(pointer.start);
-        card.setPointerCapture(event.pointerId);
-        dragCallback.current?.(true);
-        event.preventDefault();
-      }
+      if (!simulation || document.hidden || event.button !== 0 || !event.isPrimary) return;
+      // An explicit grab is valid even before the visibility observer has delivered.
+      mode.current.enabled = true;
+      pointer = { id: event.pointerId, start: coordinates(event), active: true };
+      simulation.beginDrag(pointer.start);
+      card.setPointerCapture(event.pointerId);
+      dragCallback.current?.(true);
+      event.preventDefault();
       wake();
     };
     const move = (event) => {
       if (!pointer || pointer.id !== event.pointerId) return;
       const point = coordinates(event);
-      if (!pointer.active) {
-        const dx = Math.abs(point.x - pointer.start.x);
-        const dy = Math.abs(point.y - pointer.start.y);
-        if (dy > dx + 7) { pointer = null; return; }
-        if (dx < 7) return;
-        pointer.active = true;
-        simulation.beginDrag(pointer.start);
-        card.setPointerCapture(event.pointerId);
-        dragCallback.current?.(true);
-      }
       event.preventDefault();
       simulation.dragTo(point);
       wake();
@@ -97,6 +86,7 @@ export default function useLanyardPhysics({ stage, badge, rope, leftEdge, rightE
       if (pointer.active) simulation.endDrag();
       pointer = null;
       dragCallback.current?.(false);
+      if (mode.current.reduced) { simulation.reset(false); draw(); stop(); return; }
       wake();
     };
     const reset = () => { release(); simulation?.reset(false); if (simulation) draw(); stop(); };
@@ -114,7 +104,8 @@ export default function useLanyardPhysics({ stage, badge, rope, leftEdge, rightE
     card.addEventListener("pointercancel", release);
     card.addEventListener("lostpointercapture", release);
     card.addEventListener("keydown", key);
-    controller.current = { wake, stop, reset, release, kick };
+    window.addEventListener("blur", release);
+    controller.current = { wake, stop, reset, release, kick, isDragging: () => Boolean(simulation?.pose().dragging) };
     resize();
     return () => {
       stop(); resizeObserver.disconnect(); controller.current = null;
@@ -124,12 +115,15 @@ export default function useLanyardPhysics({ stage, badge, rope, leftEdge, rightE
       card.removeEventListener("pointercancel", release);
       card.removeEventListener("lostpointercapture", release);
       card.removeEventListener("keydown", key);
+      window.removeEventListener("blur", release);
     };
   }, [stage, badge, rope, leftEdge, rightEdge, mark]);
 
   useEffect(() => {
-    mode.current = { enabled, reduced };
-    if (reduced) controller.current?.reset();
+    const dragging = controller.current?.isDragging();
+    mode.current = { enabled: enabled || (dragging && !document.hidden), reduced };
+    if (dragging && !document.hidden) controller.current?.wake();
+    else if (reduced) controller.current?.reset();
     else if (enabled) controller.current?.wake();
     else { controller.current?.release(); controller.current?.stop(); }
   }, [enabled, reduced]);

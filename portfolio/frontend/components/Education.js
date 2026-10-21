@@ -27,7 +27,7 @@ export default function Education({ items = [], section = {} }) {
             <p className="eyebrow">{section.eyebrow || "Academic journey"}</p>
             <h2 className="mt-2 font-display text-3xl font-semibold text-ink sm:text-5xl">{section.title || "Pendidikan"}</h2>
           </div>
-          <GraduationCap className="hidden text-emerald/25 sm:block" size={64} />
+          <SafeImage src="/illustrations/graduation-cap-3d.webp" alt="" sizes="112px" className="h-20 w-24 shrink-0 sm:h-24 sm:w-28" imgClassName="object-contain" fallback={<GraduationCap size={64} className="text-muted" />} />
         </div>
 
         <div className="mt-8 grid gap-5">

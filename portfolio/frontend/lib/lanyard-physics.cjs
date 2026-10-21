@@ -7,6 +7,8 @@ function createLanyardPhysics({ width, height, cardWidth, cardHeight, initialSwi
   const ropeLength = clamp(height - cardHeight - 110, 64, 155);
   const badgeLink = cardHeight / 2 + 22;
   const segmentCount = 6;
+  let maxAngle = 35 * Math.PI / 180;
+  while (cardWidth * Math.cos(maxAngle) + cardHeight * Math.sin(maxAngle) > width - 24 && maxAngle > 0.01) maxAngle -= 0.01;
   const lengths = Array(segmentCount).fill(ropeLength / segmentCount).concat(badgeLink);
   let nodes;
   let drag = null;
@@ -16,7 +18,7 @@ function createLanyardPhysics({ width, height, cardWidth, cardHeight, initialSwi
   let releaseVelocity = { x: 0, y: 0 };
 
   function reset(swing = false) {
-    const offset = swing ? Math.min(34, width * 0.08) : 0;
+    const offset = swing ? Math.min(16, width * 0.04) : 0;
     nodes = Array.from({ length: segmentCount + 2 }, (_, index) => {
       const ratio = Math.min(index / segmentCount, 1);
       const x = anchor.x + offset * ratio;
@@ -78,11 +80,35 @@ function createLanyardPhysics({ width, height, cardWidth, cardHeight, initialSwi
         second.y -= dy * correction * secondMass / sum;
       }
     }
+    containCard();
     const movement = nodes.reduce((sum, node) => sum + Math.hypot(node.x - node.previousX, node.y - node.previousY), 0);
     quietSteps = !drag && movement < 0.04 ? quietSteps + 1 : 0;
     if (quietSteps > 45) {
       sleeping = true;
       nodes.forEach((node) => { node.previousX = node.x; node.previousY = node.y; });
+    }
+  }
+  function containCard() {
+    const hook = nodes[segmentCount];
+    const body = nodes[segmentCount + 1];
+    const angle = Math.atan2(body.y - hook.y, body.x - hook.x) - Math.PI / 2;
+    const bounded = clamp(angle, -maxAngle, maxAngle);
+    if (bounded !== angle) {
+      body.x = hook.x - Math.sin(bounded) * badgeLink;
+      body.y = hook.y + Math.cos(bounded) * badgeLink;
+    }
+    const halfWidth = (cardWidth * Math.cos(bounded) + cardHeight * Math.abs(Math.sin(bounded))) / 2;
+    const halfHeight = (cardHeight * Math.cos(bounded) + cardWidth * Math.abs(Math.sin(bounded))) / 2;
+    const dx = clamp(body.x, halfWidth + 12, width - halfWidth - 12) - body.x;
+    const dy = clamp(body.y, halfHeight + 30, height - halfHeight - 24) - body.y;
+    if (!dx && !dy) return;
+    // Move the free rope and its card together; the pinned anchor stays fixed.
+    for (let index = 1; index < nodes.length; index += 1) {
+      const ratio = Math.min(index / segmentCount, 1);
+      nodes[index].x += dx * ratio;
+      nodes[index].previousX += dx * ratio;
+      nodes[index].y += dy * ratio;
+      nodes[index].previousY += dy * ratio;
     }
   }
   function pose() {

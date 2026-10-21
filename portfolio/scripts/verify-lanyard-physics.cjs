@@ -6,11 +6,16 @@ function advance(engine, frames = 600) {
     const pose = engine.step(1000 / 60);
     assert.ok([pose.angle, pose.tilt, pose.body.x, pose.body.y, ...pose.rope.flatMap((point) => [point.x, point.y])].every(Number.isFinite));
     assert.deepEqual(pose.rope[0], engine.dimensions.anchor, "The hanging point must stay pinned");
+    const angle = pose.angle * Math.PI / 180;
+    const halfWidth = (pose.cardWidth * Math.cos(angle) + pose.cardHeight * Math.abs(Math.sin(angle))) / 2;
+    const halfHeight = (pose.cardHeight * Math.cos(angle) + pose.cardWidth * Math.abs(Math.sin(angle))) / 2;
+    assert.ok(pose.body.x - halfWidth >= 11 && pose.body.x + halfWidth <= engine.dimensions.width - 11, "The entire rotating card must stay inside horizontal bounds");
+    assert.ok(pose.body.y - halfHeight >= 29 && pose.body.y + halfHeight <= engine.dimensions.height - 23, "The entire card must stay inside vertical bounds");
   }
   return engine.pose();
 }
 for (const width of [264, 335, 480, 600]) {
-  const cardWidth = Math.min(270, width - 56);
+  const cardWidth = Math.min(270, width * .7, width - 80);
   const engine = createLanyardPhysics({ width, height: 620, cardWidth, cardHeight: cardWidth / 0.7 });
   const rest = advance(engine, 1200);
   assert.ok(Math.abs(rest.body.x - width / 2) < 2, "An undisturbed card should settle under its anchor");
@@ -19,7 +24,7 @@ for (const width of [264, 335, 480, 600]) {
   engine.dragTo({ x: width - 20, y: 130 });
   const dragged = advance(engine, 90);
   assert.ok(dragged.dragging);
-  assert.ok(Math.abs(dragged.body.x - rest.body.x) > 30);
+  assert.ok(Math.hypot(dragged.body.x - rest.body.x, dragged.body.y - rest.body.y) > 15 || Math.abs(dragged.angle) > 5, "A drag must translate or rotate the card visibly within its safe bounds");
   assert.ok(dragged.rope.some((point, index) => index && Math.abs(point.x - width / 2) > 3), "The rope must bend with the card");
   engine.endDrag();
   const released = advance(engine, 12);
