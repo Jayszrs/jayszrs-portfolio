@@ -70,7 +70,7 @@ export default function Gallery({ items = [], section = {} }) {
               key={item.id}
               type="button"
               onClick={() => setSelected(item)}
-              className="glass group w-[82vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition hover:-translate-y-1 hover:shadow-glass-lg sm:w-[340px] sm:max-w-none"
+              className="edge-card glass group w-[82vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition hover:-translate-y-1 hover:shadow-glass-lg sm:w-[340px] sm:max-w-none"
             >
               <div className="h-44 w-full overflow-hidden">
                 <SafeImage

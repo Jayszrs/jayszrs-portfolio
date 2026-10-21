@@ -1,0 +1,47 @@
+[
+  {
+    "original": "/recovered-media/72f2512d2ad69885bd85.webp",
+    "displayVariant": "/portraits/congress-cutout.png",
+    "kind": "background-removal display edit with imagegen; not a recovered source",
+    "originalSha256": "20e5e9997017649e6d59c93ddd185a3f7f309d0661d540969fde9e33a685e200",
+    "variantSha256": "4d17a170556d8aae72e4254bdee8b20e8231abe43fe71e04d63cf97c627569bd",
+    "size": [
+      1086,
+      1448
+    ],
+    "alphaRange": [
+      0,
+      255
+    ]
+  },
+  {
+    "original": "/recovered-media/c9a1652c943e238bad62.webp",
+    "displayVariant": "/portraits/conference-cutout.png",
+    "kind": "background-removal display edit with imagegen; not a recovered source",
+    "originalSha256": "335c24d1aa32a66a71e46516aeeb4b2c41e40bf7cd6eb307fe38e4e5441be306",
+    "variantSha256": "4c6c35c43c86e19289d33b62c3969098bc384e6e764d3ab0c76af52a91c0c7f9",
+    "size": [
+      1086,
+      1448
+    ],
+    "alphaRange": [
+      0,
+      255
+    ]
+  },
+  {
+    "original": "/recovered-media/7b2ac0a29b022cb764d2.webp",
+    "displayVariant": "/portraits/etiqa-cutout.png",
+    "kind": "background-removal display edit with imagegen; not a recovered source",
+    "originalSha256": "abcfbfec6477f1ef10ca0e7ab84123a2d5cb6bfd8fe6e0744582720588595bf5",
+    "variantSha256": "985e408ad2a47f63bda471b39d44380d9b32a46b9fa0dbd0466be5c9aa593e4c",
+    "size": [
+      1086,
+      1448
+    ],
+    "alphaRange": [
+      0,
+      255
+    ]
+  }
+]

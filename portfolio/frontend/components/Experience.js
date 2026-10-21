@@ -72,7 +72,7 @@ export default function Experience({ items = [], section = {} }) {
               key={item.id}
               type="button"
               onClick={() => setSelected(item)}
-              className="glass group relative block h-full w-full rounded-2xl text-left hover:-translate-y-0.5 hover:shadow-glass-lg"
+              className="edge-card glass group relative block h-full w-full rounded-2xl text-left hover:-translate-y-0.5 hover:shadow-glass-lg"
             >
               <span className="absolute -left-[2.8rem] top-7 hidden h-3 w-3 rounded-full bg-emerald ring-4 ring-emerald-soft sm:block" />
               <div className="grid overflow-hidden rounded-2xl sm:grid-cols-[220px_1fr]">

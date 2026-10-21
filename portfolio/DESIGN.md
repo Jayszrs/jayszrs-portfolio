@@ -2,6 +2,14 @@
 
 ## Current direction, supersedes the earlier brief below
 
+### Refinement requested on 21 October 2026
+
+The owner supplied the white hanging ID badge as the lanyard reference and explicitly requested 3D skill symbols with shining card edges. Keep the existing gray/white world. Use local brand SVG geometry with CSS extrusion, a small plinth, and restrained perspective. Use a static silver highlight at opposite card edges, strengthening only for hover/focus; there is no repeating card-glow animation. The owner-requested repeated edge treatment supersedes the default cap on glow accents.
+
+The lanyard is the main authored motion: a narrow fabric strap, metal clasp, white printed plastic badge, isolated portrait, and identity typography on the same face. Portrait display edits have separate files and provenance; all original photographs remain accessible through the original-photo preview. Preserve three-second cycling and reduced-motion/offscreen/visibility/focus pauses. Original CMS values remain untouched.
+
+Inner-page headings sit directly on the page above a divider rather than in an oversized introductory card. Public content cards share the restrained edge treatment. Skills use readable two-column mobile cards and actual icons rather than letter placeholders. No WebGL engine or new animation dependency is needed.
+
 The owner explicitly changed the palette to gray and white glass on 20 October 2026. Public portfolio: Experience; admin: Operate. ENERGY 2 / RHYTHM 2 / MOTION 2. The single authored motion is the hanging photo badge; other surfaces use quiet state transitions and respect reduced motion.
 
 - Light: paper #f1f2f4, surface #ffffff, ink #30343b, muted #626872, line #d3d7dd, accent #626b78, accent-soft #e8eaee, accent-deep #4a525e.

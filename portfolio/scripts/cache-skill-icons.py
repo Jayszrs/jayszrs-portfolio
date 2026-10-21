@@ -48,5 +48,7 @@ def cache(entry):
 
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
     results = dict(pool.map(cache, icons.items()))
-registry_path.write_text(json.dumps(results, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+(destination / "attribution.json").write_text(json.dumps(results, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+display = {name: {"src": entry["src"], "icon": entry["icon"]} for name, entry in results.items()}
+registry_path.write_text(json.dumps(display, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"Cached {len(results)} existing brand SVGs, preserving original geometry and colors.")

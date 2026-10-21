@@ -26,7 +26,7 @@ export default function SelectedDesigns({ items = [], section = {} }) {
               key={item.id}
               type="button"
               onClick={() => setSelected(item)}
-              className={`group glass overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg ${
+              className={`edge-card group glass overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg ${
                 index === 0 ? "sm:col-span-2" : ""
               }`}
             >

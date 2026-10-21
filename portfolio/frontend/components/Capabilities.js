@@ -46,7 +46,7 @@ export default function Capabilities({ capabilities, section = {} }) {
   return (
     <section id="keahlian" className="section-pad scroll-mt-24 py-14 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="overflow-hidden rounded-[1.5rem] border border-surface/80 bg-surface/45 shadow-glass backdrop-blur-xl sm:rounded-[2rem]">
+        <div className="capabilities-surface overflow-hidden rounded-3xl border border-line/70 bg-surface/45">
           <div className="border-b border-line/80 p-5 sm:p-7">
             <p className="eyebrow">{section.eyebrow || "Toolbox & workflow"}</p>
             <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -56,16 +56,28 @@ export default function Capabilities({ capabilities, section = {} }) {
                   {section.description || "Bukan sekadar daftar nama - setiap item bisa dibuka untuk melihat sejak kapan dan bagaimana saya menggunakannya."}
                 </p>
               </div>
-              <div className="grid w-full grid-cols-3 gap-1.5 rounded-2xl bg-surface/70 p-1.5 lg:flex lg:w-auto lg:max-w-full lg:gap-2 lg:overflow-x-auto lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
-                {groups.map((group) => {
+              <div role="tablist" aria-label="Kategori keahlian" className="grid w-full grid-cols-3 gap-1.5 rounded-2xl bg-surface/70 p-1.5 lg:flex lg:w-auto lg:max-w-full lg:gap-2 lg:overflow-x-auto lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
+                {groups.map((group, index) => {
                   const Icon = group.icon;
                   const active = activeKey === group.key;
                   return (
                     <button
                       key={group.key}
                       type="button"
+                      role="tab"
+                      id={`capability-tab-${group.key}`}
+                      aria-selected={active}
+                      aria-controls={`capability-panel-${group.key}`}
+                      tabIndex={active ? 0 : -1}
                       onClick={() => setActiveKey(group.key)}
-                      className={`flex min-w-0 items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-[11px] font-semibold transition sm:gap-2 sm:px-4 sm:py-3 sm:text-sm lg:shrink-0 ${
+                      onKeyDown={(event) => {
+                        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+                        event.preventDefault();
+                        const next = event.key === "Home" ? 0 : event.key === "End" ? groups.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + groups.length) % groups.length;
+                        setActiveKey(groups[next].key);
+                        document.getElementById(`capability-tab-${groups[next].key}`)?.focus();
+                      }}
+                      className={`flex min-h-11 min-w-0 items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-[11px] font-semibold transition sm:gap-2 sm:px-4 sm:py-3 sm:text-sm lg:shrink-0 ${
                         active ? "bg-ink text-paper shadow-sm" : "text-muted hover:bg-emerald-soft hover:text-ink"
                       }`}
                     >
@@ -77,7 +89,7 @@ export default function Capabilities({ capabilities, section = {} }) {
             </div>
           </div>
 
-          <div className="p-5 sm:p-7">
+          <div role="tabpanel" id={`capability-panel-${activeGroup.key}`} aria-labelledby={`capability-tab-${activeGroup.key}`} tabIndex={0} className="p-4 sm:p-7">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <div className="mb-2 flex items-center gap-2 text-emerald-deep">
@@ -89,19 +101,19 @@ export default function Capabilities({ capabilities, section = {} }) {
               <p className="max-w-md text-sm text-muted">{activeGroup.description}</p>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-2 sm:mt-7 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-7 sm:gap-4 lg:grid-cols-4">
               {items.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => setSelected({ ...item, group: activeGroup.title })}
-                  className="group flex min-h-[7.9rem] flex-col items-center rounded-[1.05rem] border border-line bg-surface p-2 text-center shadow-glass transition duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-glass-lg sm:min-h-48 sm:items-start sm:rounded-[1.5rem] sm:p-6 sm:text-left"
+                  className="skill-card edge-card group flex min-h-[12rem] min-w-0 flex-col items-start rounded-2xl border border-line/80 bg-surface px-4 py-5 text-left transition duration-300 sm:min-h-[14rem] sm:p-6"
                 >
-                  <BrandIcon name={item.name} size="small" className="sm:h-14 sm:w-14" />
-                  <span className="mt-1.5 flex min-w-0 flex-1 flex-col items-center sm:mt-5 sm:block sm:flex-none sm:items-start">
-                    <span className="line-clamp-2 block font-display text-xs font-semibold leading-tight text-ink sm:text-lg">{item.name}</span>
-                    <span className="mt-1 line-clamp-2 block text-[9px] leading-tight text-muted sm:mt-1.5 sm:text-sm">Sejak {item.since || "-"} - {item.level || "Belajar"}</span>
-                    <span className="mt-auto block pt-1 text-[9px] font-semibold text-emerald-deep transition sm:pt-4 sm:text-xs sm:opacity-0 sm:group-hover:opacity-100">
+                  <BrandIcon name={item.name} />
+                  <span className="mt-5 flex min-w-0 flex-1 flex-col">
+                    <span className="line-clamp-2 block font-display text-sm font-semibold leading-snug text-ink sm:text-lg">{item.name}</span>
+                    <span className="mt-1.5 block text-xs leading-relaxed text-muted sm:text-sm">Sejak {item.since || "-"} · {item.level || "Belajar"}</span>
+                    <span className="mt-auto block pt-4 text-xs font-semibold text-emerald-deep">
                       Lihat detail <span aria-hidden="true">-&gt;</span>
                     </span>
                   </span>

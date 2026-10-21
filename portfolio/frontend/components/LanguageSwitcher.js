@@ -13,6 +13,9 @@ const LANGUAGES = [
 const DICTIONARY = {
   en: {
     "Beranda": "Home",
+    "Lihat foto asli": "View original photo",
+    "Kontrol foto profil": "Profile photo controls",
+    "Kategori keahlian": "Skill categories",
     "Tentang": "About",
     "Pendidikan": "Education",
     "Pengalaman": "Experience",
@@ -100,6 +103,9 @@ const DICTIONARY = {
   },
   ja: {
     "Beranda": "ホーム",
+    "Lihat foto asli": "元の写真を見る",
+    "Kontrol foto profil": "プロフィール写真の操作",
+    "Kategori keahlian": "スキルのカテゴリー",
     "Tentang": "自己紹介",
     "Pendidikan": "学歴",
     "Pengalaman": "経験",
@@ -186,6 +192,9 @@ const DICTIONARY = {
   },
   fr: {
     "Beranda": "Accueil",
+    "Lihat foto asli": "Voir la photo originale",
+    "Kontrol foto profil": "Commandes des photos du profil",
+    "Kategori keahlian": "Catégories de compétences",
     "Tentang": "A propos",
     "Pendidikan": "Education",
     "Pengalaman": "Experience",

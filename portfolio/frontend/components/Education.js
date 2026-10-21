@@ -39,7 +39,7 @@ export default function Education({ items = [], section = {} }) {
                 key={item.id}
                 type="button"
                 onClick={() => setSelected(item)}
-                className="glass group grid gap-5 rounded-[1.5rem] p-5 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:rounded-[1.75rem] sm:p-8"
+                className="edge-card glass group grid gap-5 rounded-2xl p-5 text-left hover:-translate-y-0.5 hover:shadow-glass-lg sm:grid-cols-[1fr_auto] sm:p-8"
               >
                 <div className="flex items-start gap-4">
                   {logoSrc && (

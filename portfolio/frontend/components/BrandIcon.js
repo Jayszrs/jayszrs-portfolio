@@ -1,72 +1,24 @@
 "use client";
 
-const ICONS = {
-  Canva: "simple-icons:canva",
-  CapCut: "arcticons:capcut",
-  KineMaster: "arcticons:kinemaster",
-  "Alight Motion": "arcticons:alight-motion",
-  Figma: "logos:figma",
-  "DaVinci Resolve": "simple-icons:davinciresolve",
-  "VN Video Editor": "arcticons:vn",
-  "Adobe Premiere Pro": "logos:adobe-premiere",
-  React: "logos:react",
-  JavaScript: "logos:javascript",
-  CSS: "logos:css-3",
-  HTML: "logos:html-5",
-  PHP: "logos:php",
-  Swift: "logos:swift",
-  "Node.js": "logos:nodejs-icon",
-  "Next.js": "logos:nextjs-icon",
-  C: "logos:c",
-  "C#": "logos:c-sharp",
-  "C++": "logos:c-plusplus",
-  Java: "logos:java",
-  Python: "logos:python",
-  Flutter: "logos:flutter",
-  "Kali Linux": "simple-icons:kalilinux",
-  "Arch Linux": "logos:archlinux",
-  Linux: "logos:linux-tux",
-  Windows: "logos:microsoft-windows-icon",
+import { Code2 } from "lucide-react";
+import icons from "@/frontend/lib/skill-icons.json";
+
+const COLORS = {
+  Canva: "#00a9b7", KineMaster: "#e94e5f", "Alight Motion": "#46aead",
+  "DaVinci Resolve": "#507a9c", React: "#4babc5", JavaScript: "#c7a630",
+  CSS: "#2872c4", HTML: "#cf5938", PHP: "#727fae", Swift: "#e86c42",
+  "Node.js": "#689c52", C: "#5b82ac", "C#": "#8b5da7", "C++": "#447eb2",
+  Java: "#b86b48", Python: "#4c7f9f", Flutter: "#419cc4", "Arch Linux": "#3987ae",
 };
 
-const DARK_INVERT = new Set([
-  "Canva", "CapCut", "KineMaster", "Alight Motion", "DaVinci Resolve",
-  "VN Video Editor", "Next.js", "Kali Linux",
-]);
-
-function initials(name) {
-  return name
-    .split(/[\s.]+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
-}
-
 export default function BrandIcon({ name, size = "large", className = "" }) {
-  const icon = ICONS[name];
-  const dimensions = size === "small" ? "h-9 w-9" : size === "modal" ? "h-16 w-16" : "h-14 w-14";
-
-  return (
-    <span className={`${dimensions} relative flex shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line/80 bg-surface p-2.5 shadow-sm ${className}`}>
-      {icon ? (
-        <>
-          <img
-            src={`https://api.iconify.design/${icon}.svg`}
-            alt=""
-            aria-hidden="true"
-            className={`h-full w-full object-contain ${DARK_INVERT.has(name) ? "theme-invert-dark" : ""}`}
-            onError={(event) => {
-              event.currentTarget.style.display = "none";
-              event.currentTarget.nextElementSibling?.classList.remove("hidden");
-            }}
-          />
-          <span className="hidden font-display text-sm font-bold text-emerald">{initials(name)}</span>
-        </>
-      ) : (
-        <span className="font-display text-sm font-bold text-emerald">{initials(name)}</span>
-      )}
-    </span>
-  );
+  const icon = icons[name];
+  const monochrome = icon && /^(?:simple-icons|arcticons):/.test(icon.icon);
+  return <span aria-hidden="true" className={`brand-object brand-object--${size} ${className}`} style={{ "--brand-color": COLORS[name] || "rgb(var(--color-ink))", ...(icon ? { "--brand-mask": `url("${icon.src}")` } : {}) }}>
+    <span className="brand-plinth" />
+    {icon ? <span className="brand-sculpture">
+      <span className="brand-extrusion" />
+      {monochrome ? <span className="brand-ink" /> : <img src={icon.src} width="64" height="64" alt="" loading="lazy" decoding="async" draggable={false} className="brand-face" />}
+    </span> : <Code2 size={36} className="relative text-muted" />}
+  </span>;
 }

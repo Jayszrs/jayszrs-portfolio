@@ -98,7 +98,7 @@ export default function Ratings({ items = [], section = {} }) {
         <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="grid gap-5 md:grid-cols-2">
             {visibleItems.map((item) => (
-              <article key={item.id || `${item.name}-${item.date}`} className="glass overflow-hidden rounded-2xl">
+              <article key={item.id || `${item.name}-${item.date}`} className="edge-card glass overflow-hidden rounded-2xl">
                 <div className="space-y-4 p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>

@@ -169,7 +169,7 @@ function RenderedPdfThumbnail({ src = "", title = "Preview PDF" }) {
 function Card({ item, icon: Icon, onClick, onLogoPreview, compact = false }) {
   if (compact) {
     return (
-      <article className="glass group relative min-h-[13rem] rounded-2xl p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
+      <article className="edge-card glass group relative min-h-[13rem] rounded-2xl p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
         <div className="flex h-full flex-col">
           <div className="flex items-start gap-4">
             <button type="button" onClick={issuerLogo(item) ? () => onLogoPreview(item) : onClick} aria-label={`Preview logo ${item.issuer || item.title}`} className="certificate-logo relative z-[1] flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white p-2">
@@ -203,7 +203,7 @@ function Card({ item, icon: Icon, onClick, onLogoPreview, compact = false }) {
   }
 
   return (
-    <button type="button" onClick={onClick} className="glass group overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
+    <button type="button" onClick={onClick} className="edge-card glass group overflow-hidden rounded-2xl text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
       {item.image ? (
         <SafeImage
           src={item.image}

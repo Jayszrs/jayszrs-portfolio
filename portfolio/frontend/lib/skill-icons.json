@@ -1,288 +1,106 @@
 {
   "Canva": {
     "src": "/skill-icons/simple-icons-canva.svg",
-    "icon": "simple-icons:canva",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/simple-icons.json",
-    "license": {
-      "title": "CC0 1.0",
-      "spdx": "CC0-1.0",
-      "url": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
-    },
-    "sha256": "2845e9ca006393aaa0dd6a067cf69ec83c346febf0456d79e076d81d44ba53c4"
+    "icon": "simple-icons:canva"
   },
   "CapCut": {
     "src": "/skill-icons/arcticons-capcut.svg",
-    "icon": "arcticons:capcut",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/arcticons.json",
-    "license": {
-      "title": "CC BY-SA 4.0",
-      "spdx": "CC-BY-SA-4.0",
-      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    "sha256": "46ea260b7a43fbbb20b16d7593a7adbe22ce1217aacda25864e61cbefc256884"
+    "icon": "arcticons:capcut"
   },
   "KineMaster": {
     "src": "/skill-icons/arcticons-kinemaster.svg",
-    "icon": "arcticons:kinemaster",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/arcticons.json",
-    "license": {
-      "title": "CC BY-SA 4.0",
-      "spdx": "CC-BY-SA-4.0",
-      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    "sha256": "9e71c04985263562d31860f0cfd2c08f50dd56d99192d82bcd1ec3f13f43dcaf"
+    "icon": "arcticons:kinemaster"
   },
   "Alight Motion": {
     "src": "/skill-icons/arcticons-alight-motion.svg",
-    "icon": "arcticons:alight-motion",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/arcticons.json",
-    "license": {
-      "title": "CC BY-SA 4.0",
-      "spdx": "CC-BY-SA-4.0",
-      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    "sha256": "d6bca39864472a6409c00da4a171a447e26a1b56abf0fd1631f1150d24b5047a"
+    "icon": "arcticons:alight-motion"
   },
   "Figma": {
     "src": "/skill-icons/logos-figma.svg",
-    "icon": "logos:figma",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "179b7e783f002a659d98b036427c7647adf3d182c047c68e410ad8c98ebdf40d"
+    "icon": "logos:figma"
   },
   "DaVinci Resolve": {
     "src": "/skill-icons/simple-icons-davinciresolve.svg",
-    "icon": "simple-icons:davinciresolve",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/simple-icons.json",
-    "license": {
-      "title": "CC0 1.0",
-      "spdx": "CC0-1.0",
-      "url": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
-    },
-    "sha256": "89284611224d731b3ffa70c168d84e281317396261666e781a3c99a274b47b5c"
+    "icon": "simple-icons:davinciresolve"
   },
   "VN Video Editor": {
     "src": "/skill-icons/arcticons-vn.svg",
-    "icon": "arcticons:vn",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/arcticons.json",
-    "license": {
-      "title": "CC BY-SA 4.0",
-      "spdx": "CC-BY-SA-4.0",
-      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    "sha256": "00dfd218b6063cbc48f40d7b71e28529787b41d63b4dbde75b29bb8cd64a4ab0"
+    "icon": "arcticons:vn"
   },
   "Adobe Premiere Pro": {
     "src": "/skill-icons/logos-adobe-premiere.svg",
-    "icon": "logos:adobe-premiere",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "fc8aa14dfdbf1595e982f336972e50c668b4ef87eba51f7fceb8ab053ccbb582"
+    "icon": "logos:adobe-premiere"
   },
   "React": {
     "src": "/skill-icons/logos-react.svg",
-    "icon": "logos:react",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "8cfd30aa29316fff2dc56a67e40c876cebd258d40acd103350560db9361959c4"
+    "icon": "logos:react"
   },
   "JavaScript": {
     "src": "/skill-icons/logos-javascript.svg",
-    "icon": "logos:javascript",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "c5b1270e4387caf7620d0b9cc4150fc6c84bd691c723ec6d132e74f727b1aa81"
+    "icon": "logos:javascript"
   },
   "CSS": {
     "src": "/skill-icons/logos-css-3.svg",
-    "icon": "logos:css-3",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "0513adec85c7b7745ff6497623f2195139bb884ff199a7c350d44f7b50877f7b"
+    "icon": "logos:css-3"
   },
   "HTML": {
     "src": "/skill-icons/logos-html-5.svg",
-    "icon": "logos:html-5",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "b4ba87659c07f48c2b8f057202d8526cf03ad36668e337ca6f596605fb218c4a"
+    "icon": "logos:html-5"
   },
   "PHP": {
     "src": "/skill-icons/logos-php.svg",
-    "icon": "logos:php",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "9796d7599f2b7c5723a66830483675d6f70a47da8ef9f565a8c82b522e0a3773"
+    "icon": "logos:php"
   },
   "Swift": {
     "src": "/skill-icons/logos-swift.svg",
-    "icon": "logos:swift",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "922e207836dab4195739ab0f68c8cedb5c6ea0dfb45e73ebceebdec3b6951e72"
+    "icon": "logos:swift"
   },
   "Node.js": {
     "src": "/skill-icons/logos-nodejs-icon.svg",
-    "icon": "logos:nodejs-icon",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "c6829196c1a9f0f0e7b4d6fbfe3854ad62d29b58f5bc39df4c9e8b040eb1d469"
+    "icon": "logos:nodejs-icon"
   },
   "Next.js": {
     "src": "/skill-icons/logos-nextjs-icon.svg",
-    "icon": "logos:nextjs-icon",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "0ed99c233babf5a6ff1bdb46ddc00f79881b1bd1c71192ce5ab6c89534991db5"
+    "icon": "logos:nextjs-icon"
   },
   "C": {
     "src": "/skill-icons/logos-c.svg",
-    "icon": "logos:c",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "d0e7238021976342b825f81162b9213cd8d92047ef1910ad91adebfd9bbc5ef0"
+    "icon": "logos:c"
   },
   "C#": {
     "src": "/skill-icons/logos-c-sharp.svg",
-    "icon": "logos:c-sharp",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "ee0fee66644c29ef9f29fb9ef1b78232e3f1133facdc5c23bdb8fd20bc5e18f7"
+    "icon": "logos:c-sharp"
   },
   "C++": {
     "src": "/skill-icons/logos-c-plusplus.svg",
-    "icon": "logos:c-plusplus",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "7ab15f27c91051de274ac01e06382e5a24398224bd70e05285447830e52c583e"
+    "icon": "logos:c-plusplus"
   },
   "Java": {
     "src": "/skill-icons/logos-java.svg",
-    "icon": "logos:java",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "003083f888116d58df356f2b9e31f38598f39015348cc23d8b290074a55995e2"
+    "icon": "logos:java"
   },
   "Python": {
     "src": "/skill-icons/logos-python.svg",
-    "icon": "logos:python",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "53452d89cb7dc117d4194c5b73feb93bd888d7d7bc4a93ba39b9a6397f0c57b5"
+    "icon": "logos:python"
   },
   "Flutter": {
     "src": "/skill-icons/logos-flutter.svg",
-    "icon": "logos:flutter",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "dfed85bdecfcba2b0b9ddd6b7cc9eaf077e8edbd60ab79d6729e26057a97889b"
+    "icon": "logos:flutter"
   },
   "Kali Linux": {
     "src": "/skill-icons/simple-icons-kalilinux.svg",
-    "icon": "simple-icons:kalilinux",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/simple-icons.json",
-    "license": {
-      "title": "CC0 1.0",
-      "spdx": "CC0-1.0",
-      "url": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
-    },
-    "sha256": "05dc4d70e5c072a1c738a4a41b19cf9fc741cfbb30d28b6e745c6148b5a0ecd2"
+    "icon": "simple-icons:kalilinux"
   },
   "Arch Linux": {
     "src": "/skill-icons/logos-archlinux.svg",
-    "icon": "logos:archlinux",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "0a61c665220ef5b27df18b844f7b7f1181b3ec9d2345ad3211d69152db6d3c4d"
+    "icon": "logos:archlinux"
   },
   "Linux": {
     "src": "/skill-icons/logos-linux-tux.svg",
-    "icon": "logos:linux-tux",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "660abd5d91925afaef0fa6e8e6016e2b1adb14bdd5083ac90509134608370e2b"
+    "icon": "logos:linux-tux"
   },
   "Windows": {
     "src": "/skill-icons/logos-microsoft-windows-icon.svg",
-    "icon": "logos:microsoft-windows-icon",
-    "source": "https://github.com/iconify/icon-sets/blob/master/json/logos.json",
-    "license": {
-      "title": "CC0",
-      "spdx": "CC0-1.0",
-      "url": "https://raw.githubusercontent.com/gilbarbara/logos/master/LICENSE.txt"
-    },
-    "sha256": "b9744593fca3bcf459392eed411b0b2e076edaf06f1db794cdba3f6c30440c1e"
+    "icon": "logos:microsoft-windows-icon"
   }
 }

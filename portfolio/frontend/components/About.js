@@ -23,7 +23,7 @@ export default function About({ about, section = {} }) {
             ))}
           </div>
 
-          <div className="glass rounded-2xl p-5 sm:p-6 lg:col-span-2">
+          <div className="edge-card glass rounded-2xl p-5 sm:p-6 lg:col-span-2">
             <p className="eyebrow mb-4">{section.skillsEyebrow || "Fokus & Keahlian"}</p>
             <div className="flex flex-wrap gap-2">
               {about.skills.map((skill) => (
