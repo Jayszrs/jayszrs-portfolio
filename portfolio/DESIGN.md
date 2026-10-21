@@ -8,6 +8,8 @@ The owner supplied the white hanging ID badge as the lanyard reference and expli
 
 The lanyard is the main authored motion: a narrow fabric strap, metal clasp, white printed plastic badge, isolated portrait, and identity typography on the same face. Portrait display edits have separate files and provenance; all original photographs remain accessible through the original-photo preview. Preserve three-second cycling and reduced-motion/offscreen/visibility/focus pauses. Original CMS values remain untouched.
 
+The owner clarified the runtime reference as https://djazuli.my.id/ on 21 October. Its public inline script was inspected through REA: a segmented rope and weighted card respond to dragging, gravity, and release inertia. Implement that behavior independently using an SVG rope and accessible DOM badge, replacing the earlier bounded CSS tilt. Keep reset and arrow/Home keyboard controls. Stop frame work when settled, offscreen, hidden, or reduced motion is selected. Reference artwork is not part of the portfolio.
+
 Inner-page headings sit directly on the page above a divider rather than in an oversized introductory card. Public content cards share the restrained edge treatment. Skills use readable two-column mobile cards and actual icons rather than letter placeholders. No WebGL engine or new animation dependency is needed.
 
 The owner explicitly changed the palette to gray and white glass on 20 October 2026. Public portfolio: Experience; admin: Operate. ENERGY 2 / RHYTHM 2 / MOTION 2. The single authored motion is the hanging photo badge; other surfaces use quiet state transitions and respect reduced motion.

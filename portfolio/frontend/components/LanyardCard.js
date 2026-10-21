@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Image as ImageIcon, Pause, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Image as ImageIcon, Pause, Play, RotateCcw } from "lucide-react";
 import SafeImage, { ImageUnavailable } from "./SafeImage";
 import MediaPreview from "./MediaPreview";
 import { profileDisplayImages } from "@/frontend/lib/profileImages";
 import { mediaSource } from "@/frontend/lib/media";
 import portraits from "@/frontend/lib/lanyard-portraits.json";
+import useLanyardPhysics from "@/frontend/lib/useLanyardPhysics";
 
 export default function LanyardCard({ profile }) {
   const images = useMemo(() => profileDisplayImages(profile), [profile]);
@@ -16,7 +17,11 @@ export default function LanyardCard({ profile }) {
   const current = available[index % Math.max(available.length, 1)];
   const stage = useRef(null);
   const badge = useRef(null);
-  const drag = useRef(null);
+  const rope = useRef(null);
+  const leftEdge = useRef(null);
+  const rightEdge = useRef(null);
+  const mark = useRef(null);
+  const [dragging, setDragging] = useState(false);
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -41,43 +46,28 @@ export default function LanyardCard({ profile }) {
     document.addEventListener("visibilitychange", syncVisibility);
     return () => { observer.disconnect(); media.removeEventListener("change", syncMotion); document.removeEventListener("visibilitychange", syncVisibility); };
   }, []);
-  const playing = !paused && !preview && !hovered && !focused && !hidden && visible && !reduced && available.length > 1;
+  const physics = useLanyardPhysics({ stage, badge, rope, leftEdge, rightEdge, mark, enabled: visible && !hidden && !preview, reduced, onDragChange: setDragging });
+  const playing = !paused && !preview && !dragging && !hovered && !focused && !hidden && visible && !reduced && available.length > 1;
   useEffect(() => {
     if (!playing) return;
     const timer = setInterval(() => setIndex((value) => (value + 1) % available.length), 3000);
     return () => clearInterval(timer);
   }, [playing, available.length]);
-  const resetTilt = () => {
-    drag.current = null;
-    badge.current?.style.removeProperty("--badge-x");
-    badge.current?.style.removeProperty("--badge-rotate");
-  };
-
   return (
-    <div ref={stage} className="lanyard-stage" data-effect-active={!hidden && visible && !reduced && !hovered && !focused && !preview} onMouseEnter={() => setHovered(true)} onMouseLeave={() => { setHovered(false); resetTilt(); }} onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
-      <div aria-hidden="true" className="lanyard-strap"><span>jayszrs.</span><span>PORTFOLIO</span></div>
-      <div className="lanyard-suspension">
+    <div ref={stage} className="lanyard-stage" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
+      <svg className="lanyard-rope" width="100%" height="100%" fill="none" aria-hidden="true">
+        <path ref={rope} d="M250 0L250 110" stroke="#30353d" strokeWidth="24" />
+        <path ref={leftEdge} d="M240 0L240 110" stroke="#68717e" strokeWidth="1" strokeDasharray="2 4" />
+        <path ref={rightEdge} d="M260 0L260 110" stroke="#15191f" strokeWidth="1.5" />
+        <image ref={mark} href="/icon.svg" width="16" height="16" x="0" y="0" />
+      </svg>
       <figure
         ref={badge}
         className="lanyard-badge"
         data-source-photo={original}
-        onPointerDown={(event) => {
-          if (reduced || event.target.closest("button, a")) return;
-          drag.current = { x: event.clientX, y: event.clientY };
-        }}
-        onPointerMove={(event) => {
-          if (!drag.current || reduced) return;
-          const distance = event.clientX - drag.current.x;
-          if (Math.abs(event.clientY - drag.current.y) > Math.abs(distance) + 8) { resetTilt(); return; }
-          if (Math.abs(distance) < 8) return;
-          event.currentTarget.setPointerCapture(event.pointerId);
-          const offset = Math.max(-32, Math.min(32, distance * 0.3));
-          event.currentTarget.style.setProperty("--badge-x", `${offset}px`);
-          event.currentTarget.style.setProperty("--badge-rotate", `${offset / 6}deg`);
-        }}
-        onPointerUp={resetTilt}
-        onPointerCancel={resetTilt}
-        onLostPointerCapture={resetTilt}
+        tabIndex={0}
+        aria-label="Kartu profil interaktif"
+        aria-describedby={`${clipId}-help`}
       >
         <svg className="lanyard-clasp" viewBox="0 0 64 110" fill="none" aria-hidden="true">
           <defs><linearGradient id={clipId} x1="14" y1="0" x2="53" y2="102" gradientUnits="userSpaceOnUse"><stop stopColor="#767d87" /><stop offset=".28" stopColor="#f8fafc" /><stop offset=".45" stopColor="#9ba1aa" /><stop offset=".67" stopColor="#e1e5ea" /><stop offset="1" stopColor="#616873" /></linearGradient></defs>
@@ -101,7 +91,6 @@ export default function LanyardCard({ profile }) {
         </figcaption>
         <div className="badge-print-footer" data-no-translate><span>jayszrs.my.id</span><span>{profile.location?.split(",")[0] || "Indonesia"}</span></div>
       </figure>
-      </div>
       <div className="lanyard-toolbar" aria-label="Kontrol foto profil">
             {available.length > 1 && <>
               <button type="button" aria-label="Foto profil sebelumnya" onClick={() => step(-1)} className="lanyard-control"><ChevronLeft size={16} /></button>
@@ -110,7 +99,9 @@ export default function LanyardCard({ profile }) {
               <button type="button" aria-label={paused ? "Putar pergantian foto otomatis" : "Jeda pergantian foto otomatis"} aria-pressed={!paused} onClick={() => setPaused((value) => !value)} className="lanyard-control">{paused ? <Play size={14} /> : <Pause size={14} />}</button>
             </>}
             {current && <button type="button" onClick={() => setPreview(true)} aria-label="Lihat foto asli" title="Lihat foto asli" className="lanyard-control"><ImageIcon size={16} /></button>}
+            <button type="button" onClick={() => physics.current?.reset()} aria-label="Atur ulang posisi kartu" title="Atur ulang posisi kartu" className="lanyard-control"><RotateCcw size={15} /></button>
       </div>
+      <p id={`${clipId}-help`} className="lanyard-help">Tarik kartu, lalu lepaskan.<span className="sr-only"> Gunakan tombol panah untuk mengayun dan Home untuk mengatur ulang posisi.</span></p>
       <MediaPreview src={preview ? current : ""} title={`Foto ${profile.fullName}`} onClose={() => setPreview(false)} />
     </div>
   );
