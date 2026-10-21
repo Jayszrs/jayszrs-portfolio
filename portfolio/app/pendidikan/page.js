@@ -1,1 +1,2 @@
-export { default, revalidate, metadata } from "@/frontend/pages/PendidikanPage";
+export { default, metadata } from "@/frontend/pages/PendidikanPage";
+export const revalidate = 3600;

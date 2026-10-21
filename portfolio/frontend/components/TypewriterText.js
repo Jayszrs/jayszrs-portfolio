@@ -7,6 +7,14 @@ export default function TypewriterText({ words = [], fallback = "Web Developer" 
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState(list[0] || fallback);
   const [deleting, setDeleting] = useState(false);
+  const [language, setLanguage] = useState("id");
+  useEffect(() => {
+    const sync = () => setLanguage(document.documentElement.dataset.language || "id");
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-language"] });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     setWordIndex(0);
@@ -16,7 +24,7 @@ export default function TypewriterText({ words = [], fallback = "Web Developer" 
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion || list.length <= 1) {
+    if (reduceMotion || list.length <= 1 || language !== "id") {
       setText(list[wordIndex % list.length] || fallback);
       return undefined;
     }
@@ -46,11 +54,11 @@ export default function TypewriterText({ words = [], fallback = "Web Developer" 
     }, isComplete ? 1300 : deleting ? 34 : 58);
 
     return () => window.clearTimeout(timer);
-  }, [deleting, fallback, list, text, wordIndex]);
+  }, [deleting, fallback, language, list, text, wordIndex]);
 
   return (
     <span className="inline-flex min-h-[1.3em] items-baseline">
-      <span>{text || "\u00a0"}</span>
+      <span data-no-translate={language === "id" ? "" : undefined}>{language === "id" ? text || "\u00a0" : list[wordIndex % list.length] || fallback}</span>
       <span className="ml-1 inline-block h-[1em] w-0.5 translate-y-0.5 animate-pulse rounded-full bg-current" aria-hidden="true" />
     </span>
   );

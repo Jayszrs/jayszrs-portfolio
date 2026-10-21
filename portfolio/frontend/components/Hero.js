@@ -31,9 +31,9 @@ export default function Hero({ profile }) {
             {links.filter(([key]) => socials[key]).map(([key, label, Icon]) => <a key={key} href={externalUrl(socials[key])} target="_blank" rel="noreferrer" aria-label={`Buka ${label}`} className="glass-pill flex h-11 w-11 items-center justify-center rounded-full text-muted transition hover:border-emerald/40 hover:text-ink"><Icon size={18} /></a>)}
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="/proyek" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-semibold text-paper transition hover:bg-emerald-deep">Lihat Proyek <ArrowUpRight size={16} /></Link>
-            <Link href="/kontak" className="glass-pill inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-semibold text-ink transition hover:border-emerald/40">Kontak Saya</Link>
-            <Link href="/#rating" onClick={(event) => { event.preventDefault(); window.history.pushState(null, "", "/#rating"); scrollToTarget("rating"); }} className="glass-pill inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold text-ink transition hover:border-emerald/40">Rating <Star size={16} /></Link>
+            <Link href="/proyek" prefetch={false} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-semibold text-paper transition hover:bg-emerald-deep">Lihat Proyek <ArrowUpRight size={16} /></Link>
+            <Link href="/kontak" prefetch={false} className="glass-pill inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-semibold text-ink transition hover:border-emerald/40">Kontak Saya</Link>
+            <Link href="/#rating" prefetch={false} onClick={(event) => { event.preventDefault(); window.history.pushState(null, "", "/#rating"); scrollToTarget("rating"); }} className="glass-pill inline-flex min-h-12 items-center gap-2 rounded-full px-5 text-sm font-semibold text-ink transition hover:border-emerald/40">Rating <Star size={16} /></Link>
           </div>
           {resumeUrl && <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-1">
             <button type="button" onClick={() => setResumePreview(true)} className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-muted underline-offset-4 hover:text-ink hover:underline"><Eye size={16} />Lihat CV</button>

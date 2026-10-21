@@ -6,7 +6,8 @@ import certificatePreviews from "./certificate-previews.json";
 export function mediaSource(src = "") {
   if (typeof src !== "string") return src;
   const value = src.trim();
-  return certificateMedia[value] || recoveredMedia[value] || organizationLogos.sources[value] || value;
+  const resolved = certificateMedia[value] || recoveredMedia[value] || organizationLogos.sources[value] || value;
+  return organizationLogos.displayVariants?.[resolved] || resolved;
 }
 
 export function certificatePreview(src = "") {
@@ -23,7 +24,5 @@ export function isBlobSource(src = "") {
 }
 
 export function serveImageDirectly(src = "") {
-  return isBlobSource(src) || (typeof src === "string" && (
-    src.startsWith("/recovered-media/") || src.startsWith("/organization-logos/") || src.startsWith("/certificates/")
-  ));
+  return isBlobSource(src) || (typeof src === "string" && /\.(?:svg|webp)(?:[?#]|$)/i.test(src));
 }

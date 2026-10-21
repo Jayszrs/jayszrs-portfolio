@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, MapPin, Pause, Play } from "lucide-react";
 import SafeImage, { ImageUnavailable } from "./SafeImage";
 import { profileDisplayImages } from "@/frontend/lib/profileImages";
 
@@ -12,24 +11,64 @@ export default function LanyardCard({ profile }) {
   const [index, setIndex] = useState(0);
   const available = images.filter((src) => !failed.includes(src));
   const current = available[index % Math.max(available.length, 1)];
-  const reduced = useReducedMotion();
-  const x = useMotionValue(0);
-  const rotate = useTransform(x, [-40, 40], [-6, 6]);
+  const stage = useRef(null);
+  const badge = useRef(null);
+  const drag = useRef(null);
+  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [reduced, setReduced] = useState(false);
   useEffect(() => { setFailed([]); setIndex(0); }, [images]);
   const step = (delta) => setIndex((value) => (value + delta + available.length) % available.length);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncMotion = () => setReduced(media.matches);
+    const syncVisibility = () => setHidden(document.hidden);
+    syncMotion(); syncVisibility();
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 });
+    observer.observe(stage.current);
+    media.addEventListener("change", syncMotion);
+    document.addEventListener("visibilitychange", syncVisibility);
+    return () => { observer.disconnect(); media.removeEventListener("change", syncMotion); document.removeEventListener("visibilitychange", syncVisibility); };
+  }, []);
+  const playing = !paused && !hovered && !focused && !hidden && visible && !reduced && available.length > 1;
+  useEffect(() => {
+    if (!playing) return;
+    const timer = setInterval(() => setIndex((value) => (value + 1) % available.length), 3000);
+    return () => clearInterval(timer);
+  }, [playing, available.length]);
+  const resetTilt = () => {
+    drag.current = null;
+    badge.current?.style.removeProperty("--badge-x");
+    badge.current?.style.removeProperty("--badge-rotate");
+  };
 
   return (
-    <div className="lanyard-stage">
+    <div ref={stage} className="lanyard-stage" onMouseEnter={() => setHovered(true)} onMouseLeave={() => { setHovered(false); resetTilt(); }} onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
       <div aria-hidden="true" className="lanyard-strap"><span>jayszrs.</span><span>PORTFOLIO</span></div>
       <div aria-hidden="true" className="lanyard-ring" />
-      <motion.div
+      <div
+        ref={badge}
         className="lanyard-badge glass-strong"
-        style={reduced ? undefined : { x, rotate }}
-        drag={reduced ? false : "x"}
-        dragConstraints={{ left: -36, right: 36 }}
-        dragElastic={0.08}
-        dragMomentum={false}
-        onDragEnd={() => animate(x, 0, { type: "spring", stiffness: 240, damping: 18 })}
+        onPointerDown={(event) => {
+          if (reduced || event.target.closest("button, a")) return;
+          drag.current = { x: event.clientX, y: event.clientY };
+        }}
+        onPointerMove={(event) => {
+          if (!drag.current || reduced) return;
+          const distance = event.clientX - drag.current.x;
+          if (Math.abs(event.clientY - drag.current.y) > Math.abs(distance) + 8) { resetTilt(); return; }
+          if (Math.abs(distance) < 8) return;
+          event.currentTarget.setPointerCapture(event.pointerId);
+          const offset = Math.max(-32, Math.min(32, distance * 0.3));
+          event.currentTarget.style.setProperty("--badge-x", `${offset}px`);
+          event.currentTarget.style.setProperty("--badge-rotate", `${offset / 6}deg`);
+        }}
+        onPointerUp={resetTilt}
+        onPointerCancel={resetTilt}
+        onLostPointerCapture={resetTilt}
       >
         <div aria-hidden="true" className="lanyard-slot" />
         <div className="mb-4 flex items-center justify-between gap-3">
@@ -37,7 +76,7 @@ export default function LanyardCard({ profile }) {
           <span className="text-xs font-semibold text-muted">{profile.handle || profile.brandName}</span>
         </div>
         <div className="relative aspect-[4/4.7] overflow-hidden rounded-2xl bg-paper">
-          {current ? <SafeImage key={current} src={current} alt={`Foto ${profile.fullName}`} priority sizes="(max-width: 640px) 78vw, 320px" className="h-full w-full" imgClassName="object-cover" fallback={<ImageUnavailable />} onError={() => setFailed((values) => [...values, current])} /> : <ImageUnavailable />}
+          {current ? <SafeImage key={current} src={current} alt={`Foto ${profile.fullName}`} draggable={false} priority={index === 0} sizes="(max-width: 640px) 78vw, 320px" className="h-full w-full" imgClassName="lanyard-photo object-cover" fallback={<ImageUnavailable />} onError={() => setFailed((values) => [...values, current])} /> : <ImageUnavailable />}
         </div>
         <div className="pt-5">
           <p className="max-w-[18rem] font-display text-xl font-semibold leading-tight text-ink">{profile.fullName}</p>
@@ -48,10 +87,11 @@ export default function LanyardCard({ profile }) {
               <button type="button" aria-label="Foto profil sebelumnya" onClick={() => step(-1)} className="lanyard-control"><ChevronLeft size={16} /></button>
               <span className="min-w-7 text-center text-[11px] tabular-nums text-muted">{index % available.length + 1}/{available.length}</span>
               <button type="button" aria-label="Foto profil berikutnya" onClick={() => step(1)} className="lanyard-control"><ChevronRight size={16} /></button>
+              <button type="button" aria-label={paused ? "Putar pergantian foto otomatis" : "Jeda pergantian foto otomatis"} aria-pressed={!paused} onClick={() => setPaused((value) => !value)} className="lanyard-control">{paused ? <Play size={14} /> : <Pause size={14} />}</button>
             </div>}
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

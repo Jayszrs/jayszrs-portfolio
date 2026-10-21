@@ -1,4 +1,9 @@
 {
+  "displayVariants": {
+    "/organization-logos/ppji.png": "/organization-logos/ppji-symbol.png",
+    "/organization-logos/karya-intertek-kencana.png": "/organization-logos/kik-symbol.png",
+    "/organization-logos/akademi-crypto.jpg": "/organization-logos/akademi-crypto-symbol.svg"
+  },
   "assets": {
     "cisco": {
       "file": "cisco.svg",

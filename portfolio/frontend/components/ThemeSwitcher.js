@@ -49,7 +49,7 @@ export default function ThemeSwitcher() {
   if (hidden) return null;
 
   return (
-    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-5 z-[90] sm:bottom-6 sm:right-6">
+    <div className="floating-preference fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-5 z-[90] sm:bottom-6 sm:right-6">
       <div className="glass-strong glass-float hidden items-center gap-1 rounded-2xl p-1.5 sm:flex">
         {OPTIONS.map((option) => {
           const Icon = option.icon;

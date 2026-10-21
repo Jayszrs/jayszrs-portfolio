@@ -9,10 +9,8 @@ async function main() {
   assert.ok(/<img\b[^>]*src="\/icon\.svg"/.test(rendered), "Navbar/badge must use the local Kali asset");
   assert.ok(rendered.includes("lanyard-stage"));
   assert.ok(rendered.includes("/recovered-media/72f2512d2ad69885bd85.webp"), "Recovered profile photograph missing from rendered card");
-  assert.ok(rendered.includes("README.md"));
-  assert.ok(rendered.includes("I’m currently working"));
-  assert.ok(rendered.includes('role="tablist"'));
-  assert.ok(rendered.includes('aria-labelledby="social-tab-github"'));
+  assert.ok(rendered.includes("Di luar portofolio."));
+  assert.ok(!rendered.includes("README.md"), "Below-fold README should load only when the social section approaches the viewport");
   for (const unwanted of ["Kontribusi setahun", "Setahun membangun", "Top kontribusi commit", "Top Contributed Repo", "GitHub Stats"]) assert.ok(!rendered.includes(unwanted), unwanted);
   const logo = await fetch(`${base}/icon.svg`);
   assert.equal(logo.status, 200);
@@ -28,9 +26,9 @@ async function main() {
   assert.equal(tiktok.status, 200);
   const value = (await tiktok.json()).tiktok;
   assert.equal(value.username, "jayszrss");
-  assert.ok(value.videos.length >= 1 && value.videos.length <= 5);
+  assert.ok(value.videos.length >= 1 && value.videos.length <= 3);
   assert.ok(value.videos.every((video) => /^\d{17,20}$/.test(video.id)));
   assert.ok(value.ranking === "views" || value.videos.every((video) => video.viewCount === null));
-  console.log(JSON.stringify({ status: "PASS", renderedLocalLogo: true, recoveredPhotoInLanyard: true, profileAndReadmeOnly: true, liveGithubReadme: true, tiktokPosts: value.videos.length, ranking: value.ranking, browserInteractionVerified: false, remoteMutations: 0 }));
+  console.log(JSON.stringify({ status: "PASS", renderedLocalLogo: true, recoveredPhotoInLanyard: true, socialDeferred: true, profileAndReadmeOnly: true, liveGithubReadme: true, tiktokPosts: value.videos.length, ranking: value.ranking, browserInteractionVerified: false, remoteMutations: 0 }));
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });

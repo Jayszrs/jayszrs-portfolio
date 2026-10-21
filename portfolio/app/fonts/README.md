@@ -6,3 +6,7 @@ Regular variable font from the official Google Fonts repository. Kept locally so
 - Source: https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/plusjakartasans/PlusJakartaSans%5Bwght%5D.ttf
 - SHA-256: `89b3fb38aa0d275d7a731d0d817a4f1622b316b4d7fbdedcf02ee9099ff68bc8`
 - License: SIL Open Font License 1.1; see `OFL.txt`.
+
+## Web delivery
+
+The site uses `PlusJakartaSans-Variable.woff2`, losslessly compressed from the preserved TTF with FontTools. The glyphs, variable weights, and OFL license are unchanged.

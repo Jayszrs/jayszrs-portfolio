@@ -13,7 +13,7 @@ function jsonNoStore(body, init = {}) {
 }
 
 function revalidatePublicPages() {
-  revalidateTag("portfolio-content");
+  revalidateTag("portfolio-content", { expire: 0 });
   ["/", "/tentang", "/pendidikan", "/keahlian", "/pengalaman", "/proyek", "/pencapaian", "/kontak"].forEach((path) => {
     revalidatePath(path);
   });

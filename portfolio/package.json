@@ -9,18 +9,18 @@
     "build": "next build",
     "start": "next start",
     "start:alt": "next start --port 3001",
-    "lint": "next lint"
+    "check": "next build"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.110.2",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.6.1",
     "@vercel/speed-insights": "^2.0.0",
-    "framer-motion": "^11.3.19",
-    "lucide-react": "^0.424.0",
-    "next": "^15.5.28",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "lucide-react": "^0.468.0",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "sharp": "^0.35.5"

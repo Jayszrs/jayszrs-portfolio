@@ -19,7 +19,7 @@ async function readTikTokSocial(username, { token = process.env.TIKTOK_ACCESS_TO
       if (!video || seen.has(video.id)) return [];
       seen.add(video.id);
       return [{ ...video, title: "Video pilihan", viewCount: null }];
-    }).slice(0, 5);
+    }).slice(0, 3);
     return { username, videos, ranking: "curated", status: videos.length ? "ready" : "unavailable", complete: false };
   }
   const request = async (path, body) => {
@@ -52,7 +52,7 @@ async function readTikTokSocial(username, { token = process.env.TIKTOK_ACCESS_TO
     if (!data.cursor || data.cursor === cursor) break;
     cursor = data.cursor;
   }
-  return { username, videos: videos.filter((video) => video.viewCount !== null).sort((a, b) => b.viewCount - a.viewCount || a.id.localeCompare(b.id)).slice(0, 5), ranking: "views", status: "ready", complete, scanned: videos.length };
+  return { username, videos: videos.filter((video) => video.viewCount !== null).sort((a, b) => b.viewCount - a.viewCount || a.id.localeCompare(b.id)).slice(0, 3), ranking: "views", status: "ready", complete, scanned: videos.length };
 }
 
 module.exports = { videoFromUrl, readTikTokSocial };

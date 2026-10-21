@@ -82,8 +82,8 @@ export default function Experience({ items = [], section = {} }) {
                   loading="lazy"
                   decoding="async"
                   sizes="(max-width: 640px) 44vw, 220px"
-                  className="h-24 w-full sm:h-full"
-                  imgClassName="h-full w-full bg-surface object-contain p-3 sm:p-5"
+                  className="organization-symbol h-24 w-full sm:h-full"
+                  imgClassName="h-full w-full object-contain p-3 sm:p-5"
                   fallback={<LogoFallback label={item.org || item.title} icon={Building2} />}
                 />
                 <div className="flex h-full flex-col p-3 sm:block sm:p-6">

@@ -3,6 +3,7 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
+    qualities: [70, 75, 76],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 420, 640, 768, 1024, 1280, 1536],
     imageSizes: [48, 64, 80, 96, 128, 192, 256, 320],

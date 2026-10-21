@@ -272,7 +272,7 @@ const DICTIONARY = {
   },
 };
 
-const INLINE_REPLACEMENTS = {
+const SHORT_LABELS = {
   en: {
     "Februari": "February",
     "Januari": "January",
@@ -347,21 +347,41 @@ const INLINE_REPLACEMENTS = {
   },
 };
 
-function escapeRegex(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-const INLINE_PATTERNS = Object.fromEntries(
-  Object.entries(INLINE_REPLACEMENTS).map(([language, replacements]) => [
-    language,
-    new RegExp(Object.keys(replacements).sort((a, b) => b.length - a.length).map(escapeRegex).join("|"), "g"),
-  ]),
-);
-
 const SKIP_TAGS = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "TEXTAREA", "INPUT", "SELECT", "OPTION", "CODE", "PRE"]);
 const ATTRIBUTES = ["title", "aria-label", "placeholder"];
 const AUTO_TRANSLATE_ENDPOINT = "https://translate.googleapis.com/translate_a/single";
 const AUTO_TRANSLATE_MAX_LENGTH = 1400;
+const catalogs = {};
+const catalogLoads = {};
+const lastApplied = new WeakMap();
+const pendingTranslations = new Map();
+let activeRequests = 0;
+const requestQueue = [];
+
+function loadCatalog(language) {
+  if (!["ja", "fr"].includes(language)) return Promise.resolve();
+  if (!catalogLoads[language]) catalogLoads[language] = (language === "ja" ? import("@/frontend/locales/ja.json") : import("@/frontend/locales/fr.json"))
+    .then((module) => { catalogs[language] = module.default; })
+    .catch(() => { delete catalogLoads[language]; });
+  return catalogLoads[language];
+}
+
+async function limitRequest(task) {
+  if (activeRequests >= 4) await new Promise((resolve) => requestQueue.push(resolve));
+  activeRequests += 1;
+  try { return await task(); }
+  finally { activeRequests -= 1; requestQueue.shift()?.(); }
+}
+
+function originalText(node, originals) {
+  if (!originals.has(node) || (lastApplied.has(node) && node.nodeValue !== lastApplied.get(node))) originals.set(node, node.nodeValue || "");
+  return originals.get(node);
+}
+
+function applyText(node, value) {
+  lastApplied.set(node, value);
+  if (node.nodeValue !== value) node.nodeValue = value;
+}
 
 function normalize(text) {
   return text.replace(/\s+/g, " ").trim();
@@ -379,7 +399,8 @@ function translateText(text, language) {
   if (!trimmed) return text;
 
   const dictionary = DICTIONARY[language] || {};
-  if (dictionary[trimmed]) return withOriginalSpacing(text, dictionary[trimmed]);
+  const exact = dictionary[trimmed] || catalogs[language]?.[trimmed] || SHORT_LABELS[language]?.[trimmed];
+  if (exact) return withOriginalSpacing(text, exact);
 
   const heroPhoto = trimmed.match(/^Tampilkan foto hero (\d+)$/);
   if (heroPhoto) {
@@ -387,30 +408,18 @@ function translateText(text, language) {
     return withOriginalSpacing(text, `${base} ${heroPhoto[1]}`);
   }
 
-  const replacements = INLINE_REPLACEMENTS[language] || {};
-  const pattern = INLINE_PATTERNS[language];
-  if (!pattern) return text;
-
-  pattern.lastIndex = 0;
-  if (!pattern.test(trimmed)) return text;
-
-  pattern.lastIndex = 0;
-  const translated = trimmed.replace(pattern, (source) => replacements[source] || source);
-
-  return translated === trimmed ? text : withOriginalSpacing(text, translated);
+  // Partial word replacement must never count as a translated paragraph.
+  return text;
 }
 
 function translateTextCached(text, language, cache) {
-  const key = `${language}\u0000${text}`;
-  if (cache.has(key)) return cache.get(key);
   const translated = translateText(text, language);
-  cache.set(key, translated);
-  return translated;
+  return translated !== text || language === "id" ? translated : cache.get(`auto\u0000${language}\u0000${text}`) || text;
 }
 
 function shouldAutoTranslate(text) {
   const trimmed = normalize(text);
-  if (trimmed.length < 4 || trimmed.length > AUTO_TRANSLATE_MAX_LENGTH) return false;
+  if (trimmed.length < 4) return false;
   if (/^https?:\/\//i.test(trimmed) || /^[\w.+-]+@[\w.-]+\.\w+$/.test(trimmed)) return false;
   if (!/[A-Za-zÀ-ÿ\u0100-\uFFFF]/.test(trimmed)) return false;
   if (/^[\d\s.,:/()[\]#+-]+$/.test(trimmed)) return false;
@@ -424,20 +433,35 @@ async function translateTextAuto(text, language, cache) {
   if (cache.has(cacheKey)) return cache.get(cacheKey);
 
   const trimmed = normalize(text);
-  const url = `${AUTO_TRANSLATE_ENDPOINT}?client=gtx&sl=auto&tl=${encodeURIComponent(language)}&dt=t&q=${encodeURIComponent(trimmed)}`;
-
+  const pendingKey = `${language}\u0000${trimmed}`;
+  if (!pendingTranslations.has(pendingKey)) {
+    const request = (async () => {
+      const chunks = trimmed.match(new RegExp(`.{1,${AUTO_TRANSLATE_MAX_LENGTH - 100}}(?:\\s|$)|\\S{1,${AUTO_TRANSLATE_MAX_LENGTH - 100}}`, "g")) || [trimmed];
+      const translated = [];
+      for (const chunk of chunks) {
+        translated.push(await limitRequest(async () => {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 9000);
+          try {
+            const url = `${AUTO_TRANSLATE_ENDPOINT}?client=gtx&sl=auto&tl=${encodeURIComponent(language)}&dt=t&q=${encodeURIComponent(chunk.trim())}`;
+            const response = await fetch(url, { signal: controller.signal });
+            if (!response.ok) throw new Error("Translation unavailable");
+            const data = await response.json();
+            const result = data?.[0]?.map((part) => part?.[0] || "").join("").trim();
+            if (!result) throw new Error("Empty translation");
+            return result;
+          } finally { clearTimeout(timeout); }
+        }));
+      }
+      return translated.join(" ");
+    })().finally(() => pendingTranslations.delete(pendingKey));
+    pendingTranslations.set(pendingKey, request);
+  }
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Auto translate failed");
-    const data = await response.json();
-    const translated = data?.[0]?.map((part) => part?.[0] || "").join("").trim();
-    const result = translated ? withOriginalSpacing(text, translated) : text;
+    const result = withOriginalSpacing(text, await pendingTranslations.get(pendingKey));
     cache.set(cacheKey, result);
     return result;
-  } catch {
-    cache.set(cacheKey, text);
-    return text;
-  }
+  } catch { return text; }
 }
 
 function shouldSkipNode(node) {
@@ -471,8 +495,7 @@ function translateAttributes(root, language, cache) {
 
 function translateTextNode(node, language, originals, cache) {
   if (shouldSkipNode(node) || !normalize(node.nodeValue || "")) return;
-  if (!originals.has(node)) originals.set(node, node.nodeValue || "");
-  node.nodeValue = translateTextCached(originals.get(node), language, cache);
+  applyText(node, translateTextCached(originalText(node, originals), language, cache));
 }
 
 function collectTranslatableTextNodes(root) {
@@ -497,19 +520,21 @@ async function translateTreeAuto(root, language, originals, cache, isCurrent) {
   if (language === "id") return;
   const nodes = collectTranslatableTextNodes(root);
 
-  for (const node of nodes) {
+  let cursor = 0;
+  const worker = async () => { while (cursor < nodes.length) {
+    const node = nodes[cursor++];
     if (!isCurrent()) return;
     if (shouldSkipNode(node)) continue;
-    if (!originals.has(node)) originals.set(node, node.nodeValue || "");
-
-    const original = originals.get(node);
+    const original = originalText(node, originals);
     const staticTranslation = translateTextCached(original, language, cache);
     if (staticTranslation !== original || !shouldAutoTranslate(original)) continue;
 
     const translated = await translateTextAuto(original, language, cache);
-    if (!isCurrent() || !node.isConnected) return;
-    node.nodeValue = translated;
-  }
+    if (!isCurrent()) return;
+    if (!node.isConnected || originalText(node, originals) !== original) continue;
+    applyText(node, translated);
+  } };
+  await Promise.all(Array.from({ length: Math.min(nodes.length, 4) }, worker));
 }
 
 function translateTree(root, language, originals, cache) {
@@ -533,14 +558,6 @@ function translateTree(root, language, originals, cache) {
   translateAttributes(root, language, cache);
 }
 
-function priorityTranslationRoots() {
-  const roots = new Set();
-  ["header", "#beranda"].forEach((selector) => {
-    document.querySelectorAll(selector).forEach((node) => roots.add(node));
-  });
-  return [...roots];
-}
-
 export default function LanguageSwitcher() {
   const [active, setActive] = useState("id");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -555,7 +572,6 @@ export default function LanguageSwitcher() {
 
   const translateDynamicContent = (roots, language) => {
     if (language === "id") return;
-    autoRunRef.current += 1;
     const runId = autoRunRef.current;
     roots.forEach((root) => {
       translateTreeAuto(
@@ -577,7 +593,9 @@ export default function LanguageSwitcher() {
     document.documentElement.lang = saved;
     document.documentElement.dataset.language = saved;
 
-    const applyLanguage = () => {
+    const applyLanguage = async () => {
+      await loadCatalog(saved);
+      if (activeRef.current !== saved) return;
       applying.current = true;
       translateTree(document.body, activeRef.current, originals.current, translationCache.current);
       applying.current = false;
@@ -597,16 +615,14 @@ export default function LanguageSwitcher() {
       const language = activeRef.current;
       if (language === "id" || applying.current || !roots.length) return;
 
-      const run = () => {
+      const run = async () => {
+        await loadCatalog(language);
+        if (activeRef.current !== language) return;
         applying.current = true;
         roots.forEach((root) => translateTree(root, language, originals.current, translationCache.current));
         applying.current = false;
         translateDynamicContent(roots, language);
       };
-
-      if (mutationIdleRef.current && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(mutationIdleRef.current);
-      }
 
       if ("requestIdleCallback" in window) {
         mutationIdleRef.current = window.requestIdleCallback(run, { timeout: 500 });
@@ -618,6 +634,7 @@ export default function LanguageSwitcher() {
     const observer = new MutationObserver((mutations) => {
       const roots = new Set();
       mutations.forEach((mutation) => {
+        if (mutation.type === "characterData" && mutation.target.nodeValue !== lastApplied.get(mutation.target) && !shouldSkipNode(mutation.target)) roots.add(mutation.target);
         mutation.addedNodes.forEach((node) => {
           if (node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE) {
             if (!shouldSkipNode(node)) roots.add(node);
@@ -627,7 +644,7 @@ export default function LanguageSwitcher() {
       scheduleNewContentTranslation([...roots]);
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(document.body, { childList: true, characterData: true, subtree: true });
     return () => {
       observer.disconnect();
       if (mutationIdleRef.current && "cancelIdleCallback" in window) window.cancelIdleCallback(mutationIdleRef.current);
@@ -650,7 +667,7 @@ export default function LanguageSwitcher() {
     };
   }, []);
 
-  const chooseLanguage = (code) => {
+  const chooseLanguage = async (code) => {
     if (idleRef.current && "cancelIdleCallback" in window) {
       window.cancelIdleCallback(idleRef.current);
       idleRef.current = null;
@@ -664,9 +681,11 @@ export default function LanguageSwitcher() {
     document.documentElement.lang = code;
     document.documentElement.dataset.language = code;
     removeGoogleArtifacts();
+    await loadCatalog(code);
+    if (activeRef.current !== code) return;
 
     applying.current = true;
-    const roots = code === "id" ? [document.body] : priorityTranslationRoots();
+    const roots = [document.body];
     roots.forEach((root) => translateTree(root, code, originals.current, translationCache.current));
     applying.current = false;
     translateDynamicContent(roots, code);
@@ -692,7 +711,7 @@ export default function LanguageSwitcher() {
     <div
       ref={switcherRef}
       data-no-translate
-      className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[4.25rem] z-[91] sm:bottom-[5.75rem] sm:right-6"
+      className="floating-preference fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[4.25rem] z-[91] sm:bottom-[5.75rem] sm:right-6"
     >
       <div className="relative">
         {menuOpen && (

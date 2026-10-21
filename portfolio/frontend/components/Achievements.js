@@ -166,13 +166,13 @@ function RenderedPdfThumbnail({ src = "", title = "Preview PDF" }) {
   );
 }
 
-function Card({ item, icon: Icon, onClick, compact = false }) {
+function Card({ item, icon: Icon, onClick, onLogoPreview, compact = false }) {
   if (compact) {
     return (
-      <button type="button" onClick={onClick} className="glass group min-h-[13rem] rounded-2xl p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
+      <article className="glass group relative min-h-[13rem] rounded-2xl p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
         <div className="flex h-full flex-col">
           <div className="flex items-start gap-4">
-            <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white p-2.5">
+            <button type="button" onClick={issuerLogo(item) ? () => onLogoPreview(item) : onClick} aria-label={`Preview logo ${item.issuer || item.title}`} className="certificate-logo relative z-[1] flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white p-2">
               {issuerLogo(item) ? (
                 <SafeImage
                   src={issuerLogo(item)}
@@ -187,9 +187,9 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
               ) : (
                 <Icon size={26} className="text-emerald-deep" />
               )}
-            </span>
+            </button>
             <div className="min-w-0">
-              <h4 className="font-display text-base font-semibold leading-snug text-ink">{item.title}</h4>
+              <h4 className="font-display text-base font-semibold leading-snug text-ink"><button type="button" onClick={onClick} className="after:absolute after:inset-0 after:rounded-2xl">{item.title}</button></h4>
               <p className="mt-1 text-sm text-muted">{item.issuer}</p>
             </div>
           </div>
@@ -198,7 +198,7 @@ function Card({ item, icon: Icon, onClick, compact = false }) {
             <span className="text-xs font-semibold text-muted transition group-hover:text-emerald-deep">Detail →</span>
           </div>
         </div>
-      </button>
+      </article>
     );
   }
 
@@ -265,6 +265,11 @@ export default function Achievements({ achievements = [], certificates = [], sec
     const initialIndex = Math.max(0, mediaItems.findIndex((item) => item.src === src));
     setPreview({ src, items: mediaItems, initialIndex, title: fallbackTitle });
   };
+  const openLogoPreview = (item) => {
+    const src = issuerLogo(item);
+    const title = `Logo ${item.issuer || item.title}`;
+    if (src) setPreview({ src, title, items: [{ src, title }], initialIndex: 0 });
+  };
 
   return (
     <section id="pencapaian" className="section-pad py-16 sm:py-20">
@@ -277,7 +282,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
             <p className="mb-4 text-sm font-semibold text-ink/70">{section.achievementsLabel || "Pencapaian"}</p>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {achievements.map((item) => (
-                <Card key={item.id} item={item} icon={Award} compact onClick={() => setSelected({ ...item, kind: "Pencapaian" })} />
+                <Card key={item.id} item={item} icon={Award} compact onLogoPreview={openLogoPreview} onClick={() => setSelected({ ...item, kind: "Pencapaian" })} />
               ))}
             </div>
           </div>
@@ -296,7 +301,7 @@ export default function Achievements({ achievements = [], certificates = [], sec
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {visibleCertificates.map((item) => (
-                <Card key={item.id} item={item} icon={FileBadge} compact onClick={() => setSelected({ ...item, kind: "Sertifikat" })} />
+                <Card key={item.id} item={item} icon={FileBadge} compact onLogoPreview={openLogoPreview} onClick={() => setSelected({ ...item, kind: "Sertifikat" })} />
               ))}
             </div>
             {!visibleCertificates.length && <p className="rounded-2xl border border-dashed border-line p-8 text-center text-sm text-muted">Belum ada sertifikat yang cocok. Coba kata kunci atau penerbit lain.</p>}
@@ -310,13 +315,9 @@ export default function Achievements({ achievements = [], certificates = [], sec
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[88px_1fr] sm:p-6">
               <button
                 type="button"
-                onClick={() => {
-                  const src = selected.kind === "Sertifikat"
-                    ? certificatePdfs(selected)[0]
-                    : selected.image || selected.logo || selected.pdfUrl;
-                  openGroupPreview(src, selected.title);
-                }}
-                className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-white"
+                onClick={() => openLogoPreview(selected)}
+                aria-label={`Preview logo ${selected.issuer || selected.title}`}
+                className="certificate-logo flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white"
               >
                 {issuerLogo(selected) ? (
                   <SafeImage

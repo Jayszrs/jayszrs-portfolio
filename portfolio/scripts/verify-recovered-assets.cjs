@@ -98,14 +98,14 @@ async function main() {
     capturedAt: new Date().toISOString(), baseUrl: base.origin,
     recoveredFileCount: results.length, recoveredFilesVerified: results.length - failures.length,
     recoveredFilesFailed: failures.length,
-    baznasCoverInProjectHtml: projectHtml.includes(baznasCover),
+    baznasCoverInProjectHtml: projectHtml.includes(baznasCover) || projectHtml.includes(encodeURIComponent(baznasCover)),
     unresolvedBlobImageUrls: references.filter((item) => !/\.pdf(?:[?#]|$)/i.test(item.url)).length,
     unresolvedBlobPdfUrls: references.filter((item) => /\.pdf(?:[?#]|$)/i.test(item.url)).length,
     unresolvedStatus: "Unmapped Blob references; blocked provider is not repeatedly requested",
     resolutionUsesLocalRegistry: true, excludedLocalSources, files: results, unresolvedReferences: references,
     remoteMutations: 0,
   };
-  const destination = path.join(root, "../backups/deployed-recovery-assets-latest.json");
+  const destination = process.argv[3] ? path.resolve(process.argv[3]) : path.join(root, "../backups/deployed-recovery-assets-latest.json");
   fs.writeFileSync(destination, JSON.stringify(report, null, 2) + "\n");
   console.log(JSON.stringify({ ...report, excludedLocalSources: undefined, files: undefined, unresolvedReferences: undefined }));
   if (failures.length) { console.log(JSON.stringify(failures)); process.exitCode = 1; }

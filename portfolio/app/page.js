@@ -1,1 +1,2 @@
-export { default, revalidate } from "@/frontend/pages/HomePage";
+export { default } from "@/frontend/pages/HomePage";
+export const revalidate = 3600;

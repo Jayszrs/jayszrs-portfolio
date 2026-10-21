@@ -4,6 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { ImageOff } from "lucide-react";
 import { mediaSource, serveImageDirectly } from "@/frontend/lib/media";
+import unavailableLegacyMedia from "@/frontend/lib/unavailable-legacy-media.json";
+
+const unavailableLegacy = new Set(unavailableLegacyMedia);
 
 export function initialsFrom(text = "") {
   return String(text)
@@ -30,7 +33,7 @@ export function LogoFallback({ label = "", icon: Icon = ImageOff }) {
 }
 
 function unavailableSource(src) {
-  return !String(src || "").trim();
+  return !String(src || "").trim() || unavailableLegacy.has(src);
 }
 
 export function ImageUnavailable() {

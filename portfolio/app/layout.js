@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import DeferredLanguageSwitcher from "@/frontend/components/DeferredLanguageSwitcher";
 import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.jayszrs.my.id";
@@ -11,7 +12,7 @@ const siteDescription =
   "Portfolio resmi Jaelani Surya Saputra, dikenal sebagai Jay Szrs atau jayszrs, untuk IT infrastructure, web development, AI engineer, software engineering, dan dokumentasi proyek.";
 
 const jakarta = localFont({
-  src: "./fonts/PlusJakartaSans-Variable.ttf",
+  src: "./fonts/PlusJakartaSans-Variable.woff2",
   weight: "400 800",
   style: "normal",
   variable: "--font-jakarta",
@@ -109,6 +110,7 @@ export default function RootLayout({ children }) {
         <DeferredLanguageSwitcher />
         <ThemeSwitcher />
         {children}
+        <Analytics />
       </body>
     </html>
   );

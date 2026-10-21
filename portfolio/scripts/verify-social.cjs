@@ -45,11 +45,11 @@ async function verify() {
     return Response.json({ data: { videos: Array.from({ length: 4 }, (_, index) => ({ id: `700000000000000000${index + (page - 1) * 4}`, title: `Video ${index}`, view_count: index + page * 10 })), has_more: page === 1, cursor: 123 }, error: { code: "ok" } });
   };
   const ranked = await readTikTokSocial("owner", { token: "test-only", fetcher: fakeApi });
-  assert.equal(ranked.videos.length, 5);
+  assert.equal(ranked.videos.length, 3);
   assert.equal(ranked.scanned, 8);
   assert.ok(ranked.complete);
-  assert.deepEqual(ranked.videos.map((video) => video.viewCount), [23, 22, 21, 20, 13]);
+  assert.deepEqual(ranked.videos.map((video) => video.viewCount), [23, 22, 21]);
   await assert.rejects(readTikTokSocial("wrongaccount", { token: "test-only", fetcher: fakeApi }), /mismatch/);
-  console.log("PASS: GitHub profile/README only, raw README fallback, TikTok ownership, pagination/top-five ranking, no fabricated videos/views, and URL validation.");
+  console.log("PASS: GitHub profile/README only, raw README fallback, TikTok ownership, pagination/top-three ranking, no fabricated videos/views, and URL validation.");
 }
 verify().catch((error) => { console.error(error); process.exitCode = 1; });
