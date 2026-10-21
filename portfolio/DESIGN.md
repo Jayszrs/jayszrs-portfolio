@@ -2,7 +2,15 @@
 
 ## Current direction, supersedes the earlier brief below
 
-### Refinement requested on 21 October 2026
+### Brew reference requested on 21 October 2026
+
+Later badge refinement: the owner removed the entire previous/next/count/pause/photo/reset control bar. Keep automatic three-second cycling with focus, hover, drag, visibility, and reduced-motion pauses; arrow/Home keyboard physics remain. The fabric strap is 28px wide with a local woven pattern, stitched edges, a small Kali mark, and printed JAYSZRS lettering. A new `conference-duo-cutout.png` display edit retains both people and their thumbs-up poses from the original conference photograph, as explicitly requested. Keep the original photo and earlier display edit intact. This later instruction supersedes earlier badge-toolbar/original-preview guidance below.
+
+The owner subsequently chose https://brew.new/ as the style reference and supplied exactly three TikTok post URLs. REA captured Brew at 1440 × 1000: warm near-white ground, fine neutral outlines, open typography, compact controls, and a dimensional orange primary action. Apply that material and spacing to the portfolio without copying Brew's branding or marketing content. Keep the red Kali identity and the working weighted lanyard. Light base is now #faf9f6, ink #2f2f2c, muted #65645e, line #e0ded8; dark mode remains available. Use orange only for the principal project/contact action, with a darker accessible fill than the reference.
+
+The social area is a framed workspace with quiet tabs. Instagram uses a native photographic selection, not the platform's embedded profile chrome: one larger photograph, five supporting photographs, full-size preview, a profile link, and the owner's confirmed GODS record. These are archived public profile previews captured on 21 October, not a live Story/Notes feed. Spotify loads only after the listener requests it. The three owner-supplied TikTok posts appear in three portrait players, deferred until visible; only one plays at a time. No fabricated view counts or popularity ranking.
+
+### Earlier refinement requested on 21 October 2026
 
 The owner supplied the white hanging ID badge as the lanyard reference and explicitly requested 3D skill symbols with shining card edges. Keep the existing gray/white world. Use local brand SVG geometry with CSS extrusion, a small plinth, and restrained perspective. Use a static silver highlight at opposite card edges, strengthening only for hover/focus; there is no repeating card-glow animation. The owner-requested repeated edge treatment supersedes the default cap on glow accents.
 

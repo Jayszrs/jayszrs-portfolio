@@ -11,9 +11,10 @@ export async function GET() {
     const url = new URL(content.profile.socials.tiktok);
     if (url.protocol !== "https:" || !["www.tiktok.com", "tiktok.com"].includes(url.hostname)) throw new Error("Invalid account");
     const username = url.pathname.split("/").filter(Boolean)[0]?.replace(/^@/, "");
-    const curated = content.profile.socialHighlights?.tiktokVideos || (username?.toLowerCase() === curation.tiktokHandle ? curation.tiktokVideos : []);
+    const ownerSelection = username?.toLowerCase() === curation.tiktokHandle;
+    const curated = ownerSelection ? curation.tiktokVideos : content.profile.socialHighlights?.tiktokVideos || [];
     let tiktok;
-    try { tiktok = await readTikTokSocial(username, { curated }); }
+    try { tiktok = await readTikTokSocial(username, { curated, ...(ownerSelection ? { token: "" } : {}) }); }
     catch { tiktok = await readTikTokSocial(username, { curated, token: "" }); }
     return NextResponse.json({ tiktok }, { headers: { "Cache-Control": tiktok.status === "ready" ? "public, s-maxage=1800, stale-while-revalidate=3600" : "no-store" } });
   } catch {

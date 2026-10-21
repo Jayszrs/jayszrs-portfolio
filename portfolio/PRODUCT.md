@@ -14,14 +14,14 @@ Personal portfolio of Jaelani Surya Saputra, with education, experience, project
 
 - Existing Next.js App Router application, deployed independently by the owner on Vercel.
 - Preserve original CMS values, PDF documents, recovery archives, and source URLs. Do not modify Blob Storage or Supabase during visual work or cleanup.
-- Latest request: GitHub profile and README instead of contribution/repository widgets; a lanyard-style identity card; five popular TikTok posts; Instagram profile music.
+- Latest request: GitHub profile and README instead of contribution/repository widgets; a draggable lanyard identity card; exactly three owner-supplied TikTok posts; a native Instagram gallery and profile music; styling inspired by brew.new.
 - The owner confirmed the Instagram profile song is GODS by NewJeans. The Instagram account is personal. Live Instagram music synchronization is not a confirmed capability.
-- One owner-account post URL was found and accepted by TikTok's official oEmbed endpoint. A verified list of five popular videos and their view counts is not available yet. Never invent IDs or metrics.
+- The owner supplied TikTok IDs 7441934180482600210, 7508283130906725649, and 7469052987869007112. Render these selections in this order, independent of popularity APIs. View counts are unverified and must not be invented.
 
 ## Brand Commitments
 
 - Keep the owner's Kali Linux dragon mark, already present in app/icon.svg.
-- Latest direction: gray and white glass, soft surface differences, readable text, improved public/admin controls.
+- Latest direction: Brew-inspired warm white surfaces, fine gray outlines, open typography, and a restrained orange primary action. Preserve working public/admin controls and the owner's content.
 
 ## Evidence on Hand
 

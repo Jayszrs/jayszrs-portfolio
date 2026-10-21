@@ -196,7 +196,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           <Link
             href="/kontak"
             prefetch={false}
-            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-3 py-2 text-sm font-semibold text-white transition hover:bg-emerald-deep xl:px-4"
+            className="brew-button min-h-9 px-3 py-2 xl:px-4"
           >
             Kontak <ArrowUpRight size={14} />
           </Link>

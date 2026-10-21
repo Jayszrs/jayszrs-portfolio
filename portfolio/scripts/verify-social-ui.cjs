@@ -1,4 +1,6 @@
 const assert = require("node:assert/strict");
+const { createHash } = require("node:crypto");
+const gallery = require("../frontend/lib/instagram-gallery.json");
 const base = process.argv[2] || "http://localhost:3109";
 
 async function main() {
@@ -26,9 +28,16 @@ async function main() {
   assert.equal(tiktok.status, 200);
   const value = (await tiktok.json()).tiktok;
   assert.equal(value.username, "jayszrss");
-  assert.ok(value.videos.length >= 1 && value.videos.length <= 3);
+  assert.deepEqual(value.videos.map((video) => video.id), ["7441934180482600210", "7508283130906725649", "7469052987869007112"], "Keep the owner's exact three selections and order");
   assert.ok(value.videos.every((video) => /^\d{17,20}$/.test(video.id)));
   assert.ok(value.ranking === "views" || value.videos.every((video) => video.viewCount === null));
+  assert.equal(gallery.photos.length, 6);
+  await Promise.all([gallery.avatar, ...gallery.photos].map(async (photo) => {
+    const response = await fetch(`${base}${photo.src}`);
+    assert.equal(response.status, 200, photo.src);
+    const bytes = Buffer.from(await response.arrayBuffer());
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), photo.sha256, "Public profile photo bytes must remain authentic");
+  }));
   console.log(JSON.stringify({ status: "PASS", renderedLocalLogo: true, recoveredPhotoInLanyard: true, socialDeferred: true, profileAndReadmeOnly: true, liveGithubReadme: true, tiktokPosts: value.videos.length, ranking: value.ranking, browserInteractionVerified: false, remoteMutations: 0 }));
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });

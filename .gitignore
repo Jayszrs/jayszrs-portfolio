@@ -6,6 +6,7 @@ backups/storage-audit-*/
 backups/blob-originals/
 backups/social-source-*/
 backups/djazuli-reference-*/
+backups/instagram-public-reference-*.html
 backups/source-recheck-*/
 backups/pdf-verification-*/
 backups/pdf-recovery-*.zip

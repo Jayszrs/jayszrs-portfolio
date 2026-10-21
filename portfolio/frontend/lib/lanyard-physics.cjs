@@ -4,7 +4,7 @@ const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
 
 function createLanyardPhysics({ width, height, cardWidth, cardHeight, initialSwing = true }) {
   const anchor = { x: width / 2, y: 0 };
-  const ropeLength = clamp(height - cardHeight - 140, 48, 155);
+  const ropeLength = clamp(height - cardHeight - 110, 64, 155);
   const badgeLink = cardHeight / 2 + 22;
   const segmentCount = 6;
   const lengths = Array(segmentCount).fill(ropeLength / segmentCount).concat(badgeLink);

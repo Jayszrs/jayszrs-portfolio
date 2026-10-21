@@ -22,8 +22,8 @@ export default function useLanyardPhysics({ stage, badge, rope, leftEdge, rightE
       const pose = simulation.pose();
       const d = ropePath(pose.rope);
       rope.current?.setAttribute("d", d);
-      leftEdge.current?.setAttribute("d", ropePath(pose.rope, -10));
-      rightEdge.current?.setAttribute("d", ropePath(pose.rope, 10));
+      leftEdge.current?.setAttribute("d", ropePath(pose.rope, -12));
+      rightEdge.current?.setAttribute("d", ropePath(pose.rope, 12));
       const middle = pose.rope[3];
       const before = pose.rope[2];
       const after = pose.rope[4];

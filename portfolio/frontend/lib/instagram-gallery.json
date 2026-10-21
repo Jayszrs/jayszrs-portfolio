@@ -1,0 +1,49 @@
+{
+  "handle": "jayszrs",
+  "source": "https://www.instagram.com/jayszrs/embed/",
+  "capturedAt": "2026-10-21",
+  "avatar": {
+    "src": "/social/instagram/2a87d9fd7cbf9c79672d.jpg",
+    "alt": "Foto profil Instagram @jayszrs",
+    "sha256": "2a87d9fd7cbf9c79672d21b7b38a2d8926af5f7d5d076ef006376d310d05d47e",
+    "bytes": 4255
+  },
+  "photos": [
+    {
+      "src": "/social/instagram/5efe3d6e6293ab178e85.jpg",
+      "alt": "Panggung konser dengan pencahayaan ungu",
+      "sha256": "5efe3d6e6293ab178e858b9613533fecb80ece5897dcca04ef68cb60e1ad4526",
+      "bytes": 83708
+    },
+    {
+      "src": "/social/instagram/90c1a3d83dcdefd2b10d.jpg",
+      "alt": "Jaelani di National Cybersecurity Connect",
+      "sha256": "90c1a3d83dcdefd2b10dff49bf8f771eb7cca82414c0db3b39aad90088698d4c",
+      "bytes": 199808
+    },
+    {
+      "src": "/social/instagram/ef26964d53cb9e88db91.jpg",
+      "alt": "Kolase foto bersama teman-teman",
+      "sha256": "ef26964d53cb9e88db91bad68101a2f1f7c3442a295d9c00e8d8e0fe62378c1d",
+      "bytes": 122451
+    },
+    {
+      "src": "/social/instagram/c1db1448d84da8db0de6.jpg",
+      "alt": "Momen di ruang terbuka",
+      "sha256": "c1db1448d84da8db0de6bfc65c6af85cb8d3d8ff14365eff94b80dd5599e0474",
+      "bytes": 350013
+    },
+    {
+      "src": "/social/instagram/8b0ddf83efc5d6bc9f32.jpg",
+      "alt": "Jaelani berjalan di kota pada malam hari",
+      "sha256": "8b0ddf83efc5d6bc9f326e111e3c3f08549b99a630052269e9a5671f8e890610",
+      "bytes": 282615
+    },
+    {
+      "src": "/social/instagram/4bcb270305e63d2a9472.jpg",
+      "alt": "Momen bersama keluarga",
+      "sha256": "4bcb270305e63d2a9472ceb0ece8fa9e49a8d431d528a48a5796d63a8f28df6f",
+      "bytes": 222888
+    }
+  ]
+}

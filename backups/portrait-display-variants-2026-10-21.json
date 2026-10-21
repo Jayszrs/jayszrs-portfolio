@@ -43,5 +43,21 @@
       0,
       255
     ]
+  },
+  {
+    "original": "/recovered-media/c9a1652c943e238bad62.webp",
+    "displayVariant": "/portraits/conference-duo-cutout.png",
+    "kind": "Owner-requested two-person background-removal display edit with imagegen; not a recovered source",
+    "originalSha256": "335c24d1aa32a66a71e46516aeeb4b2c41e40bf7cd6eb307fe38e4e5441be306",
+    "variantSha256": "0e637d605a07d94266c351c54e2b342c00adae114afe8199d081a66182fd0d30",
+    "size": [
+      1086,
+      1448
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "sourceRetained": true
   }
 ]

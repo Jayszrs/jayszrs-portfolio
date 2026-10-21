@@ -35,11 +35,11 @@ async function verify() {
   const home = await (await get("/")).text();
   const markup = home.replace(/<script\b[\s\S]*?<\/script>/gi, "");
   assert.ok(markup.includes("badge-identity") && markup.includes("lanyard-clasp"));
-  assert.ok(markup.includes("Lihat foto asli") && markup.includes("Jeda pergantian foto otomatis"));
+  assert.ok(!markup.includes("lanyard-toolbar") && !markup.includes("Jeda pergantian foto otomatis"), "Owner removed the entire badge control bar");
   assert.ok(markup.includes(encodeURIComponent("/portraits/congress-cutout.png")));
   let optimizedPortraitBytes = 0;
   for (const [original, variant] of Object.entries(portraits)) {
-    const item = evidence.find((item) => item.original === original);
+    const item = evidence.find((item) => item.original === original && item.displayVariant === variant);
     assert.ok(item);
     const originalBytes = fs.readFileSync(path.join(root, "public", original));
     const variantBytes = fs.readFileSync(path.join(root, "public", variant));
@@ -55,6 +55,6 @@ async function verify() {
     assert.ok(bytes.length < variantBytes.length);
     optimizedPortraitBytes += bytes.length;
   }
-  console.log(JSON.stringify({ status: "PASS", currentSkillsCovered: names.length, localSvgAssets: Object.keys(icons).length, servedSymbolsMatchSources: true, originalPortraitsPreserved: 3, optimizedTransparentPortraits: 3, optimizedPortraitBytes, independentOriginalPreview: true, browserInteractionVerified: false }));
+  console.log(JSON.stringify({ status: "PASS", currentSkillsCovered: names.length, localSvgAssets: Object.keys(icons).length, servedSymbolsMatchSources: true, originalPortraitsPreserved: 3, optimizedTransparentPortraits: 3, optimizedPortraitBytes, badgeControlBarRemoved: true, browserInteractionVerified: false }));
 }
 verify().catch((error) => { console.error(error.message); process.exitCode = 1; });
