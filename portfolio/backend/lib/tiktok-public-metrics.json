@@ -1,0 +1,28 @@
+{
+  "username": "jayszrss",
+  "method": "Read public TikTok page hydration metadata in an isolated browser without logging in; verified itemStruct.id and itemStruct.author.uniqueId. Counts are snapshots, not a live feed.",
+  "field": "webapp.video-detail.itemInfo.itemStruct.stats.playCount",
+  "videos": [
+    {
+      "videoId": "7441934180482600210",
+      "viewCount": 4700000,
+      "capturedAt": "2026-10-22T02:24:50.581Z",
+      "source": "Public TikTok post metadata",
+      "url": "https://www.tiktok.com/@jayszrss/video/7441934180482600210"
+    },
+    {
+      "videoId": "7508283130906725649",
+      "viewCount": 1200000,
+      "capturedAt": "2026-10-22T02:24:51.494Z",
+      "source": "Public TikTok post metadata",
+      "url": "https://www.tiktok.com/@jayszrss/video/7508283130906725649"
+    },
+    {
+      "videoId": "7469052987869007112",
+      "viewCount": 1100000,
+      "capturedAt": "2026-10-22T02:24:52.572Z",
+      "source": "Public TikTok post metadata",
+      "url": "https://www.tiktok.com/@jayszrss/video/7469052987869007112"
+    }
+  ]
+}

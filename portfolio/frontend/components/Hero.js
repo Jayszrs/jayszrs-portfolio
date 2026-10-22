@@ -27,6 +27,7 @@ export default function Hero({ profile }) {
             <p className="mt-2 max-w-xl break-words font-display text-2xl font-medium leading-tight text-emerald-deep sm:text-3xl"><TypewriterText words={profile.roles} fallback={profile.role} /></p>
           </div>
           {profile.tagline && <p className="mt-6 max-w-lg text-base leading-7 text-muted sm:text-lg">{profile.tagline}</p>}
+          <p className="mt-4 max-w-lg text-sm leading-7 text-muted">Pengembang web dan praktisi IT di Jakarta &amp; Bekasi. Membangun website bisnis, aplikasi web, serta mendukung infrastruktur IT.</p>
           <div className="mt-7 flex gap-2" aria-label="Profil sosial">
             {links.filter(([key]) => socials[key]).map(([key, label, Icon]) => <a key={key} href={externalUrl(socials[key])} target="_blank" rel="noreferrer" aria-label={`Buka ${label}`} className="glass-pill flex h-11 w-11 items-center justify-center rounded-full text-muted transition hover:border-emerald/40 hover:text-ink"><Icon size={18} /></a>)}
           </div>

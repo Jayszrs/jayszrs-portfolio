@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.jayszrs.my.id";
+import { SITE_URL as siteUrl } from '@/frontend/lib/site-metadata';
 
 export default function robots() {
   return {

@@ -19,7 +19,6 @@ export default function LanyardCard({ profile }) {
   const rope = useRef(null);
   const leftEdge = useRef(null);
   const rightEdge = useRef(null);
-  const mark = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -46,7 +45,7 @@ export default function LanyardCard({ profile }) {
     document.addEventListener("portfolio:scrollactivity", syncDialog);
     return () => { observer.disconnect(); media.removeEventListener("change", syncMotion); document.removeEventListener("visibilitychange", syncVisibility); document.removeEventListener("portfolio:dialogchange", syncDialog); document.removeEventListener("portfolio:scrollactivity", syncDialog); };
   }, []);
-  useLanyardPhysics({ stage, badge, rigging, rope, leftEdge, rightEdge, mark, enabled: visible && !hidden && !blocked, reduced, onDragChange: setDragging });
+  useLanyardPhysics({ stage, badge, rigging, rope, leftEdge, rightEdge, enabled: visible && !hidden && !blocked, reduced, onDragChange: setDragging });
   const playing = !dragging && !hovered && !focused && !hidden && !blocked && visible && !reduced && available.length > 1;
   useEffect(() => {
     if (!playing) return;
@@ -58,18 +57,17 @@ export default function LanyardCard({ profile }) {
       <svg className="lanyard-rope" width="100%" height="100%" fill="none" aria-hidden="true">
         <defs>
           <pattern id={`${clipId}-weave`} width="32" height="64" patternUnits="userSpaceOnUse">
-            <path d="M0 0h32v64H0z" fill="#f28b2b" />
-            <path d="M0 0v64M4 0v64M8 0v64M12 0v64M16 0v64M20 0v64M24 0v64M28 0v64" stroke="#ffd09a" strokeWidth=".35" opacity=".35" />
-            <path d="m-8 12 24 15 24-15v8L16 35-8 20zM-8 36l24 15 24-15v8L16 59-8 44z" fill="#fff4de" />
-            <path d="m12 1 4-4 4 4-4 4zm-8 0 4-4 4 4-4 4zm16 0 4-4 4 4-4 4zm-8 8 4-4 4 4-4 4z" fill="#fff4de" />
-            <path d="M0 30h32M0 62h32" stroke="#ca5e13" strokeWidth=".4" opacity=".45" />
+            <path d="M0 0h32v64H0z" fill="#161719" />
+            <path d="M0 0v64M4 0v64M8 0v64M12 0v64M16 0v64M20 0v64M24 0v64M28 0v64" stroke="#a8a9ad" strokeWidth=".35" opacity=".3" />
+            <path d="m-8 12 24 15 24-15v8L16 35-8 20zM-8 36l24 15 24-15v8L16 59-8 44z" fill="#f6f7fa" />
+            <path d="m12 1 4-4 4 4-4 4zm-8 0 4-4 4 4-4 4zm16 0 4-4 4 4-4 4zm-8 8 4-4 4 4-4 4z" fill="#f6f7fa" />
+            <path d="M0 30h32M0 62h32" stroke="#b9bcc4" strokeWidth=".4" opacity=".45" />
           </pattern>
         </defs>
         <g ref={rigging}>
         <path ref={rope} data-rope-centerline d="M250 0L250 180" stroke="none" />
-        <path ref={leftEdge} data-lanyard-strand="left" d="M232 0L250 180" stroke={`url(#${clipId}-weave)`} strokeWidth="18" />
-        <path ref={rightEdge} data-lanyard-strand="right" d="M268 0L250 180" stroke={`url(#${clipId}-weave)`} strokeWidth="18" />
-        <g ref={mark}><rect x="0" y="-1" width="16" height="29" rx="2" fill="#08080a" /><image href="/icon.svg" width="12" height="12" x="2" y="1" /><text x="8" y="22" textAnchor="middle" fill="#fff" fontSize="3.4" fontWeight="600" letterSpacing=".2">jayszrs.</text></g>
+        <path ref={leftEdge} className="lanyard-fabric" data-lanyard-strand="left" d="M232 0L250 180" stroke={`url(#${clipId}-weave)`} strokeWidth="18" />
+        <path ref={rightEdge} className="lanyard-fabric" data-lanyard-strand="right" d="M268 0L250 180" stroke={`url(#${clipId}-weave)`} strokeWidth="18" />
         </g>
       </svg>
       <figure
@@ -83,11 +81,11 @@ export default function LanyardCard({ profile }) {
         <svg className="lanyard-clasp" viewBox="0 0 64 110" fill="none" aria-hidden="true">
           <defs>
             <linearGradient id={clipId} x1="14" y1="0" x2="53" y2="102" gradientUnits="userSpaceOnUse"><stop stopColor="#767d87" /><stop offset=".28" stopColor="#f8fafc" /><stop offset=".45" stopColor="#9ba1aa" /><stop offset=".67" stopColor="#e1e5ea" /><stop offset="1" stopColor="#616873" /></linearGradient>
-            <linearGradient id={`${clipId}-buckle`} x1="15" y1="0" x2="50" y2="38" gradientUnits="userSpaceOnUse"><stop stopColor="#ffb459" /><stop offset=".4" stopColor="#f68a24" /><stop offset="1" stopColor="#ce590c" /></linearGradient>
+            <linearGradient id={`${clipId}-buckle`} x1="15" y1="0" x2="50" y2="38" gradientUnits="userSpaceOnUse"><stop stopColor="#e2e4e9" /><stop offset=".4" stopColor="#777c85" /><stop offset="1" stopColor="#282c33" /></linearGradient>
           </defs>
-          <path d="M16 3h32v28c0 7-5 12-12 12h-8c-7 0-12-5-12-12V3Z" fill={`url(#${clipId}-buckle)`} stroke="#b6500d" strokeWidth="1.1" />
-          <path d="M19 7h26M20 10h24" stroke="#fff0d2" strokeWidth="2" strokeLinecap="round" />
-          <rect x="25" y="17" width="14" height="15" rx="5" fill="#ed7c1d" stroke="#ffc079" strokeWidth="1" />
+          <path d="M16 3h32v28c0 7-5 12-12 12h-8c-7 0-12-5-12-12V3Z" fill={`url(#${clipId}-buckle)`} stroke="#bec2cb" strokeWidth="1.1" />
+          <path d="M19 7h26M20 10h24" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+          <rect x="25" y="17" width="14" height="15" rx="5" fill="#292d34" stroke="#e0e4ee" strokeWidth="1" />
           <path d="M27 41h10v16H27z" fill={`url(#${clipId})`} stroke="#777e88" />
           <path d="M32 51c-11 0-18 8-18 19v15c0 12 8 21 18 21s18-9 18-21V77H40v9c0 6-3 10-8 10s-8-4-8-10V70c0-6 3-9 8-9 3 0 6 2 7 5l9-4c-3-7-8-11-16-11Z" fill={`url(#${clipId})`} stroke="#777e88" strokeWidth="1.2" />
           <path d="M44 64v21" stroke="#535b65" strokeWidth="4" strokeLinecap="round" /><path d="M42 64v19" stroke="#eef1f5" strokeWidth="1.5" strokeLinecap="round" />

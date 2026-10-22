@@ -6,10 +6,13 @@ import LazyHomeSections from "@/frontend/components/LazyHomeSections";
 import SocialHub from "@/frontend/components/DeferredSocialHub";
 import { profileHeroImages } from "@/frontend/lib/profileImages";
 import { externalUrl } from "@/frontend/lib/urls";
+import { mediaSource } from "@/frontend/lib/media";
+import { SITE_URL as siteUrl } from "@/frontend/lib/site-metadata";
+import WebServicesCard from "@/frontend/components/WebServicesCard";
+import SiteFooter from "@/frontend/components/SiteFooter";
 
 export const revalidate = 3600;
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.jayszrs.my.id";
 
 function unique(values = []) {
   const seen = new Set();
@@ -63,12 +66,16 @@ function JsonLd({ content }) {
       profile.handle,
     ]),
     url: siteUrl,
-    image: heroImage ? publicUrl(heroImage) : `${siteUrl}/favicon-512.png`,
+    image: heroImage ? new URL(mediaSource(heroImage), `${siteUrl}/`).href : `${siteUrl}/favicon-512.png`,
+    description: 'Jaelani Surya Saputra, dikenal sebagai Jay Szrs, pengembang web dan praktisi IT di Jakarta dan Bekasi.',
     jobTitle: roles,
     sameAs,
     knowsAbout: [
       "IT Infrastructure",
       "Web Development",
+      "Pengembangan web",
+      "Jasa pembuatan website",
+      "Infrastruktur IT",
       "AI Engineering",
       "Software Engineering",
       "Cyber Security",
@@ -103,7 +110,13 @@ function JsonLd({ content }) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify([person, webSite, profilePage]).replace(/</g, "\\u003c"),
+        __html: JSON.stringify([person, webSite, profilePage, {
+          '@context': 'https://schema.org', '@type': 'Service', '@id': `${siteUrl}/#web-development`,
+          name: 'Jasa pembuatan website dan aplikasi web', serviceType: 'Pengembangan web',
+          description: 'Pengembangan landing page, company profile dan aplikasi web oleh Jaelani Surya Saputra melalui Wasla Informatika.',
+          url: `${siteUrl}/#jasa-website`, provider: { '@id': `${siteUrl}/#person` },
+          areaServed: ['Jakarta', 'Bekasi'],
+        }]).replace(/</g, "\\u003c"),
       }}
     />
   );
@@ -120,6 +133,8 @@ export default async function Home() {
       <SocialHub socials={content.profile.socials} highlights={content.profile.socialHighlights} identity={{ name: content.profile.fullName, role: content.profile.role, location: content.profile.location, photo: profileHeroImages(content.profile)[0] }} />
       <About about={content.about} section={content.sections.about} />
       <LazyHomeSections content={content} />
+      <WebServicesCard promotion={content.profile.webServices} />
+      <SiteFooter profile={content.profile} />
     </main>
   );
 }

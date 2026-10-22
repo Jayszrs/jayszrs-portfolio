@@ -6,7 +6,7 @@ import {
   LogOut, Plus, Trash2, Save, Loader2, ImagePlus, Lock,
   ExternalLink, LayoutDashboard, CheckCircle2, AlertCircle, UploadCloud, XCircle, Download,
 } from "lucide-react";
-import { DEFAULT_CONTENT, mergeContent } from "@/backend/lib/content-defaults";
+import { DEFAULT_CONTENT, COLLABORATION_EXAMPLES, mergeContent } from "@/backend/lib/content-defaults";
 import { documentationImages, withDocumentationImages } from "@/frontend/lib/documentation";
 import { profileHeroImages, withProfileHeroImages } from "@/frontend/lib/profileImages";
 import { mediaSource } from "@/frontend/lib/media";
@@ -16,7 +16,7 @@ import socialCuration from "@/frontend/lib/social-curation.json";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
-  "Pengalaman", "Galeri", "Selected Design", "Rating", "Pencapaian", "Sertifikat", "Kontak",
+  "Pengalaman", "Galeri", "Selected Design", "Kolaborasi", "Rating", "Pencapaian", "Sertifikat", "Kontak",
 ];
 
 function uid(prefix) {
@@ -418,7 +418,7 @@ function SelectField({ label, value, onChange, options }) {
     <div className="space-y-1.5">
       <label htmlFor={id} className="block text-xs font-semibold text-ink/70">{label}</label>
       <select id={id} value={value || ""} onChange={(event) => onChange(event.target.value)} className="field">
-        {options.map((option) => <option key={option} value={option}>{option}</option>)}
+        {options.map((option) => { const entry = typeof option === 'object' ? option : { value: option, label: option }; return <option key={entry.value} value={entry.value}>{entry.label}</option>; })}
       </select>
     </div>
   );
@@ -453,7 +453,7 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel, 
           {mediaSection && <RecoveredMediaPanel item={item} section={mediaSection} />}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {fields.map((field) => {
-              const fieldValue = field.kind === "images" ? documentationImages(item) : item[field.key] || "";
+              const fieldValue = field.kind === "images" ? documentationImages(item) : item[field.key] ?? "";
               const content = field.kind === "select" ? (
                 <SelectField label={field.label} value={fieldValue} options={field.options} onChange={(value) => updateItem(index, field.key, value)} />
               ) : field.kind === "image" ? (
@@ -772,6 +772,7 @@ export default function AdminPageClient() {
     Pengalaman: "Posisi, organisasi, periode, logo/dokumentasi, dan detail kontribusi.",
     Galeri: "Proyek lengkap, gambar preview, dokumentasi, proses, dan hasil.",
     "Selected Design": "Kurasi desain pilihan yang muncul sebagai highlight visual.",
+    Kolaborasi: "Logo kolaborator di bagian bawah halaman Proyek, termasuk status contoh dan tampilan logo.",
     Rating: "Nama, asal, bintang, masukan, dan status tampil di homepage.",
     Pencapaian: "Achievement non-sertifikat beserta logo atau bukti pendukung.",
     Sertifikat: "Sertifikat, penerbit, credential, PDF, logo, dan badge.",
@@ -933,6 +934,9 @@ export default function AdminPageClient() {
             <TextField label="Instagram URL" value={content.profile?.socials?.instagram} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...content.profile.socials, instagram: v } } })} />
             <TextField label="TikTok URL" value={content.profile?.socials?.tiktok} onChange={(v) => setContent({ ...content, profile: { ...content.profile, socials: { ...(content.profile.socials || {}), tiktok: v } } })} />
             <div className="space-y-4 border-t border-line pt-5 sm:col-span-2">
+              <h3 className="font-display text-base font-semibold text-ink">Layanan Wasla Informatika</h3>
+              <TextField label="Link website Wasla Informatika" placeholder="https://..." value={content.profile.webServices?.url || ''} onChange={url => setContent({ ...content, profile: { ...content.profile, webServices: { ...content.profile.webServices, url } } })} />
+              <p className="text-xs leading-6 text-muted">Kartu layanan muncul di Beranda dan Proyek. Jika link belum diisi, pengunjung diarahkan ke halaman Kontak.</p>
               <h3 className="font-display text-base font-semibold text-ink">Musik & video pilihan</h3>
               <p className="text-xs leading-6 text-muted">Musik profil diatur di sini. Perubahan lagu di akun Instagram pribadi tidak tersinkron otomatis. Token TikTok tetap disimpan di server.</p>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -942,6 +946,11 @@ export default function AdminPageClient() {
                 })}
               </div>
               <TextField label="Video TikTok pilihan (satu URL postingan lengkap per baris, maksimal 5)" textarea rows={5} placeholder="https://www.tiktok.com/@username/video/..." value={(content.profile.socialHighlights?.tiktokVideos ?? (/tiktok\.com\/@jayszrss\/?(?:[?#].*)?$/i.test(content.profile.socials?.tiktok || '') ? socialCuration.tiktokVideos : [])).map((value) => typeof value === 'string' ? value : value.url).join('\n')} onChange={(value) => setContent({ ...content, profile: { ...content.profile, socialHighlights: { ...content.profile.socialHighlights, tiktokVideos: value.split('\n').map((url) => url.trim()).filter(Boolean).slice(0, 5) } } })} />
+              <h4 className="font-semibold text-ink">Catatan jumlah tayangan</h4>
+              <p className="text-xs leading-6 text-muted">Opsional. Isi angka yang benar dan tanggal pencatatannya untuk memperbarui data tayangan dari akunmu.</p>
+              <CollectionEditor items={content.profile.socialHighlights?.tiktokVideoMetrics || []} onChange={items => setContent({ ...content, profile: { ...content.profile, socialHighlights: { ...content.profile.socialHighlights, tiktokVideoMetrics: items } } })}
+                fields={[{ key: 'videoId', label: 'ID video TikTok', placeholder: '7508283130906725649' }, { key: 'viewCount', label: 'Jumlah tayangan', placeholder: '1200000' }, { key: 'capturedAt', label: 'Tanggal pencatatan', placeholder: '2026-10-22' }]}
+                createItem={() => ({ id: uid('tiktok-metric'), videoId: '', viewCount: '', capturedAt: new Date().toISOString().slice(0, 10) })} addLabel="Tambah catatan tayangan" />
             </div>
           </div>
         )}
@@ -952,6 +961,7 @@ export default function AdminPageClient() {
 
         {tab === "Tentang" && (
           <div className="space-y-5">
+            <p className="rounded-xl border border-line p-4 text-sm leading-7 text-muted">Timeline perjalanan di halaman Tentang mengikuti data Pendidikan dan Pengalaman. Perbarui bagian tersebut untuk menambah, mengubah, atau menghapus perjalananmu.</p>
             <div className="rounded-2xl border border-line bg-surface/85 p-5 shadow-glass">
               <TextField label="Judul section Tentang" value={content.about?.heading} onChange={(v) => setContent({ ...content, about: { ...content.about, heading: v } })} />
             </div>
@@ -1011,6 +1021,8 @@ export default function AdminPageClient() {
               { key: "institution", label: "Nama sekolah / kampus" },
               { key: "degree", label: "Jurusan / gelar" },
               { key: "period", label: "Periode pendidikan" },
+              { key: "startDate", label: "Mulai pendidikan (untuk timeline)", placeholder: "September 2023" },
+              { key: "endDate", label: "Selesai pendidikan (opsional)", placeholder: "Kosongkan jika masih berlangsung" },
               { key: "location", label: "Lokasi" },
               { key: "grade", label: "Nilai / IPK" },
               { key: "gradeScale", label: "Skala / keterangan nilai" },
@@ -1023,7 +1035,7 @@ export default function AdminPageClient() {
               { key: "link", label: "Link institusi (opsional)", wide: true },
             ]}
             createItem={() => ({
-              id: uid("edu"), institution: "", degree: "", period: "", location: "", description: "", focus: "", activities: "",
+              id: uid("edu"), institution: "", degree: "", period: "", startDate: "", endDate: "", location: "", description: "", focus: "", activities: "",
               grade: "", gradeScale: "", logo: "", documentationImages: [], documentationImage: "", documentationImage2: "", documentationImage3: "", documentationFile: "", link: "",
             })}
             addLabel="Tambah pendidikan"
@@ -1239,6 +1251,16 @@ export default function AdminPageClient() {
             createItem={() => ({ id: uid("design"), title: "", category: "", year: "", description: "", image: "", link: "" })}
             addLabel="Tambah selected design"
           />
+        )}
+
+        {tab === "Kolaborasi" && (
+          <div className="space-y-5">
+            <p className="text-sm leading-7 text-muted">Upload logo dan isi nama kolaborator. Logo berstatus Contoh tampilan diberi label Contoh di halaman Proyek.</p>
+            <CollectionEditor items={content.collaborations || []} onChange={items => setContent({ ...content, collaborations: items })}
+              fields={[{ key: 'name', label: 'Nama merek / organisasi' }, { key: 'url', label: 'Website (opsional)' }, { key: 'status', label: 'Tipe logo', kind: 'select', options: [{ value: 'example', label: 'Contoh tampilan' }, { value: 'collaboration', label: 'Kolaborasi' }] }, { key: 'appearance', label: 'Tampilan logo', kind: 'select', options: [{ value: 'auto', label: 'Otomatis' }, { value: 'original', label: 'Warna asli' }, { value: 'white', label: 'Putih' }, { value: 'remove-white', label: 'Hapus latar putih' }, { value: 'remove-black', label: 'Hapus latar hitam' }] }, { key: 'logo', label: 'Logo kolaborasi', kind: 'image', wide: true }]}
+              createItem={() => ({ id: uid('collaboration'), name: '', logo: '', url: '', appearance: 'auto', status: 'collaboration' })} addLabel="Tambah logo kolaborasi" />
+            {!content.collaborations?.length && <button type="button" className="action-button" onClick={() => setContent({ ...content, collaborations: COLLABORATION_EXAMPLES.map(item => ({ ...item })) })}>Gunakan logo contoh</button>}
+          </div>
         )}
 
         {tab === "Rating" && (

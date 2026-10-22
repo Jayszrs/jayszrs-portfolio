@@ -110,7 +110,7 @@ async function verify() {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
     page.on("pageerror", error => errors.push(error.message));
     await page.goto(`${base}/proyek`);
-    const track = page.locator(".mouse-scroll-track");
+    const track = page.locator(".mouse-scroll-track").first();
     await track.scrollIntoViewIfNeeded();
     const box = await track.boundingBox();
     await page.mouse.move(box.x + box.width * .6, box.y + 100);

@@ -2,6 +2,22 @@
 
 ## Current direction, supersedes the earlier brief below
 
+### Web services and large signature footer, 22 October 2026
+
+The owner is offering web development through Wasla Informatika. Add one server-rendered service card near the bottom of Home and Projects, with an honest summary of landing pages, company profiles and web applications, and a direct link configured in the profile CMS. Use the existing charcoal/silver material, a single clear action and restrained typography. Until an official URL is supplied, route enquiries to the existing Contact page rather than inventing a domain.
+
+REA footer reference `ev_98d9ff3e93d79432dbc2878aa5f87074cddd0ad753701b001cdf7257a0ecd425` confirms the owner's screenshot: Wealth Club uses an oversized, quiet charcoal wordmark on black. Rebuild that typographic treatment as Jay Szrs, with a compact accessible navigation/copyright row above it. The oversized decorative lettering is an explicit owner exception to the normal display-size limit, hidden from assistive technology because the readable brand already appears in the row. No extra motion, blur or external dependency.
+
+### Monochrome strap, CMS journey and collaboration strip, 22 October 2026
+
+Latest owner correction supersedes the orange textile below: charcoal and white woven straps, silver/black buckle, a subtle white edge glow, and no logo or wordmark on the straps. Keep the printed badge brand, weighted physics, direct grabbed-point tracking, three-second portrait cycle and all activity pauses. No WebGL or new animation library.
+
+About now combines education and experience from the same CMS collections into an ascending journey. Explicit start dates determine order; an undated ongoing education stays at Present without inventing a start year. The owner explicitly requests scroll parallax: bounded 12px card offsets and a progress rail run only on visible scroll updates. Reduced motion leaves all content visible and stationary.
+
+Projects ends with a CMS-managed collaboration logo strip. The requested NVIDIA, Samsung, Xiaomi, Lenovo, ROG and BYD marks are visibly labeled Sample; they are layout examples, never assertions of partnerships. Saved empty lists stay empty. Support mouse drag, wheel and keyboard, with no buttons or visible scrollbar. Its slow automatic motion runs only while visible and idle, and pauses for hover, focus, interaction, dialogs, page scroll and reduced motion. These two explicitly requested motions are exceptions to the earlier single-authored-motion limit.
+
+Organization logos use their exact source geometry in white for dark-mode contrast, with white/black background removal where detected. Original-color previews and source files remain untouched; documentation photographs are never recolored. TikTok shows public play counts verified for the three exact owner-supplied posts on 22 October, with source/date labels. These are dated observations, not a live feed or likes presented as views. Owner-entered dated metrics and authorized API data can supersede them.
+
 ### Orange textile reference and monochrome brand, 22 October 2026
 
 The owner supplied `Screenshot 2026-10-21 165712.png`: two orange fabric straps, cream geometric chevrons/diamonds, an orange plastic release buckle, and a silver snap hook. Rebuild that material as resolution-independent SVG, keeping the existing weighted rope and direct mouse/touch interaction. Two tapered ribbon paths follow the same physical rope and converge at its unchanged metal-attachment origin. The repeat motif is printed fabric from the supplied reference, not page decoration. Preserve the lightweight DOM/SVG approach and all previous motion/scroll pauses; do not add WebGL or a bitmap texture request.

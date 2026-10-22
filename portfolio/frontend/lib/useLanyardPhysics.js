@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { createLanyardPhysics, ropePath, ribbonPath, fitLanyardView } from "./lanyard-physics.cjs";
 
-export default function useLanyardPhysics({ stage, badge, rigging, rope, leftEdge, rightEdge, mark, enabled, reduced, onDragChange }) {
+export default function useLanyardPhysics({ stage, badge, rigging, rope, leftEdge, rightEdge, enabled, reduced, onDragChange }) {
   const controller = useRef(null);
   const mode = useRef({ enabled, reduced });
   const dragCallback = useRef(onDragChange);
@@ -33,16 +33,6 @@ export default function useLanyardPhysics({ stage, badge, rigging, rope, leftEdg
       rope.current?.setAttribute("d", d);
       leftEdge.current?.setAttribute("d", ribbonPath(ropePoints, 1, view.scale));
       rightEdge.current?.setAttribute("d", ribbonPath(ropePoints, -1, view.scale));
-      const index = Math.floor(pose.rope.length / 2);
-      const middle = pose.rope[index];
-      const before = pose.rope[index - 1];
-      const after = pose.rope[index + 1];
-      const angle = Math.atan2(after.y - before.y, after.x - before.x) * 180 / Math.PI - 90;
-      const length = Math.hypot(after.x - before.x, after.y - before.y) || 1;
-      const spread = 18 * (1 - index / (pose.rope.length - 1)) ** .8;
-      const labelX = middle.x - (after.y - before.y) / length * spread;
-      const labelY = middle.y + (after.x - before.x) / length * spread;
-      mark.current?.setAttribute("transform", `translate(${labelX - 8} ${labelY - 8}) rotate(${angle} 8 8)`);
       card.style.transform = `translate3d(${view.x + pose.hook.x * view.scale - pose.cardWidth / 2}px,${view.y + pose.hook.y * view.scale + pose.attachment}px,0) scale(${view.scale}) rotate(${pose.angle}deg)`;
       const state = pose.dragging ? "dragging" : pose.sleeping ? "resting" : "swinging";
       if (root.dataset.physics !== state) root.dataset.physics = state;
@@ -134,7 +124,7 @@ export default function useLanyardPhysics({ stage, badge, rigging, rope, leftEdg
       card.removeEventListener("keydown", key);
       window.removeEventListener("blur", release);
     };
-  }, [stage, badge, rigging, rope, leftEdge, rightEdge, mark]);
+  }, [stage, badge, rigging, rope, leftEdge, rightEdge]);
 
   useEffect(() => {
     const dragging = controller.current?.isDragging();

@@ -30,7 +30,8 @@ async function main() {
   assert.equal(value.username, "jayszrss");
   assert.deepEqual(value.videos.map((video) => video.id), ["7441934180482600210", "7508283130906725649", "7469052987869007112"], "Keep the owner's exact three selections and order");
   assert.ok(value.videos.every((video) => /^\d{17,20}$/.test(video.id)));
-  assert.ok(value.ranking === "views" || value.videos.every((video) => video.viewCount === null));
+  assert.equal(value.ranking, "curated", "The owner-selected videos must keep their original order");
+  assert.ok(value.videos.every((video) => video.viewCount === null || (Number.isSafeInteger(video.viewCount) && video.viewCount >= 0 && ["tiktok-api", "owner-snapshot", "public-snapshot"].includes(video.viewCountSource) && Number.isFinite(Date.parse(video.viewCountCapturedAt)))), "Every count must identify its real source and observation date");
   assert.equal(gallery.photos.length, 6);
   await Promise.all([gallery.avatar, ...gallery.photos].map(async (photo) => {
     const response = await fetch(`${base}${photo.src}`);

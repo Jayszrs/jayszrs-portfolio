@@ -1,3 +1,7 @@
+export const COLLABORATION_EXAMPLES = [
+  ['nvidia', 'NVIDIA'], ['samsung', 'Samsung'], ['xiaomi', 'Xiaomi'], ['lenovo', 'Lenovo'], ['rog', 'ROG'], ['byd', 'BYD'],
+].map(([id, name]) => ({ id: `example-${id}`, name, logo: `/collaboration-logos/${id}.svg`, url: '', appearance: 'white', status: 'example' }));
+
 export const DEFAULT_CONTENT = {
   profile: {
     brandName: "",
@@ -10,6 +14,7 @@ export const DEFAULT_CONTENT = {
     status: "",
     location: "",
     tagline: "",
+    webServices: { enabled: true, url: '' },
     heroImage: "",
     heroImage2: "",
     heroImage3: "",
@@ -147,6 +152,7 @@ export const DEFAULT_CONTENT = {
   experience: [],
   gallery: [],
   selectedDesigns: [],
+  collaborations: COLLABORATION_EXAMPLES,
   ratings: [],
   achievements: [],
   certificates: [],
@@ -216,6 +222,7 @@ export function mergeContent(data = {}) {
     experience: arrayOrDefault(data.experience, DEFAULT_CONTENT.experience),
     gallery: arrayOrDefault(data.gallery, DEFAULT_CONTENT.gallery),
     selectedDesigns: arrayOrDefault(data.selectedDesigns, DEFAULT_CONTENT.selectedDesigns),
+    collaborations: arrayOrDefault(data.collaborations, DEFAULT_CONTENT.collaborations),
     ratings: arrayOrDefault(data.ratings, DEFAULT_CONTENT.ratings),
     achievements: arrayOrDefault(data.achievements, DEFAULT_CONTENT.achievements),
     certificates: arrayOrDefault(data.certificates, DEFAULT_CONTENT.certificates),
@@ -224,4 +231,25 @@ export function mergeContent(data = {}) {
       socials: mergeObject(DEFAULT_CONTENT.contact.socials, data.contact?.socials),
     },
   };
+}
+
+export function withLocalFallback(localData, remoteData = {}) {
+  const local = mergeContent(localData);
+  const remote = mergeContent(remoteData || {});
+  function pick(localValue, remoteValue) {
+    if (Array.isArray(localValue) || Array.isArray(remoteValue)) return Array.isArray(remoteValue) && remoteValue.length > 0 ? remoteValue : localValue;
+    if (localValue && remoteValue && typeof localValue === 'object' && typeof remoteValue === 'object') {
+      return [...new Set([...Object.keys(localValue), ...Object.keys(remoteValue)])].reduce((next, key) => ({ ...next, [key]: pick(localValue[key], remoteValue[key]) }), {});
+    }
+    if (typeof remoteValue === 'string') return remoteValue.trim() ? remoteValue : localValue;
+    return remoteValue ?? localValue;
+  }
+  const merged = pick(local, remote);
+  // Explicit empty new collections must stay empty when the owner removes their rows.
+  merged.collaborations = Array.isArray(remoteData?.collaborations) ? remoteData.collaborations : local.collaborations;
+  const services = remoteData?.profile?.webServices;
+  if (services && typeof services === 'object' && !Array.isArray(services)) merged.profile.webServices = { ...local.profile.webServices, ...services };
+  const metrics = remoteData?.profile?.socialHighlights?.tiktokVideoMetrics;
+  if (Array.isArray(metrics)) merged.profile.socialHighlights = { ...merged.profile.socialHighlights, tiktokVideoMetrics: metrics };
+  return mergeContent(merged);
 }

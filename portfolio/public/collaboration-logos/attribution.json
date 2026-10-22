@@ -1,0 +1,90 @@
+{
+  "purpose": "Owner-requested example collaboration logo set. These sample logos do not claim actual partnerships or endorsement.",
+  "capturedAt": "2026-10-22T02:30:20.676730+00:00",
+  "assets": [
+    {
+      "file": "nvidia.svg",
+      "brand": "NVIDIA",
+      "isExample": true,
+      "downloadUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/icons/nvidia.svg",
+      "canonicalBrandSource": "https://www.nvidia.com/en-us",
+      "collection": "Simple Icons",
+      "collectionCommit": "c71c69e3a27e4436936b831c72643e6513b9f49b",
+      "license": "CC0-1.0 (Simple Icons artwork collection; trademarks remain with their owners)",
+      "licenseUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/LICENSE.md",
+      "sourceSha256": "b0e4cfc12712c840d4d630c9a717200fbd09aeeadbd3faeac13bda2e2ed050b0",
+      "sha256": "6a3f3ea921fbd9b89ca1633ce584f9a1c79d528a71a16fcfd83efff3b984f662",
+      "transformation": "Preserved every original path; explicit white fill and original viewBox; retained accessible title."
+    },
+    {
+      "file": "samsung.svg",
+      "brand": "Samsung",
+      "isExample": true,
+      "downloadUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/icons/samsung.svg",
+      "canonicalBrandSource": "https://www.samsung.com/us/about-us/brand-identity/logo/",
+      "collection": "Simple Icons",
+      "collectionCommit": "c71c69e3a27e4436936b831c72643e6513b9f49b",
+      "license": "CC0-1.0 (Simple Icons artwork collection; trademarks remain with their owners)",
+      "licenseUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/LICENSE.md",
+      "sourceSha256": "4a241ca8ebab6e71883b172acb9fb454efa69f308e4f2c31ec80668aeb6627d9",
+      "sha256": "5798fced91931150dc200b18ef82a6d9cbf5dd20d6b42d418ef9051f68ba0677",
+      "transformation": "Preserved every original path; explicit white fill and original viewBox; retained accessible title."
+    },
+    {
+      "file": "xiaomi.svg",
+      "brand": "Xiaomi",
+      "isExample": true,
+      "downloadUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/icons/xiaomi.svg",
+      "canonicalBrandSource": "https://www.mi.com/global",
+      "collection": "Simple Icons",
+      "collectionCommit": "c71c69e3a27e4436936b831c72643e6513b9f49b",
+      "license": "CC0-1.0 (Simple Icons artwork collection; trademarks remain with their owners)",
+      "licenseUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/LICENSE.md",
+      "sourceSha256": "8866d12a70d85ab43acd3b9c80f1b37792d91160d8273efffdf817af5fd608cb",
+      "sha256": "48847925e8fb92eeb846ec61398fb899d1a8b0fccc95d28a983acff557188696",
+      "transformation": "Preserved every original path; explicit white fill and original viewBox; retained accessible title."
+    },
+    {
+      "file": "lenovo.svg",
+      "brand": "Lenovo",
+      "isExample": true,
+      "downloadUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/icons/lenovo.svg",
+      "canonicalBrandSource": "https://news.lenovo.com/press-kits/",
+      "collection": "Simple Icons",
+      "collectionCommit": "c71c69e3a27e4436936b831c72643e6513b9f49b",
+      "license": "CC0-1.0 (Simple Icons artwork collection; trademarks remain with their owners)",
+      "licenseUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/LICENSE.md",
+      "sourceSha256": "6d2d3756e0b0dd70a7f8d678794b43c89eb08871a45bcd79ede8ecc64a6141ca",
+      "sha256": "2a827714835989af219795f0f4d976d5176131659b69112dc7449b099b134004",
+      "transformation": "Preserved every original path; explicit white fill and original viewBox; retained accessible title."
+    },
+    {
+      "file": "rog.svg",
+      "brand": "Republic of Gamers",
+      "isExample": true,
+      "downloadUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/icons/republicofgamers.svg",
+      "canonicalBrandSource": "https://rog.asus.com",
+      "collection": "Simple Icons",
+      "collectionCommit": "c71c69e3a27e4436936b831c72643e6513b9f49b",
+      "license": "CC0-1.0 (Simple Icons artwork collection; trademarks remain with their owners)",
+      "licenseUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/c71c69e3a27e4436936b831c72643e6513b9f49b/LICENSE.md",
+      "sourceSha256": "f798f92d517fe34e8a458614cb6d946954861e925507581167b182a7289572f2",
+      "sha256": "997ccde6d299545147ba76f5cb2b33268be9e382e2b3841f01d3b0004f9fd291",
+      "transformation": "Preserved every original path; explicit white fill and original viewBox; retained accessible title."
+    },
+    {
+      "file": "byd.svg",
+      "brand": "BYD",
+      "isExample": true,
+      "downloadUrl": "https://www.byd.com/static_material/byd/overseas/public-icon/logo.svg",
+      "canonicalBrandSource": "https://www.byd.com/en",
+      "collection": "Official BYD website public header asset",
+      "collectionCommit": null,
+      "license": "Official website artwork; no separate open license asserted",
+      "licenseUrl": null,
+      "sourceSha256": "2b8ca934df800f3a3da8088817de44d971068ef7e55353495ff355fa401a5e9a",
+      "sha256": "8c15e9ce2267ecae84673b60e0111832f962e867e89923f6b775b9a070f69ca5",
+      "transformation": "Preserved visible path geometry; explicit white fill, viewBox and accessible title; inert self-contained SVG with no external dependencies. BYD header mask/defs removed; the visible path remains unchanged."
+    }
+  ]
+}

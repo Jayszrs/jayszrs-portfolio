@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { unstable_noStore as noStore } from "next/cache";
 import { createClient } from "@supabase/supabase-js";
-import { mergeContent } from "@/backend/lib/content-defaults";
+import { mergeContent, withLocalFallback } from "@/backend/lib/content-defaults";
 
 const filePath = path.join(process.cwd(), "backend", "data", "content.json");
 
@@ -53,38 +53,6 @@ function getSupabaseWriter() {
 async function readLocalContent() {
   const raw = await fs.readFile(filePath, "utf-8");
   return JSON.parse(raw);
-}
-
-function withLocalFallback(localData, remoteData) {
-  const local = mergeContent(localData);
-  const remote = mergeContent(remoteData || {});
-
-  function pick(localValue, remoteValue) {
-    if (Array.isArray(localValue) || Array.isArray(remoteValue)) {
-      return Array.isArray(remoteValue) && remoteValue.length > 0 ? remoteValue : localValue;
-    }
-
-    if (
-      localValue &&
-      remoteValue &&
-      typeof localValue === "object" &&
-      typeof remoteValue === "object"
-    ) {
-      const keys = new Set([...Object.keys(localValue), ...Object.keys(remoteValue)]);
-      return [...keys].reduce((next, key) => {
-        next[key] = pick(localValue[key], remoteValue[key]);
-        return next;
-      }, {});
-    }
-
-    if (typeof remoteValue === "string") {
-      return remoteValue.trim() ? remoteValue : localValue;
-    }
-
-    return remoteValue ?? localValue;
-  }
-
-  return mergeContent(pick(local, remote));
 }
 
 export async function readContent({ fresh = false } = {}) {

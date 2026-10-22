@@ -5,6 +5,7 @@ import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, MapPin } from "luc
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
+import OrganizationLogo from "@/frontend/components/OrganizationLogo";
 import { documentationImages } from "@/frontend/lib/documentation";
 import { withRecoveredDocumentation } from "@/frontend/lib/recovered-documentation";
 import { externalUrl } from "@/frontend/lib/urls";
@@ -44,7 +45,7 @@ export default function Education({ items = [], section = {} }) {
                 <div className="flex items-start gap-4">
                   {logoSrc && (
                     <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface p-2 sm:h-16 sm:w-16">
-                      <SafeImage
+                      <OrganizationLogo
                         src={logoSrc}
                         alt={`Logo ${item.institution}`}
                         loading="lazy"
@@ -99,9 +100,9 @@ export default function Education({ items = [], section = {} }) {
         {selected && (
           <div className="space-y-7">
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[80px_1fr] sm:p-6">
-              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
+              <button type="button" disabled={!educationLogoSource(selected)} onClick={() => setPreview({ src: educationLogoSource(selected), title: `Logo ${selected.institution}` })} aria-label={`Preview logo ${selected.institution}`} className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface">
                 {educationLogoSource(selected) ? (
-                  <SafeImage
+                  <OrganizationLogo
                     src={educationLogoSource(selected)}
                     alt={`Logo ${selected.institution}`}
                     loading="lazy"
@@ -113,7 +114,7 @@ export default function Education({ items = [], section = {} }) {
                 ) : (
                   <GraduationCap size={34} className="text-emerald-deep" />
                 )}
-              </div>
+              </button>
               <div>
                 <p className="font-display text-xl font-semibold text-ink">{selected.degree}</p>
                 <div className="mt-4 flex flex-wrap gap-3">

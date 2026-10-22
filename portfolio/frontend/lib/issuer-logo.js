@@ -19,3 +19,8 @@ export function issuerLogo(item = {}) {
   const key = String(item.issuer || "").trim().toLowerCase();
   return logos[key] ? `/organization-logos/${logos[key]}` : mediaSource(item.image || "");
 }
+
+export function issuerLogoAppearance(item = {}) {
+  const key = String(item.issuer || "").trim().toLowerCase();
+  return item.logo || logos[key] ? "auto" : "original";
+}

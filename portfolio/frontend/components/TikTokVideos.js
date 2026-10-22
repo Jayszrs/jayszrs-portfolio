@@ -1,9 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Play, RefreshCw } from "lucide-react";
+import { ArrowUpRight, Eye, Play, RefreshCw } from "lucide-react";
 import TikTokIcon from "./TikTokIcon";
 import curation from "@/frontend/lib/social-curation.json";
+
+function ViewCount({ video }) {
+  const available = Number.isSafeInteger(video.viewCount) && video.viewCount >= 0;
+  const label = video.viewCountSource === "tiktok-api" ? "Data TikTok" : video.viewCountSource === "owner-snapshot" ? "Catatan pemilik" : "Cuplikan publik";
+  const capturedAt = video.viewCountCapturedAt;
+  const validDate = capturedAt && Number.isFinite(Date.parse(capturedAt));
+  return <div className="min-h-14 px-1 pb-1" data-view-count={available ? video.viewCount : "unavailable"} data-count-source={video.viewCountSource || "unavailable"}>
+    <p className="flex items-center gap-2 text-sm font-semibold tabular-nums text-ink"><Eye size={15} aria-hidden="true" />{available ? <span><span data-no-translate>{video.viewCount.toLocaleString("id-ID")}</span>{' '}<span>tayangan</span></span> : <span>Tayangan belum tersedia</span>}</p>
+    {available && validDate ? <p className="mt-1 text-[11px] leading-5 text-muted">{label} · <time dateTime={capturedAt}>{new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Jakarta" }).format(new Date(capturedAt))}</time></p> : <a href={video.url} target="_blank" rel="noreferrer" className="mt-1 inline-flex min-h-7 items-center gap-1 text-xs text-muted underline underline-offset-4">Lihat jumlah di TikTok<ArrowUpRight size={12} aria-hidden="true" /></a>}
+  </div>;
+}
 
 function Player({ video, active, onActivate, onUnavailable }) {
   const shell = useRef(null);
@@ -94,7 +105,7 @@ export default function TikTokVideos({ profile }) {
     {videos.length ? <><div className="tiktok-grid">{videos.map((video, index) => <article key={video.id} className="tiktok-card" data-active={active === index}>
       <Player video={{ ...video, title: video.title === "Video pilihan" ? `Video pilihan ${index + 1}` : video.title }} active={active === index} onActivate={() => setActive(index)} onUnavailable={() => setActive((current) => current === index && index < videos.length - 1 ? index + 1 : current)} />
       <a href={video.url} target="_blank" rel="noreferrer" className="tiktok-card-link"><TikTokIcon size={16} /><span>Lihat postingan</span><ArrowUpRight size={16} /></a>
-      {Number.isFinite(video.viewCount) && <p className="px-1 text-xs text-muted">{video.viewCount.toLocaleString("id-ID")} tayangan</p>}
-    </article>)}</div><p className="tiktok-note">Satu video diputar tanpa suara agar halaman tetap ringan. Pilih kartu lain untuk menontonnya.</p></> : <div role="status" className="flex min-h-72 flex-col items-center justify-center gap-4 text-center"><TikTokIcon size={32} /><p className="max-w-md text-sm leading-7 text-muted">{status === "loading" ? "Mencari unggahan TikTok…" : "Video pilihan belum tersedia di sini. Semua unggahan tetap bisa ditonton di profil TikTok saya."}</p><a href={profile.url} target="_blank" rel="noreferrer" className="action-button">Tonton di TikTok<ArrowUpRight size={15} /></a>{status !== "loading" && <button type="button" onClick={() => setAttempt((value) => value + 1)} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ink"><RefreshCw size={15} />Coba lagi</button>}</div>}
+      <ViewCount video={video} />
+    </article>)}</div><p className="tiktok-note">Satu video diputar tanpa suara agar halaman tetap ringan. Angka tayangan mengikuti tanggal yang tertera; buka TikTok untuk jumlah terbaru.</p></> : <div role="status" className="flex min-h-72 flex-col items-center justify-center gap-4 text-center"><TikTokIcon size={32} /><p className="max-w-md text-sm leading-7 text-muted">{status === "loading" ? "Mencari unggahan TikTok…" : "Video pilihan belum tersedia di sini. Semua unggahan tetap bisa ditonton di profil TikTok saya."}</p><a href={profile.url} target="_blank" rel="noreferrer" className="action-button">Tonton di TikTok<ArrowUpRight size={15} /></a>{status !== "loading" && <button type="button" onClick={() => setAttempt((value) => value + 1)} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ink"><RefreshCw size={15} />Coba lagi</button>}</div>}
   </div>;
 }

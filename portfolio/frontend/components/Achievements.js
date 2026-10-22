@@ -5,9 +5,10 @@ import { Award, CalendarDays, ExternalLink, FileBadge, FileText, Fingerprint, Se
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
+import OrganizationLogo from "@/frontend/components/OrganizationLogo";
 import { externalUrl } from "@/frontend/lib/urls";
 import { certificatePreview, mediaSource } from "@/frontend/lib/media";
-import { issuerLogo } from "@/frontend/lib/issuer-logo";
+import { issuerLogo, issuerLogoAppearance } from "@/frontend/lib/issuer-logo";
 
 function certificatePdfs(item = {}) {
   const extras = [
@@ -172,10 +173,11 @@ function Card({ item, icon: Icon, onClick, onLogoPreview, compact = false }) {
       <article className="edge-card glass group relative min-h-[13rem] rounded-2xl p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-glass-lg">
         <div className="flex h-full flex-col">
           <div className="flex items-start gap-4">
-            <button type="button" onClick={issuerLogo(item) ? () => onLogoPreview(item) : onClick} aria-label={`Preview logo ${item.issuer || item.title}`} className="certificate-logo relative z-[1] flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white p-2">
+            <button type="button" onClick={issuerLogo(item) ? () => onLogoPreview(item) : onClick} aria-label={`Preview logo ${item.issuer || item.title}`} className="certificate-logo relative z-[1] flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface p-2">
               {issuerLogo(item) ? (
-                <SafeImage
+                <OrganizationLogo
                   src={issuerLogo(item)}
+                  appearance={issuerLogoAppearance(item)}
                   alt={`Logo ${item.issuer || item.title}`}
                   loading="lazy"
                   decoding="async"
@@ -213,22 +215,22 @@ function Card({ item, icon: Icon, onClick, onLogoPreview, compact = false }) {
           className="h-40 w-full overflow-hidden"
           imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
           fallback={(
-            <SafeImage
+            <OrganizationLogo
               src={item.logo}
               alt={`Logo ${item.issuer || item.title}`}
-              className="h-full w-full bg-white"
+              className="h-full w-full bg-surface"
               imgClassName="object-contain p-5"
               fallback={<LogoFallback label={item.issuer || item.title} icon={Icon} />}
             />
           )}
         />
       ) : item.logo ? (
-        <SafeImage
+        <OrganizationLogo
           src={item.logo}
           alt={`Logo ${item.issuer}`}
           loading="lazy"
           decoding="async"
-          className="flex h-40 w-full items-center justify-center bg-white"
+          className="flex h-40 w-full items-center justify-center bg-surface"
           imgClassName="h-full w-full object-contain p-7"
           fallback={<LogoFallback label={item.issuer || item.title} icon={Icon} />}
         />
@@ -317,11 +319,12 @@ export default function Achievements({ achievements = [], certificates = [], sec
                 type="button"
                 onClick={() => openLogoPreview(selected)}
                 aria-label={`Preview logo ${selected.issuer || selected.title}`}
-                className="certificate-logo flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white"
+                className="certificate-logo flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface"
               >
                 {issuerLogo(selected) ? (
-                  <SafeImage
+                  <OrganizationLogo
                     src={issuerLogo(selected)}
+                    appearance={issuerLogoAppearance(selected)}
                     alt={`Logo ${selected.issuer}`}
                     loading="lazy"
                     decoding="async"

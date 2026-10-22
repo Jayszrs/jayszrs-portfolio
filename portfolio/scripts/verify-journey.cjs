@@ -1,0 +1,37 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const { pathToFileURL } = require('node:url');
+const { journeyDate, buildJourney } = require('../frontend/lib/journey.cjs');
+
+(async () => {
+  assert.equal(journeyDate('Sedang ditempuh'), null);
+  assert.equal(journeyDate('2017 - 2020').year, 2017);
+  assert.equal(journeyDate('Maret 2026').order, 20260301);
+  assert.equal(journeyDate('2023-09-12').order, 20230912);
+  const local = JSON.parse(fs.readFileSync(path.join(__dirname, '../backend/data/content.json'), 'utf8'));
+  const rows = buildJourney(local.education, local.experience);
+  assert.equal(rows.length, local.education.length + local.experience.length);
+  const dated = rows.filter(row => row.date).map(row => row.date.order);
+  assert.deepEqual(dated, [...dated].sort((a,b) => a-b));
+  const university = rows.find(row => row.organization === 'Universitas Bani Saleh');
+  assert.equal(university.date, null, 'Never invent the current university start year');
+  const extra = { id: 'cms-test', institution: 'New education', degree: 'New course', startDate: '2016-01' };
+  assert.equal(buildJourney([...local.education, extra], local.experience)[0].id, 'education:cms-test');
+  extra.startDate = '2027-01';
+  const edited = buildJourney([...local.education, extra], local.experience);
+  assert.equal(edited.filter(row => row.date).at(-1).id, 'education:cms-test');
+  assert.ok(!buildJourney(local.education, local.experience).some(row => row.id === 'education:cms-test'));
+  const { mergeContent, withLocalFallback, COLLABORATION_EXAMPLES } = await import(pathToFileURL(path.join(__dirname, '../backend/lib/content-defaults.js')));
+  assert.equal(COLLABORATION_EXAMPLES.length, 6);
+  assert.ok(COLLABORATION_EXAMPLES.every(item => item.status === 'example'));
+  assert.equal(mergeContent({}).collaborations.length, 6);
+  assert.deepEqual(withLocalFallback(local, { collaborations: [] }).collaborations, []);
+  assert.deepEqual(withLocalFallback({ ...local, collaborations: [] }, {}).collaborations, []);
+  assert.equal(withLocalFallback(local, { education: [] }).education.length, local.education.length, 'Existing recovery fallback remains unchanged');
+  const metrics = [{ videoId: '123', viewCount: 0, capturedAt: '2026-10-22' }];
+  assert.deepEqual(withLocalFallback(local, { profile: { socialHighlights: { tiktokVideoMetrics: metrics } } }).profile.socialHighlights.tiktokVideoMetrics, metrics);
+  assert.deepEqual(withLocalFallback(local, { profile: { socialHighlights: { tiktokVideoMetrics: [] } } }).profile.socialHighlights.tiktokVideoMetrics, []);
+  assert.equal(withLocalFallback({ ...local, profile: { ...local.profile, webServices: { url: 'https://example.com', enabled: true } } }, { profile: { webServices: { url: '', enabled: false } } }).profile.webServices.url, '');
+  console.log(`PASS: ${rows.length} CMS journey entries, chronological add/edit/remove, unknown dates, examples and explicit empty collections.`);
+})().catch(error => { console.error(error); process.exitCode = 1; });

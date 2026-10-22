@@ -1,14 +1,13 @@
 import localFont from "next/font/local";
 import DeferredLanguageSwitcher from "@/frontend/components/DeferredLanguageSwitcher";
 import { Analytics } from "@vercel/analytics/next";
+import { SITE_URL as siteUrl, HOME_TITLE, HOME_DESCRIPTION, pageMetadata } from '@/frontend/lib/site-metadata';
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.jayszrs.my.id";
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || "W6pK9aCg_aupJMDlP49RhpLpzgAU0oRG5PWw6V13KKE";
 const siteName = "Jay Szrs Portfolio";
 const personName = "Jaelani Surya Saputra";
-const siteDescription =
-  "Portfolio resmi Jaelani Surya Saputra, dikenal sebagai Jay Szrs atau jayszrs, untuk IT infrastructure, web development, AI engineer, software engineering, dan dokumentasi proyek.";
+const siteDescription = HOME_DESCRIPTION;
 
 const jakarta = localFont({
   src: "./fonts/PlusJakartaSans-Variable.woff2",
@@ -21,7 +20,7 @@ const jakarta = localFont({
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Jaelani Surya Saputra | Jay Szrs Portfolio",
+    default: HOME_TITLE,
     template: "%s | Jay Szrs",
   },
   description: siteDescription,
@@ -39,6 +38,10 @@ export const metadata = {
     "portfolio Jay Szrs",
     "IT Infrastructure",
     "Web Developer",
+    "pengembang web",
+    "jasa pembuatan website",
+    "IT Jakarta",
+    "Web Developer Bekasi",
     "AI Engineer",
     "Software Engineer",
   ],
@@ -84,6 +87,7 @@ export const metadata = {
   verification: {
     google: googleVerification,
   },
+  ...pageMetadata('/', { title: HOME_TITLE, description: siteDescription }),
 };
 
 export default function RootLayout({ children }) {

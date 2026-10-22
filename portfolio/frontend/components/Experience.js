@@ -8,6 +8,7 @@ import {
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
+import OrganizationLogo from "@/frontend/components/OrganizationLogo";
 import { documentationImages } from "@/frontend/lib/documentation";
 import { withRecoveredDocumentation } from "@/frontend/lib/recovered-documentation";
 import { externalUrl } from "@/frontend/lib/urls";
@@ -76,7 +77,7 @@ export default function Experience({ items = [], section = {} }) {
             >
               <span className="absolute -left-[2.8rem] top-7 hidden h-3 w-3 rounded-full bg-emerald ring-4 ring-emerald-soft sm:block" />
               <div className="grid overflow-hidden rounded-2xl sm:grid-cols-[220px_1fr]">
-                <SafeImage
+                <OrganizationLogo
                   src={item.image}
                   alt={item.org || item.title}
                   loading="lazy"
@@ -132,8 +133,8 @@ export default function Experience({ items = [], section = {} }) {
         {selected && (
           <div className="space-y-7">
             <div className="grid gap-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-[88px_1fr] sm:p-6">
-              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-emerald-soft">
-                <SafeImage
+              <button type="button" onClick={() => setPreview({ src: selected.image, title: `Logo ${selected.org || selected.title}` })} aria-label={`Preview logo ${selected.org || selected.title}`} className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface">
+                <OrganizationLogo
                   src={selected.image}
                   alt={selected.org || selected.title}
                   loading="lazy"
@@ -142,7 +143,7 @@ export default function Experience({ items = [], section = {} }) {
                   imgClassName="h-full w-full object-contain p-2"
                   fallback={<LogoFallback label={selected.org || selected.title} icon={Building2} />}
                 />
-              </div>
+              </button>
               <div>
                 <div className="flex items-center gap-2 text-sm font-semibold text-ink">
                   <BriefcaseBusiness size={16} className="text-emerald" /> {selected.title}

@@ -89,9 +89,6 @@ export default function Contact({ contact, profile, section = {} }) {
         </div>
       </div>
 
-      <footer className="mt-12 text-center sm:mt-16">
-        <p className="font-mono text-xs text-muted">&copy; {new Date().getFullYear()} jayszrs</p>
-      </footer>
     </section>
   );
 }
