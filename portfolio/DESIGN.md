@@ -2,6 +2,10 @@
 
 ## Current direction, supersedes the earlier brief below
 
+### Reveal journey entries on scroll, 22 October 2026
+
+The owner wants each About journey entry to appear as it enters the viewport, rather than showing every card immediately. Once JavaScript initializes, unreached rows fade/translate into view one at a time at the lower 88% viewport boundary and remain revealed afterward. Use a per-entry IntersectionObserver that stops observing revealed entries, with no idle frame loop. Keep all content in server HTML and visible without JavaScript, in print and with reduced motion; keyboard focus also reveals an entry. Preserve chronological CMS data and the existing bounded scroll parallax.
+
 ### Preserve logo colors, 22 October 2026
 
 The owner's correction supersedes automatic all-white organization logos: keep the original colors of institutions, certificate issuers, PPJI and Akademi Crypto. Only known dark wordmarks (Etiqa, Fazma Stone and FKG UI) receive a selective dark-ink-to-white display filter. Etiqa's yellow smile and other colored areas retain their original RGB values and alpha. Do not classify every transparent upload as white. Original previews, source files and the separately configured collaboration examples stay unchanged.

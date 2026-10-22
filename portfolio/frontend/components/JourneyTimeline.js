@@ -14,7 +14,20 @@ export default function JourneyTimeline({ education = [], experience = [] }) {
     const node = root.current;
     if (!node) return;
     const cards = [...node.querySelectorAll('[data-journey-card]')];
+    const entries = [...node.querySelectorAll('[data-journey-id]')];
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const reveal = new IntersectionObserver(changes => {
+      changes.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.dataset.revealed = 'true';
+        reveal.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+    entries.forEach(entry => {
+      if (entry.getBoundingClientRect().top < innerHeight * .88) entry.dataset.revealed = 'true';
+      else reveal.observe(entry);
+    });
+    node.dataset.revealReady = 'true';
     let visible = false, frame = 0;
     const update = () => {
       frame = 0;
@@ -37,7 +50,7 @@ export default function JourneyTimeline({ education = [], experience = [] }) {
     window.addEventListener('resize', schedule);
     document.addEventListener('visibilitychange', schedule);
     motion.addEventListener('change', schedule);
-    return () => { observer.disconnect(); cancelAnimationFrame(frame); window.removeEventListener('scroll', schedule); window.removeEventListener('resize', schedule); document.removeEventListener('visibilitychange', schedule); motion.removeEventListener('change', schedule); };
+    return () => { observer.disconnect(); reveal.disconnect(); delete node.dataset.revealReady; cancelAnimationFrame(frame); window.removeEventListener('scroll', schedule); window.removeEventListener('resize', schedule); document.removeEventListener('visibilitychange', schedule); motion.removeEventListener('change', schedule); };
   }, [rows]);
   if (!rows.length) return null;
   return <section ref={root} id="perjalanan" className="journey section-pad py-14 sm:py-20" aria-labelledby="journey-heading">
