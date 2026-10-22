@@ -42,7 +42,17 @@ const pixels=bytes=>sharp(bytes).removeAlpha().raw().toBuffer({resolveWithObject
         if(route)await page.goto(`${base}${route}`,{waitUntil:'networkidle'});
         const section=page.locator('.collaborations'),track=section.locator('.collaboration-track');
         assert.equal(await section.count(),1,'Exactly one collaboration section per page');
-        await track.scrollIntoViewIfNeeded();await page.waitForTimeout(300);await track.scrollIntoViewIfNeeded();
+        // Home mounts lower sections on approach; wait for their layout to settle
+        // before sending pointer coordinates captured from the logo strip.
+        let previousTop=NaN,stable=0;
+        for(let attempt=0;attempt<12&&stable<2;attempt++){
+          await track.evaluate(n=>n.scrollIntoView({block:'center',behavior:'instant'}));
+          await page.waitForTimeout(250);
+          const bounds=await track.boundingBox();
+          stable=bounds.y>=160&&bounds.y+bounds.height<=920&&Math.abs(bounds.y-previousTop)<1?stable+1:0;
+          previousTop=bounds.y;
+        }
+        assert.equal(stable,2,'Logo strip is settled within the viewport before real mouse interaction');
         const primary=section.locator('.collaboration-group:not([aria-hidden])');
         assert.deepEqual(await primary.locator('.collaboration-caption').allTextContents(),expected,'Home and Projects use the current CMS list');
         assert.equal(await primary.locator('img').count(),expected.length);
