@@ -9,6 +9,7 @@ fs.mkdirSync(review, { recursive: true });
 async function verify() {
   const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe" });
   const errors = [];
+  const tracking = [];
   try {
     for (const [name, width, height, reducedMotion] of [["desktop", 1440, 1000, "no-preference"], ["reduced-motion", 1440, 1000, "reduce"], ["mobile-width", 390, 844, "no-preference"]]) {
       const page = await browser.newPage({ viewport: { width, height }, reducedMotion, hasTouch: width < 500 });
@@ -25,6 +26,14 @@ async function verify() {
       const x = before.x + before.width * .5;
       const y = before.y + before.height * .4;
       assert.ok(y > 0 && y < height, "Test pointer must start inside the viewport");
+      await card.evaluate((node, point) => {
+        const matrix = new DOMMatrix(getComputedStyle(node).transform);
+        const scale = Math.hypot(matrix.a, matrix.b);
+        const marker = document.createElement("i");
+        marker.dataset.grabMarker = "true";
+        marker.style.cssText = `position:absolute;left:${point.x / scale - node.clientLeft}px;top:${point.y / scale - node.clientTop}px;width:1px;height:1px;pointer-events:none`;
+        node.append(marker);
+      }, { x: before.width * .5, y: before.height * .4 });
       await page.evaluate(() => {
         window.pointerTrace = [];
         for (const type of ["pointerdown", "pointerup", "pointercancel", "lostpointercapture", "dragstart"]) window.addEventListener(type, event => window.pointerTrace.push({ type, target: event.target.tagName, className: event.target.getAttribute("class"), primary: event.isPrimary, button: event.button, x: event.clientX, y: event.clientY }), true);
@@ -38,7 +47,41 @@ async function verify() {
       const dragged = await card.boundingBox();
       assert.ok(Math.hypot(dragged.x - before.x, dragged.y - before.y) > 5, `${name}: pointer movement must move the card`);
       assert.ok(dragged.x >= 0 && dragged.x + dragged.width <= width, `${name}: the full rotated card must fit horizontally`);
+      const marker = await card.locator("[data-grab-marker]").boundingBox();
+      const followError = Math.hypot(marker.x + marker.width / 2 - (x + (width < 500 ? 35 : 85)), marker.y + marker.height / 2 - (y - 55));
+      if (followError >= 12) {
+        console.log(JSON.stringify({ name, before, dragged, marker, start: { x, y }, diagnostic: await page.evaluate(() => {
+          const card = document.querySelector(".lanyard-badge"), rope = document.querySelector(".lanyard-rope path:not(defs path)"), stage = document.querySelector(".lanyard-stage");
+          return { transform: getComputedStyle(card).transform, origin: getComputedStyle(card).transformOrigin, camera: document.querySelector(".lanyard-rope > g")?.getAttribute("transform"), root: stage.getBoundingClientRect().toJSON(), hook: rope?.getPointAtLength(rope.getTotalLength()), events: window.pointerTrace };
+        }) }));
+        await page.screenshot({ path: path.join(review, `${name}-tracking-failure.png`) });
+      }
+      assert.ok(followError < 12, `${name}: the exact grabbed point must follow the pointer, error ${followError.toFixed(1)}px`);
       await page.screenshot({ path: path.join(review, `${name}-drag.png`) });
+      const leftX = x - (width < 500 ? 35 : 75), liftedY = y - 110;
+      await page.mouse.move(leftX, liftedY, { steps: 20 });
+      await page.waitForTimeout(180);
+      const liftedMarker = await card.locator("[data-grab-marker]").boundingBox();
+      const liftedError = Math.hypot(liftedMarker.x + liftedMarker.width / 2 - leftX, liftedMarker.y + liftedMarker.height / 2 - liftedY);
+      assert.ok(liftedError < 16, `${name}: reverse/lift must track the same point, error ${liftedError.toFixed(1)}px`);
+      const attachmentError = await card.evaluate(node => {
+        const ropes = [...document.querySelectorAll(".lanyard-rope [data-lanyard-strand]")];
+        if (ropes.length !== 2) throw new Error("Both fabric straps must be rendered");
+        const matrix = new DOMMatrix(getComputedStyle(node).transform);
+        const origin = getComputedStyle(node).transformOrigin.split(" ").map(parseFloat);
+        const parent = node.offsetParent.getBoundingClientRect();
+        return Math.max(...ropes.map(rope => {
+          const end = rope.getPointAtLength(rope.getTotalLength());
+          const screen = new DOMPoint(end.x, end.y).matrixTransform(rope.getScreenCTM());
+          const start = rope.getPointAtLength(0);
+          const anchor = new DOMPoint(start.x, start.y).matrixTransform(rope.getScreenCTM());
+          if (Math.abs(anchor.y - parent.y) > 1) throw new Error("Fabric top ends must stay pinned to the stage ceiling");
+          return Math.hypot(screen.x - (parent.x + node.offsetLeft + origin[0] + matrix.e), screen.y - (parent.y + node.offsetTop + origin[1] + matrix.f));
+        }));
+      });
+      assert.ok(attachmentError < 2, `${name}: rope endpoint must stay attached to the rotating clasp`);
+      tracking.push({ name, forwardError: Number(followError.toFixed(2)), reverseError: Number(liftedError.toFixed(2)), attachmentError: Number(attachmentError.toFixed(2)) });
+      await page.screenshot({ path: path.join(review, `${name}-rope-bend.png`) });
       await page.mouse.up();
       await page.waitForTimeout(120);
       assert.notEqual(await page.locator(".lanyard-stage").getAttribute("data-physics"), "dragging");
@@ -55,6 +98,8 @@ async function verify() {
           await page.waitForTimeout(16);
         }
         assert.equal(await page.locator(".lanyard-stage").getAttribute("data-physics"), "dragging", "Vertical touch gestures on the badge must drag it, not scroll the page");
+        const touchMoved = await card.boundingBox();
+        assert.ok(Math.hypot(touchMoved.x - box.x, touchMoved.y - box.y) > 15, "Touch lifting must visibly translate the card");
         await page.screenshot({ path: path.join(review, "mobile-touch-drag.png") });
         await session.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
         await session.detach();
@@ -95,7 +140,7 @@ async function verify() {
     await page.waitForFunction(() => { const image = document.querySelector('img[src*="graduation-cap-3d"]'); return image?.complete && image.naturalWidth > 0; });
     await page.screenshot({ path: path.join(review, "education-3d.png") });
     assert.deepEqual(errors, [], "No browser page errors");
-    console.log(JSON.stringify({ status: "PASS", realMouseLanyard: 3, reducedMotionStillDraggable: true, mobileTouchDrag: true, rotatedCardsWithinViewport: true, projectMouseDrag: true, mouseWheel: true, noDetailOnDrag: true, ordinaryClickStillOpensDetail: true, local3dIllustrationLoaded: true, errors }));
+    console.log(JSON.stringify({ status: "PASS", realMouseLanyard: 3, reducedMotionStillDraggable: true, mobileTouchDrag: true, grabbedPointTracking: tracking, rotatedCardsWithinViewport: true, projectMouseDrag: true, mouseWheel: true, noDetailOnDrag: true, ordinaryClickStillOpensDetail: true, local3dIllustrationLoaded: true, errors }));
   } finally { await browser.close(); }
 }
 verify().catch(error => { console.error(error); process.exitCode = 1; });

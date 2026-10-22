@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import usePageActivity from "@/frontend/lib/usePageActivity";
 
 export default function TypewriterText({ words = [], fallback = "Web Developer" }) {
+  const root = useRef(null);
+  const active = usePageActivity(root);
   const list = useMemo(() => (words?.length ? words.filter(Boolean) : [fallback]), [fallback, words]);
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState(list[0] || fallback);
@@ -23,6 +26,7 @@ export default function TypewriterText({ words = [], fallback = "Web Developer" 
   }, [fallback, list]);
 
   useEffect(() => {
+    if (!active) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion || list.length <= 1 || language !== "id") {
       setText(list[wordIndex % list.length] || fallback);
@@ -54,10 +58,10 @@ export default function TypewriterText({ words = [], fallback = "Web Developer" 
     }, isComplete ? 1300 : deleting ? 34 : 58);
 
     return () => window.clearTimeout(timer);
-  }, [deleting, fallback, language, list, text, wordIndex]);
+  }, [active, deleting, fallback, language, list, text, wordIndex]);
 
   return (
-    <span className="inline-flex min-h-[1.3em] items-baseline">
+    <span ref={root} className="inline-flex min-h-[1.3em] items-baseline">
       <span data-no-translate={language === "id" ? "" : undefined}>{language === "id" ? text || "\u00a0" : list[wordIndex % list.length] || fallback}</span>
       <span className="ml-1 inline-block h-[1em] w-0.5 translate-y-0.5 animate-pulse rounded-full bg-current" aria-hidden="true" />
     </span>

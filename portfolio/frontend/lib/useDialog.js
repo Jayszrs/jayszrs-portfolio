@@ -15,7 +15,12 @@ export default function useDialog(open, onClose) {
     if (!open || !node) return;
     const prior = document.activeElement;
     const entry = { node };
-    if (!stack.length) { previousOverflow = document.body.style.overflow; document.body.style.overflow = "hidden"; }
+    if (!stack.length) {
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      document.documentElement.dataset.dialogOpen = "true";
+      document.dispatchEvent(new Event("portfolio:dialogchange"));
+    }
     stack.push(entry);
     const focusable = () => [...node.querySelectorAll(selector)].filter((element) => element.getClientRects().length && !element.closest('[inert], [aria-hidden="true"]'));
     const focusFirst = () => (node.querySelector("[data-dialog-close]") || focusable()[0] || node).focus({ preventScroll: true });
@@ -41,7 +46,11 @@ export default function useDialog(open, onClose) {
       document.removeEventListener("focusin", handleFocus);
       const wasTop = stack[stack.length - 1] === entry;
       stack.splice(stack.indexOf(entry), 1);
-      if (!stack.length) document.body.style.overflow = previousOverflow;
+      if (!stack.length) {
+        document.body.style.overflow = previousOverflow;
+        delete document.documentElement.dataset.dialogOpen;
+        document.dispatchEvent(new Event("portfolio:dialogchange"));
+      }
       if (wasTop && prior?.isConnected && typeof prior.focus === "function") prior.focus({ preventScroll: true });
     };
   }, [open]);

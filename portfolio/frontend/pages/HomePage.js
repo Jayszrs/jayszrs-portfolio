@@ -117,7 +117,7 @@ export default async function Home() {
       <JsonLd content={content} />
       <Navbar brandName={content.profile.brandName} fullName={content.profile.fullName} cvUrl={content.profile.cvUrl} />
       <Hero profile={content.profile} />
-      <SocialHub socials={content.profile.socials} highlights={content.profile.socialHighlights} />
+      <SocialHub socials={content.profile.socials} highlights={content.profile.socialHighlights} identity={{ name: content.profile.fullName, role: content.profile.role, location: content.profile.location, photo: profileHeroImages(content.profile)[0] }} />
       <About about={content.about} section={content.sections.about} />
       <LazyHomeSections content={content} />
     </main>

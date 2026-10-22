@@ -1,8 +1,26 @@
-# Soft graphite glass
+# Black and silver
 
 ## Current direction, supersedes the earlier brief below
 
+### Orange textile reference and monochrome brand, 22 October 2026
+
+The owner supplied `Screenshot 2026-10-21 165712.png`: two orange fabric straps, cream geometric chevrons/diamonds, an orange plastic release buckle, and a silver snap hook. Rebuild that material as resolution-independent SVG, keeping the existing weighted rope and direct mouse/touch interaction. Two tapered ribbon paths follow the same physical rope and converge at its unchanged metal-attachment origin. The repeat motif is printed fabric from the supplied reference, not page decoration. Preserve the lightweight DOM/SVG approach and all previous motion/scroll pauses; do not add WebGL or a bitmap texture request.
+
+The owner also changed the brand: black background, white Kali silhouette, white jayszrs wordmark. The canonical SVG and its three generated PWA/browser PNG exports must agree. The badge's small signature uses white printing on a black label so it remains readable against white plastic. This supersedes the earlier instruction to retain the red mark; Wealth Club's dark palette and button material remain current.
+
+Experience surface, ENERGY 2 / RHYTHM 2 / MOTION 2. The fabric/card remains the single authored motion, the orange is the owner-supplied physical strap material, and UI controls remain neutral black/silver. The public profile and media sources stay unchanged. The owner subsequently declined automatic LinkedIn repost synchronization: retain only the static profile and actual profile/activity links, remove the API adapter, polling, credential setup and disconnected-feed messages.
+
+### Wealth Club reference requested on 21 October 2026
+
+The owner now explicitly requires one dark mode, with the palette and button material from https://wealthclub.id/. REA evidence `ev_88c744351a64e449ef39b749b39fbc54cec307e81cc87940bfc3f9d66ff649ec` records the reference at 1440 × 1000: near-black ground, charcoal panels, silver outlines, pale neutral type, and compact black buttons with an upper silver highlight. Its public CSS confirms #050506 ground, #111114 raised surfaces, #ededef text, and #a1a1a8 secondary text. Apply this material to existing portfolio content, preserving the red Kali mark, local brand symbols, genuine photos, and the white printed lanyard. Replace the orange action style with 10px-radius black/silver controls. No alternate light/system mode or theme control remains; initial HTML and PWA chrome are dark regardless of saved preferences.
+
+Scroll performance takes precedence over decorative transparency. Navigation shrinks with a threshold-triggered transform; never animate its width on every scroll frame. Navigation and overlays use opaque charcoal rather than live backdrop blur. Modal scrolling is native, with a stable scrollbar. Pause lanyard simulation, photo cycling, and typing while dialogs are open; stop typing offscreen. Preserve the latest flexible rope, grabbed-point tracking, mouse/touch drag, and three-second photo interval.
+
+LinkedIn is the first social tab and first hero social link. Profile identity comes from the existing CMS. Following the owner's later cancellation, this is a static profile with actual external activity links. It makes no feed API requests and has no automation, credential setup, connection prompt or disconnected-feed message.
+
 ### Brew reference requested on 21 October 2026
+
+Latest lanyard correction: remove angle clamps and physical card containment; they made dragging stiff on narrow screens. Use a longer ten-segment rope and a rigid local grab point that stays beneath the pointer as the card rotates. A pointer-anchored view transform fits the scene without limiting its physical angles; after release, framing eases back. The upper fabric endpoint remains visually pinned to the stage ceiling, and the lower endpoint meets the metal clasp at the card's -48px attachment origin. This supersedes the earlier whole-card physical-boundary approach below. Verify exact grabbed-point tracking and the actual rope/clasp connection in the browser, not just that some movement occurs.
 
 Interaction correction after live review: the lanyard stage must not clip a rotating badge. Fit its size and maximum angle to available space, retain the pinned rope, and contain the full card geometry. Explicit mouse/touch grabs remain available with reduced motion; that preference disables incidental motion, not manual interaction. Keep native pointer capture through release/cancel and allow two-axis touch movement on the card. Outside the card, page scrolling remains native. Project galleries support horizontal mouse dragging and coarse wheel input; suppress detail activation only following an actual drag. Skill logos keep their perspective and light extrusion with greatly reduced shadows. The education heading uses a local soft 3D mortarboard illustration in ivory, charcoal, and a restrained orange tassel; functional line icons and institutional brand marks remain recognizable.
 

@@ -12,6 +12,11 @@ const LANGUAGES = [
 
 const DICTIONARY = {
   en: {
+    "Catatan & perspektif.": "Notes & perspectives.",
+    "Buka profil LinkedIn": "Open LinkedIn profile",
+    "Lihat aktivitas LinkedIn": "View LinkedIn activity",
+    "Memuat profil LinkedIn…": "Loading LinkedIn profile…",
+    "Profil dan aktivitas profesional saya di LinkedIn.": "My professional profile and activity on LinkedIn.",
     "Video ini belum bisa disematkan. Buka postingan aslinya di TikTok.": "This video cannot be embedded right now. Open the original post on TikTok.",
     "Di balik": "Behind",
     "keseharian.": "the everyday.",
@@ -123,6 +128,11 @@ const DICTIONARY = {
     "Offline": "Offline",
   },
   ja: {
+    "Catatan & perspektif.": "記録と視点。",
+    "Buka profil LinkedIn": "LinkedInプロフィールを開く",
+    "Lihat aktivitas LinkedIn": "LinkedInのアクティビティを見る",
+    "Memuat profil LinkedIn…": "LinkedInプロフィールを読み込み中…",
+    "Profil dan aktivitas profesional saya di LinkedIn.": "LinkedInでの私の仕事のプロフィールと活動。",
     "Video ini belum bisa disematkan. Buka postingan aslinya di TikTok.": "この動画は現在埋め込み再生できません。TikTokで元の投稿をご覧ください。",
     "Di balik": "日常の",
     "keseharian.": "ひとこま。",
@@ -233,6 +243,11 @@ const DICTIONARY = {
     "Offline": "オフライン",
   },
   fr: {
+    "Catatan & perspektif.": "Notes et perspectives.",
+    "Buka profil LinkedIn": "Ouvrir le profil LinkedIn",
+    "Lihat aktivitas LinkedIn": "Voir l’activité LinkedIn",
+    "Memuat profil LinkedIn…": "Chargement du profil LinkedIn…",
+    "Profil dan aktivitas profesional saya di LinkedIn.": "Mon profil professionnel et mon activité sur LinkedIn.",
     "Video ini belum bisa disematkan. Buka postingan aslinya di TikTok.": "Cette vidéo ne peut pas être intégrée pour le moment. Ouvrez la publication originale sur TikTok.",
     "Di balik": "Au fil",
     "keseharian.": "du quotidien.",
@@ -783,7 +798,7 @@ export default function LanguageSwitcher() {
     <div
       ref={switcherRef}
       data-no-translate
-      className="floating-preference fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[4.25rem] z-[91] sm:bottom-[5.75rem] sm:right-6"
+      className="floating-preference fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[91] sm:right-6"
     >
       <div className="relative">
         {menuOpen && (

@@ -25,7 +25,7 @@ export default function InstagramGallery({ profile, music }) {
       </a>
       <h3>Di balik keseharian.</h3>
       <p className="instagram-intro">Momen, pertemuan, dan cerita yang saya bagikan di Instagram.</p>
-      <a href={profile.url} target="_blank" rel="noreferrer" className="brew-button mt-6">Jelajahi Instagram<ArrowUpRight size={16} /></a>
+      <a href={profile.url} target="_blank" rel="noreferrer" className="action-button mt-6">Jelajahi Instagram<ArrowUpRight size={16} /></a>
       {music?.title && <section className="profile-record" aria-label="Musik pilihan profil Instagram">
         <div className="record-disc" aria-hidden="true"><Music2 size={19} /></div>
         <div className="min-w-0"><p className="text-xs text-muted">Musik di profil saya</p><p className="mt-1 font-semibold text-ink" data-no-translate>{music.title}</p><p className="mt-1 text-xs leading-5 text-muted" data-no-translate>{music.artist}</p></div>

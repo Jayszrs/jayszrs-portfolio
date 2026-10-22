@@ -1,6 +1,5 @@
 import localFont from "next/font/local";
 import DeferredLanguageSwitcher from "@/frontend/components/DeferredLanguageSwitcher";
-import ThemeSwitcher from "@/frontend/components/ThemeSwitcher";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -88,27 +87,14 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const themeScript = `
-    (() => {
-      try {
-        const preference = localStorage.getItem("portfolio-theme") || "system";
-        const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
-        const resolved = preference === "system" ? (systemDark ? "dark" : "light") : preference;
-        document.documentElement.dataset.theme = resolved;
-        document.documentElement.dataset.themePreference = preference;
-      } catch (_) {}
-    })();
-  `;
-
   return (
-    <html lang="id" className={jakarta.variable} suppressHydrationWarning>
+    <html lang="id" data-theme="dark" className={jakarta.variable} suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content={googleVerification} />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <meta name="theme-color" content="#050506" />
       </head>
       <body className="bg-paper text-ink font-body antialiased">
         <DeferredLanguageSwitcher />
-        <ThemeSwitcher />
         {children}
         <Analytics />
       </body>

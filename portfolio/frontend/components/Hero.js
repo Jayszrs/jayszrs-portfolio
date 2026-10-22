@@ -15,7 +15,7 @@ export default function Hero({ profile }) {
   const [resumePreview, setResumePreview] = useState(false);
   const resumeUrl = mediaSource(profile.cvUrl);
   const socials = profile.socials || {};
-  const links = [["github", "GitHub", Github], ["linkedin", "LinkedIn", Linkedin], ["instagram", "Instagram", Instagram], ["tiktok", "TikTok", TikTokIcon]];
+  const links = [["linkedin", "LinkedIn", Linkedin], ["github", "GitHub", Github], ["instagram", "Instagram", Instagram], ["tiktok", "TikTok", TikTokIcon]];
 
   return (
     <section id="beranda" className="section-pad relative pb-16 pt-28 sm:pb-20 sm:pt-32">
@@ -31,7 +31,7 @@ export default function Hero({ profile }) {
             {links.filter(([key]) => socials[key]).map(([key, label, Icon]) => <a key={key} href={externalUrl(socials[key])} target="_blank" rel="noreferrer" aria-label={`Buka ${label}`} className="glass-pill flex h-11 w-11 items-center justify-center rounded-full text-muted transition hover:border-emerald/40 hover:text-ink"><Icon size={18} /></a>)}
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="/proyek" prefetch={false} className="brew-button min-h-12 px-6">Lihat Proyek <ArrowUpRight size={16} /></Link>
+            <Link href="/proyek" prefetch={false} className="action-button min-h-12 px-6">Lihat Proyek <ArrowUpRight size={16} /></Link>
             <Link href="/kontak" prefetch={false} className="glass-pill inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-semibold text-ink transition hover:border-emerald/40">Kontak Saya</Link>
             <Link href="/#rating" prefetch={false} onClick={(event) => { event.preventDefault(); window.history.pushState(null, "", "/#rating"); scrollToTarget("rating"); }} className="glass-pill inline-flex min-h-12 items-center gap-2 rounded-full px-5 text-sm font-semibold text-ink transition hover:border-emerald/40">Rating <Star size={16} /></Link>
           </div>

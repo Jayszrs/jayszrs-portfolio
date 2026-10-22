@@ -30,16 +30,30 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
 
   useEffect(() => {
     let frame = 0;
+    let idle = 0;
+    const root = document.documentElement;
+    const endScroll = () => {
+      delete root.dataset.scrollActive;
+      document.dispatchEvent(new Event("portfolio:scrollactivity"));
+    };
     const update = () => {
       frame = 0;
-      const progress = Math.min(window.scrollY / 240, 1);
-      header.current?.style.setProperty("--nav-progress", progress.toFixed(3));
-      document.documentElement.dataset.scrolled = progress > 0.5 ? "true" : "false";
+      const wasScrolled = root.dataset.scrolled === "true";
+      const scrolled = window.scrollY > (wasScrolled ? 100 : 130);
+      if (scrolled !== wasScrolled || root.dataset.scrolled === undefined) root.dataset.scrolled = String(scrolled);
     };
-    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const onScroll = () => {
+      if (root.dataset.scrollActive !== "true") {
+        root.dataset.scrollActive = "true";
+        document.dispatchEvent(new Event("portfolio:scrollactivity"));
+      }
+      clearTimeout(idle);
+      idle = setTimeout(endScroll, 350);
+      if (!frame) frame = requestAnimationFrame(update);
+    };
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(frame); delete document.documentElement.dataset.scrolled; };
+    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(frame); clearTimeout(idle); delete root.dataset.scrolled; endScroll(); };
   }, []);
 
   useEffect(() => {
@@ -150,7 +164,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
     <header ref={header} data-menu-open={open} className="site-header fixed left-0 right-0 top-3 z-50 flex justify-center px-4 sm:top-4 sm:px-4">
       <nav aria-label="Navigasi utama" className="site-nav glass glass-float flex w-full max-w-7xl items-center justify-between gap-3 rounded-[1.75rem] px-3 py-2.5 lg:rounded-full lg:px-4 lg:py-2 xl:px-5">
         <Link href="/" prefetch={false} onClick={handleBrandClick} className="flex min-w-0 shrink-0 items-center gap-2.5 lg:min-w-[9.75rem]">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#ef3340] shadow-sm sm:h-9 sm:w-9">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-[#08080a] sm:h-9 sm:w-9">
             <img
               src="/icon.svg"
               alt=""
@@ -158,7 +172,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
               className="h-full w-full object-contain"
             />
           </span>
-          <span className="block max-w-[7rem] truncate font-display text-sm font-semibold text-[#ef3340] sm:max-w-[10rem] lg:max-w-[8.5rem]">{brandName}</span>
+          <span className="block max-w-[7rem] truncate font-display text-sm font-semibold text-white sm:max-w-[10rem] lg:max-w-[8.5rem]">{brandName}</span>
         </Link>
 
         <ul className="hidden min-w-0 flex-1 items-center justify-center gap-1 xl:flex xl:gap-1.5">
@@ -196,7 +210,7 @@ export default function Navbar({ brandName = "Jay Szrs", cvUrl = "" }) {
           <Link
             href="/kontak"
             prefetch={false}
-            className="brew-button min-h-9 px-3 py-2 xl:px-4"
+            className="action-button min-h-9 px-3 py-2 xl:px-4"
           >
             Kontak <ArrowUpRight size={14} />
           </Link>
