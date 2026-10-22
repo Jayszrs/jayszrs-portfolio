@@ -7,17 +7,21 @@ import { resolveLogoAppearance } from '@/frontend/lib/logo-appearance.cjs';
 
 /** For logos only; source files and original-color previews stay untouched. */
 export default function OrganizationLogo({ src, appearance = 'auto', className = '', imgClassName = '', style, ...props }) {
-  const resolved = resolveLogoAppearance(mediaSource(src), appearance);
+  const source = mediaSource(src);
+  const resolved = resolveLogoAppearance(source, appearance);
   const id = `organization-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
   const keyed = resolved === 'remove-white' || resolved === 'remove-black';
   const selective = resolved === 'lighten-dark';
+  // FKG's lettering is gray as well as black. Its yellow/green ink has G > (R+B)/2;
+  // keep those colored areas while lifting neutral lettering fully to white.
+  const inkAlpha = source === '/organization-logos/fkg-ui.png' ? '3 -6 3 0 1' : '-.7087 -2.384 -.2407 0 1';
   const filter = resolved === 'white' ? 'brightness(0) invert(1)' : keyed || selective ? `url(#${id})` : undefined;
 
   return <span className={`relative block ${className}`} data-organization-logo="" data-logo-appearance={resolved}>
     {(keyed || selective) && <svg aria-hidden="true" focusable="false" width="0" height="0" className="absolute"><defs>
       <filter id={id} x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
         {selective ? <>
-          <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -.7087 -2.384 -.2407 0 1" />
+          <feColorMatrix in="SourceGraphic" type="matrix" values={`0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  ${inkAlpha}`} />
           <feComponentTransfer result="lightInk"><feFuncA type="table" tableValues="0 0 1" /></feComponentTransfer>
           <feComposite in="lightInk" in2="SourceGraphic" operator="atop" />
         </> : <>

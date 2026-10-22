@@ -2,6 +2,10 @@
 
 ## Current direction, supersedes the earlier brief below
 
+### FKG UI lettering and Home collaborations, 22 October 2026
+
+FKG UI needs both gray and black lettering lifted fully to white, including the small university text. Use a source-specific neutral-ink filter that preserves its yellow emblem and green divider; the original image and other logo filters stay intact. Home now includes the same CMS-backed collaboration strip as Projects, before the web-services card. Both locations retain sample labels, horizontal mouse/keyboard access, hidden scrollbars and offscreen/reduced-motion pauses.
+
 ### Instagram autoplay and transparent logos, 22 October 2026
 
 The owner explicitly requested automatic music when the Instagram social tab opens. Load the official Spotify IFrame API only after that tab mounts, attempt playback when ready, and show playing only after Spotify confirms playback. Keep the native player and a one-click play control if browser autoplay policy blocks sound. Pause/destroy the player on tab departure and pause in a hidden browser tab. No audio SDK on the initial LinkedIn tab.

@@ -10,6 +10,7 @@ import { mediaSource } from "@/frontend/lib/media";
 import { SITE_URL as siteUrl } from "@/frontend/lib/site-metadata";
 import WebServicesCard from "@/frontend/components/WebServicesCard";
 import SiteFooter from "@/frontend/components/SiteFooter";
+import Collaborations from "@/frontend/components/Collaborations";
 
 export const revalidate = 3600;
 
@@ -133,6 +134,7 @@ export default async function Home() {
       <SocialHub socials={content.profile.socials} highlights={content.profile.socialHighlights} identity={{ name: content.profile.fullName, role: content.profile.role, location: content.profile.location, photo: profileHeroImages(content.profile)[0] }} />
       <About about={content.about} section={content.sections.about} />
       <LazyHomeSections content={content} />
+      <Collaborations items={content.collaborations} />
       <WebServicesCard promotion={content.profile.webServices} />
       <SiteFooter profile={content.profile} />
     </main>
