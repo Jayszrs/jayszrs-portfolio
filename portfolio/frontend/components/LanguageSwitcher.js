@@ -12,6 +12,13 @@ const LANGUAGES = [
 
 const DICTIONARY = {
   en: {
+    "Jeda musik": "Pause music",
+    "Putar musik": "Play music",
+    "Sedang diputar": "Playing",
+    "Menyiapkan musik…": "Preparing music…",
+    "Musik belum bisa dimuat.": "Music could not be loaded.",
+    "Tekan putar jika musik belum terdengar.": "Press play if you cannot hear the music.",
+    "Buka di Spotify": "Open in Spotify",
     "Website untuk langkah bisnis berikutnya.": "A website for your next business move.",
     "Saya membantu membangun landing page, company profile, dan aplikasi web melalui": "I help build landing pages, company websites, and web applications through",
     ". Ceritakan kebutuhan Anda, lalu kita tentukan solusi yang sesuai.": ". Tell me what you need, and we’ll find the right solution.",
@@ -153,6 +160,13 @@ const DICTIONARY = {
     "Offline": "Offline",
   },
   ja: {
+    "Jeda musik": "音楽を一時停止",
+    "Putar musik": "音楽を再生",
+    "Sedang diputar": "再生中",
+    "Menyiapkan musik…": "音楽を準備中…",
+    "Musik belum bisa dimuat.": "音楽を読み込めませんでした。",
+    "Tekan putar jika musik belum terdengar.": "音楽が聞こえない場合は再生を押してください。",
+    "Buka di Spotify": "Spotifyで開く",
     "Website untuk langkah bisnis berikutnya.": "ビジネスの次の一歩を支えるウェブサイト。",
     "Saya membantu membangun landing page, company profile, dan aplikasi web melalui": "ランディングページ、企業サイト、ウェブアプリを制作しています。窓口は",
     ". Ceritakan kebutuhan Anda, lalu kita tentukan solusi yang sesuai.": "です。ご要望をお聞かせください。最適な方法を一緒に考えます。",
@@ -293,6 +307,13 @@ const DICTIONARY = {
     "Offline": "オフライン",
   },
   fr: {
+    "Jeda musik": "Mettre en pause",
+    "Putar musik": "Lire la musique",
+    "Sedang diputar": "Lecture en cours",
+    "Menyiapkan musik…": "Préparation de la musique…",
+    "Musik belum bisa dimuat.": "La musique n’a pas pu être chargée.",
+    "Tekan putar jika musik belum terdengar.": "Appuyez sur lecture si vous n’entendez pas la musique.",
+    "Buka di Spotify": "Ouvrir sur Spotify",
     "Website untuk langkah bisnis berikutnya.": "Un site pour la prochaine étape de votre entreprise.",
     "Saya membantu membangun landing page, company profile, dan aplikasi web melalui": "Je crée des pages de présentation, des sites d’entreprise et des applications web avec",
     ". Ceritakan kebutuhan Anda, lalu kita tentukan solusi yang sesuai.": ". Présentez-moi vos besoins, et trouvons la solution adaptée.",

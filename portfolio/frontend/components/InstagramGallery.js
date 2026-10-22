@@ -1,21 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, Expand, Instagram, Music2, Play } from "lucide-react";
+import { ArrowUpRight, Expand, Instagram } from "lucide-react";
+import InstagramMusic from './InstagramMusic';
 import SafeImage from "./SafeImage";
 import MediaPreview from "./MediaPreview";
 import gallery from "@/frontend/lib/instagram-gallery.json";
 
 export default function InstagramGallery({ profile, music }) {
   const [preview, setPreview] = useState(-1);
-  const [listen, setListen] = useState(false);
   const ownsGallery = profile.handle.toLowerCase() === gallery.handle;
   const photos = ownsGallery ? [gallery.photos[1], gallery.photos[0], ...gallery.photos.slice(2)] : [];
-  let trackId = "";
-  try {
-    const url = new URL(music?.spotifyUrl);
-    if (url.protocol === "https:" && url.hostname === "open.spotify.com") trackId = /^\/track\/([a-zA-Z0-9]{22})\/?$/.exec(url.pathname)?.[1] || "";
-  } catch { /* Only a valid Spotify track may be embedded. */ }
 
   return <div className="instagram-editorial">
     <div className="instagram-story">
@@ -26,12 +21,7 @@ export default function InstagramGallery({ profile, music }) {
       <h3>Di balik keseharian.</h3>
       <p className="instagram-intro">Momen, pertemuan, dan cerita yang saya bagikan di Instagram.</p>
       <a href={profile.url} target="_blank" rel="noreferrer" className="action-button mt-6">Jelajahi Instagram<ArrowUpRight size={16} /></a>
-      {music?.title && <section className="profile-record" aria-label="Musik pilihan profil Instagram">
-        <div className="record-disc" aria-hidden="true"><Music2 size={19} /></div>
-        <div className="min-w-0"><p className="text-xs text-muted">Musik di profil saya</p><p className="mt-1 font-semibold text-ink" data-no-translate>{music.title}</p><p className="mt-1 text-xs leading-5 text-muted" data-no-translate>{music.artist}</p></div>
-        {trackId && <button type="button" className="record-play" aria-label={listen ? "Tutup pemutar musik" : "Dengarkan musik"} aria-expanded={listen} aria-controls="instagram-music" onClick={() => setListen(!listen)}><Play size={17} fill="currentColor" /></button>}
-        {trackId && listen && <iframe id="instagram-music" src={`https://open.spotify.com/embed/track/${trackId}?theme=0`} title={`${music.title} — ${music.artist}`} width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" className="col-span-3 mt-3 w-full rounded-xl border-0" />}
-      </section>}
+      <InstagramMusic music={music} />
       <p className="instagram-footnote">Story dan Notes bisa dilihat langsung di Instagram.</p>
     </div>
     <div className="min-w-0">
