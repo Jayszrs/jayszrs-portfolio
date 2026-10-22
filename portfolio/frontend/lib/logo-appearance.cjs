@@ -3,6 +3,7 @@ const DARK_WORDMARKS = new Set([
   '/organization-logos/etiqa.png',
   '/organization-logos/fazmastone.png',
   '/organization-logos/fkg-ui.png',
+  '/organization-logos/hmti-symbol-transparent.png',
 ]);
 
 function normalizeLogoAppearance(value) {

@@ -2,6 +2,12 @@
 
 ## Current direction, supersedes the earlier brief below
 
+### Instagram autoplay and transparent logos, 22 October 2026
+
+The owner explicitly requested automatic music when the Instagram social tab opens. Load the official Spotify IFrame API only after that tab mounts, attempt playback when ready, and show playing only after Spotify confirms playback. Keep the native player and a one-click play control if browser autoplay policy blocks sound. Pause/destroy the player on tab departure and pause in a hidden browser tab. No audio SDK on the initial LinkedIn tab.
+
+Use separate transparent display assets for the HMTI symbol, SMP 135 shield and Bani Saleh logo. Preserve the blue/yellow school and university colors; only HMTI's dark ink becomes light through the existing selective display filter, retaining its red center. Original source files remain available unchanged. Image-generation provenance is recorded in `public/organization-logos/transparent-cutouts.json`.
+
 ### Reveal journey entries on scroll, 22 October 2026
 
 The owner wants each About journey entry to appear as it enters the viewport, rather than showing every card immediately. Once JavaScript initializes, unreached rows fade/translate into view one at a time at the lower 88% viewport boundary and remain revealed afterward. Use a per-entry IntersectionObserver that stops observing revealed entries, with no idle frame loop. Keep all content in server HTML and visible without JavaScript, in print and with reduced motion; keyboard focus also reveals an entry. Preserve chronological CMS data and the existing bounded scroll parallax.

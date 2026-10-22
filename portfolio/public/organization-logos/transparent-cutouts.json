@@ -1,0 +1,23 @@
+{
+  "created": "2026-10-22",
+  "tool": "image_gen.imagegen",
+  "transparent_background": true,
+  "note": "Generated transparent display extractions, visually checked against the originals. These are display derivatives, not byte-identical brand master files. Original source files are retained.",
+  "assets": [
+    {
+      "file": "hmti-symbol-transparent.png",
+      "source": "/recovered-media/c461ccf341419cf1014c.webp",
+      "prompt": "The attached file is the exact HMTI symbol, consisting of several black polygon fragments and one small red polygon on white. Produce ONLY a precise transparent-background cutout of this exact existing logo. Remove the exterior white square and the white spaces between the fragments to full alpha transparency. Preserve every black polygon and the red central polygon, exact contours, relative positions, sizes, and colors. No redesign, no new typography, no added detail, no shadows, no glow, no 3D. Crisp antialiased edges, center the full mark with modest transparent padding. This is extraction of existing brand artwork, not a new logo."
+    },
+    {
+      "file": "smpn-135-transparent.png",
+      "source": "/organization-logos/smpn-135.jpg",
+      "prompt": "The attached file is the exact SMP NEGERI 135 JAKARTA TIMUR school shield. Produce ONLY an exact transparent-background cutout of the shield. Remove the exterior white background and black vertical bars at the left and right of the source, outside the shield. Preserve the entire black/yellow shield outline and all blue, yellow, black, and white colors INSIDE it. Preserve the words SMP NEGERI 135, JAKARTA, TIMUR, number 135, the book, monument, foliage, and their original geometry and lettering exactly. White lettering INSIDE the emblem must stay white, not transparent. No redesign, recoloring, shadows, or glow. Keep the complete shield, not cropped, centered with modest transparent padding and clean antialiased edges."
+    },
+    {
+      "file": "bani-saleh-transparent.png",
+      "source": "/recovered-media/9fe657fcf03e6018ae33.webp",
+      "prompt": "The attached file is the exact UNIVERSITAS BANI SALEH blue logo on white. Produce ONLY a precise transparent-background cutout of the full exact existing mark and its text. Remove the white background and white negative spaces to alpha transparency. Preserve the exact blue color, all contours and geometry, the arched outline and geometric lettering, and the words UNIVERSITAS BANI SALEH exactly as in the original. No redrawing, redesigning, spelling changes, shadows, 3D, or glow. Keep the whole mark and every line of text uncut, centered with modest transparent padding. Crisp antialiased edges."
+    }
+  ]
+}
