@@ -2,6 +2,10 @@
 
 ## Current direction, supersedes the earlier brief below
 
+### Preserve logo colors, 22 October 2026
+
+The owner's correction supersedes automatic all-white organization logos: keep the original colors of institutions, certificate issuers, PPJI and Akademi Crypto. Only known dark wordmarks (Etiqa, Fazma Stone and FKG UI) receive a selective dark-ink-to-white display filter. Etiqa's yellow smile and other colored areas retain their original RGB values and alpha. Do not classify every transparent upload as white. Original previews, source files and the separately configured collaboration examples stay unchanged.
+
 ### Web services and large signature footer, 22 October 2026
 
 The owner is offering web development through Wasla Informatika. Add one server-rendered service card near the bottom of Home and Projects, with an honest summary of landing pages, company profiles and web applications, and a direct link configured in the profile CMS. Use the existing charcoal/silver material, a single clear action and restrained typography. Until an official URL is supplied, route enquiries to the existing Contact page rather than inventing a domain.
