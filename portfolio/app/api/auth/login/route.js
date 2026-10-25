@@ -11,11 +11,13 @@ export async function POST(request) {
   }
 
   const response = NextResponse.json({ ok: true });
+  // Di Vercel/production, selalu secure=true. sameSite="lax" aman untuk same-site POST.
+  const isProduction = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
   response.cookies.set("jayszrs_admin", createAdminSession(), {
     httpOnly: true,
     sameSite: "lax",
     path: "/",
-    secure: process.env.NODE_ENV === "production",
+    secure: isProduction,
     maxAge: SESSION_SECONDS,
   });
   return response;
