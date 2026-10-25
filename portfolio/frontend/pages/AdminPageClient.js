@@ -13,6 +13,7 @@ import { mediaSource } from "@/frontend/lib/media";
 import RecoveredMediaPanel from "@/frontend/components/RecoveredMediaPanel";
 import SafeImage from "@/frontend/components/SafeImage";
 import socialCuration from "@/frontend/lib/social-curation.json";
+import { uploadFile } from "@/frontend/lib/upload";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
@@ -21,16 +22,6 @@ const TABS = [
 
 function uid(prefix) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
-}
-
-async function uploadFile(file) {
-  const fd = new FormData();
-  fd.append("file", file);
-  const res = await fetch("/api/upload", { method: "POST", body: fd });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || "Upload gagal");
-  if (!data.url) throw new Error("Upload berhasil, tapi URL file tidak diterima");
-  return data.url;
 }
 
 function fileRows(values = []) {
@@ -52,6 +43,8 @@ function rowsFromKey(key = "") {
 function FileField({ label, value, onChange, accept = "application/pdf", buttonLabel = "Upload file" }) {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
+  const [failed, setFailed] = useState(false);
+  const [progress, setProgress] = useState(0);
   const acceptsImages = accept.includes("image");
   const acceptsPdf = accept.includes("pdf");
 
@@ -60,10 +53,12 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
     if (!file) return;
     setBusy(true);
     setStatus("");
+    setFailed(false); setProgress(0);
     try {
-      onChange(await uploadFile(file));
+      onChange(await uploadFile(file, setProgress));
       setStatus("File masuk ke form. Klik Simpan supaya tampil di halaman utama.");
     } catch (error) {
+      setFailed(true);
       setStatus(error.message);
     } finally {
       setBusy(false);
@@ -104,7 +99,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
         >
           {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
           <span className="hidden sm:inline">{busy ? "Uploading" : buttonLabel}</span>
-          <input type="file" accept={accept} className="hidden" onChange={handleFile} />
+          <input type="file" accept={accept} disabled={busy} className="hidden" onChange={handleFile} />
         </label>
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -118,8 +113,8 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
             </a>
           </>
         )}
-        <p className={`line-clamp-2 text-xs leading-5 ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
-          {status || `Upload ${acceptsImages && acceptsPdf ? "gambar/PDF" : acceptsImages ? "gambar" : "PDF"} maksimal 10 MB, lalu klik Simpan.`}
+        <p role={failed ? "alert" : "status"} className={`text-xs leading-5 ${failed ? "text-red-500" : "text-muted"}`}>
+          {busy ? `Mengunggah file ${progress}%…` : status || `Upload ${acceptsImages && acceptsPdf ? "gambar/PDF" : acceptsImages ? "gambar" : "PDF"} maksimal 10 MB, lalu klik Simpan.`}
         </p>
       </div>
     </div>
@@ -209,6 +204,8 @@ function MultiFileField({
 function ImageField({ label, value, onChange, showRemove = true, compact = false }) {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
+  const [failed, setFailed] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [previewBroken, setPreviewBroken] = useState(false);
 
   useEffect(() => {
@@ -220,11 +217,13 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
     if (!file) return;
     setBusy(true);
     setStatus("");
+    setFailed(false); setProgress(0);
     try {
-      const url = await uploadFile(file);
+      const url = await uploadFile(file, setProgress);
       onChange(url);
       setStatus("Upload masuk ke form. Klik Simpan supaya tampil di halaman utama.");
     } catch (err) {
+      setFailed(true);
       setStatus(err.message);
     } finally {
       setBusy(false);
@@ -284,11 +283,11 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
               aria-label="Upload gambar"
             >
               {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
-              <input type="file" accept="image/*" className="hidden" onChange={handleFile} />
+              <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" disabled={busy} className="hidden" onChange={handleFile} />
             </label>
           </div>
-          <p className={`line-clamp-2 text-xs leading-5 ${status.includes("gagal") || status.includes("tidak") ? "text-red-500" : "text-muted"}`}>
-            {status || (value ? "Klik Simpan setelah mengubah gambar." : "JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
+          <p role={failed ? "alert" : "status"} className={`text-xs leading-5 ${failed ? "text-red-500" : "text-muted"}`}>
+            {busy ? `Mengunggah gambar ${progress}%…` : status || (value ? "Klik Simpan setelah mengubah gambar." : "JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
           </p>
           {previewBroken && value && <p className="text-xs text-red-500">File sumber belum bisa diakses. URL gambar tetap tersimpan.</p>}
         </div>
