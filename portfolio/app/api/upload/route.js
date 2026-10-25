@@ -4,7 +4,7 @@ import { put } from '@vercel/blob';
 import { handleUpload } from '@vercel/blob/client';
 import { randomUUID } from 'node:crypto';
 import { verifyAdminSession } from '@/backend/lib/admin-session.cjs';
-import { MAX_UPLOAD_BYTES, UPLOAD_TYPES, validateUpload, validUploadPath } from '@/frontend/lib/upload-policy.cjs';
+import { UPLOAD_TYPES, uploadType, validateUpload, validUploadPath } from '@/frontend/lib/upload-policy.cjs';
 import { uploadProvider, signedSupabaseUpload, storeSupabaseUpload } from '@/backend/lib/cms-upload-storage';
 
 export const runtime = 'nodejs';
@@ -33,7 +33,7 @@ export async function POST(request) {
       const result = await handleUpload({
         request, body,
         onBeforeGenerateToken: async () => ({
-          allowedContentTypes: [metadata.type], maximumSizeInBytes: MAX_UPLOAD_BYTES,
+          allowedContentTypes: [metadata.type],
           validUntil: Date.now() + 5 * 60 * 1000, addRandomSuffix: true, allowOverwrite: false,
         }),
       });
@@ -50,7 +50,7 @@ export async function POST(request) {
     if (!file || typeof file === 'string') return failure('Tidak ada file yang dipilih.', 400);
     const invalid = validateUpload(file);
     if (invalid) return failure(invalid, 400);
-    const pathname = `cms/${new Date().toISOString().slice(0,10)}/${randomUUID()}.${UPLOAD_TYPES[file.type]}`;
+    const pathname = `cms/${new Date().toISOString().slice(0,10)}/${randomUUID()}.${UPLOAD_TYPES[uploadType(file)]}`;
     if (provider === 'supabase') return NextResponse.json({ url: await storeSupabaseUpload(pathname, file) });
     const blob = await put(pathname, file, { access: 'public', addRandomSuffix: true, allowOverwrite: false });
     return NextResponse.json({ url: blob.url });

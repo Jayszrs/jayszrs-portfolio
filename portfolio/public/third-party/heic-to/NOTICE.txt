@@ -1,0 +1,12 @@
+heic-to 1.6.6 by Hopper Gee
+License: GNU Lesser General Public License v3.0; see LICENSE.txt.
+Source and build instructions: https://github.com/hoppergee/heic-to
+Package source: https://registry.npmjs.org/heic-to/-/heic-to-1.6.6.tgz
+Upstream dependency: libheif 1.23.6 (https://github.com/strukturag/libheif).
+
+The unmodified heic-to/csp module is bundled as a separately loaded admin-only
+JavaScript chunk. To replace it, install a compatible heic-to package in this
+project and rebuild with npm run build. It loads only when an administrator
+selects a HEIC/HEIF image; existing JPEG, PNG, WebP, GIF and PDF uploads do not
+load the decoder. The website source is available at:
+https://github.com/Jayszrs/jayszrs-portfolio

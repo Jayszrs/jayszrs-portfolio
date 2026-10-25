@@ -14,6 +14,7 @@ import RecoveredMediaPanel from "@/frontend/components/RecoveredMediaPanel";
 import SafeImage from "@/frontend/components/SafeImage";
 import socialCuration from "@/frontend/lib/social-curation.json";
 import { uploadFile } from "@/frontend/lib/upload";
+import { IMAGE_UPLOAD_ACCEPT } from "@/frontend/lib/upload-policy.cjs";
 
 const TABS = [
   "Profil", "Teks Section", "Tentang", "Pendidikan", "Software", "Programming", "Sistem Operasi",
@@ -55,7 +56,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
     setStatus("");
     setFailed(false); setProgress(0);
     try {
-      onChange(await uploadFile(file, setProgress));
+      onChange(await uploadFile(file, (value, message) => { setProgress(value); setStatus(message || ""); }));
       setStatus("File masuk ke form. Klik Simpan supaya tampil di halaman utama.");
     } catch (error) {
       setFailed(true);
@@ -99,7 +100,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
         >
           {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
           <span className="hidden sm:inline">{busy ? "Uploading" : buttonLabel}</span>
-          <input type="file" accept={accept} disabled={busy} className="hidden" onChange={handleFile} />
+          <input type="file" accept={acceptsImages ? `${accept},.heic,.heif` : accept} disabled={busy} className="hidden" onChange={handleFile} />
         </label>
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -114,7 +115,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
           </>
         )}
         <p role={failed ? "alert" : "status"} className={`text-xs leading-5 ${failed ? "text-red-500" : "text-muted"}`}>
-          {busy ? `Mengunggah file ${progress}%…` : status || `Upload ${acceptsImages && acceptsPdf ? "gambar/PDF" : acceptsImages ? "gambar" : "PDF"} maksimal 10 MB, lalu klik Simpan.`}
+          {busy ? status || `Mengunggah file ${progress}%…` : status || `Upload ${acceptsImages && acceptsPdf ? "gambar/PDF" : acceptsImages ? "gambar" : "PDF"}, lalu klik Simpan. Ukuran mengikuti batas storage.`}
         </p>
       </div>
     </div>
@@ -219,7 +220,7 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
     setStatus("");
     setFailed(false); setProgress(0);
     try {
-      const url = await uploadFile(file, setProgress);
+      const url = await uploadFile(file, (value, message) => { setProgress(value); setStatus(message || ""); });
       onChange(url);
       setStatus("Upload masuk ke form. Klik Simpan supaya tampil di halaman utama.");
     } catch (err) {
@@ -283,11 +284,11 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
               aria-label="Upload gambar"
             >
               {busy ? <Loader2 size={14} className="animate-spin" /> : <UploadCloud size={14} />}
-              <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" disabled={busy} className="hidden" onChange={handleFile} />
+              <input type="file" accept={IMAGE_UPLOAD_ACCEPT} disabled={busy} className="hidden" onChange={handleFile} />
             </label>
           </div>
           <p role={failed ? "alert" : "status"} className={`text-xs leading-5 ${failed ? "text-red-500" : "text-muted"}`}>
-            {busy ? `Mengunggah gambar ${progress}%…` : status || (value ? "Klik Simpan setelah mengubah gambar." : "JPG, PNG, WebP, atau GIF. Maksimal 10 MB.")}
+            {busy ? status || `Mengunggah gambar ${progress}%…` : status || "JPG, PNG, WebP, GIF, HEIC/HEIF. HEIC otomatis menjadi JPG. Klik Simpan setelah upload."}
           </p>
           {previewBroken && value && <p className="text-xs text-red-500">File sumber belum bisa diakses. URL gambar tetap tersimpan.</p>}
         </div>

@@ -1,6 +1,6 @@
 const path=require('node:path');
 const {randomUUID}=require('node:crypto');
-const {MAX_UPLOAD_BYTES,UPLOAD_TYPES}=require('../frontend/lib/upload-policy.cjs');
+const {UPLOAD_TYPES}=require('../frontend/lib/upload-policy.cjs');
 require('@next/env').loadEnvConfig(path.resolve(__dirname,'..'));
 (async()=>{
   const {createClient}=require('@supabase/supabase-js');
@@ -11,8 +11,13 @@ require('@next/env').loadEnvConfig(path.resolve(__dirname,'..'));
   const name='portfolio-media';
   const {data:buckets,error:listError}=await storage.listBuckets();if(listError)throw listError;
   if(!buckets.some(bucket=>bucket.id===name)){
-    const {error}=await storage.createBucket(name,{public:true,fileSizeLimit:MAX_UPLOAD_BYTES,allowedMimeTypes:Object.keys(UPLOAD_TYPES)});if(error)throw error;
-    console.log('Created portfolio-media bucket with 10 MB/MIME restrictions');
+    const {error}=await storage.createBucket(name,{public:true,allowedMimeTypes:Object.keys(UPLOAD_TYPES)});if(error)throw error;
+    console.log('Created portfolio-media bucket; size follows the project storage limit');
+  }else{
+    const bucket=buckets.find(bucket=>bucket.id===name);
+    if(!bucket.public)throw Error('Existing CMS bucket is private; review before changing access');
+    const {error}=await storage.updateBucket(name,{public:true,fileSizeLimit:null,allowedMimeTypes:Object.keys(UPLOAD_TYPES)});if(error)throw error;
+    console.log('Removed the CMS bucket size cap; project/provider limits still apply');
   }
   const bucket=storage.from(name),file=`cms/${new Date().toISOString().slice(0,10)}/${randomUUID()}.png`;
   let created=false;

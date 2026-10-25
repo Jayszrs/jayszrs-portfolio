@@ -17,6 +17,7 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.6.1",
     "@vercel/speed-insights": "^2.0.0",
+    "heic-to": "1.6.6",
     "lucide-react": "^0.468.0",
     "next": "^16.4.2",
     "react": "^19.3.1",

@@ -1,8 +1,23 @@
-import { UPLOAD_TYPES, validateUpload } from './upload-policy.cjs';
+import { UPLOAD_TYPES, uploadType, validateUpload } from './upload-policy.cjs';
+
+async function browserImage(file, onProgress) {
+  if (!/^image\/(heic|heif)(-sequence)?$/.test(uploadType(file))) return file;
+  onProgress?.(0, 'Menyiapkan foto HEIC/HEIF…');
+  try {
+    const { heicTo } = await import('heic-to/csp');
+    const jpeg = await heicTo({ blob: file, type: 'image/jpeg', quality: .94 });
+    if (!jpeg?.size) throw new Error('Empty image');
+    return new File([jpeg], file.name.replace(/\.(heic|heif)$/i, '') + '.jpg', { type: 'image/jpeg' });
+  } catch {
+    throw new Error('Foto HEIC/HEIF tidak bisa dibaca. Pastikan file tidak rusak, atau ekspor sebagai JPG lalu unggah ulang.');
+  }
+}
 
 export async function uploadFile(file, onProgress) {
   const invalid = validateUpload(file);
   if (invalid) throw new Error(invalid);
+  file = await browserImage(file, onProgress);
+  onProgress?.(0);
   const pathname = `cms/${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.${UPLOAD_TYPES[file.type]}`;
   let response;
   try {
@@ -20,10 +35,15 @@ export async function uploadFile(file, onProgress) {
       request.setRequestHeader('Content-Type', file.type);
       request.setRequestHeader('cache-control', '3600');
       request.upload.onprogress = event => { if (event.lengthComputable) onProgress?.(Math.round(event.loaded / event.total * 100)); };
-      request.onload = () => request.status >= 200 && request.status < 300 ? resolve() : reject(new Error('Storage menolak file. Periksa ukuran/format file dan kuota storage, lalu coba lagi.'));
+      request.onload = () => {
+        if (request.status >= 200 && request.status < 300) { resolve(); return; }
+        let result; try { result = JSON.parse(request.responseText); } catch { result = {}; }
+        const exceedsStorage = request.status === 413 || /size|large|maximum|limit/i.test(result.message || result.error || '');
+        reject(new Error(exceedsStorage ? 'File melampaui batas storage Supabase saat ini. CMS tidak menetapkan batas MB; periksa pengaturan atau paket storage.' : 'Storage menolak file. Periksa format file dan kuota storage, lalu coba lagi.'));
+      };
       request.onerror = () => reject(new Error('Koneksi ke storage terputus. Coba unggah ulang.'));
       request.ontimeout = () => reject(new Error('Upload terlalu lama. Periksa koneksi lalu coba lagi.'));
-      request.timeout = 120000;
+      request.timeout = 0;
       request.send(file);
     });
     return data.url;
