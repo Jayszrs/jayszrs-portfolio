@@ -127,9 +127,15 @@ for (const transport of [http,https]) for (const key of ['request','get']) { con
       if (url.origin !== base) { await route.abort(); return; }
       if (url.pathname === "/api/upload") {
         assert.equal(route.request().method(), "POST");
-        assert.match(route.request().headers()["content-type"], /multipart\/form-data/);
+        assert.match(route.request().headers()["content-type"], /application\/json/);
+        assert.equal(route.request().postDataJSON().type, "blob.generate-client-token");
         uploadMockCalls += 1;
-        await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ url: "/organization-logos/etiqa.png" }) });
+        await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ provider: "supabase", uploadUrl: `${base}/cms-proof-upload`, url: "/organization-logos/etiqa.png" }) });
+        return;
+      }
+      if (url.pathname === "/cms-proof-upload") {
+        assert.equal(route.request().method(), "PUT");
+        await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
         return;
       }
       await route.continue();
