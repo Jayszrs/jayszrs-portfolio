@@ -5,7 +5,7 @@
 Set these in Vercel Dashboard > Project > Settings > Environment Variables.
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://www.jayszrs.my.id
+NEXT_PUBLIC_SITE_URL=https://jayszrs.my.id
 ADMIN_PASSWORD=isi_password_admin
 NEXT_PUBLIC_SUPABASE_URL=isi_supabase_url
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=isi_supabase_publishable_key
@@ -18,19 +18,20 @@ Redeploy after changing environment variables.
 
 ## Domain
 
-Use `www.jayszrs.my.id` as the production domain.
+Use `jayszrs.my.id` as the production domain. Live redirects verified on 26 October 2026 resolve to this hostname.
 
-- `www.jayszrs.my.id` connects to Production.
-- `jayszrs.my.id` redirects permanently to `www.jayszrs.my.id`.
+- `jayszrs.my.id` connects to Production.
+- `www.jayszrs.my.id` redirects to `jayszrs.my.id`.
+- Site metadata also normalizes the legacy `www` environment value to the active apex domain so canonicals, structured data, and sitemap agree.
 
 ## Google Search Console
 
-1. Add URL prefix property: `https://www.jayszrs.my.id`.
+1. Use the existing verified domain property `jayszrs.my.id`, or add URL prefix property: `https://jayszrs.my.id`.
 2. Choose HTML tag verification.
 3. Copy only the `content` value into `GOOGLE_SITE_VERIFICATION`.
 4. Redeploy in Vercel.
 5. Click Verify in Google Search Console.
-6. Submit sitemap: `https://www.jayszrs.my.id/sitemap.xml`.
+6. Submit sitemap: `https://jayszrs.my.id/sitemap.xml`.
 
 ## Local Check
 

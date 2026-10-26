@@ -1,4 +1,5 @@
 import { SITE_URL as siteUrl } from '@/frontend/lib/site-metadata';
+import { services } from '@/frontend/lib/services';
 
 const routes = [
   "",
@@ -9,6 +10,7 @@ const routes = [
   "/proyek",
   "/pencapaian",
   "/kontak",
+  ...services.map(service => `/${service.slug}`),
 ];
 
 export default function sitemap() {

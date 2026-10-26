@@ -6,7 +6,7 @@ export default function SiteFooter({ profile = {} }) {
       <div className="mx-auto flex max-w-6xl flex-col gap-6 border-t border-line pt-7 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm font-semibold text-ink" data-no-translate>Jay Szrs</p>
         <nav aria-label="Navigasi footer" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-          <Link href="/tentang" prefetch={false}>Tentang</Link><Link href="/proyek" prefetch={false}>Proyek</Link><Link href="/kontak" prefetch={false}>Kontak</Link>
+          <Link href="/tentang" prefetch={false}>Tentang</Link><Link href="/proyek" prefetch={false}>Proyek</Link><Link href="/jasa-pembuatan-website" prefetch={false}>Jasa website</Link><Link href="/jasa-it-network" prefetch={false}>IT network & support</Link><Link href="/kontak" prefetch={false}>Kontak</Link>
         </nav>
         <p className="text-xs text-muted">&copy; {new Date().getFullYear()} <span data-no-translate>{profile.fullName || 'Jaelani Surya Saputra'}</span></p>
       </div>

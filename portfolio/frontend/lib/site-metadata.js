@@ -1,7 +1,10 @@
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jayszrs.my.id').replace(/\/+$/, '');
+// Vercel redirects the www hostname to this site's apex domain.
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://jayszrs.my.id')
+  .replace(/^https?:\/\/www\.jayszrs\.my\.id(?=\/|$)/i, 'https://jayszrs.my.id')
+  .replace(/\/+$/, '');
 export const SITE_NAME = 'Jay Szrs';
-export const HOME_TITLE = 'Jaelani Surya Saputra — Web Developer & IT | Jay Szrs';
-export const HOME_DESCRIPTION = 'Jaelani Surya Saputra (Jay Szrs), pengembang web dan praktisi IT di Jakarta & Bekasi. Jasa pembuatan website, aplikasi web, portofolio proyek dan pengalaman IT.';
+export const HOME_TITLE = 'Jaelani Surya Saputra | Jasa Website & IT Network';
+export const HOME_DESCRIPTION = 'Jaelani Surya Saputra (Jay Szrs). Jasa pembuatan website, aplikasi web, IT network, dan IT support di Jakarta & Bekasi. Lihat proyek dan diskusikan kebutuhan Anda.';
 
 export function pageMetadata(path, { title, description }) {
   const url = new URL(path, `${SITE_URL}/`).href;

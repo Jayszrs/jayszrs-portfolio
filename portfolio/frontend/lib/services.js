@@ -1,0 +1,46 @@
+export const services = [
+  {
+    slug: 'jasa-pembuatan-website',
+    title: 'Jasa Pembuatan Website Jakarta & Bekasi',
+    label: 'Jasa pembuatan website',
+    description: 'Jasa pembuatan website oleh Jaelani Surya Saputra (Jay Szrs): landing page, company profile, dan aplikasi web untuk bisnis di Jakarta dan Bekasi.',
+    introduction: 'Saya, Jaelani Surya Saputra (Jay Szrs), membantu membuat website melalui Wasla Informatika. Mulai dari halaman untuk mengenalkan usaha sampai aplikasi web untuk mendukung pekerjaan sehari-hari, kebutuhan Anda menjadi dasar ruang lingkup proyek.',
+    items: [
+      { title: 'Landing page usaha dan promosi', description: 'Halaman yang menjelaskan produk atau jasa, menampilkan informasi yang dibutuhkan calon pelanggan, dan mengarahkan mereka ke WhatsApp atau kontak bisnis.' },
+      { title: 'Website company profile dan portofolio', description: 'Website untuk memperkenalkan bisnis, layanan, profil, dan hasil pekerjaan. Susunan halaman disesuaikan dengan materi dan tujuan yang ingin Anda tampilkan.' },
+      { title: 'Aplikasi web sesuai kebutuhan', description: 'Pengembangan fitur seperti pengelolaan data, dashboard, dan integrasi API. Alur penggunaan, akses pengguna, dan kebutuhan database dibahas sebelum pengerjaan.' },
+      { title: 'Perbaikan dan pengembangan website', description: 'Bantuan meninjau masalah tampilan di ponsel, navigasi, performa, dan struktur SEO dasar pada website yang sudah ada, sesuai teknologi yang digunakan.' },
+    ],
+    preparation: 'Kirimkan jenis usaha, tujuan website, contoh referensi, materi yang sudah tersedia, serta fitur yang diperlukan. Informasikan juga jika Anda sudah memiliki domain, hosting, atau website lama.',
+    process: 'Kita mulai dengan pembahasan kebutuhan, menyepakati halaman dan fitur, lalu meninjau hasil sebelum publikasi. Biaya, jadwal, domain, hosting, dan dukungan setelah rilis ditentukan sesuai ruang lingkup yang disepakati.',
+    proof: { href: '/proyek', label: 'Lihat portofolio proyek website' },
+    questions: [
+      { question: 'Berapa biaya jasa pembuatan website?', answer: 'Biaya bergantung pada jumlah halaman, desain, fitur, materi, dan integrasi yang diperlukan. Hubungi saya dengan gambaran kebutuhan agar ruang lingkup dan penawaran dapat dibahas terlebih dahulu.' },
+      { question: 'Apakah website bisa digunakan di HP?', answer: 'Tampilan responsif untuk ponsel dan desktop menjadi bagian dari pembahasan pembuatan website. Perangkat dan browser yang perlu didukung disepakati sesuai kebutuhan proyek.' },
+      { question: 'Apakah bisa membantu website yang sudah ada?', answer: 'Bisa dibahas setelah meninjau teknologi, akses yang tersedia, dan kendalanya. Sertakan alamat website serta bagian yang ingin diperbaiki atau dikembangkan.' },
+      { question: 'Apakah pembuatan website termasuk SEO?', answer: 'Struktur halaman, judul, deskripsi, dan akses crawler dapat disiapkan sesuai ruang lingkup. Peringkat Google tetap bergantung pada banyak faktor dan tidak dapat dijamin berada di urutan pertama.' },
+    ],
+  },
+  {
+    slug: 'jasa-it-network',
+    title: 'Jasa IT Network & IT Support Jakarta Bekasi',
+    label: 'Jasa IT network & IT support',
+    description: 'Jasa IT network dan IT support oleh Jaelani Surya Saputra: troubleshooting LAN, Wi-Fi, komputer, instalasi software, dan dukungan infrastruktur IT.',
+    introduction: 'Saya, Jaelani Surya Saputra (Jay Szrs), membantu kebutuhan jaringan komputer dan IT support di Jakarta dan Bekasi. Ceritakan kendala perangkat atau jaringan Anda agar langkah pemeriksaan dan bentuk bantuan yang sesuai bisa ditentukan.',
+    items: [
+      { title: 'Troubleshooting jaringan LAN dan Wi-Fi', description: 'Pemeriksaan konektivitas, pengaturan IP, dan masalah akses jaringan pada komputer atau perangkat kerja. Informasi topologi serta perangkat yang digunakan membantu menentukan penyebab gangguan.' },
+      { title: 'Konfigurasi dan pemeliharaan jaringan', description: 'Bantuan pengaturan jaringan komputer, router, dan perangkat pendukung sesuai kebutuhan serta hak akses yang diberikan. Perubahan konfigurasi dibahas bersama sebelum diterapkan.' },
+      { title: 'IT support komputer dan perangkat kerja', description: 'Bantuan menangani kendala Windows, instalasi software, email, printer, dan perangkat keras. Sertakan pesan error dan langkah yang sudah dicoba agar pemeriksaan lebih terarah.' },
+      { title: 'Dukungan infrastruktur dan dokumentasi IT', description: 'Pendampingan pemeliharaan perangkat, pencatatan aset, dan dokumentasi konfigurasi atau penyelesaian kendala untuk memudahkan pengelolaan IT berikutnya.' },
+    ],
+    preparation: 'Sampaikan lokasi, jumlah dan jenis perangkat, gejala masalah, kapan gangguan mulai terjadi, serta perubahan terakhir pada sistem atau jaringan. Hindari mengirim kata sandi melalui pesan awal.',
+    process: 'Kebutuhan ditinjau terlebih dahulu untuk menentukan ruang lingkup pemeriksaan. Ketersediaan bantuan remote atau kunjungan, akses perangkat, biaya, dan jadwal dikonfirmasi sebelum pekerjaan dimulai.',
+    proof: { href: '/pengalaman', label: 'Lihat pengalaman IT infrastructure & support' },
+    questions: [
+      { question: 'Apa saja yang termasuk jasa IT support?', answer: 'Kebutuhan yang bisa dibahas meliputi troubleshooting komputer, Windows, software, email, printer, jaringan LAN/Wi-Fi, serta pemeliharaan dan dokumentasi perangkat IT.' },
+      { question: 'Apakah bisa membantu Wi-Fi atau LAN yang bermasalah?', answer: 'Ya, ceritakan gejala gangguan, perangkat yang digunakan, dan apakah masalah terjadi pada satu atau semua perangkat. Pemeriksaan ditentukan berdasarkan kondisi dan akses yang tersedia.' },
+      { question: 'Apakah layanan IT bisa dilakukan secara remote?', answer: 'Bentuk bantuan bergantung pada jenis kendala. Masalah yang membutuhkan pemeriksaan fisik mungkin memerlukan kunjungan. Ketersediaan remote maupun kunjungan dibahas saat konsultasi.' },
+      { question: 'Berapa biaya jasa IT network?', answer: 'Biaya bergantung pada kondisi jaringan, jumlah perangkat, lokasi, dan pekerjaan yang diperlukan. Kirimkan ringkasan kebutuhan untuk membahas ruang lingkup serta penawaran sebelum pengerjaan.' },
+    ],
+  },
+];

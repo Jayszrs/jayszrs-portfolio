@@ -3,7 +3,7 @@ export default function manifest() {
     name: "Jay Szrs Portfolio",
     short_name: "Jay Szrs",
     description:
-      "Portofolio Jaelani Surya Saputra untuk software engineering, IT infrastructure, dan web development.",
+      "Jaelani Surya Saputra: jasa pembuatan website, IT network, IT support, dan portofolio proyek.",
     start_url: "/",
     scope: "/",
     display: "standalone",
@@ -14,13 +14,19 @@ export default function manifest() {
         src: "/favicon-192.png",
         sizes: "192x192",
         type: "image/png",
-        purpose: "any maskable",
+        purpose: "any",
       },
       {
         src: "/favicon-512.png",
         sizes: "512x512",
         type: "image/png",
-        purpose: "any maskable",
+        purpose: "any",
+      },
+      {
+        src: "/favicon-maskable-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
   };

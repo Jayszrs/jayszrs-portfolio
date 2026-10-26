@@ -40,6 +40,8 @@ export const metadata = {
     "Web Developer",
     "pengembang web",
     "jasa pembuatan website",
+    "jasa IT network",
+    "jasa IT support",
     "IT Jakarta",
     "Web Developer Bekasi",
     "AI Engineer",
@@ -52,11 +54,13 @@ export const metadata = {
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/favicon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: [{ url: "/favicon-192.png", sizes: "192x192", type: "image/png" }],
+    shortcut: [{ url: "/favicon.ico", type: "image/x-icon" }],
   },
   openGraph: {
     type: "website",
@@ -83,6 +87,7 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
   },
   verification: {
     google: googleVerification,
@@ -94,7 +99,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id" data-theme="dark" className={jakarta.variable} suppressHydrationWarning>
       <head>
-        <meta name="google-site-verification" content={googleVerification} />
         <meta name="theme-color" content="#050506" />
       </head>
       <body className="bg-paper text-ink font-body antialiased">
