@@ -9,7 +9,8 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import OrganizationLogo from "@/frontend/components/OrganizationLogo";
-import { documentationImages } from "@/frontend/lib/documentation";
+import { documentationImages, documentationFiles } from "@/frontend/lib/documentation";
+import DocumentationFiles from "@/frontend/components/DocumentationFiles";
 import { withRecoveredDocumentation } from "@/frontend/lib/recovered-documentation";
 import { externalUrl } from "@/frontend/lib/urls";
 
@@ -208,7 +209,7 @@ export default function Experience({ items = [], section = {} }) {
               </section>
             )}
 
-            {(documentationImages(selected).length > 0 || documentationFileOf(selected)) && (
+            {(documentationImages(selected).length > 0 || documentationFiles(selected).length > 0) && (
               <section>
                 <h3 className="flex items-center gap-2 border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">
                   <ArrowUpRight size={19} className="text-emerald" /> Dokumentasi
@@ -251,15 +252,7 @@ export default function Experience({ items = [], section = {} }) {
                     ))}
                   </div>
                 )}
-                {documentationFileOf(selected) && (
-                  <button
-                    type="button"
-                    onClick={() => setPreview({ src: documentationFileOf(selected), title: "File dokumentasi pengalaman" })}
-                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper"
-                  >
-                    Buka file dokumentasi <ArrowUpRight size={15} />
-                  </button>
-                )}
+                <DocumentationFiles item={selected} onPreview={setPreview} title="Dokumentasi pengalaman" />
               </section>
             )}
           </div>

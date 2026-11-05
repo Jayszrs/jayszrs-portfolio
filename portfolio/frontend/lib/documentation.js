@@ -30,3 +30,14 @@ export function withDocumentationImages(item = {}, images = []) {
     documentationImage3: docs[2] || "",
   };
 }
+
+export function documentationFiles(item = {}) {
+  return compactUrls(Array.isArray(item.documentationFiles)
+    ? item.documentationFiles
+    : [item.documentationFile]);
+}
+
+export function withDocumentationFiles(item = {}, files = []) {
+  const docs = compactUrls(files);
+  return { ...item, documentationFiles: docs, documentationFile: docs[0] || "" };
+}

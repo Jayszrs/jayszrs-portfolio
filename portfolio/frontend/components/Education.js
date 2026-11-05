@@ -6,7 +6,8 @@ import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
 import SafeImage, { LogoFallback } from "@/frontend/components/SafeImage";
 import OrganizationLogo from "@/frontend/components/OrganizationLogo";
-import { documentationImages } from "@/frontend/lib/documentation";
+import { documentationImages, documentationFiles } from "@/frontend/lib/documentation";
+import DocumentationFiles from "@/frontend/components/DocumentationFiles";
 import { withRecoveredDocumentation } from "@/frontend/lib/recovered-documentation";
 import { externalUrl } from "@/frontend/lib/urls";
 
@@ -146,7 +147,7 @@ export default function Education({ items = [], section = {} }) {
                 <p className="mt-4 whitespace-pre-line text-sm leading-7 text-muted">{selected.activities}</p>
               </section>
             )}
-            {(documentationImages(selected).length > 0 || selected.documentationFile) && (
+            {(documentationImages(selected).length > 0 || documentationFiles(selected).length > 0) && (
               <section>
                 <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">Dokumentasi Pendidikan</h3>
                 {selected.recoveredDocumentationLabel && (
@@ -181,15 +182,7 @@ export default function Education({ items = [], section = {} }) {
                     ))}
                   </div>
                 )}
-                {selected.documentationFile && (
-                  <button
-                    type="button"
-                    onClick={() => setPreview({ src: selected.documentationFile, title: "File dokumentasi pendidikan" })}
-                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper"
-                  >
-                    Buka file dokumentasi <ArrowUpRight size={15} />
-                  </button>
-                )}
+                <DocumentationFiles item={selected} onPreview={setPreview} title="Dokumentasi pendidikan" />
               </section>
             )}
             {selected.link && (

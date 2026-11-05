@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useId, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useId, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   LogOut, Plus, Trash2, Save, Loader2, ImagePlus, Lock,
   ExternalLink, LayoutDashboard, CheckCircle2, AlertCircle, UploadCloud, XCircle, Download,
 } from "lucide-react";
 import { DEFAULT_CONTENT, COLLABORATION_EXAMPLES, mergeContent } from "@/backend/lib/content-defaults";
-import { documentationImages, withDocumentationImages } from "@/frontend/lib/documentation";
+import { documentationImages, withDocumentationImages, documentationFiles, withDocumentationFiles } from "@/frontend/lib/documentation";
+import BulkUploadButton, { UploadActivityContext } from "@/frontend/components/BulkUploadButton";
 import { profileHeroImages, withProfileHeroImages } from "@/frontend/lib/profileImages";
 import { mediaSource } from "@/frontend/lib/media";
 import RecoveredMediaPanel from "@/frontend/components/RecoveredMediaPanel";
@@ -42,6 +43,7 @@ function rowsFromKey(key = "") {
 }
 
 function FileField({ label, value, onChange, accept = "application/pdf", buttonLabel = "Upload file" }) {
+  const activity = useContext(UploadActivityContext);
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
   const [failed, setFailed] = useState(false);
@@ -52,6 +54,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
   const handleFile = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
+    activity?.(1);
     setBusy(true);
     setStatus("");
     setFailed(false); setProgress(0);
@@ -64,6 +67,7 @@ function FileField({ label, value, onChange, accept = "application/pdf", buttonL
     } finally {
       setBusy(false);
       event.target.value = "";
+      activity?.(-1);
     }
   };
 
@@ -165,6 +169,12 @@ function MultiFileField({
         <span className="w-fit rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">{filledCount} file</span>
       </div>
 
+      <BulkUploadButton accept={accept.includes("image") ? `${accept},.heic,.heif` : accept} onUploaded={(urls) => {
+        const next = [...rows.filter((value) => value.trim()), ...urls];
+        setRows(next);
+        onChange(next);
+      }} />
+
       {rows.length > 0 && (
         <div className="space-y-3">
           {rows.map((src, fileIndex) => (
@@ -203,6 +213,7 @@ function MultiFileField({
 }
 
 function ImageField({ label, value, onChange, showRemove = true, compact = false }) {
+  const activity = useContext(UploadActivityContext);
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
   const [failed, setFailed] = useState(false);
@@ -216,6 +227,7 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
   const handleFile = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    activity?.(1);
     setBusy(true);
     setStatus("");
     setFailed(false); setProgress(0);
@@ -229,6 +241,7 @@ function ImageField({ label, value, onChange, showRemove = true, compact = false
     } finally {
       setBusy(false);
       e.target.value = "";
+      activity?.(-1);
     }
   };
 
@@ -340,6 +353,12 @@ function MultiImageField({
         </div>
       </div>
 
+      <BulkUploadButton label="Upload banyak gambar" accept={IMAGE_UPLOAD_ACCEPT} onUploaded={(urls) => {
+        const next = [...rows.filter((value) => value.trim()), ...urls];
+        setRows(next);
+        onChange(next);
+      }} />
+
       {rows.length > 0 && (
         <div className="grid gap-2">
           {rows.map((src, imageIndex) => (
@@ -437,6 +456,12 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel, 
     onChange(next);
   };
 
+  const updateDocumentationFiles = (index, value) => {
+    const next = [...items];
+    next[index] = withDocumentationFiles(next[index], value);
+    onChange(next);
+  };
+
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
@@ -453,7 +478,7 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel, 
           {mediaSection && <RecoveredMediaPanel item={item} section={mediaSection} />}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {fields.map((field) => {
-              const fieldValue = field.kind === "images" ? documentationImages(item) : item[field.key] ?? "";
+              const fieldValue = field.kind === "images" ? documentationImages(item) : field.kind === "files" ? documentationFiles(item) : item[field.key] ?? "";
               const content = field.kind === "select" ? (
                 <SelectField label={field.label} value={fieldValue} options={field.options} onChange={(value) => updateItem(index, field.key, value)} />
               ) : field.kind === "image" ? (
@@ -462,6 +487,8 @@ function CollectionEditor({ items = [], onChange, fields, createItem, addLabel, 
                 <MultiImageField label={field.label} values={fieldValue} onChange={(value) => updateDocumentationImages(index, value)} addLabel={field.addLabel} />
               ) : field.kind === "file" ? (
                 <FileField label={field.label} value={fieldValue} onChange={(value) => updateItem(index, field.key, value)} accept={field.accept} buttonLabel={field.buttonLabel} />
+              ) : field.kind === "files" ? (
+                <MultiFileField label={field.label} values={fieldValue} onChange={(value) => updateDocumentationFiles(index, value)} accept={`${IMAGE_UPLOAD_ACCEPT},application/pdf`} />
               ) : (
                 <TextField label={field.label} value={fieldValue} textarea={field.kind === "textarea"} mono={field.mono} placeholder={field.placeholder} onChange={(value) => updateItem(index, field.key, value)} />
               );
@@ -591,6 +618,18 @@ export default function AdminPageClient() {
   const [savedAt, setSavedAt] = useState(null);
   const [saveError, setSaveError] = useState("");
   const [saveMenuOpen, setSaveMenuOpen] = useState(false);
+  const [activeUploads, setActiveUploads] = useState(0);
+  const uploadActivity = useCallback((delta) => {
+    setActiveUploads((count) => count + delta);
+    if (delta > 0) setSavedAt(null);
+  }, []);
+
+  useEffect(() => {
+    if (!activeUploads) return;
+    const beforeUnload = (event) => { event.preventDefault(); event.returnValue = ""; };
+    window.addEventListener("beforeunload", beforeUnload);
+    return () => window.removeEventListener("beforeunload", beforeUnload);
+  }, [activeUploads]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -664,6 +703,7 @@ export default function AdminPageClient() {
   };
 
   const handleSave = async () => {
+    if (activeUploads || saving) return;
     setSaving(true);
     setSaveError("");
     try {
@@ -790,6 +830,7 @@ export default function AdminPageClient() {
       : "border-line bg-surface text-muted";
 
   return (
+    <UploadActivityContext.Provider value={uploadActivity}>
     <div className="admin-studio min-h-screen pb-32">
       <header className="glass-float sticky top-0 z-40 border-b border-line px-4 py-3 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -821,7 +862,7 @@ export default function AdminPageClient() {
             </Link>
             <button
               onClick={handleSave}
-              disabled={saving}
+              disabled={saving || activeUploads > 0}
               className="flex h-11 items-center gap-2 rounded-xl bg-ink px-3.5 text-sm font-semibold text-paper transition hover:bg-emerald-deep disabled:opacity-60 sm:px-4"
             >
               {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
@@ -829,6 +870,7 @@ export default function AdminPageClient() {
             </button>
             <button
               onClick={handleLogout}
+              disabled={activeUploads > 0}
               title="Keluar"
               aria-label="Keluar dari admin"
               className="glass-pill flex h-11 w-11 items-center justify-center rounded-xl text-ink transition hover:bg-surface"
@@ -858,6 +900,7 @@ export default function AdminPageClient() {
                 key={t}
                 type="button"
                 role="tab"
+                disabled={activeUploads > 0 || saving}
                 id={`admin-tab-${index}`}
                 aria-selected={tab === t}
                 aria-controls="admin-editor"
@@ -884,8 +927,10 @@ export default function AdminPageClient() {
             <h2 className="font-display text-2xl font-semibold text-ink">{tab}</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted">{tabDescriptions[tab]}</p>
             <p className="mt-3 text-xs text-emerald-deep">Simpan setelah mengubah konten atau mengunggah file.</p>
+            {activeUploads > 0 && <p role="status" className="mt-2 text-sm text-muted">Upload sedang berjalan. Tunggu sampai selesai untuk menyimpan atau pindah bagian.</p>}
           </div>
 
+        <fieldset disabled={activeUploads > 0 || saving} className="min-w-0">
         {tab === "Profil" && (
           <div className="glass grid grid-cols-1 gap-5 rounded-2xl p-6 sm:grid-cols-2">
             <TextField label="Nama brand (pojok kiri navbar)" value={content.profile?.brandName} onChange={(v) => setContent({ ...content, profile: { ...content.profile, brandName: v } })} />
@@ -1031,7 +1076,7 @@ export default function AdminPageClient() {
               { key: "activities", label: "Aktivitas & pencapaian", kind: "textarea", wide: true },
               { key: "logo", label: "Logo sekolah / kampus", kind: "image", wide: true },
               { key: "documentationImages", label: "Gambar dokumentasi pendidikan", kind: "images", addLabel: "Tambah dokumentasi pendidikan", wide: true },
-              { key: "documentationFile", label: "File dokumentasi pendidikan", kind: "file", accept: "image/*,application/pdf", buttonLabel: "Upload dokumen", wide: true },
+              { key: "documentationFiles", label: "File dokumentasi pendidikan (PDF / gambar)", kind: "files", wide: true },
               { key: "link", label: "Link institusi (opsional)", wide: true },
             ]}
             createItem={() => ({
@@ -1133,8 +1178,8 @@ export default function AdminPageClient() {
                 <ImageField label="Logo organisasi / gambar pengalaman" value={item.image} onChange={(v) => {
                   const next = [...content.experience]; next[i] = { ...item, image: v }; setContent({ ...content, experience: next });
                 }} />
-                <FileField label="Upload dokumentasi pengalaman" value={item.documentationFile || item.link} accept="image/*,application/pdf" buttonLabel="Upload dokumen" onChange={(v) => {
-                  const next = [...content.experience]; next[i] = { ...item, documentationFile: v, link: "" }; setContent({ ...content, experience: next });
+                <MultiFileField label="Dokumentasi pengalaman (PDF / gambar)" values={documentationFiles({ ...item, documentationFile: item.documentationFile || item.link })} accept={`${IMAGE_UPLOAD_ACCEPT},application/pdf`} onChange={(v) => {
+                  const next = [...content.experience]; next[i] = { ...withDocumentationFiles(item, v), link: "" }; setContent({ ...content, experience: next });
                 }} />
                 <MultiImageField label="Gambar dokumentasi pengalaman" values={documentationImages(item)} addLabel="Tambah dokumentasi pengalaman" onChange={(v) => {
                   const next = [...content.experience]; next[i] = withDocumentationImages(item, v); setContent({ ...content, experience: next });
@@ -1221,6 +1266,9 @@ export default function AdminPageClient() {
                 <MultiImageField label="Gambar dokumentasi / bukti" values={documentationImages(item)} addLabel="Tambah bukti dokumentasi" onChange={(v) => {
                   const next = [...content.gallery]; next[i] = withDocumentationImages(item, v); setContent({ ...content, gallery: next });
                 }} />
+                <MultiFileField label="File dokumentasi proyek (PDF / gambar)" values={documentationFiles(item)} accept={`${IMAGE_UPLOAD_ACCEPT},application/pdf`} onChange={(v) => {
+                  const next = [...content.gallery]; next[i] = withDocumentationFiles(item, v); setContent({ ...content, gallery: next });
+                }} />
               </div>
             ))}
             <button
@@ -1247,6 +1295,7 @@ export default function AdminPageClient() {
               { key: "link", label: "Link karya (opsional)" },
               { key: "description", label: "Deskripsi", kind: "textarea", wide: true },
               { key: "image", label: "Gambar preview", kind: "image", wide: true },
+              { key: "documentationFiles", label: "File desain (PDF / gambar)", kind: "files", wide: true },
             ]}
             createItem={() => ({ id: uid("design"), title: "", category: "", year: "", description: "", image: "", link: "" })}
             addLabel="Tambah selected design"
@@ -1351,6 +1400,9 @@ export default function AdminPageClient() {
                   <ImageField label="Gambar badge / bukti (opsional)" value={item.image} onChange={(v) => {
                     const next = [...list]; next[i] = { ...item, image: v }; setContent({ ...content, [key]: next });
                   }} />
+                  <MultiFileField label="Lampiran (PDF / gambar)" values={documentationFiles(item)} accept={`${IMAGE_UPLOAD_ACCEPT},application/pdf`} onChange={(v) => {
+                    const next = [...list]; next[i] = withDocumentationFiles(item, v); setContent({ ...content, [key]: next });
+                  }} />
                 </div>
               ))}
               <button
@@ -1397,6 +1449,7 @@ export default function AdminPageClient() {
             </div>
           </div>
         )}
+        </fieldset>
         </section>
         </div>
       </main>
@@ -1420,7 +1473,7 @@ export default function AdminPageClient() {
             </Link>
             <button
               onClick={handleSave}
-              disabled={saving}
+              disabled={saving || activeUploads > 0}
               className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-emerald px-5 text-sm font-semibold text-white transition hover:bg-emerald-deep disabled:opacity-60"
             >
               {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
@@ -1440,6 +1493,7 @@ export default function AdminPageClient() {
         </button>
       </div>
     </div>
+    </UploadActivityContext.Provider>
   );
 }
 

@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { ArrowUpRight, Image as ImageIcon, Maximize2 } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
+import MediaPreview from "@/frontend/components/MediaPreview";
+import DocumentationFiles from "@/frontend/components/DocumentationFiles";
 import SafeImage from "@/frontend/components/SafeImage";
 import { externalUrl } from "@/frontend/lib/urls";
 
 export default function SelectedDesigns({ items = [], section = {} }) {
   const [selected, setSelected] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   return (
     <section id="desain" className="section-pad scroll-mt-24 py-16 sm:py-20">
@@ -85,6 +88,7 @@ export default function SelectedDesigns({ items = [], section = {} }) {
               )}
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted">{selected.description}</p>
+            <DocumentationFiles item={selected} onPreview={setPreview} title="File desain" />
             {selected.link && (
               <a href={externalUrl(selected.link)} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">
                 Buka karya <ArrowUpRight size={15} />
@@ -93,6 +97,7 @@ export default function SelectedDesigns({ items = [], section = {} }) {
           </>
         )}
       </DetailModal>
+      <MediaPreview items={preview?.items} initialIndex={preview?.initialIndex || 0} title={preview?.title} onClose={() => setPreview(null)} />
     </section>
   );
 }

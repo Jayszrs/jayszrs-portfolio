@@ -9,6 +9,7 @@ import OrganizationLogo from "@/frontend/components/OrganizationLogo";
 import { externalUrl } from "@/frontend/lib/urls";
 import { certificatePreview, mediaSource } from "@/frontend/lib/media";
 import { issuerLogo, issuerLogoAppearance } from "@/frontend/lib/issuer-logo";
+import { documentationFiles } from "@/frontend/lib/documentation";
 
 function certificatePdfs(item = {}) {
   const extras = [
@@ -35,7 +36,8 @@ function mediaAssets(item = {}, kind = "") {
         ...certificatePdfs(item).map((src, index) => ({ src, title: `Dokumen ${item.title}${index ? ` ${index + 1}` : ""}` })),
       ].filter(Boolean);
 
-  return assets.filter((asset, index, list) => list.findIndex((itemAsset) => itemAsset.src === asset.src) === index);
+  return [...assets, ...documentationFiles(item).map((src, index) => ({ src, title: `Lampiran ${item.title} ${index + 1}` }))]
+    .filter((asset, index, list) => list.findIndex((itemAsset) => itemAsset.src === asset.src) === index);
 }
 
 function isPdf(src = "") {

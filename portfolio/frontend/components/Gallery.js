@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, ArrowUpRight, CalendarDays, Code2, Image as ImageIcon, ListChecks, UserRound, FileText, Download } from "lucide-react";
 import DetailModal from "@/frontend/components/DetailModal";
 import MediaPreview from "@/frontend/components/MediaPreview";
+import DocumentationFiles from "@/frontend/components/DocumentationFiles";
 import SafeImage from "@/frontend/components/SafeImage";
 import { documentationImages } from "@/frontend/lib/documentation";
 import { withRecoveredProjectMedia } from "@/frontend/lib/project-media";
@@ -216,6 +217,7 @@ export default function Gallery({ items = [], section = {} }) {
                 )}
               </section>
             )}
+            <DocumentationFiles item={selected} onPreview={setPreview} title="Dokumentasi proyek" />
             {selected.recoveredDocuments?.length > 0 && <section>
               <h3 className="border-b border-emerald/25 pb-3 font-display text-xl font-semibold text-ink">Dokumen proyek</h3>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">{selected.recoveredDocuments.map((file) => <div key={file.url} className="rounded-2xl border border-line bg-surface p-4">
